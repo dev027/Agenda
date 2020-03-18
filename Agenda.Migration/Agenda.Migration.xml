@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Agenda.Migration</name>
+    </assembly>
+    <members>
+        <member name="T:Agenda.Migration.DbContexts.MigrationContext">
+            <summary>
+            Migration Context.
+            </summary>
+            <seealso cref="T:Microsoft.EntityFrameworkCore.DbContext" />
+            <summary>
+            Migration Context - DB Sets.
+            </summary>
+            <seealso cref="T:Microsoft.EntityFrameworkCore.DbContext" />
+        </member>
+        <member name="M:Agenda.Migration.DbContexts.MigrationContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Migration.DbContexts.MigrationContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Override this method to further configure the model that was discovered by convention from the entity types
+            exposed in dbset properties on your derived context. The resulting model may be cached
+            and re-used for subsequent instances of your derived context.
+            </summary>
+            <param name="modelBuilder">The builder being used to construct the model for this context. Databases (and other extensions) typically
+            define extension methods on this object that allow you to configure aspects of the model that are specific
+            to a given database.</param>
+            <exception cref="T:System.ArgumentNullException">modelBuilder.</exception>
+            <remarks>
+            If a model is explicitly set on the options for this context" />)
+            then this method will not be run.
+            </remarks>
+        </member>
+        <member name="T:Agenda.Migration.Program">
+            <summary>
+            Migrations.
+            </summary>
+        </member>
+        <member name="M:Agenda.Migration.Program.Main">
+            <summary>
+            Defines the entry point of the application.
+            </summary>
+        </member>
+    </members>
+</doc>

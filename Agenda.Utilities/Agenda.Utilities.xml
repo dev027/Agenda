@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Agenda.Utilities</name>
+    </assembly>
+    <members>
+        <member name="T:Agenda.Utilities.DependencyInjection.InstanceFactory">
+            <summary>
+            Instance Factory.
+            </summary>
+        </member>
+        <member name="M:Agenda.Utilities.DependencyInjection.InstanceFactory.Debug">
+            <summary>
+            Return debug details of what is registered.
+            </summary>
+            <returns>List of debug details.</returns>
+        </member>
+        <member name="M:Agenda.Utilities.DependencyInjection.InstanceFactory.RegisterTransient``2(System.Boolean)">
+            <summary>
+            Registers a type to fulfil instance requests (new instance every time).
+            </summary>
+            <typeparam name="TInterface">The interface to register for.</typeparam>
+            <typeparam name="TImplementation">The implementation to fulfil the interface.</typeparam>
+            <param name="isOverride">True to allow explicit override.</param>
+        </member>
+        <member name="M:Agenda.Utilities.DependencyInjection.InstanceFactory.GetInstance``1">
+            <summary>
+            Gets the registered implementation of the specified interface.
+            </summary>
+            <typeparam name="TInterface">The interface to request the registered implementation for.</typeparam>
+            <returns>The registered implementation of the specified interface.</returns>
+        </member>
+        <member name="T:Agenda.Utilities.Exceptions.InstanceFactoryException">
+            <summary>
+            InstanceFactoryException.
+            </summary>
+        </member>
+        <member name="M:Agenda.Utilities.Exceptions.InstanceFactoryException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Utilities.Exceptions.InstanceFactoryException"/> class.
+            </summary>
+        </member>
+        <member name="M:Agenda.Utilities.Exceptions.InstanceFactoryException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Utilities.Exceptions.InstanceFactoryException"/> class.
+            </summary>
+            <param name="message">Message.</param>
+        </member>
+        <member name="M:Agenda.Utilities.Exceptions.InstanceFactoryException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Utilities.Exceptions.InstanceFactoryException"/> class.
+            </summary>
+            <param name="message">Message.</param>
+            <param name="innerException">InnerException.</param>
+        </member>
+        <member name="M:Agenda.Utilities.Exceptions.InstanceFactoryException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Utilities.Exceptions.InstanceFactoryException"/> class.
+            </summary>
+            <param name="info">Serialization Info.</param>
+            <param name="context">Streaming Context.</param>
+        </member>
+    </members>
+</doc>
