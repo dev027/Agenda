@@ -1,0 +1,188 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Agenda.Web</name>
+    </assembly>
+    <members>
+        <member name="T:Agenda.Web.Areas.Api.Controllers.OrganisationController">
+            <summary>
+            Organisation Controller.
+            </summary>
+            <seealso cref="T:Microsoft.AspNetCore.Mvc.ControllerBase" />
+        </member>
+        <member name="M:Agenda.Web.Areas.Api.Controllers.OrganisationController.Get">
+            <summary>
+            Gets all organisations.
+            </summary>
+            <example>
+            GET: /api/Organisation/Get .
+            </example>
+            <returns>List of organisations.</returns>
+        </member>
+        <member name="M:Agenda.Web.Areas.Api.Controllers.OrganisationController.Get(System.Int32)">
+            <summary>
+            Gets the organisation with the specified id.
+            </summary>
+            <example>
+            GET: api/Organisation/5 .
+            </example>
+            <param name="id">Organisation Id.</param>
+            <returns>Organisation.</returns>
+        </member>
+        <member name="M:Agenda.Web.Areas.Api.Controllers.OrganisationController.Post(System.String)">
+            <summary>
+            Creates an organisation.
+            </summary>
+            <example>
+            POST: api/Organisation .
+            </example>
+            <param name="value">Organisation details.</param>
+        </member>
+        <member name="M:Agenda.Web.Areas.Api.Controllers.OrganisationController.Put(System.Int32,System.String)">
+            <summary>
+            Updates and organisation.
+            </summary>
+            <example>
+            PUT: api/Organisation/5 .
+            </example>
+            <param name="id">Organisation iD.</param>
+            <param name="value">SOMETHING.</param>
+        </member>
+        <member name="M:Agenda.Web.Areas.Api.Controllers.OrganisationController.Delete(System.Int32)">
+            <summary>
+            Deletes an organisation.
+            </summary>
+            <example>
+            DELETE: api/Organisation/5 .
+            </example>
+            <param name="id">Organisation Id.</param>
+        </member>
+        <member name="T:Agenda.Web.Areas.Api.Models.Home.IndexViewModel">
+            <summary>
+            View model for <see cref="M:Agenda.Web.Controllers.HomeController.Index"/>.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.Areas.Api.Models.Home.IndexViewModel.#ctor(Agenda.Web.ViewModels.Shared.HeaderViewModel)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.Areas.Api.Models.Home.IndexViewModel"/> class.
+            </summary>
+            <param name="headerViewModel">The header.</param>
+        </member>
+        <member name="P:Agenda.Web.Areas.Api.Models.Home.IndexViewModel.HeaderViewModel">
+            <summary>
+            Gets the header view model.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.Areas.Api.Models.Home.IndexViewModel.Create">
+            <summary>
+            Creates this instance.
+            </summary>
+            <returns>Index view model.</returns>
+        </member>
+        <member name="T:Agenda.Web.Areas.Api.Models.Organisations.Out.OrganisationDto">
+            <summary>
+            Organisation DTO.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.Areas.Api.Models.Organisations.Out.OrganisationDto.#ctor(Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.Areas.Api.Models.Organisations.Out.OrganisationDto"/> class.
+            </summary>
+            <param name="organisation">The organisation.</param>
+        </member>
+        <member name="P:Agenda.Web.Areas.Api.Models.Organisations.Out.OrganisationDto.Id">
+            <summary>
+            Gets the identifier.
+            </summary>
+            <value>
+            The identifier.
+            </value>
+        </member>
+        <member name="P:Agenda.Web.Areas.Api.Models.Organisations.Out.OrganisationDto.Code">
+            <summary>
+            Gets the code.
+            </summary>
+            <value>
+            The code.
+            </value>
+        </member>
+        <member name="P:Agenda.Web.Areas.Api.Models.Organisations.Out.OrganisationDto.Name">
+            <summary>
+            Gets the name.
+            </summary>
+            <value>
+            The name.
+            </value>
+        </member>
+        <member name="T:Agenda.Web.Controllers.HomeController">
+            <summary>
+            Home Controller.
+            </summary>
+            <seealso cref="T:Microsoft.AspNetCore.Mvc.Controller" />
+        </member>
+        <member name="M:Agenda.Web.Controllers.HomeController.Index">
+            <summary>
+            Display the default view.
+            </summary>
+            <returns>Default View.</returns>
+        </member>
+        <member name="T:Agenda.Web.Program">
+            <summary>
+            Program start point.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.Program.Main(System.String[])">
+            <summary>
+            Defines the entry point of the application.
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="T:Agenda.Web.Startup">
+            <summary>
+            Web application startup routines.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940.
+            </summary>
+            <param name="services">Service Collection.</param>
+        </member>
+        <member name="M:Agenda.Web.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+            <param name="app">Application pipeline.</param>
+            <param name="env">Runtime environment.</param>
+        </member>
+        <member name="T:Agenda.Web.ViewModels.Shared.HeaderViewModel">
+            <summary>
+            View model for Shared/_header.cshtml.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Shared.HeaderViewModel.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Shared.HeaderViewModel"/> class.
+            </summary>
+            <param name="siteName">Site Name.</param>
+            <param name="siteIconClass">Site Icon class name.</param>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Shared.HeaderViewModel.SiteName">
+            <summary>
+            Gets the name of the site.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Shared.HeaderViewModel.SiteIconClass">
+            <summary>
+            Gets the site icon class.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Shared.HeaderViewModel.Create">
+            <summary>
+            Creates this instance.
+            </summary>
+            <returns>Header View Model.</returns>
+        </member>
+    </members>
+</doc>

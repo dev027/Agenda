@@ -1,0 +1,18 @@
+﻿@model Agenda.Web.Areas.Api.Models.Home.IndexViewModel
+@{
+}
+
+<div class="wrapper d-flex flex-column justify-content-between">
+    @await Html.PartialAsync("../Shared/_header", Model.HeaderViewModel)
+
+    <div class="content d-flex flex-grow-1">
+        <nav class="sidebar">
+            <h1>Sidebar</h1></nav>
+        <main class="flex-grow-1">
+            <h1>Main Content</h1></main>
+    </div>
+    <footer>
+        <h1>Footer</h1>
+    </footer>
+</div>
+

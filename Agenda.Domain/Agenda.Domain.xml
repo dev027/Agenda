@@ -4,5 +4,150 @@
         <name>Agenda.Domain</name>
     </assembly>
     <members>
+        <member name="T:Agenda.Domain.DomainObjects.Committees.Committee">
+            <summary>
+            Group. Typically a committee, sub-committee or working party.
+            </summary>
+        </member>
+        <member name="M:Agenda.Domain.DomainObjects.Committees.Committee.#ctor(System.Guid,Agenda.Domain.DomainObjects.Organisations.IOrganisation,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Domain.DomainObjects.Committees.Committee"/> class.
+            </summary>
+            <param name="id">Committee Id.</param>
+            <param name="organisation">Organisation.</param>
+            <param name="name">Group Name.</param>
+            <param name="description">Group Description.</param>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Committees.Committee.Id">
+            <inheritdoc/>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Committees.Committee.Organisation">
+            <inheritdoc/>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Committees.Committee.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Committees.Committee.Description">
+            <inheritdoc/>
+        </member>
+        <member name="T:Agenda.Domain.DomainObjects.Committees.ICommittee">
+            <summary>
+            Committee.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Committees.ICommittee.Id">
+            <summary>
+            Gets the Committee Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Committees.ICommittee.Organisation">
+            <summary>
+            Gets the Organisation.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Committees.ICommittee.Name">
+            <summary>
+            Gets the Committee Name.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Committees.ICommittee.Description">
+            <summary>
+            Gets the Committee Description.
+            </summary>
+        </member>
+        <member name="T:Agenda.Domain.DomainObjects.Meetings.IMeeting">
+            <summary>
+            Meeting.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Meetings.IMeeting.Id">
+            <summary>
+            Gets the Meeting Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Meetings.IMeeting.Committee">
+            <summary>
+            Gets the committee.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Meetings.IMeeting.MeetingDateTime">
+            <summary>
+            Gets the Meeting date and time.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Meetings.IMeeting.Location">
+            <summary>
+            Gets the Location.
+            </summary>
+        </member>
+        <member name="T:Agenda.Domain.DomainObjects.Meetings.Meeting">
+            <summary>
+            Meeting.
+            </summary>
+            <seealso cref="T:Agenda.Domain.DomainObjects.Meetings.IMeeting" />
+        </member>
+        <member name="M:Agenda.Domain.DomainObjects.Meetings.Meeting.#ctor(System.Guid,Agenda.Domain.DomainObjects.Committees.ICommittee,System.DateTime,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Domain.DomainObjects.Meetings.Meeting"/> class.
+            </summary>
+            <param name="id">Meeting Id.</param>
+            <param name="committee">Committee.</param>
+            <param name="meetingDateTime">Date and Time of Meeting.</param>
+            <param name="location">Location.</param>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Meetings.Meeting.Id">
+            <inheritdoc/>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Meetings.Meeting.Committee">
+            <inheritdoc/>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Meetings.Meeting.MeetingDateTime">
+            <inheritdoc/>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Meetings.Meeting.Location">
+            <inheritdoc/>
+        </member>
+        <member name="T:Agenda.Domain.DomainObjects.Organisations.IOrganisation">
+            <summary>
+            Organisation.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Organisations.IOrganisation.Id">
+            <summary>
+            Gets the Organisation Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Organisations.IOrganisation.Code">
+            <summary>
+            Gets the Organisation Code.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Organisations.IOrganisation.Name">
+            <summary>
+            Gets the Organisation Name.
+            </summary>
+        </member>
+        <member name="T:Agenda.Domain.DomainObjects.Organisations.Organisation">
+            <summary>
+            Organisation.
+            </summary>
+        </member>
+        <member name="M:Agenda.Domain.DomainObjects.Organisations.Organisation.#ctor(System.Guid,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Domain.DomainObjects.Organisations.Organisation"/> class.
+            </summary>
+            <param name="id">Organisation Id.</param>
+            <param name="code">Organisation Code.</param>
+            <param name="name">Organisation Name.</param>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Organisations.Organisation.Id">
+            <inheritdoc/>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Organisations.Organisation.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Organisations.Organisation.Name">
+            <inheritdoc/>
+        </member>
     </members>
 </doc>

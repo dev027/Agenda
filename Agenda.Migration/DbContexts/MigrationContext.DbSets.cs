@@ -2,6 +2,7 @@
 // Copyright (c) Do It Wright. All rights reserved.
 // </copyright>
 
+using Agenda.Data.Dtos;
 using Microsoft.EntityFrameworkCore;
 
 namespace Agenda.Migration.DbContexts
@@ -12,5 +13,19 @@ namespace Agenda.Migration.DbContexts
     /// <seealso cref="DbContext" />
     public partial class MigrationContext
     {
+        /// <summary>
+        /// Gets or sets the Committees.
+        /// </summary>
+        public DbSet<CommitteeDto> Committees { get; set; } = null!;
+
+        /// <summary>
+        /// Gets or sets the Meetings.
+        /// </summary>
+        public DbSet<MeetingDto> Meetings { get; set; } = null!;
+
+        /// <summary>
+        /// Gets or sets the Organisations.
+        /// </summary>
+        public DbSet<OrganisationDto> Organisations { get; set; } = null!;
     }
 }

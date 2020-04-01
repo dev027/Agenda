@@ -1,0 +1,42 @@
+﻿body {
+    background-color: blue;
+}
+
+html {
+    background-color: green;
+}
+
+.wrapper {
+    background-color: red;
+}
+
+header, footer {
+    background-color: green;
+}
+
+.content {
+    background-color: yellow;
+}
+
+.sidebar {
+    background-color: pink;
+}
+
+main {
+    background-color: purple;
+}
+
+.topnavbar {
+    color: white;
+    background-color: #23b7e5;
+    background-image: linear-gradient(to right, #23b7e5 0, #51c6ea 100%);
+}
+
+main {
+    color: black;
+    background-color: white;
+}
+
+.wrapper {
+    min-height: 100vh;
+}
