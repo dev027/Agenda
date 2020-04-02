@@ -10,8 +10,8 @@ namespace Agenda.Data.Crud
     /// <summary>
     /// Data access.
     /// </summary>
-    /// <seealso cref="System.IDisposable" />
-    public partial class AgendaData : IDisposable
+    /// <seealso cref="IAgendaData"/>
+    public partial class AgendaData : IAgendaData
     {
         private readonly DataContext context = new DataContext();
 

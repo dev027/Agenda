@@ -8,11 +8,16 @@
             <summary>
             Data access.
             </summary>
-            <seealso cref="T:System.IDisposable" />
+            <seealso cref="T:Agenda.Data.Crud.IAgendaData"/>
+            <summary>
+            CRUD operations for Committees.
+            </summary>
             <summary>
             CRUD operations for Meetings.
             </summary>
-            <seealso cref="T:System.IDisposable" />
+            <summary>
+            CRUD operations for Organisations.
+            </summary>
         </member>
         <member name="M:Agenda.Data.Crud.AgendaData.Dispose">
             <summary>
@@ -25,13 +30,39 @@
             </summary>
             <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
         </member>
+        <member name="M:Agenda.Data.Crud.AgendaData.HaveCommittees">
+            <inheritdoc/>
+        </member>
         <member name="M:Agenda.Data.Crud.AgendaData.GetRecentMeetingsMostRecentFirst(System.TimeSpan,System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:Agenda.Data.Crud.AgendaData.HaveOrganisations">
+            <inheritdoc/>
+        </member>
+        <member name="T:Agenda.Data.Crud.IAgendaData">
+            <summary>
+            Data access.
+            </summary>
+        </member>
+        <member name="M:Agenda.Data.Crud.IAgendaData.HaveCommittees">
+            <summary>
+            Checks if we have Committees.
+            </summary>
+            <returns>True if Committees exist.</returns>
+        </member>
+        <member name="M:Agenda.Data.Crud.IAgendaData.GetRecentMeetingsMostRecentFirst(System.TimeSpan,System.Int32)">
             <summary>
             Gets the recent meetings with the most recent first.
             </summary>
             <param name="timeSpan">The time span define what is recent.</param>
             <param name="maxNumberOfMeetings">The maximum number of meetings to return.</param>
             <returns>List of Meetings.</returns>
+        </member>
+        <member name="M:Agenda.Data.Crud.IAgendaData.HaveOrganisations">
+            <summary>
+            Checks if we have Organisations.
+            </summary>
+            <returns>True if Organisations exist.</returns>
         </member>
         <member name="T:Agenda.Data.DbContexts.DataContext">
             <summary>

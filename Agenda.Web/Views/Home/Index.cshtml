@@ -6,10 +6,20 @@
     @await Html.PartialAsync("../Shared/_header", Model.HeaderViewModel)
 
     <div class="content d-flex flex-grow-1">
-        <nav class="sidebar">
+        <nav class="sidebar d-none">
             <h1>Sidebar</h1></nav>
-        <main class="flex-grow-1">
-            <h1>Main Content</h1></main>
+        <main class="container-fluid flex-grow-1">
+            @if (Model.MeetingCardViewModels.Any())
+            {
+
+                <p>Have @Model.MeetingCardViewModels.Count meetings</p>
+            }
+            else
+            {
+                @await Html.PartialAsync("_NoRecentMeetings", Model.NoRecentMeetingsViewModel)
+            }
+
+        </main>
     </div>
     <footer>
         <h1>Footer</h1>

@@ -62,22 +62,121 @@
             View model for <see cref="M:Agenda.Web.Controllers.HomeController.Index"/>.
             </summary>
         </member>
-        <member name="M:Agenda.Web.Areas.Api.Models.Home.IndexViewModel.#ctor(Agenda.Web.ViewModels.Shared.HeaderViewModel)">
+        <member name="M:Agenda.Web.Areas.Api.Models.Home.IndexViewModel.#ctor(Agenda.Web.ViewModels.Shared.HeaderViewModel,Agenda.Web.Areas.Api.Models.Home.NoRecentMeetingsViewModel,System.Collections.Generic.IList{Agenda.Web.Areas.Api.Models.Home.MeetingCardViewModel})">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Web.Areas.Api.Models.Home.IndexViewModel"/> class.
             </summary>
-            <param name="headerViewModel">The header.</param>
+            <param name="headerViewModel">Header view model.</param>
+            <param name="noRecentMeetingsViewModel">No Recent Meetings view model.</param>
+            <param name="meetingCardViewModels">Meeting Card view models.</param>
         </member>
         <member name="P:Agenda.Web.Areas.Api.Models.Home.IndexViewModel.HeaderViewModel">
             <summary>
             Gets the header view model.
             </summary>
         </member>
-        <member name="M:Agenda.Web.Areas.Api.Models.Home.IndexViewModel.Create">
+        <member name="P:Agenda.Web.Areas.Api.Models.Home.IndexViewModel.NoRecentMeetingsViewModel">
+            <summary>
+            Gets the no recent meetings view model.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.Areas.Api.Models.Home.IndexViewModel.MeetingCardViewModels">
+            <summary>
+            Gets the meeting card view models.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.Areas.Api.Models.Home.IndexViewModel.Create(System.Collections.Generic.IList{Agenda.Domain.DomainObjects.Meetings.IMeeting},Agenda.Domain.ValueObjects.SetupStatii.ISetupStatus)">
             <summary>
             Creates this instance.
             </summary>
+            <param name="recentMeetings">Recent meetings.</param>
+            <param name="setupStatus">Setup status.</param>
             <returns>Index view model.</returns>
+        </member>
+        <member name="T:Agenda.Web.Areas.Api.Models.Home.MeetingCardViewModel">
+            <summary>
+            Meeting Card View Model.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.Areas.Api.Models.Home.MeetingCardViewModel.#ctor(System.String,System.String,System.DateTime,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.Areas.Api.Models.Home.MeetingCardViewModel"/> class.
+            </summary>
+            <param name="organisationName">Organisation Name.</param>
+            <param name="committeeName">Committee Name.</param>
+            <param name="meetingDateTime">Date and Time of the Meeting.</param>
+            <param name="location">Location.</param>
+        </member>
+        <member name="P:Agenda.Web.Areas.Api.Models.Home.MeetingCardViewModel.OrganisationName">
+            <summary>
+            Gets the Organisation Name.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.Areas.Api.Models.Home.MeetingCardViewModel.CommitteeName">
+            <summary>
+            Gets the Committee. Name.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.Areas.Api.Models.Home.MeetingCardViewModel.MeetingDateTime">
+            <summary>
+            Gets the Date and Time of the Meeting.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.Areas.Api.Models.Home.MeetingCardViewModel.Location">
+            <summary>
+            Gets the Location.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.Areas.Api.Models.Home.MeetingCardViewModel.Create(Agenda.Domain.DomainObjects.Meetings.IMeeting)">
+            <summary>
+            Creates the Meeting Card View Model.
+            </summary>
+            <param name="meeting">Meeting.</param>
+            <returns>Meeting Card View Model.</returns>
+        </member>
+        <member name="T:Agenda.Web.Areas.Api.Models.Home.NoRecentMeetingsViewModel">
+            <summary>
+            No Recent Meetings view model.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.Areas.Api.Models.Home.NoRecentMeetingsViewModel.#ctor(System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.Areas.Api.Models.Home.NoRecentMeetingsViewModel"/> class.
+            </summary>
+            <param name="showAddOrganisationButton">Show Add Organisation Button.</param>
+            <param name="showAddCommitteeButton">Show Add Committee Button.</param>
+            <param name="showAddMeetingButton">Show Add Meeting Button.</param>
+        </member>
+        <member name="P:Agenda.Web.Areas.Api.Models.Home.NoRecentMeetingsViewModel.ShowAddOrganisationButton">
+            <summary>
+            Gets a value indicating whether [show add organisation button].
+            </summary>
+            <value>
+              <c>true</c> if [show add organisation button]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Agenda.Web.Areas.Api.Models.Home.NoRecentMeetingsViewModel.ShowAddCommitteeButton">
+            <summary>
+            Gets a value indicating whether [show add committee button].
+            </summary>
+            <value>
+              <c>true</c> if [show add committee button]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Agenda.Web.Areas.Api.Models.Home.NoRecentMeetingsViewModel.ShowAddMeetingButton">
+            <summary>
+            Gets a value indicating whether [show add meeting button].
+            </summary>
+            <value>
+              <c>true</c> if [show add meeting button]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:Agenda.Web.Areas.Api.Models.Home.NoRecentMeetingsViewModel.Create(Agenda.Domain.ValueObjects.SetupStatii.ISetupStatus)">
+            <summary>
+            Creates a No Recent Meetings view model.
+            </summary>
+            <param name="setupStatus">The setup status.</param>
+            <returns>No Recent Meetings view model.</returns>
         </member>
         <member name="T:Agenda.Web.Areas.Api.Models.Organisations.Out.OrganisationDto">
             <summary>

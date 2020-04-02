@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -6,7 +6,7 @@
     <Company>Do It Wright</Company>
     <Authors>Steve Wright</Authors>
     <Product>Agenda</Product>
-    <Description>Domain objects for Agenda.</Description>
+    <Description>Service Layer for Agenda.</Description>
     <NeutralLanguage>en-GB</NeutralLanguage>
   </PropertyGroup>
 
@@ -14,7 +14,7 @@
     <CodeAnalysisRuleSet>C:\Users\Steve\Documents\Visual Studio 2019\DoItWright.ruleset</CodeAnalysisRuleSet>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <WarningsAsErrors />
-    <DocumentationFile>Agenda.Domain.xml</DocumentationFile>
+    <DocumentationFile>Agenda.Service.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -30,21 +30,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Resources\ExceptionResource.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>ExceptionResource.resx</DependentUpon>
-    </Compile>
+    <ProjectReference Include="..\Agenda.Data\Agenda.Data.csproj" />
+    <ProjectReference Include="..\Agenda.Domain\Agenda.Domain.csproj" />
+    <ProjectReference Include="..\Agenda.Utilities\Agenda.Utilities.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Update="Resources\ExceptionResource.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ExceptionResource.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
 </Project>

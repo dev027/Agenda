@@ -1,0 +1,25 @@
+﻿@model Agenda.Web.Areas.Api.Models.Home.NoRecentMeetingsViewModel
+
+<div class="jumbotron">
+    <h1 class="display-4">No Recent Meetings</h1>
+    <p class="lead">No recent meetings to display.</p>
+    <hr class="my-4">
+    @if (Model.ShowAddOrganisationButton)
+    {
+        <a class="btn btn-primary btn-lg"
+                href="/Organisation/Add"
+                role="button">Add Organisation</a>
+    }
+    @if (Model.ShowAddCommitteeButton)
+    {
+        <a class="btn btn-primary btn-lg"
+                href="/Committee/Add"
+                role="button">Add Committee</a>
+    }
+    @if (Model.ShowAddMeetingButton)
+    {
+        <a class="btn btn-primary btn-lg"
+                href="/Meeting/Add"
+                role="button">Add Meeting</a>
+    }
+</div>

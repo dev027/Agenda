@@ -149,5 +149,66 @@
         <member name="P:Agenda.Domain.DomainObjects.Organisations.Organisation.Name">
             <inheritdoc/>
         </member>
+        <member name="T:Agenda.Domain.Resources.ExceptionResource">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.Resources.ExceptionResource.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.Resources.ExceptionResource.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.Resources.ExceptionResource.CannotHaveCommitteesWithoutOrganisations">
+            <summary>
+              Looks up a localized string similar to Cannot have Committees without Organisations..
+            </summary>
+        </member>
+        <member name="T:Agenda.Domain.ValueObjects.SetupStatii.ISetupStatus">
+            <summary>
+            Setup Status.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.ValueObjects.SetupStatii.ISetupStatus.HaveOrganisations">
+            <summary>
+            Gets a value indicating whether [have organisations].
+            </summary>
+            <value>
+              <c>true</c> if [have organisations]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Agenda.Domain.ValueObjects.SetupStatii.ISetupStatus.HaveCommittees">
+            <summary>
+            Gets a value indicating whether [have meetings].
+            </summary>
+            <value>
+              <c>true</c> if [have meetings]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Agenda.Domain.ValueObjects.SetupStatii.SetupStatus">
+            <summary>
+            Setup Status.
+            </summary>
+            <seealso cref="T:Agenda.Domain.ValueObjects.SetupStatii.ISetupStatus" />
+        </member>
+        <member name="M:Agenda.Domain.ValueObjects.SetupStatii.SetupStatus.#ctor(System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Domain.ValueObjects.SetupStatii.SetupStatus"/> class.
+            </summary>
+            <param name="haveOrganisations">True if Have Organisations.</param>
+            <param name="haveCommittees">True if Have Committees.</param>
+        </member>
+        <member name="P:Agenda.Domain.ValueObjects.SetupStatii.SetupStatus.HaveOrganisations">
+            <inheritdoc/>
+        </member>
+        <member name="P:Agenda.Domain.ValueObjects.SetupStatii.SetupStatus.HaveCommittees">
+            <inheritdoc/>
+        </member>
     </members>
 </doc>

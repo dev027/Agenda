@@ -2,6 +2,12 @@
 // Copyright (c) Do It Wright. All rights reserved.
 // </copyright>
 
+using System.Collections.Generic;
+using System.Linq;
+using Agenda.Domain.DomainObjects.Meetings;
+using Agenda.Domain.ValueObjects.SetupStatii;
+using Agenda.Service;
+using Agenda.Utilities.DependencyInjection;
 using Agenda.Web.Areas.Api.Models.Home;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,7 +28,15 @@ namespace Agenda.Web.Controllers
         [HttpGet("/[controller]/index")]
         public IActionResult Index()
         {
-            IndexViewModel model = IndexViewModel.Create();
+            IAgendaService service = InstanceFactory.GetInstance<IAgendaService>();
+
+            IList<IMeeting> meetings = service.GetRecentMeetingsMostRecentFirst();
+
+            ISetupStatus setupStatus = meetings.Any()
+                ? new SetupStatus(haveOrganisations: true, haveCommittees: true)
+                : service.GetSetupStatus();
+
+            IndexViewModel model = IndexViewModel.Create(meetings, setupStatus);
             return this.View(model);
         }
     }

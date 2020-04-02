@@ -2,6 +2,9 @@
 // Copyright (c) Do It Wright. All rights reserved.
 // </copyright>
 
+using Agenda.Data.Crud;
+using Agenda.Service;
+using Agenda.Utilities.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,6 +28,9 @@ namespace Agenda.Web
         /// <param name="services">Service Collection.</param>
         public static void ConfigureServices(IServiceCollection services)
         {
+            InstanceFactory.RegisterTransient<IAgendaService, AgendaService>();
+            InstanceFactory.RegisterTransient<IAgendaData, AgendaData>();
+
             services.AddControllersWithViews()
                 .AddRazorRuntimeCompilation();
             services.AddRazorPages();

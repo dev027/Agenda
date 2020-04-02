@@ -14,15 +14,9 @@ namespace Agenda.Data.Crud
     /// <summary>
     /// CRUD operations for Meetings.
     /// </summary>
-    /// <seealso cref="System.IDisposable" />
     public partial class AgendaData
     {
-        /// <summary>
-        /// Gets the recent meetings with the most recent first.
-        /// </summary>
-        /// <param name="timeSpan">The time span define what is recent.</param>
-        /// <param name="maxNumberOfMeetings">The maximum number of meetings to return.</param>
-        /// <returns>List of Meetings.</returns>
+        /// <inheritdoc />
         public IList<IMeeting> GetRecentMeetingsMostRecentFirst(
             TimeSpan timeSpan,
             int maxNumberOfMeetings)

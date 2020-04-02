@@ -41,6 +41,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Agenda.Domain\Agenda.Domain.csproj" />
+    <ProjectReference Include="..\Agenda.Service\Agenda.Service.csproj" />
+    <ProjectReference Include="..\Agenda.Utilities\Agenda.Utilities.csproj" />
   </ItemGroup>
 
 </Project>

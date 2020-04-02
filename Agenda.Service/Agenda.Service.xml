@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Agenda.Service</name>
+    </assembly>
+    <members>
+        <member name="T:Agenda.Service.AgendaService">
+            <summary>
+            Service Layer.
+            </summary>
+            <seealso cref="T:Agenda.Service.IAgendaService" />
+        </member>
+        <member name="M:Agenda.Service.AgendaService.GetRecentMeetingsMostRecentFirst(System.Nullable{System.TimeSpan},System.Nullable{System.Int32})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Service.AgendaService.GetSetupStatus">
+            <inheritdoc/>
+        </member>
+        <member name="T:Agenda.Service.IAgendaService">
+            <summary>
+            Service Layer.
+            </summary>
+        </member>
+        <member name="M:Agenda.Service.IAgendaService.GetRecentMeetingsMostRecentFirst(System.Nullable{System.TimeSpan},System.Nullable{System.Int32})">
+            <summary>
+            Gets the recent meetings most recent first.
+            </summary>
+            <param name="timeSpan">The time span.</param>
+            <param name="maxNumberOfMeetings">The maximum number of meetings.</param>
+            <returns>List of recent meetings.</returns>
+        </member>
+        <member name="M:Agenda.Service.IAgendaService.GetSetupStatus">
+            <summary>
+            Gets the setup status.
+            </summary>
+            <returns>Setup status.</returns>
+        </member>
+    </members>
+</doc>

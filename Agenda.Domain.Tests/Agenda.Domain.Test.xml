@@ -69,5 +69,24 @@
             Tests the constructor null name throws exception.
             </summary>
         </member>
+        <member name="T:Agenda.Domain.Tests.ValueObjects.SetupStatii.SetupStatiiTests.ConstructorTests">
+            <summary>
+            Test the constructor for <see cref="N:Agenda.Domain.Tests.ValueObjects.SetupStatii"/>.
+            </summary>
+        </member>
+        <member name="M:Agenda.Domain.Tests.ValueObjects.SetupStatii.SetupStatiiTests.ConstructorTests.Test_Basic_Constructor_With_Valid_Values(System.Boolean,System.Boolean)">
+            <summary>
+            Tests the basic constructor with valid values.
+            </summary>
+            <param name="paramHaveOrganisations">if set to <c>true</c> [have organisations].</param>
+            <param name="paramHaveCommittees">if set to <c>true</c> [have committees].</param>
+        </member>
+        <member name="M:Agenda.Domain.Tests.ValueObjects.SetupStatii.SetupStatiiTests.ConstructorTests.Test_Basic_Constructor_With_Invalid_Values_Throws_Exception(System.Boolean,System.Boolean)">
+            <summary>
+            Tests the basic constructor with invalid values throw exception.
+            </summary>
+            <param name="paramHaveOrganisations">if set to <c>true</c> [have organisations].</param>
+            <param name="paramHaveCommittees">if set to <c>true</c> [have committees].</param>
+        </member>
     </members>
 </doc>
