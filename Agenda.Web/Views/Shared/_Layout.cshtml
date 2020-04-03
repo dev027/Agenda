@@ -9,7 +9,14 @@
     <link href="~/css/site.css" rel="stylesheet" />
 </head>
 <body>
-    @RenderBody()
+    <div class="wrapper d-flex flex-column justify-content-between">
+        @await Html.PartialAsync("_header")
+        @RenderBody()
+        <footer>
+            <h1>Footer</h1>
+        </footer>
+    </div>
+
     <script src="~/bootstrap/js/bootstrap.js"></script>
 </body>
 </html>

@@ -36,6 +36,7 @@
   <ItemGroup>
     <Folder Include="Areas\Api\Data\" />
     <Folder Include="Areas\Api\Views\" />
+    <Folder Include="ViewModels\Shared\" />
     <Folder Include="wwwroot\img\" />
   </ItemGroup>
 

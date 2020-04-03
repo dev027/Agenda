@@ -62,18 +62,12 @@
             View model for <see cref="M:Agenda.Web.Controllers.HomeController.Index"/>.
             </summary>
         </member>
-        <member name="M:Agenda.Web.Areas.Api.Models.Home.IndexViewModel.#ctor(Agenda.Web.ViewModels.Shared.HeaderViewModel,Agenda.Web.Areas.Api.Models.Home.NoRecentMeetingsViewModel,System.Collections.Generic.IList{Agenda.Web.Areas.Api.Models.Home.MeetingCardViewModel})">
+        <member name="M:Agenda.Web.Areas.Api.Models.Home.IndexViewModel.#ctor(Agenda.Web.Areas.Api.Models.Home.NoRecentMeetingsViewModel,System.Collections.Generic.IList{Agenda.Web.Areas.Api.Models.Home.MeetingCardViewModel})">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Web.Areas.Api.Models.Home.IndexViewModel"/> class.
             </summary>
-            <param name="headerViewModel">Header view model.</param>
             <param name="noRecentMeetingsViewModel">No Recent Meetings view model.</param>
             <param name="meetingCardViewModels">Meeting Card view models.</param>
-        </member>
-        <member name="P:Agenda.Web.Areas.Api.Models.Home.IndexViewModel.HeaderViewModel">
-            <summary>
-            Gets the header view model.
-            </summary>
         </member>
         <member name="P:Agenda.Web.Areas.Api.Models.Home.IndexViewModel.NoRecentMeetingsViewModel">
             <summary>
@@ -213,6 +207,18 @@
             The name.
             </value>
         </member>
+        <member name="T:Agenda.Web.Controllers.CommitteeController">
+            <summary>
+            SOMETHING.
+            </summary>
+            <seealso cref="T:Microsoft.AspNetCore.Mvc.Controller" />
+        </member>
+        <member name="M:Agenda.Web.Controllers.CommitteeController.Add">
+            <summary>
+            Adds this instance.
+            </summary>
+            <returns>View.</returns>
+        </member>
         <member name="T:Agenda.Web.Controllers.HomeController">
             <summary>
             Home Controller.
@@ -224,6 +230,30 @@
             Display the default view.
             </summary>
             <returns>Default View.</returns>
+        </member>
+        <member name="T:Agenda.Web.Controllers.MeetingController">
+            <summary>
+            SOMETHING.
+            </summary>
+            <seealso cref="T:Microsoft.AspNetCore.Mvc.Controller" />
+        </member>
+        <member name="M:Agenda.Web.Controllers.MeetingController.Add">
+            <summary>
+            Adds this instance.
+            </summary>
+            <returns>View.</returns>
+        </member>
+        <member name="T:Agenda.Web.Controllers.OrganisationController">
+            <summary>
+            SOMETHING.
+            </summary>
+            <seealso cref="T:Microsoft.AspNetCore.Mvc.Controller" />
+        </member>
+        <member name="M:Agenda.Web.Controllers.OrganisationController.Add">
+            <summary>
+            Adds this instance.
+            </summary>
+            <returns>View.</returns>
         </member>
         <member name="T:Agenda.Web.Program">
             <summary>
@@ -254,34 +284,6 @@
             </summary>
             <param name="app">Application pipeline.</param>
             <param name="env">Runtime environment.</param>
-        </member>
-        <member name="T:Agenda.Web.ViewModels.Shared.HeaderViewModel">
-            <summary>
-            View model for Shared/_header.cshtml.
-            </summary>
-        </member>
-        <member name="M:Agenda.Web.ViewModels.Shared.HeaderViewModel.#ctor(System.String,System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Shared.HeaderViewModel"/> class.
-            </summary>
-            <param name="siteName">Site Name.</param>
-            <param name="siteIconClass">Site Icon class name.</param>
-        </member>
-        <member name="P:Agenda.Web.ViewModels.Shared.HeaderViewModel.SiteName">
-            <summary>
-            Gets the name of the site.
-            </summary>
-        </member>
-        <member name="P:Agenda.Web.ViewModels.Shared.HeaderViewModel.SiteIconClass">
-            <summary>
-            Gets the site icon class.
-            </summary>
-        </member>
-        <member name="M:Agenda.Web.ViewModels.Shared.HeaderViewModel.Create">
-            <summary>
-            Creates this instance.
-            </summary>
-            <returns>Header View Model.</returns>
         </member>
     </members>
 </doc>

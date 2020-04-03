@@ -7,7 +7,6 @@ using System.Linq;
 using Agenda.Domain.DomainObjects.Meetings;
 using Agenda.Domain.ValueObjects.SetupStatii;
 using Agenda.Web.Controllers;
-using Agenda.Web.ViewModels.Shared;
 
 namespace Agenda.Web.Areas.Api.Models.Home
 {
@@ -19,23 +18,15 @@ namespace Agenda.Web.Areas.Api.Models.Home
         /// <summary>
         /// Initializes a new instance of the <see cref="IndexViewModel"/> class.
         /// </summary>
-        /// <param name="headerViewModel">Header view model.</param>
         /// <param name="noRecentMeetingsViewModel">No Recent Meetings view model.</param>
         /// <param name="meetingCardViewModels">Meeting Card view models.</param>
         public IndexViewModel(
-            HeaderViewModel headerViewModel,
             NoRecentMeetingsViewModel noRecentMeetingsViewModel,
             IList<MeetingCardViewModel> meetingCardViewModels)
         {
-            this.HeaderViewModel = headerViewModel;
             this.NoRecentMeetingsViewModel = noRecentMeetingsViewModel;
             this.MeetingCardViewModels = meetingCardViewModels;
         }
-
-        /// <summary>
-        /// Gets the header view model.
-        /// </summary>
-        public HeaderViewModel HeaderViewModel { get; }
 
         /// <summary>
         /// Gets the no recent meetings view model.
@@ -58,7 +49,6 @@ namespace Agenda.Web.Areas.Api.Models.Home
             ISetupStatus setupStatus)
         {
             return new IndexViewModel(
-                headerViewModel: HeaderViewModel.Create(),
                 noRecentMeetingsViewModel: NoRecentMeetingsViewModel.Create(setupStatus),
                 meetingCardViewModels: recentMeetings
                     .Select(MeetingCardViewModel.Create)

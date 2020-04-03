@@ -7,19 +7,22 @@
     @if (Model.ShowAddOrganisationButton)
     {
         <a class="btn btn-primary btn-lg"
-                href="/Organisation/Add"
+           asp-controller="Organisation"
+           asp-action="Add"
                 role="button">Add Organisation</a>
     }
     @if (Model.ShowAddCommitteeButton)
     {
         <a class="btn btn-primary btn-lg"
-                href="/Committee/Add"
-                role="button">Add Committee</a>
+           asp-controller="Committee"
+           asp-action="Add"
+           role="button">Add Committee</a>
     }
     @if (Model.ShowAddMeetingButton)
     {
         <a class="btn btn-primary btn-lg"
-                href="/Meeting/Add"
+           asp-controller="Meeting"
+           asp-action="Add"
                 role="button">Add Meeting</a>
     }
 </div>
