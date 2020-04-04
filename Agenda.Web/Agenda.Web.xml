@@ -225,11 +225,17 @@
             </summary>
             <seealso cref="T:Microsoft.AspNetCore.Mvc.Controller" />
         </member>
-        <member name="M:Agenda.Web.Controllers.ErrorController.Error(System.Int32)">
+        <member name="M:Agenda.Web.Controllers.ErrorController.HttpStatusCodeHandler(System.Int32)">
             <summary>
             Display custom error page.
             </summary>
             <param name="statusCode">The status code.</param>
+            <returns>View.</returns>
+        </member>
+        <member name="M:Agenda.Web.Controllers.ErrorController.Error">
+            <summary>
+            Global Exception Error Handler.
+            </summary>
             <returns>View.</returns>
         </member>
         <member name="T:Agenda.Web.Controllers.HomeController">

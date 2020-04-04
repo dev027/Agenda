@@ -43,6 +43,8 @@ namespace Agenda.Web
         public static void Configure(
             IApplicationBuilder app)
         {
+            app.UseExceptionHandler("/Error/");
+
             app.UseStatusCodePagesWithReExecute("/Error/{0}");
 
             app.Use(async (context, next) =>
