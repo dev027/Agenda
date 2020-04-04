@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "Not Found";
+}
+<main class="container-fluid flex-grow-1 d-flex flex-column align-items-center">
+    <h1 class="text-center">@ViewBag.ErrorMessage</h1>
+    
+    <a class="btn btn-primary"
+       asp-controller="Home"
+       asp-action="Index">Home Page</a>
+</main>

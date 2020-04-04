@@ -2,13 +2,12 @@
 // Copyright (c) Do It Wright. All rights reserved.
 // </copyright>
 
+using System;
 using Agenda.Data.Crud;
 using Agenda.Service;
 using Agenda.Utilities.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 
 namespace Agenda.Web
 {
@@ -38,22 +37,22 @@ namespace Agenda.Web
 
         /// <summary>
         /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// IWebHostEnvironment env.
         /// </summary>
         /// <param name="app">Application pipeline.</param>
-        /// <param name="env">Runtime environment.</param>
         public static void Configure(
-            IApplicationBuilder app,
-            IWebHostEnvironment env)
+            IApplicationBuilder app)
         {
-            ////app.UseLiveReload();
+            app.UseStatusCodePagesWithReExecute("/Error/{0}");
 
-            if (env.IsDevelopment())
+            app.Use(async (context, next) =>
             {
-                app.UseDeveloperExceptionPage();
-            }
+                Console.WriteLine(@"Before Next");
 
-            // Configure Session.
-            ////app.UseSession();
+                await next().ConfigureAwait(false);
+
+                Console.WriteLine(@"After Next");
+            });
 
             // Add static files to the request pipeline
             app.UseStaticFiles();

@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Not Found";
+}
+<main class="container-fluid flex-grow-1 d-flex flex-column">
+    <h1 class="text-center">Oops! Page Not Found</h1>
+    
+    <div class="d-flex justify-content-center flex-column flex-sm-row">
+        <figure class="d-flex flex-column mr-4">
+            <img src="/img/sherlock_205x209.png" width="205" height="209" alt="" />
+            <p>Error Code: 404 – File Not Found</p>
+        </figure>
+        <article>
+            <h2>We sorry, but the page you want does not exist.</h2>
+            <p>It's possible that you or someone else entered the URL incorrectly.</p>
+            <p>
+                You might want to head back to the <a asp-controller="Home" asp-action="Index">home page</a>
+                and see if you can find what you are looking for from there.
+            </p>
+        </article>
+    </div>
+</main>

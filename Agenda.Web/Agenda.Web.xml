@@ -219,6 +219,19 @@
             </summary>
             <returns>View.</returns>
         </member>
+        <member name="T:Agenda.Web.Controllers.ErrorController">
+            <summary>
+            Error Controller.
+            </summary>
+            <seealso cref="T:Microsoft.AspNetCore.Mvc.Controller" />
+        </member>
+        <member name="M:Agenda.Web.Controllers.ErrorController.Error(System.Int32)">
+            <summary>
+            Display custom error page.
+            </summary>
+            <param name="statusCode">The status code.</param>
+            <returns>View.</returns>
+        </member>
         <member name="T:Agenda.Web.Controllers.HomeController">
             <summary>
             Home Controller.
@@ -278,12 +291,12 @@
             </summary>
             <param name="services">Service Collection.</param>
         </member>
-        <member name="M:Agenda.Web.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+        <member name="M:Agenda.Web.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
             <summary>
             This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            IWebHostEnvironment env.
             </summary>
             <param name="app">Application pipeline.</param>
-            <param name="env">Runtime environment.</param>
         </member>
     </members>
 </doc>
