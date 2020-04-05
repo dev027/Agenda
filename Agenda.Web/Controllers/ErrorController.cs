@@ -5,6 +5,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace Agenda.Web.Controllers
 {
@@ -14,6 +15,17 @@ namespace Agenda.Web.Controllers
     /// <seealso cref="Controller" />
     public class ErrorController : Controller
     {
+        private readonly ILogger<ErrorController> logger;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ErrorController"/> class.
+        /// </summary>
+        /// <param name="logger">The logger.</param>
+        public ErrorController(ILogger<ErrorController> logger)
+        {
+            this.logger = logger;
+        }
+
         /// <summary>
         /// Display custom error page.
         /// </summary>
@@ -22,12 +34,16 @@ namespace Agenda.Web.Controllers
         [Route("/Error/{statusCode}")]
         public IActionResult HttpStatusCodeHandler(int statusCode)
         {
-            ////IStatusCodeReExecuteFeature statusCodeResult =
-            ////    this.HttpContext.Features.Get<IStatusCodeReExecuteFeature>();
+            IStatusCodeReExecuteFeature statusCodeResult =
+                this.HttpContext.Features.Get<IStatusCodeReExecuteFeature>();
 
             switch (statusCode)
             {
                 case 404: // NotFound
+                    this.logger.LogWarning(
+                        "404 Error Occurred." +
+                        $" Path = {statusCodeResult.OriginalPath}" +
+                        $" and QueryString = {statusCodeResult.OriginalQueryString}");
                     return this.View("NotFound");
             }
 
@@ -46,6 +62,9 @@ namespace Agenda.Web.Controllers
         {
             IExceptionHandlerPathFeature exceptionDetails =
                 this.HttpContext.Features.Get<IExceptionHandlerPathFeature>();
+
+            this.logger.LogError($"The path {exceptionDetails.Path} " +
+                            $"threw an exception {exceptionDetails.Error}");
 
             this.ViewBag.ExceptionPath = exceptionDetails.Path;
             this.ViewBag.ExceptionMessage = exceptionDetails.Error.Message;

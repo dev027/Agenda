@@ -225,6 +225,12 @@
             </summary>
             <seealso cref="T:Microsoft.AspNetCore.Mvc.Controller" />
         </member>
+        <member name="M:Agenda.Web.Controllers.ErrorController.#ctor(Microsoft.Extensions.Logging.ILogger{Agenda.Web.Controllers.ErrorController})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.Controllers.ErrorController"/> class.
+            </summary>
+            <param name="logger">The logger.</param>
+        </member>
         <member name="M:Agenda.Web.Controllers.ErrorController.HttpStatusCodeHandler(System.Int32)">
             <summary>
             Display custom error page.
