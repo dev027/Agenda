@@ -14,11 +14,17 @@
     <div class="content d-flex flex-grow-1">
         @RenderBody()
     </div>
-    <footer>
+    <footer class="d-flex flex-row justify-content-between">
         <h1>Footer</h1>
+        <div class="d-block d-sm-none"><button type="button" class="btn btn-secondary">XS</button></div>
+        <div class="d-none d-sm-block d-md-none"><button type="button" class="btn btn-success">SM</button></div>
+        <div class="d-none d-md-block d-lg-none"><button type="button" class="btn btn-primary">MD</button></div>
+        <div class="d-none d-lg-block d-xl-none"><button type="button" class="btn btn-warning">LG</button></div>
+        <div class="d-none d-xl-block"><button type="button" class="btn btn-danger">XL</button></div>
     </footer>
 </div>
 
+<script src="~/lib/jquery/jquery.js"></script>
 <script src="~/bootstrap/js/bootstrap.js"></script>
 </body>
 </html>

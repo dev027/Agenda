@@ -4,13 +4,16 @@ using Agenda.Migration.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Agenda.Migration.Migrations
 {
     [DbContext(typeof(MigrationContext))]
-    internal class MigrationContextModelSnapshot : ModelSnapshot
+    [Migration("20200405171141_AddMaxLengthToAllStringFields")]
+    partial class AddMaxLengthToAllStringFields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc/>
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

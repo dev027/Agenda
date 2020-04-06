@@ -87,12 +87,14 @@ namespace Agenda.Data.Dtos
         /// Gets the Committee Name.
         /// </summary>
         [Required]
+        [MaxLength(50)]
         public string Name { get; private set; } = null!;
 
         /// <summary>
         /// Gets the Committee Description.
         /// </summary>
         [Required]
+        [MaxLength(50)]
         public string Description { get; private set; } = null!;
 
         #endregion Properties

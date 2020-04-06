@@ -54,12 +54,14 @@ namespace Agenda.Data.Dtos
         /// Gets the Organisation Code.
         /// </summary>
         [Required]
+        [MaxLength(Organisation.DomainMetadata.Code.MaxLength)]
         public string Code { get; private set; } = null!;
 
         /// <summary>
         /// Gets the Organisation Name.
         /// </summary>
         [Required]
+        [MaxLength(Organisation.DomainMetadata.Name.MaxLength)]
         public string Name { get; private set; } = null!;
 
         #endregion Properties

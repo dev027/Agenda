@@ -220,6 +220,21 @@
             </summary>
             <param name="modelBuilder">The <see cref="T:Microsoft.EntityFrameworkCore.ModelBuilder" /> to use to build the model.</param>
         </member>
+        <member name="T:Agenda.Migration.Migrations.AddMaxLengthToAllStringFields">
+            <summary>
+            Add MaxLength to all string fields.
+            </summary>
+            <seealso cref="T:Microsoft.EntityFrameworkCore.Migrations.Migration" />
+        </member>
+        <member name="M:Agenda.Migration.Migrations.AddMaxLengthToAllStringFields.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Migration.Migrations.AddMaxLengthToAllStringFields.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Migration.Migrations.AddMaxLengthToAllStringFields.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc/>
+        </member>
         <member name="T:Agenda.Migration.Program">
             <summary>
             Migrations.

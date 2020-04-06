@@ -9,6 +9,7 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <WarningsAsErrors />
     <DocumentationFile>Agenda.Web.xml</DocumentationFile>
+    <NeutralLanguage>en-GB</NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>
@@ -37,6 +38,9 @@
   <ItemGroup>
     <Folder Include="Areas\Api\Data\" />
     <Folder Include="Areas\Api\Views\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="ViewModels\Organisation\In\" />
+    <Folder Include="ViewModels\Organisation\Out\" />
     <Folder Include="ViewModels\Shared\" />
   </ItemGroup>
 
@@ -44,6 +48,21 @@
     <ProjectReference Include="..\Agenda.Domain\Agenda.Domain.csproj" />
     <ProjectReference Include="..\Agenda.Service\Agenda.Service.csproj" />
     <ProjectReference Include="..\Agenda.Utilities\Agenda.Utilities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources\ErrorMessageResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ErrorMessageResource.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\ErrorMessageResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ErrorMessageResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

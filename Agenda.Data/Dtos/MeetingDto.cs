@@ -95,6 +95,7 @@ namespace Agenda.Data.Dtos
         /// <summary>
         /// Gets the Location.
         /// </summary>
+        [MaxLength(100)]
         public string Location { get; private set; } = null!;
 
         #endregion Properties

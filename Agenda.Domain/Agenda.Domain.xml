@@ -149,6 +149,41 @@
         <member name="P:Agenda.Domain.DomainObjects.Organisations.Organisation.Name">
             <inheritdoc/>
         </member>
+        <member name="T:Agenda.Domain.DomainObjects.Organisations.Organisation.DomainMetadata">
+            <summary>
+            Metadata for the <see cref="T:Agenda.Domain.DomainObjects.Organisations.Organisation"/>.
+            </summary>
+        </member>
+        <member name="T:Agenda.Domain.DomainObjects.Organisations.Organisation.DomainMetadata.Code">
+            <summary>
+            Metadata for the <see cref="T:Agenda.Domain.DomainObjects.Organisations.Organisation.DomainMetadata.Code"></see> property.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.Organisations.Organisation.DomainMetadata.Code.MinLength">
+            <summary>
+            The minimum length.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.Organisations.Organisation.DomainMetadata.Code.MaxLength">
+            <summary>
+            The maximum length.
+            </summary>
+        </member>
+        <member name="T:Agenda.Domain.DomainObjects.Organisations.Organisation.DomainMetadata.Name">
+            <summary>
+            Metadata for the <see cref="T:Agenda.Domain.DomainObjects.Organisations.Organisation.DomainMetadata.Name"></see> property.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.Organisations.Organisation.DomainMetadata.Name.MinLength">
+            <summary>
+            The minimum length.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.Organisations.Organisation.DomainMetadata.Name.MaxLength">
+            <summary>
+            The maximum length.
+            </summary>
+        </member>
         <member name="T:Agenda.Domain.Resources.ExceptionResource">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.

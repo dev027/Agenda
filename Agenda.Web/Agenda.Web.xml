@@ -274,11 +274,56 @@
             </summary>
             <seealso cref="T:Microsoft.AspNetCore.Mvc.Controller" />
         </member>
-        <member name="M:Agenda.Web.Controllers.OrganisationController.Add">
+        <member name="M:Agenda.Web.Controllers.OrganisationController.Add(Agenda.Web.ViewModels.Organisation.AddViewModel)">
             <summary>
             Adds this instance.
             </summary>
+            <param name="model">Add view model.</param>
             <returns>View.</returns>
+        </member>
+        <member name="T:Agenda.Web.Models.FormState">
+            <summary>
+            The submit status of a form.
+            </summary>
+        </member>
+        <member name="F:Agenda.Web.Models.FormState.Initial">
+            <summary>
+            The initial state for new forms.
+            </summary>
+        </member>
+        <member name="F:Agenda.Web.Models.FormState.SubmittedBySubmitButton">
+            <summary>
+            The submitted by the Submit Button.
+            </summary>
+        </member>
+        <member name="F:Agenda.Web.Models.FormState.SubmittedByAjax">
+            <summary>
+            The submitted by AJAX,
+            </summary>
+        </member>
+        <member name="T:Agenda.Web.Models.MyRequiredAttribute">
+            <summary>
+            Custom Required attribute.
+            </summary>
+            <seealso cref="T:System.ComponentModel.DataAnnotations.RequiredAttribute" />
+        </member>
+        <member name="M:Agenda.Web.Models.MyRequiredAttribute.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.Models.MyRequiredAttribute"/> class.
+            </summary>
+        </member>
+        <member name="T:Agenda.Web.Models.MyStringLengthAttribute">
+            <summary>
+            Custom StringLength attribute.
+            </summary>
+            <seealso cref="T:System.ComponentModel.DataAnnotations.StringLengthAttribute" />
+        </member>
+        <member name="M:Agenda.Web.Models.MyStringLengthAttribute.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.Models.MyStringLengthAttribute"/> class.
+            </summary>
+            <param name="maxLength">The maximum length.</param>
+            <param name="minLength">The minimum length.</param>
         </member>
         <member name="T:Agenda.Web.Program">
             <summary>
@@ -290,6 +335,32 @@
             Defines the entry point of the application.
             </summary>
             <param name="args">The arguments.</param>
+        </member>
+        <member name="T:Agenda.Web.Resources.ErrorMessageResource">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.Resources.ErrorMessageResource.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.Resources.ErrorMessageResource.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.Resources.ErrorMessageResource.RequiredMessage">
+            <summary>
+              Looks up a localized string similar to Please enter a {0}..
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.Resources.ErrorMessageResource.StringLengthMessage">
+            <summary>
+              Looks up a localized string similar to Please enter a {0} between {2} and {1} characters..
+            </summary>
         </member>
         <member name="T:Agenda.Web.Startup">
             <summary>
@@ -309,6 +380,39 @@
             IWebHostEnvironment env.
             </summary>
             <param name="app">Application pipeline.</param>
+        </member>
+        <member name="T:Agenda.Web.ViewModels.Organisation.AddViewModel">
+            <summary>
+            Add view model.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Organisation.AddViewModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Organisation.AddViewModel"/> class.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Organisation.AddViewModel.#ctor(Agenda.Web.Models.FormState,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Organisation.AddViewModel"/> class.
+            </summary>
+            <param name="formState">Form State.</param>
+            <param name="code">Organisation Code.</param>
+            <param name="name">Organisation Name.</param>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Organisation.AddViewModel.FormState">
+            <summary>
+            Gets or sets the Form State.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Organisation.AddViewModel.Code">
+            <summary>
+            Gets or sets the Organisation Code.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Organisation.AddViewModel.Name">
+            <summary>
+            Gets or sets the Organisation Name.
+            </summary>
         </member>
     </members>
 </doc>
