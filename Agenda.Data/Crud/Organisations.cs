@@ -2,7 +2,10 @@
 // Copyright (c) Do It Wright. All rights reserved.
 // </copyright>
 
-using System.Linq;
+using System.Threading.Tasks;
+using Agenda.Data.Dtos;
+using Agenda.Domain.DomainObjects.Organisations;
+using Microsoft.EntityFrameworkCore;
 
 namespace Agenda.Data.Crud
 {
@@ -12,9 +15,18 @@ namespace Agenda.Data.Crud
     public partial class AgendaData
     {
         /// <inheritdoc/>
-        public bool HaveOrganisations()
+        public async Task<bool> HaveOrganisationsAsync()
         {
-            return this.context.Organisations.Any();
+            return await this.context.Organisations.AnyAsync().ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task CreateOrganisationAsync(IOrganisation organisation)
+        {
+            OrganisationDto dto = OrganisationDto.ToDto(organisation);
+
+            this.context.Organisations.Add(dto);
+            await this.context.SaveChangesAsync().ConfigureAwait(false);
         }
     }
 }

@@ -2,7 +2,8 @@
 // Copyright (c) Do It Wright. All rights reserved.
 // </copyright>
 
-using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Agenda.Data.Crud
 {
@@ -12,9 +13,9 @@ namespace Agenda.Data.Crud
     public partial class AgendaData
     {
         /// <inheritdoc/>
-        public bool HaveCommittees()
+        public async Task<bool> HaveCommitteesAsync()
         {
-            return this.context.Committees.Any();
+            return await this.context.Committees.AnyAsync().ConfigureAwait(false);
         }
     }
 }

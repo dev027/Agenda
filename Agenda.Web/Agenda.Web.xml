@@ -250,6 +250,13 @@
             </summary>
             <seealso cref="T:Microsoft.AspNetCore.Mvc.Controller" />
         </member>
+        <member name="M:Agenda.Web.Controllers.HomeController.#ctor(Microsoft.Extensions.Logging.ILogger{Agenda.Web.Controllers.HomeController},Agenda.Service.IAgendaService)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.Controllers.HomeController"/> class.
+            </summary>
+            <param name="logger">The logger.</param>
+            <param name="service">The agenda service.</param>
+        </member>
         <member name="M:Agenda.Web.Controllers.HomeController.Index">
             <summary>
             Display the default view.
@@ -274,12 +281,26 @@
             </summary>
             <seealso cref="T:Microsoft.AspNetCore.Mvc.Controller" />
         </member>
+        <member name="M:Agenda.Web.Controllers.OrganisationController.#ctor(Microsoft.Extensions.Logging.ILogger{Agenda.Web.Controllers.OrganisationController},Agenda.Service.IAgendaService)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.Controllers.OrganisationController"/> class.
+            </summary>
+            <param name="logger">Logger.</param>
+            <param name="service">Agenda Service.</param>
+        </member>
         <member name="M:Agenda.Web.Controllers.OrganisationController.Add(Agenda.Web.ViewModels.Organisation.AddViewModel)">
             <summary>
             Adds this instance.
             </summary>
             <param name="model">Add view model.</param>
             <returns>View.</returns>
+        </member>
+        <member name="M:Agenda.Web.Controllers.OrganisationController.InsertRecordAsync(Agenda.Web.ViewModels.Organisation.AddViewModel)">
+            <summary>
+            Insert Organisation.
+            </summary>
+            <param name="model">Add view model.</param>
+            <returns>True if inserted.</returns>
         </member>
         <member name="T:Agenda.Web.Models.FormState">
             <summary>

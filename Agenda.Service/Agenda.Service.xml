@@ -10,10 +10,13 @@
             </summary>
             <seealso cref="T:Agenda.Service.IAgendaService" />
         </member>
-        <member name="M:Agenda.Service.AgendaService.GetRecentMeetingsMostRecentFirst(System.Nullable{System.TimeSpan},System.Nullable{System.Int32})">
+        <member name="M:Agenda.Service.AgendaService.GetRecentMeetingsMostRecentFirstAsync(System.Nullable{System.TimeSpan},System.Nullable{System.Int32})">
             <inheritdoc/>
         </member>
-        <member name="M:Agenda.Service.AgendaService.GetSetupStatus">
+        <member name="M:Agenda.Service.AgendaService.GetSetupStatusAsync">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Service.AgendaService.CreateOrganisationAsync(System.String,System.String)">
             <inheritdoc/>
         </member>
         <member name="T:Agenda.Service.IAgendaService">
@@ -21,7 +24,7 @@
             Service Layer.
             </summary>
         </member>
-        <member name="M:Agenda.Service.IAgendaService.GetRecentMeetingsMostRecentFirst(System.Nullable{System.TimeSpan},System.Nullable{System.Int32})">
+        <member name="M:Agenda.Service.IAgendaService.GetRecentMeetingsMostRecentFirstAsync(System.Nullable{System.TimeSpan},System.Nullable{System.Int32})">
             <summary>
             Gets the recent meetings most recent first.
             </summary>
@@ -29,11 +32,19 @@
             <param name="maxNumberOfMeetings">The maximum number of meetings.</param>
             <returns>List of recent meetings.</returns>
         </member>
-        <member name="M:Agenda.Service.IAgendaService.GetSetupStatus">
+        <member name="M:Agenda.Service.IAgendaService.GetSetupStatusAsync">
             <summary>
             Gets the setup status.
             </summary>
             <returns>Setup status.</returns>
+        </member>
+        <member name="M:Agenda.Service.IAgendaService.CreateOrganisationAsync(System.String,System.String)">
+            <summary>
+            Creates the organisation.
+            </summary>
+            <param name="code">Organisation Code.</param>
+            <param name="name">Organisation Name.</param>
+            <returns>Organisation.</returns>
         </member>
     </members>
 </doc>

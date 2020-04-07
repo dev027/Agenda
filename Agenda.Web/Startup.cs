@@ -27,8 +27,10 @@ namespace Agenda.Web
         /// <param name="services">Service Collection.</param>
         public static void ConfigureServices(IServiceCollection services)
         {
-            InstanceFactory.RegisterTransient<IAgendaService, AgendaService>();
+            //// InstanceFactory.RegisterTransient<IAgendaService, AgendaService>();
             InstanceFactory.RegisterTransient<IAgendaData, AgendaData>();
+
+            services.AddTransient<IAgendaService, AgendaService>();
 
             services.AddControllersWithViews()
                 .AddRazorRuntimeCompilation();

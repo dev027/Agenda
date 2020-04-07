@@ -4,8 +4,10 @@
 
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Agenda.Data.Crud;
 using Agenda.Domain.DomainObjects.Meetings;
+using Agenda.Domain.DomainObjects.Organisations;
 using Agenda.Domain.ValueObjects.SetupStatii;
 using Agenda.Utilities.DependencyInjection;
 
@@ -18,24 +20,25 @@ namespace Agenda.Service
     public class AgendaService : IAgendaService
     {
         /// <inheritdoc/>
-        public IList<IMeeting> GetRecentMeetingsMostRecentFirst(
+        public async Task<IList<IMeeting>> GetRecentMeetingsMostRecentFirstAsync(
             TimeSpan? timeSpan = null,
             int? maxNumberOfMeetings = null)
         {
             using (IAgendaData data = InstanceFactory.GetInstance<IAgendaData>())
             {
-                return data.GetRecentMeetingsMostRecentFirst(
+                return await data.GetRecentMeetingsMostRecentFirstAsync(
                     timeSpan ?? TimeSpan.FromDays(365),
-                    maxNumberOfMeetings ?? 20);
+                    maxNumberOfMeetings ?? 20)
+                    .ConfigureAwait(false);
             }
         }
 
         /// <inheritdoc/>
-        public ISetupStatus GetSetupStatus()
+        public async Task<ISetupStatus> GetSetupStatusAsync()
         {
             using (IAgendaData data = InstanceFactory.GetInstance<IAgendaData>())
             {
-                bool haveOrganisations = data.HaveOrganisations();
+                bool haveOrganisations = await data.HaveOrganisationsAsync().ConfigureAwait(false);
 
                 if (!haveOrganisations)
                 {
@@ -44,11 +47,27 @@ namespace Agenda.Service
                         haveCommittees: false);
                 }
 
-                bool haveCommittees = data.HaveCommittees();
+                bool haveCommittees = await data.HaveCommitteesAsync().ConfigureAwait(false);
 
                 return new SetupStatus(
                     haveOrganisations: true,
                     haveCommittees: haveCommittees);
+            }
+        }
+
+        /// <inheritdoc/>
+        public async Task<IOrganisation> CreateOrganisationAsync(string code, string name)
+        {
+            using (IAgendaData data = InstanceFactory.GetInstance<IAgendaData>())
+            {
+                IOrganisation organisation = new Organisation(
+                    id: Guid.NewGuid(),
+                    code: code,
+                    name: name);
+
+                await data.CreateOrganisationAsync(organisation).ConfigureAwait(false);
+
+                return organisation;
             }
         }
     }

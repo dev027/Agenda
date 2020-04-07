@@ -4,7 +4,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Agenda.Domain.DomainObjects.Meetings;
+using Agenda.Domain.DomainObjects.Organisations;
 
 namespace Agenda.Data.Crud
 {
@@ -19,7 +21,7 @@ namespace Agenda.Data.Crud
         /// Checks if we have Committees.
         /// </summary>
         /// <returns>True if Committees exist.</returns>
-        bool HaveCommittees();
+        Task<bool> HaveCommitteesAsync();
 
         #endregion Committees
 
@@ -31,7 +33,7 @@ namespace Agenda.Data.Crud
         /// <param name="timeSpan">The time span define what is recent.</param>
         /// <param name="maxNumberOfMeetings">The maximum number of meetings to return.</param>
         /// <returns>List of Meetings.</returns>
-        IList<IMeeting> GetRecentMeetingsMostRecentFirst(
+        Task<IList<IMeeting>> GetRecentMeetingsMostRecentFirstAsync(
             TimeSpan timeSpan,
             int maxNumberOfMeetings);
 
@@ -43,7 +45,14 @@ namespace Agenda.Data.Crud
         /// Checks if we have Organisations.
         /// </summary>
         /// <returns>True if Organisations exist.</returns>
-        bool HaveOrganisations();
+        Task<bool> HaveOrganisationsAsync();
+
+        /// <summary>
+        /// Creates the Organisation.
+        /// </summary>
+        /// <param name="organisation">Organisation.</param>
+        /// <returns>Nothing.</returns>
+        Task CreateOrganisationAsync(IOrganisation organisation);
 
         #endregion Organisations
     }

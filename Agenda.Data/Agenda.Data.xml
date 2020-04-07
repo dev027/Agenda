@@ -30,27 +30,30 @@
             </summary>
             <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
         </member>
-        <member name="M:Agenda.Data.Crud.AgendaData.HaveCommittees">
+        <member name="M:Agenda.Data.Crud.AgendaData.HaveCommitteesAsync">
             <inheritdoc/>
         </member>
-        <member name="M:Agenda.Data.Crud.AgendaData.GetRecentMeetingsMostRecentFirst(System.TimeSpan,System.Int32)">
+        <member name="M:Agenda.Data.Crud.AgendaData.GetRecentMeetingsMostRecentFirstAsync(System.TimeSpan,System.Int32)">
             <inheritdoc />
         </member>
-        <member name="M:Agenda.Data.Crud.AgendaData.HaveOrganisations">
+        <member name="M:Agenda.Data.Crud.AgendaData.HaveOrganisationsAsync">
             <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Data.Crud.AgendaData.CreateOrganisationAsync(Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
+            <inheritdoc />
         </member>
         <member name="T:Agenda.Data.Crud.IAgendaData">
             <summary>
             Data access.
             </summary>
         </member>
-        <member name="M:Agenda.Data.Crud.IAgendaData.HaveCommittees">
+        <member name="M:Agenda.Data.Crud.IAgendaData.HaveCommitteesAsync">
             <summary>
             Checks if we have Committees.
             </summary>
             <returns>True if Committees exist.</returns>
         </member>
-        <member name="M:Agenda.Data.Crud.IAgendaData.GetRecentMeetingsMostRecentFirst(System.TimeSpan,System.Int32)">
+        <member name="M:Agenda.Data.Crud.IAgendaData.GetRecentMeetingsMostRecentFirstAsync(System.TimeSpan,System.Int32)">
             <summary>
             Gets the recent meetings with the most recent first.
             </summary>
@@ -58,11 +61,18 @@
             <param name="maxNumberOfMeetings">The maximum number of meetings to return.</param>
             <returns>List of Meetings.</returns>
         </member>
-        <member name="M:Agenda.Data.Crud.IAgendaData.HaveOrganisations">
+        <member name="M:Agenda.Data.Crud.IAgendaData.HaveOrganisationsAsync">
             <summary>
             Checks if we have Organisations.
             </summary>
             <returns>True if Organisations exist.</returns>
+        </member>
+        <member name="M:Agenda.Data.Crud.IAgendaData.CreateOrganisationAsync(Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
+            <summary>
+            Creates the Organisation.
+            </summary>
+            <param name="organisation">Organisation.</param>
+            <returns>Nothing.</returns>
         </member>
         <member name="T:Agenda.Data.DbContexts.DataContext">
             <summary>

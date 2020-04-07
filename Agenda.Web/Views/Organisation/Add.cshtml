@@ -1,4 +1,5 @@
-﻿@using Metadata=Agenda.Domain.DomainObjects.Organisations.Organisation.DomainMetadata
+﻿@using Agenda.Web.Models
+@using Metadata=Agenda.Domain.DomainObjects.Organisations.Organisation.DomainMetadata
 @model Agenda.Web.ViewModels.Organisation.AddViewModel
 
 <nav class="sidebar d-none">
@@ -20,7 +21,7 @@
                     }
                     @using (Html.BeginForm("Add", "Organisation", FormMethod.Post))
                     {
-                        <input type="hidden" value="1" name="FormState"/>
+                        <input type="hidden" value="@FormState.SubmittedBySubmitButton" name="FormState"/>
                         <div class="form-group">
                             @Html.LabelFor(m => m.Code)
                             @Html.TextBoxFor(m => m.Code,
