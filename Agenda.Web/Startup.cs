@@ -2,11 +2,11 @@
 // Copyright (c) Do It Wright. All rights reserved.
 // </copyright>
 
-using System;
 using Agenda.Data.Crud;
 using Agenda.Service;
 using Agenda.Utilities.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Agenda.Web
@@ -14,12 +14,19 @@ namespace Agenda.Web
     /// <summary>
     /// Web application startup routines.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage(
-        "Design",
-        "CA1052:Static holder types should be Static or NotInheritable",
-        Justification = "Type used by reflection in Program.CreateHostBuilder")]
     public class Startup
     {
+        private IConfiguration configuration;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Startup"/> class.
+        /// </summary>
+        /// <param name="configuration">Configuration.</param>
+        public Startup(IConfiguration configuration)
+        {
+            this.configuration = configuration;
+        }
+
         /// <summary>
         /// This method gets called by the runtime. Use this method to add services to the container.
         /// For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940.
@@ -27,6 +34,7 @@ namespace Agenda.Web
         /// <param name="services">Service Collection.</param>
         public static void ConfigureServices(IServiceCollection services)
         {
+            // TODO: Change to using .Net Core DI.
             //// InstanceFactory.RegisterTransient<IAgendaService, AgendaService>();
             InstanceFactory.RegisterTransient<IAgendaData, AgendaData>();
 
@@ -45,17 +53,18 @@ namespace Agenda.Web
         public static void Configure(
             IApplicationBuilder app)
         {
+            // Add exception handler
+            // TODO: Should be Development only.
             app.UseExceptionHandler("/Error/");
 
+            // Add handler for http 4xx and 5xx exception codes.
             app.UseStatusCodePagesWithReExecute("/Error/{0}");
 
+            // Temp code to allow pipeline to be interrogated.
+            // TODO: Remove this eventually.
             app.Use(async (context, next) =>
             {
-                Console.WriteLine(@"Before Next");
-
                 await next().ConfigureAwait(false);
-
-                Console.WriteLine(@"After Next");
             });
 
             // Add static files to the request pipeline

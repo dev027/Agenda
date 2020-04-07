@@ -388,6 +388,12 @@
             Web application startup routines.
             </summary>
         </member>
+        <member name="M:Agenda.Web.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.Startup"/> class.
+            </summary>
+            <param name="configuration">Configuration.</param>
+        </member>
         <member name="M:Agenda.Web.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             This method gets called by the runtime. Use this method to add services to the container.
