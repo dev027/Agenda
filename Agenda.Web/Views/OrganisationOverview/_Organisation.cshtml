@@ -3,7 +3,10 @@
 
 <tr>
     <td>
-        <a href="#" class="btn btn-secondary btn-sm"><i class="@Icon.View"></i> View</a>
+        <a href="#" class="btn btn-secondary btn-sm">
+            <i class="@Icon.View"></i>
+            @Html.DisplayNameFor(m => m.ViewActionButtonText)
+        </a>
     </td>
     <td>@Model.Code</td>
     <td>@Model.Name</td>

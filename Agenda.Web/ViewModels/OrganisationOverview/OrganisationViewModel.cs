@@ -4,6 +4,7 @@
 
 using System;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using Agenda.Domain.DomainObjects.Organisations;
 
 namespace Agenda.Web.ViewModels.OrganisationOverview
@@ -28,6 +29,12 @@ namespace Agenda.Web.ViewModels.OrganisationOverview
             this.Code = code;
             this.Name = name;
         }
+
+        /// <summary>
+        /// Gets the view action button text.
+        /// </summary>
+        [Display(Name = "View")]
+        public string ViewActionButtonText { get; } = null;
 
         /// <summary>
         /// Gets the Organisation Id.

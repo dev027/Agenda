@@ -20,5 +20,7 @@
             }
         </tbody>
     </table>
-    <a asp-controller="Organisation" asp-action="Add" class="btn btn-primary">Add New Organisation</a>
+    <a asp-controller="Organisation" asp-action="Add" class="btn btn-primary">
+        @Html.DisplayNameFor(m => m.AddNewOrganisationButtonText)
+    </a>
 </main>

@@ -457,7 +457,7 @@
             organisation Overview Index view model.
             </summary>
         </member>
-        <member name="M:Agenda.Web.ViewModels.OrganisationOverview.IndexViewModel.#ctor(System.Collections.Generic.IList{Agenda.Web.ViewModels.Organisation.OrganisationViewModel})">
+        <member name="M:Agenda.Web.ViewModels.OrganisationOverview.IndexViewModel.#ctor(System.Collections.Generic.IList{Agenda.Web.ViewModels.OrganisationOverview.OrganisationViewModel})">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.OrganisationOverview.IndexViewModel"/> class.
             </summary>
@@ -483,6 +483,11 @@
             Gets the organisation name title.
             </summary>
         </member>
+        <member name="P:Agenda.Web.ViewModels.OrganisationOverview.IndexViewModel.AddNewOrganisationButtonText">
+            <summary>
+            Gets the Add new organisation button text.
+            </summary>
+        </member>
         <member name="P:Agenda.Web.ViewModels.OrganisationOverview.IndexViewModel.OrganisationViewModels">
             <summary>
             Gets the Organisation view models.
@@ -493,6 +498,46 @@
             Creates the view model.
             </summary>
             <param name="organisations">The organisations.</param>
+            <returns>View model.</returns>
+        </member>
+        <member name="T:Agenda.Web.ViewModels.OrganisationOverview.OrganisationViewModel">
+            <summary>
+            Organisation view model.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.OrganisationOverview.OrganisationViewModel.#ctor(System.Guid,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.OrganisationOverview.OrganisationViewModel"/> class.
+            </summary>
+            <param name="id">Organisation Id.</param>
+            <param name="code">Organisation Code.</param>
+            <param name="name">Organisation Name.</param>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.OrganisationOverview.OrganisationViewModel.ViewActionButtonText">
+            <summary>
+            Gets the view action button text.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.OrganisationOverview.OrganisationViewModel.Id">
+            <summary>
+            Gets the Organisation Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.OrganisationOverview.OrganisationViewModel.Code">
+            <summary>
+            Gets the Organisation Code.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.OrganisationOverview.OrganisationViewModel.Name">
+            <summary>
+            Gets the Organisation Name.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.OrganisationOverview.OrganisationViewModel.Create(Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
+            <summary>
+            Creates the view model.
+            </summary>
+            <param name="organisation">Organisation.</param>
             <returns>View model.</returns>
         </member>
         <member name="T:Agenda.Web.ViewModels.Organisation.AddViewModel">
@@ -527,41 +572,6 @@
             <summary>
             Gets or sets the Organisation Name.
             </summary>
-        </member>
-        <member name="T:Agenda.Web.ViewModels.Organisation.OrganisationViewModel">
-            <summary>
-            Organisation view model.
-            </summary>
-        </member>
-        <member name="M:Agenda.Web.ViewModels.Organisation.OrganisationViewModel.#ctor(System.Guid,System.String,System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Organisation.OrganisationViewModel"/> class.
-            </summary>
-            <param name="id">Organisation Id.</param>
-            <param name="code">Organisation Code.</param>
-            <param name="name">Organisation Name.</param>
-        </member>
-        <member name="P:Agenda.Web.ViewModels.Organisation.OrganisationViewModel.Id">
-            <summary>
-            Gets the Organisation Id.
-            </summary>
-        </member>
-        <member name="P:Agenda.Web.ViewModels.Organisation.OrganisationViewModel.Code">
-            <summary>
-            Gets the Organisation Code.
-            </summary>
-        </member>
-        <member name="P:Agenda.Web.ViewModels.Organisation.OrganisationViewModel.Name">
-            <summary>
-            Gets the Organisation Name.
-            </summary>
-        </member>
-        <member name="M:Agenda.Web.ViewModels.Organisation.OrganisationViewModel.Create(Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
-            <summary>
-            Creates the view model.
-            </summary>
-            <param name="organisation">Organisation.</param>
-            <returns>View model.</returns>
         </member>
     </members>
 </doc>

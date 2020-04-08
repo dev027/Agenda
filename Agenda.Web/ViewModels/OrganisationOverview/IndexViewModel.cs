@@ -22,11 +22,6 @@ namespace Agenda.Web.ViewModels.OrganisationOverview
         public IndexViewModel(
             IList<OrganisationViewModel> organisationViewModels)
         {
-            this.PageTitle = null;
-            this.ActionTitle = null;
-            this.OrganisationCodeTitle = null;
-            this.OrganisationNameTitle = null;
-
             this.OrganisationViewModels = organisationViewModels;
         }
 
@@ -34,25 +29,31 @@ namespace Agenda.Web.ViewModels.OrganisationOverview
         /// Gets the page title.
         /// </summary>
         [Display(Name = "Organisations")]
-        public string PageTitle { get; }
+        public string PageTitle { get; } = null;
 
         /// <summary>
         /// Gets the action title.
         /// </summary>
         [Display(Name = "Action")]
-        public string ActionTitle { get; }
+        public string ActionTitle { get; } = null;
 
         /// <summary>
         /// Gets the organisation code title.
         /// </summary>
         [Display(Name = "Code")]
-        public string OrganisationCodeTitle { get; }
+        public string OrganisationCodeTitle { get; } = null;
 
         /// <summary>
         /// Gets the organisation name title.
         /// </summary>
         [Display(Name = "Name")]
-        public string OrganisationNameTitle { get; }
+        public string OrganisationNameTitle { get; } = null;
+
+        /// <summary>
+        /// Gets the Add new organisation button text.
+        /// </summary>
+        [Display(Name= "Add New Organisation")]
+        public string AddNewOrganisationButtonText { get; } = null;
 
         /// <summary>
         /// Gets the Organisation view models.
