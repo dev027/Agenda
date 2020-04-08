@@ -6,7 +6,7 @@ using System;
 using System.ComponentModel;
 using Agenda.Domain.DomainObjects.Organisations;
 
-namespace Agenda.Web.ViewModels.Organisation
+namespace Agenda.Web.ViewModels.OrganisationOverview
 {
     /// <summary>
     /// Organisation view model.
