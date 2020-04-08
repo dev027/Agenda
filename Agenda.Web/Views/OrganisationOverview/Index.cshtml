@@ -1,0 +1,27 @@
+﻿@using System.Drawing
+@using Agenda.Domain.DomainObjects.Organisations
+@using Agenda.Web.Models
+@using Agenda.Web.ViewModels.Organisation
+@using Agenda.Web.ViewModels.OrganisationOverview
+@model IndexViewModel
+
+<main class="container-fluid flex-grow-1">
+    <h1><i class="@Icon.Organisation"></i> @Html.DisplayNameFor(m => m.PageTitle)</h1>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(m => m.ActionTitle)</th>
+            <th>@Html.DisplayNameFor(m => m.OrganisationCodeTitle)</th>
+            <th>@Html.DisplayNameFor(m => m.OrganisationNameTitle)</th>
+        </tr>
+        </thead>
+        <tbody>
+            @foreach (OrganisationViewModel organisationViewModel in Model.OrganisationViewModels)
+            {
+                @await Html.PartialAsync("_Organisation", organisationViewModel)
+            }
+        </tbody>
+    </table>
+    <a asp-controller="Organisation" asp-action="Add" class="btn btn-primary">Add New Organisation</a>
+</main>

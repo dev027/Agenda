@@ -70,5 +70,15 @@ namespace Agenda.Service
                 return organisation;
             }
         }
+
+        /// <inheritdoc/>
+        public async Task<IList<IOrganisation>> GetAllOrganisationsAsync()
+        {
+            using (IAgendaData data = InstanceFactory.GetInstance<IAgendaData>())
+            {
+                return await data.GetAllOrganisationsAsync()
+                    .ConfigureAwait(false);
+            }
+        }
     }
 }

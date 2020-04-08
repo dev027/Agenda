@@ -39,8 +39,6 @@
     <Folder Include="Areas\Api\Data\" />
     <Folder Include="Areas\Api\Views\" />
     <Folder Include="Helpers\" />
-    <Folder Include="ViewModels\Organisation\In\" />
-    <Folder Include="ViewModels\Organisation\Out\" />
     <Folder Include="ViewModels\Shared\" />
   </ItemGroup>
 

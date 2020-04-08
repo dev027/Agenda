@@ -41,5 +41,11 @@ namespace Agenda.Service
         Task<IOrganisation> CreateOrganisationAsync(
             string code,
             string name);
+
+        /// <summary>
+        /// Gets all Organisations.
+        /// </summary>
+        /// <returns>List of Organisations.</returns>
+        Task<IList<IOrganisation>> GetAllOrganisationsAsync();
     }
 }

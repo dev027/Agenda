@@ -2,6 +2,8 @@
 // Copyright (c) Do It Wright. All rights reserved.
 // </copyright>
 
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Agenda.Data.Dtos;
 using Agenda.Domain.DomainObjects.Organisations;
@@ -27,6 +29,17 @@ namespace Agenda.Data.Crud
 
             this.context.Organisations.Add(dto);
             await this.context.SaveChangesAsync().ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task<IList<IOrganisation>> GetAllOrganisationsAsync()
+        {
+            IList<OrganisationDto> dtos = await this.context.Organisations
+                .ToListAsync()
+                .ConfigureAwait(false);
+
+            return dtos.Select(o => o.ToDomain())
+                .ToList();
         }
     }
 }

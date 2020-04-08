@@ -54,6 +54,13 @@ namespace Agenda.Data.Crud
         /// <returns>Nothing.</returns>
         Task CreateOrganisationAsync(IOrganisation organisation);
 
+        /// <summary>
+        /// Gets all organisations.
+        /// </summary>
+        /// <returns>List of Organisations.</returns>
+        Task<IList<IOrganisation>> GetAllOrganisationsAsync();
+
         #endregion Organisations
+
     }
 }

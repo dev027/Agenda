@@ -19,6 +19,9 @@
         <member name="M:Agenda.Service.AgendaService.CreateOrganisationAsync(System.String,System.String)">
             <inheritdoc/>
         </member>
+        <member name="M:Agenda.Service.AgendaService.GetAllOrganisationsAsync">
+            <inheritdoc/>
+        </member>
         <member name="T:Agenda.Service.IAgendaService">
             <summary>
             Service Layer.
@@ -45,6 +48,12 @@
             <param name="code">Organisation Code.</param>
             <param name="name">Organisation Name.</param>
             <returns>Organisation.</returns>
+        </member>
+        <member name="M:Agenda.Service.IAgendaService.GetAllOrganisationsAsync">
+            <summary>
+            Gets all Organisations.
+            </summary>
+            <returns>List of Organisations.</returns>
         </member>
     </members>
 </doc>

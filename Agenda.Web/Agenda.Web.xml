@@ -302,6 +302,25 @@
             <param name="model">Add view model.</param>
             <returns>True if inserted.</returns>
         </member>
+        <member name="T:Agenda.Web.Controllers.OrganisationOverviewController">
+            <summary>
+            Organisation Overview.
+            </summary>
+            <seealso cref="T:Microsoft.AspNetCore.Mvc.Controller" />
+        </member>
+        <member name="M:Agenda.Web.Controllers.OrganisationOverviewController.#ctor(Microsoft.Extensions.Logging.ILogger{Agenda.Web.Controllers.OrganisationController},Agenda.Service.IAgendaService)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.Controllers.OrganisationOverviewController"/> class.
+            </summary>
+            <param name="logger">The logger.</param>
+            <param name="service">The agenda service.</param>
+        </member>
+        <member name="M:Agenda.Web.Controllers.OrganisationOverviewController.Index">
+            <summary>
+            Display all Organisations.
+            </summary>
+            <returns>View.</returns>
+        </member>
         <member name="T:Agenda.Web.Models.FormState">
             <summary>
             The submit status of a form.
@@ -320,6 +339,31 @@
         <member name="F:Agenda.Web.Models.FormState.SubmittedByAjax">
             <summary>
             The submitted by AJAX,
+            </summary>
+        </member>
+        <member name="T:Agenda.Web.Models.Icon">
+            <summary>
+            Font Awesome icons.
+            </summary>
+        </member>
+        <member name="F:Agenda.Web.Models.Icon.Organisation">
+            <summary>
+            Organisation.
+            </summary>
+        </member>
+        <member name="F:Agenda.Web.Models.Icon.Committee">
+            <summary>
+            Committee.
+            </summary>
+        </member>
+        <member name="F:Agenda.Web.Models.Icon.Meeting">
+            <summary>
+            Meeting.
+            </summary>
+        </member>
+        <member name="F:Agenda.Web.Models.Icon.View">
+            <summary>
+            View.
             </summary>
         </member>
         <member name="T:Agenda.Web.Models.MyRequiredAttribute">
@@ -408,6 +452,49 @@
             </summary>
             <param name="app">Application pipeline.</param>
         </member>
+        <member name="T:Agenda.Web.ViewModels.OrganisationOverview.IndexViewModel">
+            <summary>
+            organisation Overview Index view model.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.OrganisationOverview.IndexViewModel.#ctor(System.Collections.Generic.IList{Agenda.Web.ViewModels.Organisation.OrganisationViewModel})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.OrganisationOverview.IndexViewModel"/> class.
+            </summary>
+            <param name="organisationViewModels">List of Organisation view models.</param>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.OrganisationOverview.IndexViewModel.PageTitle">
+            <summary>
+            Gets the page title.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.OrganisationOverview.IndexViewModel.ActionTitle">
+            <summary>
+            Gets the action title.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.OrganisationOverview.IndexViewModel.OrganisationCodeTitle">
+            <summary>
+            Gets the organisation code title.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.OrganisationOverview.IndexViewModel.OrganisationNameTitle">
+            <summary>
+            Gets the organisation name title.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.OrganisationOverview.IndexViewModel.OrganisationViewModels">
+            <summary>
+            Gets the Organisation view models.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.OrganisationOverview.IndexViewModel.Create(System.Collections.Generic.IList{Agenda.Domain.DomainObjects.Organisations.IOrganisation})">
+            <summary>
+            Creates the view model.
+            </summary>
+            <param name="organisations">The organisations.</param>
+            <returns>View model.</returns>
+        </member>
         <member name="T:Agenda.Web.ViewModels.Organisation.AddViewModel">
             <summary>
             Add view model.
@@ -440,6 +527,41 @@
             <summary>
             Gets or sets the Organisation Name.
             </summary>
+        </member>
+        <member name="T:Agenda.Web.ViewModels.Organisation.OrganisationViewModel">
+            <summary>
+            Organisation view model.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Organisation.OrganisationViewModel.#ctor(System.Guid,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Organisation.OrganisationViewModel"/> class.
+            </summary>
+            <param name="id">Organisation Id.</param>
+            <param name="code">Organisation Code.</param>
+            <param name="name">Organisation Name.</param>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Organisation.OrganisationViewModel.Id">
+            <summary>
+            Gets the Organisation Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Organisation.OrganisationViewModel.Code">
+            <summary>
+            Gets the Organisation Code.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Organisation.OrganisationViewModel.Name">
+            <summary>
+            Gets the Organisation Name.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Organisation.OrganisationViewModel.Create(Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
+            <summary>
+            Creates the view model.
+            </summary>
+            <param name="organisation">Organisation.</param>
+            <returns>View model.</returns>
         </member>
     </members>
 </doc>

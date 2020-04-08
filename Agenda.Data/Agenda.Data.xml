@@ -42,6 +42,9 @@
         <member name="M:Agenda.Data.Crud.AgendaData.CreateOrganisationAsync(Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
             <inheritdoc />
         </member>
+        <member name="M:Agenda.Data.Crud.AgendaData.GetAllOrganisationsAsync">
+            <inheritdoc />
+        </member>
         <member name="T:Agenda.Data.Crud.IAgendaData">
             <summary>
             Data access.
@@ -73,6 +76,12 @@
             </summary>
             <param name="organisation">Organisation.</param>
             <returns>Nothing.</returns>
+        </member>
+        <member name="M:Agenda.Data.Crud.IAgendaData.GetAllOrganisationsAsync">
+            <summary>
+            Gets all organisations.
+            </summary>
+            <returns>List of Organisations.</returns>
         </member>
         <member name="T:Agenda.Data.DbContexts.DataContext">
             <summary>
