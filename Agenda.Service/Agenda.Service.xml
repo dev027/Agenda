@@ -10,16 +10,20 @@
             </summary>
             <seealso cref="T:Agenda.Service.IAgendaService" />
         </member>
-        <member name="M:Agenda.Service.AgendaService.GetRecentMeetingsMostRecentFirstAsync(System.Nullable{System.TimeSpan},System.Nullable{System.Int32})">
+        <member name="M:Agenda.Service.AgendaService.GetRecentMeetingsMostRecentFirstAsync(Agenda.Utilities.Models.Whos.IWho,System.Nullable{System.TimeSpan},System.Nullable{System.Int32})">
             <inheritdoc/>
         </member>
-        <member name="M:Agenda.Service.AgendaService.GetSetupStatusAsync">
+        <member name="M:Agenda.Service.AgendaService.GetSetupStatusAsync(Agenda.Utilities.Models.Whos.IWho)">
             <inheritdoc/>
         </member>
-        <member name="M:Agenda.Service.AgendaService.CreateOrganisationAsync(System.String,System.String)">
+        <member name="M:Agenda.Service.AgendaService.CreateOrganisationAsync(Agenda.Utilities.Models.Whos.IWho,System.String,System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:Agenda.Service.AgendaService.GetAllOrganisationsAsync">
+        <member name="M:Agenda.Service.AgendaService.GetAllOrganisationsAsync(Agenda.Utilities.Models.Whos.IWho)">
+            <param name="who"></param>
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Service.AgendaService.GetOrganisationByIdAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
             <inheritdoc/>
         </member>
         <member name="T:Agenda.Service.IAgendaService">
@@ -27,33 +31,45 @@
             Service Layer.
             </summary>
         </member>
-        <member name="M:Agenda.Service.IAgendaService.GetRecentMeetingsMostRecentFirstAsync(System.Nullable{System.TimeSpan},System.Nullable{System.Int32})">
+        <member name="M:Agenda.Service.IAgendaService.GetRecentMeetingsMostRecentFirstAsync(Agenda.Utilities.Models.Whos.IWho,System.Nullable{System.TimeSpan},System.Nullable{System.Int32})">
             <summary>
             Gets the recent meetings most recent first.
             </summary>
+            <param name="who">Who called it.</param>
             <param name="timeSpan">The time span.</param>
             <param name="maxNumberOfMeetings">The maximum number of meetings.</param>
             <returns>List of recent meetings.</returns>
         </member>
-        <member name="M:Agenda.Service.IAgendaService.GetSetupStatusAsync">
+        <member name="M:Agenda.Service.IAgendaService.GetSetupStatusAsync(Agenda.Utilities.Models.Whos.IWho)">
             <summary>
             Gets the setup status.
             </summary>
+            <param name="who">Who called it.</param>
             <returns>Setup status.</returns>
         </member>
-        <member name="M:Agenda.Service.IAgendaService.CreateOrganisationAsync(System.String,System.String)">
+        <member name="M:Agenda.Service.IAgendaService.CreateOrganisationAsync(Agenda.Utilities.Models.Whos.IWho,System.String,System.String)">
             <summary>
             Creates the organisation.
             </summary>
+            <param name="who">Who called it.</param>
             <param name="code">Organisation Code.</param>
             <param name="name">Organisation Name.</param>
             <returns>Organisation.</returns>
         </member>
-        <member name="M:Agenda.Service.IAgendaService.GetAllOrganisationsAsync">
+        <member name="M:Agenda.Service.IAgendaService.GetAllOrganisationsAsync(Agenda.Utilities.Models.Whos.IWho)">
             <summary>
             Gets all Organisations.
             </summary>
+            <param name="who">Who called it.</param>
             <returns>List of Organisations.</returns>
+        </member>
+        <member name="M:Agenda.Service.IAgendaService.GetOrganisationByIdAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
+            <summary>
+            Gets the Organisation by Id.
+            </summary>
+            <param name="who">Who called it.</param>
+            <param name="organisationId">Organisation Id.</param>
+            <returns>Organisation.</returns>
         </member>
     </members>
 </doc>

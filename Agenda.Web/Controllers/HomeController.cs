@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Agenda.Domain.DomainObjects.Meetings;
 using Agenda.Domain.ValueObjects.SetupStatii;
 using Agenda.Service;
+using Agenda.Utilities.Models.Whos;
 using Agenda.Web.Areas.Api.Models.Home;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -18,7 +19,7 @@ namespace Agenda.Web.Controllers
     /// Home Controller.
     /// </summary>
     /// <seealso cref="Controller" />
-    public class HomeController : Controller
+    public class HomeController : ControllerBase
     {
         private readonly ILogger<HomeController> logger;
         private readonly IAgendaService service;
@@ -31,6 +32,7 @@ namespace Agenda.Web.Controllers
         public HomeController(
             ILogger<HomeController> logger,
             IAgendaService service)
+        : base(typeof(HomeController))
         {
             this.logger = logger;
             this.service = service;
@@ -45,15 +47,23 @@ namespace Agenda.Web.Controllers
         [HttpGet("/[controller]/index")]
         public async Task<IActionResult> Index()
         {
-            IList<IMeeting> meetings = await this.service.GetRecentMeetingsMostRecentFirstAsync()
+            IWho who = this.Who(nameof(this.Index));
+
+            this.Entry(this.logger);
+
+            IList<IMeeting> meetings = await this.service
+                .GetRecentMeetingsMostRecentFirstAsync(who)
                 .ConfigureAwait(false);
 
             ISetupStatus setupStatus = meetings.Any()
                 ? new SetupStatus(haveOrganisations: true, haveCommittees: true)
-                : await this.service.GetSetupStatusAsync().ConfigureAwait(false);
+                : await this.service
+                    .GetSetupStatusAsync(who)
+                    .ConfigureAwait(false);
 
             IndexViewModel model = IndexViewModel.Create(meetings, setupStatus);
-            return this.View(model);
-        }
+
+            return this.ExitView(this.logger, this.View(model));
+       }
     }
 }

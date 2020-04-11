@@ -1,4 +1,5 @@
-﻿@model Agenda.Web.Areas.Api.Models.Home.NoRecentMeetingsViewModel
+﻿@using Agenda.Web.Models
+@model Agenda.Web.Areas.Api.Models.Home.NoRecentMeetingsViewModel
 
 <div class="jumbotron">
     <h1 class="display-4">No Recent Meetings</h1>
@@ -25,4 +26,7 @@
            asp-action="Add"
                 role="button">Add Meeting</a>
     }
+    <a class="btn btn-outline-primary btn-lg"
+       asp-controller="OrganisationOverview"
+       asp-action="Index"><span class="@Icon.View"></span> View Organisations.</a>
 </div>

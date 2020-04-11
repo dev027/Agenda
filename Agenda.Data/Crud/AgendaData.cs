@@ -4,6 +4,7 @@
 
 using System;
 using Agenda.Data.DbContexts;
+using Agenda.Utilities.Models.Whos;
 
 namespace Agenda.Data.Crud
 {
@@ -42,6 +43,22 @@ namespace Agenda.Data.Crud
 
                 this.disposedValue = true;
             }
+        }
+
+        /// <summary>
+        /// Returns tag for use with .TagWith().
+        /// </summary>
+        /// <param name="who">Who details.</param>
+        /// <param name="methodName">Method Name.</param>
+        /// <returns>Tag.</returns>
+        protected string Tag(IWho who, string methodName)
+        {
+            if (who == null)
+            {
+                throw new ArgumentNullException(nameof(who));
+            }
+
+            return $"{this.GetType().Name}.{methodName}.{who.CorrelationId}";
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Agenda.Data.Dtos;
 using Agenda.Domain.DomainObjects.Meetings;
+using Agenda.Utilities.Models.Whos;
 using Microsoft.EntityFrameworkCore;
 
 namespace Agenda.Data.Crud
@@ -19,12 +20,14 @@ namespace Agenda.Data.Crud
     {
         /// <inheritdoc />
         public async Task<IList<IMeeting>> GetRecentMeetingsMostRecentFirstAsync(
+            IWho who,
             TimeSpan timeSpan,
             int maxNumberOfMeetings)
         {
             DateTime earliestDate = DateTime.Now.Subtract(timeSpan);
             IList<MeetingDto> meetingDtos = await this.context.Meetings
                 .AsNoTracking()
+                .TagWith(this.Tag(who, nameof(this.GetRecentMeetingsMostRecentFirstAsync)))
                 .Take(maxNumberOfMeetings)
                 .Include(m => m.Committee)
                 .ThenInclude(c => c!.Organisation)

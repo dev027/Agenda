@@ -63,8 +63,10 @@ namespace Agenda.Web.Controllers
             IExceptionHandlerPathFeature exceptionDetails =
                 this.HttpContext.Features.Get<IExceptionHandlerPathFeature>();
 
-            this.logger.LogError($"The path {exceptionDetails.Path} " +
-                            $"threw an exception {exceptionDetails.Error}");
+            this.logger.LogError(
+                "The path {Path} threw an exception {@Exception}",
+                exceptionDetails.Path,
+                exceptionDetails.Error);
 
             this.ViewBag.ExceptionPath = exceptionDetails.Path;
             this.ViewBag.ExceptionMessage = exceptionDetails.Error.Message;

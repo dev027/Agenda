@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Agenda.Domain.DomainObjects.Meetings;
 using Agenda.Domain.DomainObjects.Organisations;
+using Agenda.Utilities.Models.Whos;
 
 namespace Agenda.Data.Crud
 {
@@ -20,8 +21,10 @@ namespace Agenda.Data.Crud
         /// <summary>
         /// Checks if we have Committees.
         /// </summary>
+        /// <param name="who">Who details.</param>
         /// <returns>True if Committees exist.</returns>
-        Task<bool> HaveCommitteesAsync();
+        Task<bool> HaveCommitteesAsync(
+            IWho who);
 
         #endregion Committees
 
@@ -30,10 +33,12 @@ namespace Agenda.Data.Crud
         /// <summary>
         /// Gets the recent meetings with the most recent first.
         /// </summary>
+        /// <param name="who">Who details.</param>
         /// <param name="timeSpan">The time span define what is recent.</param>
         /// <param name="maxNumberOfMeetings">The maximum number of meetings to return.</param>
         /// <returns>List of Meetings.</returns>
         Task<IList<IMeeting>> GetRecentMeetingsMostRecentFirstAsync(
+            IWho who,
             TimeSpan timeSpan,
             int maxNumberOfMeetings);
 
@@ -44,23 +49,37 @@ namespace Agenda.Data.Crud
         /// <summary>
         /// Checks if we have Organisations.
         /// </summary>
+        /// <param name="who">Who details.</param>
         /// <returns>True if Organisations exist.</returns>
-        Task<bool> HaveOrganisationsAsync();
+        Task<bool> HaveOrganisationsAsync(IWho who);
 
         /// <summary>
         /// Creates the Organisation.
         /// </summary>
+        /// <param name="who">Who details.</param>
         /// <param name="organisation">Organisation.</param>
         /// <returns>Nothing.</returns>
-        Task CreateOrganisationAsync(IOrganisation organisation);
+        Task CreateOrganisationAsync(
+            IWho who,
+            IOrganisation organisation);
 
         /// <summary>
         /// Gets all organisations.
         /// </summary>
+        /// <param name="who">Who details.</param>
         /// <returns>List of Organisations.</returns>
-        Task<IList<IOrganisation>> GetAllOrganisationsAsync();
+        Task<IList<IOrganisation>> GetAllOrganisationsAsync(IWho who);
+
+        /// <summary>
+        /// Gets the Organisation by Id.
+        /// </summary>
+        /// <param name="who">Who details.</param>
+        /// <param name="organisationId">Organisation Id.</param>
+        /// <returns>Organisation (Null=Not Found).</returns>
+        Task<IOrganisation> GetOrganisationByIdAsync(
+            IWho who,
+            Guid organisationId);
 
         #endregion Organisations
-
     }
 }

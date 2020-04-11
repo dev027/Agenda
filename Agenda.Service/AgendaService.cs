@@ -10,6 +10,7 @@ using Agenda.Domain.DomainObjects.Meetings;
 using Agenda.Domain.DomainObjects.Organisations;
 using Agenda.Domain.ValueObjects.SetupStatii;
 using Agenda.Utilities.DependencyInjection;
+using Agenda.Utilities.Models.Whos;
 
 namespace Agenda.Service
 {
@@ -21,24 +22,26 @@ namespace Agenda.Service
     {
         /// <inheritdoc/>
         public async Task<IList<IMeeting>> GetRecentMeetingsMostRecentFirstAsync(
+            IWho who,
             TimeSpan? timeSpan = null,
             int? maxNumberOfMeetings = null)
         {
             using (IAgendaData data = InstanceFactory.GetInstance<IAgendaData>())
             {
                 return await data.GetRecentMeetingsMostRecentFirstAsync(
-                    timeSpan ?? TimeSpan.FromDays(365),
-                    maxNumberOfMeetings ?? 20)
+                        who: who,
+                        timeSpan: timeSpan ?? TimeSpan.FromDays(365),
+                        maxNumberOfMeetings: maxNumberOfMeetings ?? 20)
                     .ConfigureAwait(false);
             }
         }
 
         /// <inheritdoc/>
-        public async Task<ISetupStatus> GetSetupStatusAsync()
+        public async Task<ISetupStatus> GetSetupStatusAsync(IWho who)
         {
             using (IAgendaData data = InstanceFactory.GetInstance<IAgendaData>())
             {
-                bool haveOrganisations = await data.HaveOrganisationsAsync().ConfigureAwait(false);
+                bool haveOrganisations = await data.HaveOrganisationsAsync(who).ConfigureAwait(false);
 
                 if (!haveOrganisations)
                 {
@@ -47,7 +50,7 @@ namespace Agenda.Service
                         haveCommittees: false);
                 }
 
-                bool haveCommittees = await data.HaveCommitteesAsync().ConfigureAwait(false);
+                bool haveCommittees = await data.HaveCommitteesAsync(who).ConfigureAwait(false);
 
                 return new SetupStatus(
                     haveOrganisations: true,
@@ -56,7 +59,10 @@ namespace Agenda.Service
         }
 
         /// <inheritdoc/>
-        public async Task<IOrganisation> CreateOrganisationAsync(string code, string name)
+        public async Task<IOrganisation> CreateOrganisationAsync(
+            IWho who,
+            string code,
+            string name)
         {
             using (IAgendaData data = InstanceFactory.GetInstance<IAgendaData>())
             {
@@ -65,18 +71,31 @@ namespace Agenda.Service
                     code: code,
                     name: name);
 
-                await data.CreateOrganisationAsync(organisation).ConfigureAwait(false);
+                await data.CreateOrganisationAsync(who, organisation).ConfigureAwait(false);
 
                 return organisation;
             }
         }
 
+        /// <param name="who"></param>
         /// <inheritdoc/>
-        public async Task<IList<IOrganisation>> GetAllOrganisationsAsync()
+        public async Task<IList<IOrganisation>> GetAllOrganisationsAsync(IWho who)
         {
             using (IAgendaData data = InstanceFactory.GetInstance<IAgendaData>())
             {
-                return await data.GetAllOrganisationsAsync()
+                return await data.GetAllOrganisationsAsync(who)
+                    .ConfigureAwait(false);
+            }
+        }
+
+        /// <inheritdoc/>
+        public async Task<IOrganisation> GetOrganisationByIdAsync(IWho who, Guid organisationId)
+        {
+            using (IAgendaData data = InstanceFactory.GetInstance<IAgendaData>())
+            {
+                return await data.GetOrganisationByIdAsync(
+                        who: who,
+                        organisationId: organisationId)
                     .ConfigureAwait(false);
             }
         }

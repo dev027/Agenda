@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Agenda.Domain.DomainObjects.Organisations;
-using Agenda.Web.ViewModels.Organisation;
 
 namespace Agenda.Web.ViewModels.OrganisationOverview
 {

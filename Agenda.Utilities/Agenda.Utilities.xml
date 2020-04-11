@@ -60,5 +60,65 @@
             <param name="info">Serialization Info.</param>
             <param name="context">Streaming Context.</param>
         </member>
+        <member name="T:Agenda.Utilities.Models.Whos.IWho">
+            <summary>
+            Details of Who made the request.
+            </summary>
+        </member>
+        <member name="P:Agenda.Utilities.Models.Whos.IWho.CorrelationId">
+            <summary>
+            Gets the Correlation Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Utilities.Models.Whos.IWho.ControllerName">
+            <summary>
+            Gets the Controller Name.
+            </summary>
+        </member>
+        <member name="P:Agenda.Utilities.Models.Whos.IWho.ActionName">
+            <summary>
+            Gets the Action Name.
+            </summary>
+        </member>
+        <member name="P:Agenda.Utilities.Models.Whos.IWho.Path">
+            <summary>
+            Gets the Request Path.
+            </summary>
+        </member>
+        <member name="P:Agenda.Utilities.Models.Whos.IWho.QueryString">
+            <summary>
+            Gets the Request Query String.
+            </summary>
+        </member>
+        <member name="T:Agenda.Utilities.Models.Whos.Who">
+            <summary>
+            Who.
+            </summary>
+            <seealso cref="T:Agenda.Utilities.Models.Whos.IWho" />
+        </member>
+        <member name="M:Agenda.Utilities.Models.Whos.Who.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Utilities.Models.Whos.Who"/> class.
+            </summary>
+            <param name="controllerName">Controller Name.</param>
+            <param name="actionName">Action Name.</param>
+            <param name="path">Request Path.</param>
+            <param name="queryString">Request Query String.</param>
+        </member>
+        <member name="P:Agenda.Utilities.Models.Whos.Who.CorrelationId">
+            <inheritdoc/>
+        </member>
+        <member name="P:Agenda.Utilities.Models.Whos.Who.ControllerName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Agenda.Utilities.Models.Whos.Who.ActionName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Agenda.Utilities.Models.Whos.Who.Path">
+            <inheritdoc/>
+        </member>
+        <member name="P:Agenda.Utilities.Models.Whos.Who.QueryString">
+            <inheritdoc/>
+        </member>
     </members>
 </doc>

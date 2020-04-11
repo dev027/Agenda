@@ -213,11 +213,65 @@
             </summary>
             <seealso cref="T:Microsoft.AspNetCore.Mvc.Controller" />
         </member>
+        <member name="M:Agenda.Web.Controllers.CommitteeController.#ctor(Microsoft.Extensions.Logging.ILogger{Agenda.Web.Controllers.CommitteeController},Agenda.Service.IAgendaService)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.Controllers.CommitteeController"/> class.
+            </summary>
+            <param name="logger">Logger.</param>
+            <param name="service">Agenda Service.</param>
+        </member>
         <member name="M:Agenda.Web.Controllers.CommitteeController.Add">
             <summary>
             Adds this instance.
             </summary>
             <returns>View.</returns>
+        </member>
+        <member name="T:Agenda.Web.Controllers.ControllerBase">
+            <summary>
+            Base class for controllers.
+            </summary>
+            <seealso cref="T:Microsoft.AspNetCore.Mvc.Controller" />
+        </member>
+        <member name="M:Agenda.Web.Controllers.ControllerBase.#ctor(System.Type)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.Controllers.ControllerBase"/> class.
+            </summary>
+            <param name="controllerType">Type of the controller.</param>
+        </member>
+        <member name="M:Agenda.Web.Controllers.ControllerBase.Who(System.String)">
+            <summary>
+            Details of Who made this request.
+            </summary>
+            <param name="actionName">Action Name.</param>
+            <returns> Who details. </returns>
+        </member>
+        <member name="M:Agenda.Web.Controllers.ControllerBase.Entry(Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            Log entry into a controller action.
+            </summary>
+            <param name="logger">The logger.</param>
+        </member>
+        <member name="M:Agenda.Web.Controllers.ControllerBase.Exit(Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            Log exit from a controller action.
+            </summary>
+            <param name="logger">The logger.</param>
+        </member>
+        <member name="M:Agenda.Web.Controllers.ControllerBase.ExitRedirectToAction(Microsoft.Extensions.Logging.ILogger,Microsoft.AspNetCore.Mvc.RedirectToActionResult)">
+            <summary>
+            Log exit from a controller action when redirecting to a different action.
+            </summary>
+            <param name="logger">The logger.</param>
+            <param name="redirectToAction">The redirect to action.</param>
+            <returns>Redirect To Action result.</returns>
+        </member>
+        <member name="M:Agenda.Web.Controllers.ControllerBase.ExitView(Microsoft.Extensions.Logging.ILogger,Microsoft.AspNetCore.Mvc.ViewResult)">
+            <summary>
+            Log exit from a controller action when returning a view.
+            </summary>
+            <param name="logger">The logger.</param>
+            <param name="view">The view.</param>
+            <returns>View result.</returns>
         </member>
         <member name="T:Agenda.Web.Controllers.ErrorController">
             <summary>
@@ -288,6 +342,13 @@
             <param name="logger">Logger.</param>
             <param name="service">Agenda Service.</param>
         </member>
+        <member name="M:Agenda.Web.Controllers.OrganisationController.Index(System.Guid)">
+            <summary>
+            Display the specified Organisation.
+            </summary>
+            <param name="id">Organisation Id.</param>
+            <returns>View.</returns>
+        </member>
         <member name="M:Agenda.Web.Controllers.OrganisationController.Add(Agenda.Web.ViewModels.Organisation.AddViewModel)">
             <summary>
             Adds this instance.
@@ -295,10 +356,19 @@
             <param name="model">Add view model.</param>
             <returns>View.</returns>
         </member>
-        <member name="M:Agenda.Web.Controllers.OrganisationController.InsertRecordAsync(Agenda.Web.ViewModels.Organisation.AddViewModel)">
+        <member name="M:Agenda.Web.Controllers.OrganisationController.StartEdit(System.Guid,System.Int32)">
+            <summary>
+            Starts the edit.
+            </summary>
+            <param name="id">The Organisation id.</param>
+            <param name="ajaxMode">AJAX mode(0=No; 1=Yes).</param>
+            <returns>View.</returns>
+        </member>
+        <member name="M:Agenda.Web.Controllers.OrganisationController.InsertRecordAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Web.ViewModels.Organisation.AddViewModel)">
             <summary>
             Insert Organisation.
             </summary>
+            <param name="who">Who called it.</param>
             <param name="model">Add view model.</param>
             <returns>True if inserted.</returns>
         </member>
@@ -359,6 +429,11 @@
         <member name="F:Agenda.Web.Models.Icon.Meeting">
             <summary>
             Meeting.
+            </summary>
+        </member>
+        <member name="F:Agenda.Web.Models.Icon.Edit">
+            <summary>
+            Edit.
             </summary>
         </member>
         <member name="F:Agenda.Web.Models.Icon.View">
@@ -572,6 +647,57 @@
             <summary>
             Gets or sets the Organisation Name.
             </summary>
+        </member>
+        <member name="T:Agenda.Web.ViewModels.Organisation.IndexViewModel">
+            <summary>
+            View Organisation view model.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Organisation.IndexViewModel.#ctor(System.Guid,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Organisation.IndexViewModel"/> class.
+            </summary>
+            <param name="id">Organisation Id.</param>
+            <param name="code">Organisation Code.</param>
+            <param name="name">Organisation Name.</param>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Organisation.IndexViewModel.PageTitle">
+            <summary>
+            Gets the Page Title.
+            </summary>
+            <value>
+            The page title.
+            </value>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Organisation.IndexViewModel.CardTitle">
+            <summary>
+            Gets the Page Title.
+            </summary>
+            <value>
+            The page title.
+            </value>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Organisation.IndexViewModel.Id">
+            <summary>
+            Gets the Organisation Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Organisation.IndexViewModel.Code">
+            <summary>
+            Gets or sets the Organisation Code.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Organisation.IndexViewModel.Name">
+            <summary>
+            Gets or sets Organisation Name.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Organisation.IndexViewModel.Create(Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
+            <summary>
+            Creates the Index view model.
+            </summary>
+            <param name="organisation">Organisation.</param>
+            <returns>View model.</returns>
         </member>
     </members>
 </doc>

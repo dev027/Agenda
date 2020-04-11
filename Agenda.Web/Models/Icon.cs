@@ -25,6 +25,11 @@ namespace Agenda.Web.Models
         public const string Meeting = "fas fa-file";
 
         /// <summary>
+        /// Edit.
+        /// </summary>
+        public const string Edit = "fas fa-edit";
+
+        /// <summary>
         /// View.
         /// </summary>
         public const string View = "fas fa-binoculars";

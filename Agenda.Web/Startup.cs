@@ -8,6 +8,7 @@ using Agenda.Utilities.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Serilog;
 
 namespace Agenda.Web
 {
@@ -72,6 +73,8 @@ namespace Agenda.Web
 
             // Add the endpoint routing matcher middleware to the request pipeline
             app.UseRouting();
+
+            app.UseSerilogRequestLogging();
 
             // Add endpoints to the request pipeline
             app.UseEndpoints(endpoints =>
