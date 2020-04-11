@@ -4,6 +4,10 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <!-- <link rel="manifest" href="/site.webmanifest" type="application/manifest+json" > -->
     <link href="~/bootstrap/css/bootstrap.css" rel="stylesheet" />
     <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
     <link href="~/css/site.css" rel="stylesheet" />
@@ -12,6 +16,12 @@
 <div class="wrapper d-flex flex-column justify-content-between">
     @await Html.PartialAsync("_header")
     <div class="content d-flex flex-grow-1">
+        <nav class="sidebar">
+            <div class="list-group">
+                <a class="list-group-item list-group-item-action" asp-controller="Home" asp-action="Index">Dashboard</a>
+                <a class="list-group-item list-group-item-action" asp-controller="OrganisationOverview" asp-action="Index">Organisations</a>
+            </div>
+            </nav>
         @RenderBody()
     </div>
     <footer class="d-flex flex-row justify-content-between">

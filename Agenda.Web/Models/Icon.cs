@@ -33,5 +33,15 @@ namespace Agenda.Web.Models
         /// View.
         /// </summary>
         public const string View = "fas fa-binoculars";
+
+        /// <summary>
+        /// Save.
+        /// </summary>
+        public const string Save = "fas fa-save";
+
+        /// <summary>
+        /// Cancel.
+        /// </summary>
+        public const string Cancel = "fas fa-times";
     }
 }

@@ -57,7 +57,7 @@ namespace Agenda.Web.Controllers
             IndexViewModel model = IndexViewModel.Create(organisation);
 
             return this.ExitView(this.logger, this.View(model));
-       }
+        }
 
         /// <summary>
         /// Adds this instance.
@@ -96,7 +96,7 @@ namespace Agenda.Web.Controllers
                             this.RedirectToAction("Index", "Home"));
                     }
 
-                    this.ModelState.AddModelError("Save", "File save failure");
+                    this.ModelState.AddModelError("Save", "Record insert failure");
                 }
             }
 
@@ -109,21 +109,63 @@ namespace Agenda.Web.Controllers
         /// <param name="id">The Organisation id.</param>
         /// <param name="ajaxMode">AJAX mode(0=No; 1=Yes).</param>
         /// <returns>View.</returns>
-        public Task<IActionResult> StartEdit(
+        public async Task<IActionResult> StartEdit(
             Guid id,
             int ajaxMode)
         {
             IWho who = this.Who(nameof(this.StartEdit));
 
-            _ = $"{id} {ajaxMode} {who}";
+            this.Entry(this.logger);
+
+            IOrganisation organisation = await this.service
+                .GetOrganisationByIdAsync(who, id)
+                .ConfigureAwait(false);
+
+            EditViewModel model = EditViewModel.Create(organisation);
+
+            switch (ajaxMode)
+            {
+                case 0:
+                    return this.ExitView(this.logger, this.View("Edit", model));
+
+                default:
+                    throw new NotImplementedException($"AjaxMode {ajaxMode} not implemented yet.");
+            }
+        }
+
+        /// <summary>
+        /// Edits the specified organisation.
+        /// </summary>
+        /// <param name="model">Edit view model.</param>
+        /// <returns>View.</returns>
+        [HttpPost]
+        public async Task<IActionResult> Edit(EditViewModel model)
+        {
+            IWho who = this.Who(nameof(this.Edit));
 
             this.Entry(this.logger);
 
-            throw new AggregateException(
-                new NotImplementedException("This has not been implemented yet"),
-                new InvalidCastException(
-                    "A secondary error",
-                    new InvalidOperationException("Invalid op performed")));
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
+            if (this.ModelState.IsValid)
+            {
+                if (await this.UpdateRecordAsync(who, model).ConfigureAwait(false))
+                {
+                    return this.ExitRedirectToAction(
+                        this.logger,
+                        this.RedirectToAction(
+                            "Index",
+                            "Organisation",
+                            new { id = model.Id }));
+                }
+
+                this.ModelState.AddModelError("Save", "Record update failure");
+            }
+
+            return this.View(model);
         }
 
         /// <summary>
@@ -136,13 +178,28 @@ namespace Agenda.Web.Controllers
             IWho who,
             AddViewModel model)
         {
-            IOrganisation organisation = await this.service
-                .CreateOrganisationAsync(
-                    who: who,
-                    code: model.Code,
-                    name: model.Name).ConfigureAwait(false);
+            IOrganisation organisation = model.ToDomain();
 
-            return organisation != null;
+            return await this.service
+                .CreateOrganisationAsync(who, organisation)
+                .ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Update Organisation.
+        /// </summary>
+        /// <param name="who">Who called it.</param>
+        /// <param name="model">Edit view model.</param>
+        /// <returns>True if updated.</returns>
+        private async Task<bool> UpdateRecordAsync(
+            IWho who,
+            EditViewModel model)
+        {
+            IOrganisation organisation = model.ToDomain();
+
+            return await this.service
+                .UpdateOrganisationAsync(who, organisation)
+                .ConfigureAwait(false);
         }
     }
 }

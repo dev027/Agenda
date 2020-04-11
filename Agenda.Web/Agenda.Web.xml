@@ -364,6 +364,13 @@
             <param name="ajaxMode">AJAX mode(0=No; 1=Yes).</param>
             <returns>View.</returns>
         </member>
+        <member name="M:Agenda.Web.Controllers.OrganisationController.Edit(Agenda.Web.ViewModels.Organisation.EditViewModel)">
+            <summary>
+            Edits the specified organisation.
+            </summary>
+            <param name="model">Edit view model.</param>
+            <returns>View.</returns>
+        </member>
         <member name="M:Agenda.Web.Controllers.OrganisationController.InsertRecordAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Web.ViewModels.Organisation.AddViewModel)">
             <summary>
             Insert Organisation.
@@ -371,6 +378,14 @@
             <param name="who">Who called it.</param>
             <param name="model">Add view model.</param>
             <returns>True if inserted.</returns>
+        </member>
+        <member name="M:Agenda.Web.Controllers.OrganisationController.UpdateRecordAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Web.ViewModels.Organisation.EditViewModel)">
+            <summary>
+            Update Organisation.
+            </summary>
+            <param name="who">Who called it.</param>
+            <param name="model">Edit view model.</param>
+            <returns>True if updated.</returns>
         </member>
         <member name="T:Agenda.Web.Controllers.OrganisationOverviewController">
             <summary>
@@ -439,6 +454,16 @@
         <member name="F:Agenda.Web.Models.Icon.View">
             <summary>
             View.
+            </summary>
+        </member>
+        <member name="F:Agenda.Web.Models.Icon.Save">
+            <summary>
+            Save.
+            </summary>
+        </member>
+        <member name="F:Agenda.Web.Models.Icon.Cancel">
+            <summary>
+            Cancel.
             </summary>
         </member>
         <member name="T:Agenda.Web.Models.MyRequiredAttribute">
@@ -647,6 +672,64 @@
             <summary>
             Gets or sets the Organisation Name.
             </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Organisation.AddViewModel.ToDomain">
+            <summary>
+            Converts view model to Organisation domain object.
+            </summary>
+            <returns>Organisation domain object.</returns>
+        </member>
+        <member name="T:Agenda.Web.ViewModels.Organisation.EditViewModel">
+            <summary>
+            Add view model.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Organisation.EditViewModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Organisation.EditViewModel"/> class.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Organisation.EditViewModel.#ctor(Agenda.Web.Models.FormState,System.Guid,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Organisation.EditViewModel"/> class.
+            </summary>
+            <param name="formState">Form State.</param>
+            <param name="id">Organisation Id.</param>
+            <param name="code">Organisation Code.</param>
+            <param name="name">Organisation Name.</param>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Organisation.EditViewModel.FormState">
+            <summary>
+            Gets or sets the Form State.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Organisation.EditViewModel.Id">
+            <summary>
+            Gets or sets the Organisation Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Organisation.EditViewModel.Code">
+            <summary>
+            Gets or sets the Organisation Code.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Organisation.EditViewModel.Name">
+            <summary>
+            Gets or sets the Organisation Name.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Organisation.EditViewModel.Create(Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
+            <summary>
+            Creates the view model.
+            </summary>
+            <param name="organisation">Organisation.</param>
+            <returns>Edit view model.</returns>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Organisation.EditViewModel.ToDomain">
+            <summary>
+            Converts instance to Organisation domain object.
+            </summary>
+            <returns>Organisation domain object.</returns>
         </member>
         <member name="T:Agenda.Web.ViewModels.Organisation.IndexViewModel">
             <summary>

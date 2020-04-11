@@ -80,6 +80,17 @@ namespace Agenda.Data.Crud
             IWho who,
             Guid organisationId);
 
+        /// <summary>
+        /// Updates the Organisation.
+        /// </summary>
+        /// <param name="who">Who details.</param>
+        /// <param name="organisation">Organisation.</param>
+        /// <returns>Nothing.</returns>
+        Task UpdateOrganisationAsync(
+            IWho who,
+            IOrganisation organisation);
+
         #endregion Organisations
+
     }
 }

@@ -1,4 +1,4 @@
-﻿// <copyright file="AddViewModel.cs" company="Do It Wright">
+﻿// <copyright file="EditViewModel.cs" company="Do It Wright">
 // Copyright (c) Do It Wright. All rights reserved.
 // </copyright>
 
@@ -13,29 +13,32 @@ namespace Agenda.Web.ViewModels.Organisation
     /// <summary>
     /// Add view model.
     /// </summary>
-    public class AddViewModel
+    public class EditViewModel
     {
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AddViewModel"/> class.
+        /// Initializes a new instance of the <see cref="EditViewModel"/> class.
         /// </summary>
-        public AddViewModel()
+        public EditViewModel()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AddViewModel"/> class.
+        /// Initializes a new instance of the <see cref="EditViewModel"/> class.
         /// </summary>
         /// <param name="formState">Form State.</param>
+        /// <param name="id">Organisation Id.</param>
         /// <param name="code">Organisation Code.</param>
         /// <param name="name">Organisation Name.</param>
-        public AddViewModel(
+        public EditViewModel(
             FormState formState,
+            Guid id,
             string code,
             string name)
         {
             this.FormState = formState;
+            this.Id = id;
             this.Code = code;
             this.Name = name;
         }
@@ -48,6 +51,12 @@ namespace Agenda.Web.ViewModels.Organisation
         /// Gets or sets the Form State.
         /// </summary>
         public FormState FormState { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Organisation Id.
+        /// </summary>
+        [MyRequired]
+        public Guid Id { get; set; }
 
         /// <summary>
         /// Gets or sets the Organisation Code.
@@ -74,15 +83,34 @@ namespace Agenda.Web.ViewModels.Organisation
         #region Public Methods
 
         /// <summary>
-        /// Converts view model to Organisation domain object.
+        /// Creates the view model.
+        /// </summary>
+        /// <param name="organisation">Organisation.</param>
+        /// <returns>Edit view model.</returns>
+        public static EditViewModel Create(IOrganisation organisation)
+        {
+            if (organisation == null)
+            {
+                throw new ArgumentNullException(nameof(organisation));
+            }
+
+            return new EditViewModel(
+                formState: FormState.Initial,
+                id: organisation.Id,
+                code: organisation.Code,
+                name: organisation.Name);
+        }
+
+        /// <summary>
+        /// Converts instance to Organisation domain object.
         /// </summary>
         /// <returns>Organisation domain object.</returns>
         public IOrganisation ToDomain()
         {
             return new Domain.DomainObjects.Organisations.Organisation(
-                id: Guid.NewGuid(),
-                code: this.Code,
-                name: this.Name);
+                this.Id,
+                this.Code,
+                this.Name);
         }
 
         #endregion Public Methods

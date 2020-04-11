@@ -59,21 +59,15 @@ namespace Agenda.Service
         }
 
         /// <inheritdoc/>
-        public async Task<IOrganisation> CreateOrganisationAsync(
+        public async Task<bool> CreateOrganisationAsync(
             IWho who,
-            string code,
-            string name)
+            IOrganisation organisation)
         {
             using (IAgendaData data = InstanceFactory.GetInstance<IAgendaData>())
             {
-                IOrganisation organisation = new Organisation(
-                    id: Guid.NewGuid(),
-                    code: code,
-                    name: name);
-
                 await data.CreateOrganisationAsync(who, organisation).ConfigureAwait(false);
 
-                return organisation;
+                return true;
             }
         }
 
@@ -97,6 +91,20 @@ namespace Agenda.Service
                         who: who,
                         organisationId: organisationId)
                     .ConfigureAwait(false);
+            }
+        }
+
+        /// <inheritdoc/>
+        public async Task<bool> UpdateOrganisationAsync(IWho who, IOrganisation organisation)
+        {
+            using (IAgendaData data = InstanceFactory.GetInstance<IAgendaData>())
+            {
+                await data.UpdateOrganisationAsync(
+                        who: who,
+                        organisation: organisation)
+                    .ConfigureAwait(false);
+
+                return true;
             }
         }
     }

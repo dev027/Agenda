@@ -41,13 +41,11 @@ namespace Agenda.Service
         /// Creates the organisation.
         /// </summary>
         /// <param name="who">Who called it.</param>
-        /// <param name="code">Organisation Code.</param>
-        /// <param name="name">Organisation Name.</param>
-        /// <returns>Organisation.</returns>
-        Task<IOrganisation> CreateOrganisationAsync(
+        /// <param name="organisation">Organisation.</param>
+        /// <returns>True if created.</returns>
+        Task<bool> CreateOrganisationAsync(
             IWho who,
-            string code,
-            string name);
+            IOrganisation organisation);
 
         /// <summary>
         /// Gets all Organisations.
@@ -66,5 +64,15 @@ namespace Agenda.Service
         Task<IOrganisation> GetOrganisationByIdAsync(
             IWho who,
             Guid organisationId);
+
+        /// <summary>
+        /// Updates the Organisation.
+        /// </summary>
+        /// <param name="who">Who called it.</param>
+        /// <param name="organisation">Organisation to update.</param>
+        /// <returns>True if updated.</returns>
+        Task<bool> UpdateOrganisationAsync(
+            IWho who,
+            IOrganisation organisation);
     }
 }

@@ -57,6 +57,9 @@
         <member name="M:Agenda.Data.Crud.AgendaData.GetOrganisationByIdAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
             <inheritdoc />
         </member>
+        <member name="M:Agenda.Data.Crud.AgendaData.UpdateOrganisationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
+            <inheritdoc/>
+        </member>
         <member name="T:Agenda.Data.Crud.IAgendaData">
             <summary>
             Data access.
@@ -107,6 +110,14 @@
             <param name="who">Who details.</param>
             <param name="organisationId">Organisation Id.</param>
             <returns>Organisation (Null=Not Found).</returns>
+        </member>
+        <member name="M:Agenda.Data.Crud.IAgendaData.UpdateOrganisationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
+            <summary>
+            Updates the Organisation.
+            </summary>
+            <param name="who">Who details.</param>
+            <param name="organisation">Organisation.</param>
+            <returns>Nothing.</returns>
         </member>
         <member name="T:Agenda.Data.DbContexts.DataContext">
             <summary>

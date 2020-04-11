@@ -37,6 +37,11 @@ main {
     background-color: white;
 }
 
+.sidebar {
+    color: red;
+    background-color: grey;
+}
+
 .wrapper {
     min-height: 100vh;
 }

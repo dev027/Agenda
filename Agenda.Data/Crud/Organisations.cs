@@ -63,5 +63,16 @@ namespace Agenda.Data.Crud
                     .ConfigureAwait(false))
                 .ToDomain();
         }
+
+        /// <inheritdoc/>
+        public async Task UpdateOrganisationAsync(
+            IWho who,
+            IOrganisation organisation)
+        {
+            OrganisationDto dto = OrganisationDto.ToDto(organisation);
+
+            this.context.Organisations.Update(dto);
+            await this.context.SaveChangesAsync().ConfigureAwait(false);
+        }
     }
 }

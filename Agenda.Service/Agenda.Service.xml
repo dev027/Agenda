@@ -16,7 +16,7 @@
         <member name="M:Agenda.Service.AgendaService.GetSetupStatusAsync(Agenda.Utilities.Models.Whos.IWho)">
             <inheritdoc/>
         </member>
-        <member name="M:Agenda.Service.AgendaService.CreateOrganisationAsync(Agenda.Utilities.Models.Whos.IWho,System.String,System.String)">
+        <member name="M:Agenda.Service.AgendaService.CreateOrganisationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
             <inheritdoc/>
         </member>
         <member name="M:Agenda.Service.AgendaService.GetAllOrganisationsAsync(Agenda.Utilities.Models.Whos.IWho)">
@@ -24,6 +24,9 @@
             <inheritdoc/>
         </member>
         <member name="M:Agenda.Service.AgendaService.GetOrganisationByIdAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Service.AgendaService.UpdateOrganisationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
             <inheritdoc/>
         </member>
         <member name="T:Agenda.Service.IAgendaService">
@@ -47,14 +50,13 @@
             <param name="who">Who called it.</param>
             <returns>Setup status.</returns>
         </member>
-        <member name="M:Agenda.Service.IAgendaService.CreateOrganisationAsync(Agenda.Utilities.Models.Whos.IWho,System.String,System.String)">
+        <member name="M:Agenda.Service.IAgendaService.CreateOrganisationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
             <summary>
             Creates the organisation.
             </summary>
             <param name="who">Who called it.</param>
-            <param name="code">Organisation Code.</param>
-            <param name="name">Organisation Name.</param>
-            <returns>Organisation.</returns>
+            <param name="organisation">Organisation.</param>
+            <returns>True if created.</returns>
         </member>
         <member name="M:Agenda.Service.IAgendaService.GetAllOrganisationsAsync(Agenda.Utilities.Models.Whos.IWho)">
             <summary>
@@ -70,6 +72,14 @@
             <param name="who">Who called it.</param>
             <param name="organisationId">Organisation Id.</param>
             <returns>Organisation.</returns>
+        </member>
+        <member name="M:Agenda.Service.IAgendaService.UpdateOrganisationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
+            <summary>
+            Updates the Organisation.
+            </summary>
+            <param name="who">Who called it.</param>
+            <param name="organisation">Organisation to update.</param>
+            <returns>True if updated.</returns>
         </member>
     </members>
 </doc>
