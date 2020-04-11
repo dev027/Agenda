@@ -15,14 +15,14 @@ namespace Agenda.Web.Controllers
     /// <seealso cref="Controller" />
     public abstract class ControllerBase : Controller
     {
+        private readonly string controllerName;
         private IWho who;
-        private string controllerName;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ControllerBase"/> class.
         /// </summary>
         /// <param name="controllerType">Type of the controller.</param>
-        public ControllerBase(Type controllerType)
+        protected ControllerBase(Type controllerType)
         {
             if (controllerType == null)
             {
