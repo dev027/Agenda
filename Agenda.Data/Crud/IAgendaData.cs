@@ -81,6 +81,16 @@ namespace Agenda.Data.Crud
             Guid organisationId);
 
         /// <summary>
+        /// Gets the Organisation by Id with its Committees.
+        /// </summary>
+        /// <param name="who">Who details.</param>
+        /// <param name="organisationId">Organisation Id.</param>
+        /// <returns>Organisation (Null=Not Found).</returns>
+        Task<IOrganisationWithCommittees> GetOrganisationByIdWithCommitteesAsync(
+            IWho who,
+            Guid organisationId);
+
+        /// <summary>
         /// Updates the Organisation.
         /// </summary>
         /// <param name="who">Who details.</param>

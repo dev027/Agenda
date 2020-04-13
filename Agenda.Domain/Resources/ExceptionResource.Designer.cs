@@ -61,6 +61,15 @@ namespace Agenda.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot convert to {0} if {1} is null..
+        /// </summary>
+        internal static string CannotCovertTo___If___IsNull {
+            get {
+                return ResourceManager.GetString("CannotCovertTo___If___IsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot have Committees without Organisations..
         /// </summary>
         internal static string CannotHaveCommitteesWithoutOrganisations {

@@ -122,6 +122,22 @@ namespace Agenda.Service
         }
 
         /// <inheritdoc/>
+        public async Task<IOrganisationWithCommittees> GetOrganisationByIdWithCommitteesAsync(
+            IWho who,
+            Guid organisationId)
+        {
+            this.logger.LogTrace(
+                LoggerResources.___EntryBy___,
+                nameof(this.GetOrganisationByIdWithCommitteesAsync),
+                who);
+
+            return await this.data.GetOrganisationByIdWithCommitteesAsync(
+                    who: who,
+                    organisationId: organisationId)
+                .ConfigureAwait(false);
+        }
+
+        /// <inheritdoc/>
         public async Task<bool> UpdateOrganisationAsync(IWho who, IOrganisation organisation)
         {
             this.logger.LogTrace(

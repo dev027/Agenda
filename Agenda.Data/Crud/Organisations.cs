@@ -87,6 +87,25 @@ namespace Agenda.Data.Crud
         }
 
         /// <inheritdoc/>
+        public async Task<IOrganisationWithCommittees> GetOrganisationByIdWithCommitteesAsync(
+            IWho who,
+            Guid organisationId)
+        {
+            this.logger.LogTrace(
+                LoggerResources.___EntryBy___,
+                nameof(this.GetOrganisationByIdAsync),
+                who);
+
+            return (await this.context.Organisations
+                    .AsNoTracking()
+                    .TagWith(this.Tag(who, nameof(this.GetOrganisationByIdWithCommitteesAsync)))
+                    .Include(o => o.Committees)
+                    .FirstOrDefaultAsync(o => o.Id == organisationId)
+                    .ConfigureAwait(false))
+                .ToDomainWithCommittees();
+        }
+
+        /// <inheritdoc/>
         public async Task UpdateOrganisationAsync(
             IWho who,
             IOrganisation organisation)

@@ -2,8 +2,10 @@
 // Copyright (c) Do It Wright. All rights reserved.
 // </copyright>
 
+using System;
 using System.Threading.Tasks;
 using Agenda.Data.Resources;
+using Agenda.Domain.DomainObjects.Organisations;
 using Agenda.Utilities.Models.Whos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;

@@ -127,6 +127,17 @@
             Gets the Organisation Name.
             </summary>
         </member>
+        <member name="T:Agenda.Domain.DomainObjects.Organisations.IOrganisationWithCommittees">
+            <summary>
+            Organisation with Committees.
+            </summary>
+            <seealso cref="T:Agenda.Domain.DomainObjects.Organisations.IOrganisation" />
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Organisations.IOrganisationWithCommittees.Committees">
+            <summary>
+            Gets the Committees.
+            </summary>
+        </member>
         <member name="T:Agenda.Domain.DomainObjects.Organisations.Organisation">
             <summary>
             Organisation.
@@ -184,6 +195,25 @@
             The maximum length.
             </summary>
         </member>
+        <member name="T:Agenda.Domain.DomainObjects.Organisations.OrganisationWithCommittees">
+            <summary>
+            Organisation with Committees.
+            </summary>
+        </member>
+        <member name="M:Agenda.Domain.DomainObjects.Organisations.OrganisationWithCommittees.#ctor(System.Guid,System.String,System.String,System.Collections.Generic.IList{Agenda.Domain.DomainObjects.Committees.ICommittee})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Domain.DomainObjects.Organisations.OrganisationWithCommittees"/> class.
+            </summary>
+            <param name="id">Organisation Id.</param>
+            <param name="code">Organisation Code.</param>
+            <param name="name">Organisation Name.</param>
+            <param name="committees">Committees.</param>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Organisations.OrganisationWithCommittees.Committees">
+            <summary>
+            Gets the Committees.
+            </summary>
+        </member>
         <member name="T:Agenda.Domain.Resources.ExceptionResource">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
@@ -198,6 +228,11 @@
             <summary>
               Overrides the current thread's CurrentUICulture property for all
               resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.Resources.ExceptionResource.CannotCovertTo___If___IsNull">
+            <summary>
+              Looks up a localized string similar to Cannot convert to {0} if {1} is null..
             </summary>
         </member>
         <member name="P:Agenda.Domain.Resources.ExceptionResource.CannotHaveCommitteesWithoutOrganisations">

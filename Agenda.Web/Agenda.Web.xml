@@ -220,6 +220,13 @@
             <param name="logger">Logger.</param>
             <param name="service">Agenda Service.</param>
         </member>
+        <member name="M:Agenda.Web.Controllers.CommitteeController.Index(System.Guid)">
+            <summary>
+            Display the specified Organisation.
+            </summary>
+            <param name="id">Organisation Id.</param>
+            <returns>View.</returns>
+        </member>
         <member name="M:Agenda.Web.Controllers.CommitteeController.Add">
             <summary>
             Adds this instance.
@@ -679,6 +686,40 @@
             </summary>
             <returns>Organisation domain object.</returns>
         </member>
+        <member name="T:Agenda.Web.ViewModels.Organisation.CommitteeViewModel">
+            <summary>
+            Committee view model.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Organisation.CommitteeViewModel.#ctor(System.Guid,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Organisation.CommitteeViewModel"/> class.
+            </summary>
+            <param name="id">Committee Id.</param>
+            <param name="name">Committee Name.</param>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Organisation.CommitteeViewModel.ViewActionButtonText">
+            <summary>
+            Gets the view action button text.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Organisation.CommitteeViewModel.Id">
+            <summary>
+            Gets the Committee Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Organisation.CommitteeViewModel.Name">
+            <summary>
+            Gets the Committee Name.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Organisation.CommitteeViewModel.Create(Agenda.Domain.DomainObjects.Committees.ICommittee)">
+            <summary>
+            Creates the view model.
+            </summary>
+            <param name="committee">Committee.</param>
+            <returns>View model.</returns>
+        </member>
         <member name="T:Agenda.Web.ViewModels.Organisation.EditViewModel">
             <summary>
             Add view model.
@@ -736,13 +777,14 @@
             View Organisation view model.
             </summary>
         </member>
-        <member name="M:Agenda.Web.ViewModels.Organisation.IndexViewModel.#ctor(System.Guid,System.String,System.String)">
+        <member name="M:Agenda.Web.ViewModels.Organisation.IndexViewModel.#ctor(System.Guid,System.String,System.String,System.Collections.Generic.IList{Agenda.Web.ViewModels.Organisation.CommitteeViewModel})">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Organisation.IndexViewModel"/> class.
             </summary>
             <param name="id">Organisation Id.</param>
             <param name="code">Organisation Code.</param>
             <param name="name">Organisation Name.</param>
+            <param name="committeeViewModels">Committee view models.</param>
         </member>
         <member name="P:Agenda.Web.ViewModels.Organisation.IndexViewModel.PageTitle">
             <summary>
@@ -767,15 +809,20 @@
         </member>
         <member name="P:Agenda.Web.ViewModels.Organisation.IndexViewModel.Code">
             <summary>
-            Gets or sets the Organisation Code.
+            Gets the Organisation Code.
             </summary>
         </member>
         <member name="P:Agenda.Web.ViewModels.Organisation.IndexViewModel.Name">
             <summary>
-            Gets or sets Organisation Name.
+            Gets Organisation Name.
             </summary>
         </member>
-        <member name="M:Agenda.Web.ViewModels.Organisation.IndexViewModel.Create(Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
+        <member name="P:Agenda.Web.ViewModels.Organisation.IndexViewModel.CommitteeViewModels">
+            <summary>
+            Gets the Committee view models.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Organisation.IndexViewModel.Create(Agenda.Domain.DomainObjects.Organisations.IOrganisationWithCommittees)">
             <summary>
             Creates the Index view model.
             </summary>

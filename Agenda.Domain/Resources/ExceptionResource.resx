@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CannotCovertTo___If___IsNull" xml:space="preserve">
+    <value>Cannot convert to {0} if {1} is null.</value>
+  </data>
   <data name="CannotHaveCommitteesWithoutOrganisations" xml:space="preserve">
     <value>Cannot have Committees without Organisations.</value>
   </data>

@@ -66,6 +66,16 @@ namespace Agenda.Service
             Guid organisationId);
 
         /// <summary>
+        /// Gets the Organisation by Id with it's Committees.
+        /// </summary>
+        /// <param name="who">Who called it.</param>
+        /// <param name="organisationId">Organisation Id.</param>
+        /// <returns>Organisation.</returns>
+        Task<IOrganisationWithCommittees> GetOrganisationByIdWithCommitteesAsync(
+            IWho who,
+            Guid organisationId);
+
+        /// <summary>
         /// Updates the Organisation.
         /// </summary>
         /// <param name="who">Who called it.</param>

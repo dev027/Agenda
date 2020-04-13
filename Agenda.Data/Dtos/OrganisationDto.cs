@@ -3,9 +3,13 @@
 // </copyright>
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Globalization;
+using System.Linq;
 using Agenda.Data.DbContexts;
+using Agenda.Data.Resources;
 using Agenda.Domain.DomainObjects.Organisations;
 
 namespace Agenda.Data.Dtos
@@ -66,6 +70,15 @@ namespace Agenda.Data.Dtos
 
         #endregion Properties
 
+        #region Child Properties
+
+        /// <summary>
+        /// Gets the Committees.
+        /// </summary>
+        public IList<CommitteeDto> Committees { get; private set; } = null!;
+
+        #endregion Child Properties
+
         #region Public Properties
 
         /// <summary>
@@ -98,6 +111,29 @@ namespace Agenda.Data.Dtos
                 this.Name);
         }
 
-        #endregion
+        /// <summary>
+        /// Converts to domain object with committees.
+        /// </summary>
+        /// <returns>Organiser with Committees.</returns>
+        public IOrganisationWithCommittees ToDomainWithCommittees()
+        {
+            if (this.Committees == null)
+            {
+                throw new InvalidOperationException(
+                    string.Format(
+                        CultureInfo.InvariantCulture,
+                        ExceptionResource.CannotConvertTo___If___IsNull,
+                        nameof(IOrganisationWithCommittees),
+                        nameof(this.Committees)));
+            }
+
+            return new OrganisationWithCommittees(
+                this.Id,
+                this.Code,
+                this.Name,
+                this.Committees.Select(c => c.ToDomain()).ToList());
+        }
+
+        #endregion Public Properties
     }
 }

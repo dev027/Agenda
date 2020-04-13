@@ -3,6 +3,7 @@
 // </copyright>
 
 using System;
+using System.Threading.Tasks;
 using Agenda.Service;
 using Agenda.Utilities.Models.Whos;
 using Microsoft.AspNetCore.Mvc;
@@ -31,6 +32,30 @@ namespace Agenda.Web.Controllers
         {
             this.logger = logger;
             this.service = service;
+        }
+
+        /// <summary>
+        /// Display the specified Organisation.
+        /// </summary>
+        /// <param name="id">Organisation Id.</param>
+        /// <returns>View.</returns>
+        public Task<IActionResult> Index(Guid id)
+        {
+            throw new NotImplementedException();
+
+            ////IWho who = this.Who(nameof(this.Index));
+
+            ////this.Entry(this.logger);
+
+            ////IOrganisationWithCommittees organisation = await this.service
+            ////    .GetOrganisationByIdWithCommitteesAsync(
+            ////        who: who,
+            ////        organisationId: id)
+            ////    .ConfigureAwait(false);
+
+            ////IndexViewModel model = IndexViewModel.Create(organisation);
+
+            ////return this.ExitView(this.logger, this.View(model));
         }
 
         /// <summary>

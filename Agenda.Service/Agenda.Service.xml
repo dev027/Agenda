@@ -33,6 +33,9 @@
         <member name="M:Agenda.Service.AgendaService.GetOrganisationByIdAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
             <inheritdoc/>
         </member>
+        <member name="M:Agenda.Service.AgendaService.GetOrganisationByIdWithCommitteesAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
+            <inheritdoc/>
+        </member>
         <member name="M:Agenda.Service.AgendaService.UpdateOrganisationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
             <inheritdoc/>
         </member>
@@ -75,6 +78,14 @@
         <member name="M:Agenda.Service.IAgendaService.GetOrganisationByIdAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
             <summary>
             Gets the Organisation by Id.
+            </summary>
+            <param name="who">Who called it.</param>
+            <param name="organisationId">Organisation Id.</param>
+            <returns>Organisation.</returns>
+        </member>
+        <member name="M:Agenda.Service.IAgendaService.GetOrganisationByIdWithCommitteesAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
+            <summary>
+            Gets the Organisation by Id with it's Committees.
             </summary>
             <param name="who">Who called it.</param>
             <param name="organisationId">Organisation Id.</param>

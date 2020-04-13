@@ -3,7 +3,9 @@
 // </copyright>
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using Agenda.Domain.DomainObjects.Organisations;
 
 namespace Agenda.Web.ViewModels.Organisation
@@ -19,14 +21,17 @@ namespace Agenda.Web.ViewModels.Organisation
         /// <param name="id">Organisation Id.</param>
         /// <param name="code">Organisation Code.</param>
         /// <param name="name">Organisation Name.</param>
+        /// <param name="committeeViewModels">Committee view models.</param>
         public IndexViewModel(
             Guid id,
             string code,
-            string name)
+            string name,
+            IList<CommitteeViewModel> committeeViewModels)
         {
             this.Id = id;
             this.Code = code;
             this.Name = name;
+            this.CommitteeViewModels = committeeViewModels;
         }
 
         /// <summary>
@@ -53,23 +58,29 @@ namespace Agenda.Web.ViewModels.Organisation
         public Guid Id { get; }
 
         /// <summary>
-        /// Gets or sets the Organisation Code.
+        /// Gets the Organisation Code.
         /// </summary>
         [Display(Name = "Code")]
-        public string Code { get; set; }
+        public string Code { get; }
 
         /// <summary>
-        /// Gets or sets Organisation Name.
+        /// Gets Organisation Name.
         /// </summary>
         [Display(Name = "Name")]
-        public string Name { get; set; }
+        public string Name { get; }
+
+        /// <summary>
+        /// Gets the Committee view models.
+        /// </summary>
+        public IList<CommitteeViewModel> CommitteeViewModels { get; }
 
         /// <summary>
         /// Creates the Index view model.
         /// </summary>
         /// <param name="organisation">Organisation.</param>
         /// <returns>View model.</returns>
-        public static IndexViewModel Create(IOrganisation organisation)
+        public static IndexViewModel Create(
+            IOrganisationWithCommittees organisation)
         {
             if (organisation == null)
             {
@@ -77,9 +88,10 @@ namespace Agenda.Web.ViewModels.Organisation
             }
 
             return new IndexViewModel(
-                organisation.Id,
-                organisation.Code,
-                organisation.Name);
+                id: organisation.Id,
+                code: organisation.Code,
+                name: organisation.Name,
+                committeeViewModels: organisation.Committees.Select(CommitteeViewModel.Create).ToList());
         }
     }
 }

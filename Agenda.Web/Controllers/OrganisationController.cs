@@ -48,8 +48,8 @@ namespace Agenda.Web.Controllers
 
             this.Entry(this.logger);
 
-            IOrganisation organisation = await this.service
-                .GetOrganisationByIdAsync(
+            IOrganisationWithCommittees organisation = await this.service
+                .GetOrganisationByIdWithCommitteesAsync(
                     who: who,
                     organisationId: id)
                 .ConfigureAwait(false);

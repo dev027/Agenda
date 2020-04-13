@@ -1,10 +1,11 @@
 ﻿@using Agenda.Web.Models
+@using Agenda.Web.ViewModels.Organisation
 @model Agenda.Web.ViewModels.Organisation.IndexViewModel
 
 <main class="container-fluid flex-grow-1">
     <h1>@Html.DisplayNameFor(m => m.PageTitle)</h1>
     <div class="row justify-content-center">
-        <div class="col-12 col-sm-9 col-md-7 col-lg-5 col-xl-4">
+        <div class="col-12 col-lg-6 col-xl-4">
             <div class="card card-default">
                 <div class="card-header"><h5><span class="@Icon.Organisation"></span> @Html.DisplayNameFor(m => m.CardTitle)</h5></div>
                 <div class="card-body">
@@ -24,6 +25,27 @@
                 </div>
             </div>
         </div>
-        <div class></div>
+        <div class="col-12 col-lg-6 col-xl-8">
+            <div class="card-header"><h5><span class="@Icon.Committee"></span> Committees</h5></div>
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Action</th>
+                        <th>Name</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (CommitteeViewModel committeeViewModel in Model.CommitteeViewModels)
+                    {
+                        @await Html.PartialAsync("_Committee", committeeViewModel)
+                    }
+                    </tbody>
+                </table>
+                <a asp-controller="Committee" asp-action="Add" class="btn btn-primary">
+                    Add New Committee
+                </a>
+            </div>
+        </div>
     </div>
 </main>

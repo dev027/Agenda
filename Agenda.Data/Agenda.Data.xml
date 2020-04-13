@@ -64,6 +64,9 @@
         <member name="M:Agenda.Data.Crud.AgendaData.GetOrganisationByIdAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
             <inheritdoc />
         </member>
+        <member name="M:Agenda.Data.Crud.AgendaData.GetOrganisationByIdWithCommitteesAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
+            <inheritdoc/>
+        </member>
         <member name="M:Agenda.Data.Crud.AgendaData.UpdateOrganisationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
             <inheritdoc/>
         </member>
@@ -113,6 +116,14 @@
         <member name="M:Agenda.Data.Crud.IAgendaData.GetOrganisationByIdAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
             <summary>
             Gets the Organisation by Id.
+            </summary>
+            <param name="who">Who details.</param>
+            <param name="organisationId">Organisation Id.</param>
+            <returns>Organisation (Null=Not Found).</returns>
+        </member>
+        <member name="M:Agenda.Data.Crud.IAgendaData.GetOrganisationByIdWithCommitteesAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
+            <summary>
+            Gets the Organisation by Id with its Committees.
             </summary>
             <param name="who">Who details.</param>
             <param name="organisationId">Organisation Id.</param>
@@ -342,6 +353,11 @@
             Gets the Organisation Name.
             </summary>
         </member>
+        <member name="P:Agenda.Data.Dtos.OrganisationDto.Committees">
+            <summary>
+            Gets the Committees.
+            </summary>
+        </member>
         <member name="M:Agenda.Data.Dtos.OrganisationDto.ToDto(Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
             <summary>
             Converts domain object to DTO.
@@ -354,6 +370,12 @@
             Converts instance to domain object.
             </summary>
             <returns>Organiser.</returns>
+        </member>
+        <member name="M:Agenda.Data.Dtos.OrganisationDto.ToDomainWithCommittees">
+            <summary>
+            Converts to domain object with committees.
+            </summary>
+            <returns>Organiser with Committees.</returns>
         </member>
         <member name="T:Agenda.Data.Resources.ExceptionResource">
             <summary>
