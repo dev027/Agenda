@@ -7,9 +7,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Agenda.Data.Dtos;
+using Agenda.Data.Resources;
 using Agenda.Domain.DomainObjects.Meetings;
 using Agenda.Utilities.Models.Whos;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace Agenda.Data.Crud
 {
@@ -24,6 +26,11 @@ namespace Agenda.Data.Crud
             TimeSpan timeSpan,
             int maxNumberOfMeetings)
         {
+            this.logger.LogTrace(
+                LoggerResources.___EntryBy___,
+                nameof(this.GetRecentMeetingsMostRecentFirstAsync),
+                who);
+
             DateTime earliestDate = DateTime.Now.Subtract(timeSpan);
             IList<MeetingDto> meetingDtos = await this.context.Meetings
                 .AsNoTracking()

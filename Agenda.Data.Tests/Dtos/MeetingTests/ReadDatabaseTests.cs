@@ -4,6 +4,7 @@
 
 using System.Linq;
 using Agenda.Data.DbContexts;
+using Agenda.Data.Tests.TestUtilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Agenda.Data.Tests.Dtos.MeetingTests
@@ -20,7 +21,7 @@ namespace Agenda.Data.Tests.Dtos.MeetingTests
         [TestMethod]
         public void Test_Read_From_Database()
         {
-            using DataContext context = new DataContext();
+            using DataContext context = new DataContext(TestUtils.ConnectionString);
 
             _ = context.Meetings.Any();
             _ = context.Meetings.FirstOrDefault();

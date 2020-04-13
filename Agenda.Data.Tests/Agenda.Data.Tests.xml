@@ -57,6 +57,12 @@
             </summary>
             <seealso cref="T:Agenda.Data.DbContexts.DataContext" />
         </member>
+        <member name="M:Agenda.Data.Tests.DbContexts.DataContextTests.OnModelCreatingTests.DataContextWrapper.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Data.Tests.DbContexts.DataContextTests.OnModelCreatingTests.DataContextWrapper"/> class.
+            </summary>
+            <param name="connectionString">Connection string.</param>
+        </member>
         <member name="M:Agenda.Data.Tests.DbContexts.DataContextTests.OnModelCreatingTests.DataContextWrapper.TestOnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <summary>
             Tests the protected <see cref="M:Agenda.Data.DbContexts.DataContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)"/> method.
@@ -221,6 +227,16 @@
         <member name="M:Agenda.Data.Tests.Dtos.OrganisationTests.ToDtoTests.Test_Passing_Null_Organisation_Throws_Exception">
             <summary>
             Tests passing null Organisation throws exception.
+            </summary>
+        </member>
+        <member name="T:Agenda.Data.Tests.TestUtilities.TestUtils">
+            <summary>
+            Test Utilities.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Tests.TestUtilities.TestUtils.ConnectionString">
+            <summary>
+            Gets the connection string.
             </summary>
         </member>
     </members>

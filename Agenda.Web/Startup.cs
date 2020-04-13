@@ -40,6 +40,7 @@ namespace Agenda.Web
             InstanceFactory.RegisterTransient<IAgendaData, AgendaData>();
 
             services.AddTransient<IAgendaService, AgendaService>();
+            services.AddTransient<IAgendaData, AgendaData>();
 
             services.AddControllersWithViews()
                 .AddRazorRuntimeCompilation();

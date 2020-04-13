@@ -19,6 +19,13 @@
             CRUD operations for Organisations.
             </summary>
         </member>
+        <member name="M:Agenda.Data.Crud.AgendaData.#ctor(Microsoft.Extensions.Logging.ILogger{Agenda.Data.Crud.AgendaData},Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Data.Crud.AgendaData"/> class.
+            </summary>
+            <param name="logger">The logger.</param>
+            <param name="configuration">The configuration.</param>
+        </member>
         <member name="M:Agenda.Data.Crud.AgendaData.Dispose">
             <summary>
             Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
@@ -128,6 +135,12 @@
             Database Context - DB Sets.
             </summary>
             <seealso cref="T:Microsoft.EntityFrameworkCore.DbContext" />
+        </member>
+        <member name="M:Agenda.Data.DbContexts.DataContext.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Data.DbContexts.DataContext"/> class.
+            </summary>
+            <param name="connectionString">Connection string.</param>
         </member>
         <member name="M:Agenda.Data.DbContexts.DataContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
             <inheritdoc/>
@@ -361,6 +374,27 @@
         <member name="P:Agenda.Data.Resources.ExceptionResource.CannotConvertTo___If___IsNull">
             <summary>
               Looks up a localized string similar to Cannot convert to {0} if {1} is Null.
+            </summary>
+        </member>
+        <member name="T:Agenda.Data.Resources.LoggerResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Resources.LoggerResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Resources.LoggerResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Resources.LoggerResources.___EntryBy___">
+            <summary>
+              Looks up a localized string similar to {Method} ENTRY by {@Who}.
             </summary>
         </member>
     </members>

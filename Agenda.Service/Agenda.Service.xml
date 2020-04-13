@@ -10,6 +10,13 @@
             </summary>
             <seealso cref="T:Agenda.Service.IAgendaService" />
         </member>
+        <member name="M:Agenda.Service.AgendaService.#ctor(Microsoft.Extensions.Logging.ILogger{Agenda.Service.AgendaService},Agenda.Data.Crud.IAgendaData)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Service.AgendaService"/> class.
+            </summary>
+            <param name="logger">The logger.</param>
+            <param name="data">The data layer.</param>
+        </member>
         <member name="M:Agenda.Service.AgendaService.GetRecentMeetingsMostRecentFirstAsync(Agenda.Utilities.Models.Whos.IWho,System.Nullable{System.TimeSpan},System.Nullable{System.Int32})">
             <inheritdoc/>
         </member>
@@ -80,6 +87,27 @@
             <param name="who">Who called it.</param>
             <param name="organisation">Organisation to update.</param>
             <returns>True if updated.</returns>
+        </member>
+        <member name="T:Agenda.Service.Resources.LoggerResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Agenda.Service.Resources.LoggerResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Agenda.Service.Resources.LoggerResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Agenda.Service.Resources.LoggerResources.___EntryBy___">
+            <summary>
+              Looks up a localized string similar to {Method} ENTRY by {@Who}.
+            </summary>
         </member>
     </members>
 </doc>

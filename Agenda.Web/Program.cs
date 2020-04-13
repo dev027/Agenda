@@ -27,6 +27,7 @@ namespace Agenda.Web
 
             Log.Logger = new LoggerConfiguration()
                 .ReadFrom.Configuration(configuration)
+                .Enrich.WithProperty("Application", "Agenda")
                 .CreateLogger();
 
             try

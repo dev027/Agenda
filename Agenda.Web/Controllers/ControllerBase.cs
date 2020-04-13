@@ -53,9 +53,9 @@ namespace Agenda.Web.Controllers
         protected void Entry(ILogger logger)
         {
             logger.LogDebug(
-                "[{CorrelationId}] ENTRY: {ActionName}",
-                this.who.CorrelationId,
-                this.who.ActionName);
+                "{ActionName} ENTRY by {@Who}",
+                this.who.ActionName,
+                this.who);
         }
 
         /// <summary>
@@ -65,9 +65,9 @@ namespace Agenda.Web.Controllers
         protected void Exit(ILogger logger)
         {
             logger.LogDebug(
-                "[{CorrelationId}] EXIT: {ActionName}",
-                this.who.CorrelationId,
-                this.who.ActionName);
+                "{ActionName} EXIT by {@Who}",
+                this.who.ActionName,
+                this.who);
         }
 
         /// <summary>
@@ -86,12 +86,12 @@ namespace Agenda.Web.Controllers
             }
 
             logger.LogDebug(
-                "[{CorrelationId}] EXIT: {ActionName}: " +
-                "Redirect to {RedirectControllerName}/{RedirectActionName}",
-                this.who.CorrelationId,
+                "EXIT: {ActionName}: " +
+                "Redirect to {RedirectControllerName}/{RedirectActionName} by {@Who}",
                 this.who.ActionName,
                 redirectToAction.ControllerName,
-                redirectToAction.ActionName);
+                redirectToAction.ActionName,
+                this.who);
 
             return redirectToAction;
         }
@@ -112,13 +112,13 @@ namespace Agenda.Web.Controllers
             }
 
             logger.LogDebug(
-                "[{CorrelationId}] EXIT: {ActionName}: " +
-                "View {ViewName}, Model: {@Model}, Status: {StatusCode}",
-                this.who.CorrelationId,
+                "EXIT: {ActionName}: " +
+                "View {ViewName}, Model: {@Model}, Status: {StatusCode} by {@Who}",
                 this.who.ActionName,
                 view.ViewName,
                 view.Model,
-                view.StatusCode);
+                view.StatusCode,
+                this.who);
 
             return view;
         }

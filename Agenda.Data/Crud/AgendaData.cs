@@ -5,6 +5,8 @@
 using System;
 using Agenda.Data.DbContexts;
 using Agenda.Utilities.Models.Whos;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
 namespace Agenda.Data.Crud
 {
@@ -14,9 +16,23 @@ namespace Agenda.Data.Crud
     /// <seealso cref="IAgendaData"/>
     public partial class AgendaData : IAgendaData
     {
-        private readonly DataContext context = new DataContext();
+        private readonly DataContext context;
+        private readonly ILogger<AgendaData> logger;
 
         private bool disposedValue; // To detect redundant calls
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AgendaData"/> class.
+        /// </summary>
+        /// <param name="logger">The logger.</param>
+        /// <param name="configuration">The configuration.</param>
+        public AgendaData(
+            ILogger<AgendaData> logger,
+            IConfiguration configuration)
+       {
+            this.logger = logger;
+            this.context = new DataContext(configuration.GetConnectionString("default"));
+        }
 
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.

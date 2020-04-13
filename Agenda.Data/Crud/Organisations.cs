@@ -7,9 +7,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Agenda.Data.Dtos;
+using Agenda.Data.Resources;
 using Agenda.Domain.DomainObjects.Organisations;
 using Agenda.Utilities.Models.Whos;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace Agenda.Data.Crud
 {
@@ -21,6 +23,11 @@ namespace Agenda.Data.Crud
         /// <inheritdoc/>
         public async Task<bool> HaveOrganisationsAsync(IWho who)
         {
+            this.logger.LogTrace(
+                LoggerResources.___EntryBy___,
+                nameof(this.HaveOrganisationsAsync),
+                who);
+
             return await this.context.Organisations
                 .TagWith(this.Tag(who, nameof(this.HaveOrganisationsAsync)))
                 .AnyAsync()
@@ -32,6 +39,11 @@ namespace Agenda.Data.Crud
             IWho who,
             IOrganisation organisation)
         {
+            this.logger.LogTrace(
+                LoggerResources.___EntryBy___,
+                nameof(this.CreateOrganisationAsync),
+                who);
+
             OrganisationDto dto = OrganisationDto.ToDto(organisation);
 
             this.context.Organisations.Add(dto);
@@ -41,6 +53,11 @@ namespace Agenda.Data.Crud
         /// <inheritdoc />
         public async Task<IList<IOrganisation>> GetAllOrganisationsAsync(IWho who)
         {
+            this.logger.LogTrace(
+                LoggerResources.___EntryBy___,
+                nameof(this.GetOrganisationByIdAsync),
+                who);
+
             IList<OrganisationDto> dtos = await this.context.Organisations
                 .AsNoTracking()
                 .TagWith(this.Tag(who, nameof(this.GetAllOrganisationsAsync)))
@@ -56,6 +73,11 @@ namespace Agenda.Data.Crud
             IWho who,
             Guid organisationId)
         {
+            this.logger.LogTrace(
+                LoggerResources.___EntryBy___,
+                nameof(this.GetOrganisationByIdAsync),
+                who);
+
             return (await this.context.Organisations
                     .AsNoTracking()
                     .TagWith(this.Tag(who, nameof(this.GetOrganisationByIdAsync)))
@@ -69,6 +91,11 @@ namespace Agenda.Data.Crud
             IWho who,
             IOrganisation organisation)
         {
+            this.logger.LogTrace(
+                LoggerResources.___EntryBy___,
+                nameof(this.UpdateOrganisationAsync),
+                who);
+
             OrganisationDto dto = OrganisationDto.ToDto(organisation);
 
             this.context.Organisations.Update(dto);

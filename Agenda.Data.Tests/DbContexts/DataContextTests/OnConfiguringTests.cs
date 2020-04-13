@@ -5,6 +5,7 @@
 using System;
 using System.Linq;
 using Agenda.Data.DbContexts;
+using Agenda.Data.Tests.TestUtilities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -23,7 +24,7 @@ namespace Agenda.Data.Tests.DbContexts.DataContextTests
         public void Test_With_No_PreConfiguration()
         {
             // ACT
-            using DataContext context = new DataContext();
+            using DataContext context = new DataContext(TestUtils.ConnectionString);
             _ = context.Organisations.Any();
         }
 
@@ -34,7 +35,7 @@ namespace Agenda.Data.Tests.DbContexts.DataContextTests
         public void Test_With_PreConfiguration_Options()
         {
             // ARRANGE
-            using DataContextWrapper contextWrapper = new DataContextWrapper();
+            using DataContextWrapper contextWrapper = new DataContextWrapper(TestUtils.ConnectionString);
             DbContextOptionsBuilder<DataContext> optionsBuilder = new DbContextOptionsBuilder<DataContext>();
             optionsBuilder.UseInMemoryDatabase("Test");
 
@@ -50,7 +51,7 @@ namespace Agenda.Data.Tests.DbContexts.DataContextTests
         public void Test_When_Called_With_Null_Options_Throw_Exceptions()
         {
             // ARRANGE
-            using DataContextWrapper contextWrapper = new DataContextWrapper();
+            using DataContextWrapper contextWrapper = new DataContextWrapper(TestUtils.ConnectionString);
 
             // ACT
             contextWrapper.TestOnConfiguring(null);
@@ -62,6 +63,11 @@ namespace Agenda.Data.Tests.DbContexts.DataContextTests
         /// <seealso cref="DataContext" />
         private class DataContextWrapper : DataContext
         {
+            public DataContextWrapper(string connectionString)
+            : base(connectionString)
+            {
+            }
+
             /// <summary>
             /// Tests the protected <see cref="DataContext.OnConfiguring"/> method.
             /// </summary>
