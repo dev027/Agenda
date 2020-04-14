@@ -4,8 +4,12 @@
 
 using System;
 using System.Threading.Tasks;
+using Agenda.Domain.DomainObjects.Committees;
+using Agenda.Domain.DomainObjects.Organisations;
 using Agenda.Service;
 using Agenda.Utilities.Models.Whos;
+using Agenda.Web.Models;
+using Agenda.Web.ViewModels.Committee;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -39,36 +43,137 @@ namespace Agenda.Web.Controllers
         /// </summary>
         /// <param name="id">Organisation Id.</param>
         /// <returns>View.</returns>
-        public Task<IActionResult> Index(Guid id)
+        public async Task<IActionResult> Index(Guid id)
         {
-            throw new NotImplementedException();
+            IWho who = this.Who(nameof(this.Index));
 
-            ////IWho who = this.Who(nameof(this.Index));
+            this.logger.LogDebug(
+                "ENTRY {ActionName}(who, id) {@who} {id}",
+                who.ActionName,
+                who,
+                id);
 
-            ////this.Entry(this.logger);
+            ICommitteeWithMeetings committee = await this.service
+                .GetCommitteeByIdWithMeetingsAsync(
+                    who: who,
+                    committeeId: id)
+                .ConfigureAwait(false);
 
-            ////IOrganisationWithCommittees organisation = await this.service
-            ////    .GetOrganisationByIdWithCommitteesAsync(
-            ////        who: who,
-            ////        organisationId: id)
-            ////    .ConfigureAwait(false);
+            IndexViewModel model = IndexViewModel.Create(committee);
 
-            ////IndexViewModel model = IndexViewModel.Create(organisation);
+            return this.ExitView(this.logger, this.View(model));
+        }
 
-            ////return this.ExitView(this.logger, this.View(model));
+        /// <summary>
+        /// Starts the add.
+        /// </summary>
+        /// <param name="organisationId">Organisation Id.</param>
+        /// <returns>Redirect To Action.</returns>
+        public async Task<IActionResult> StartAdd(Guid organisationId)
+        {
+            IWho who = this.Who(nameof(this.StartAdd));
+
+            this.logger.LogDebug(
+                "ENTRY {ActionName}(who, id) {@who} {organisationId}",
+                who.ActionName,
+                who,
+                organisationId);
+
+            IOrganisation fred = await this.service
+                .GetOrganisationByIdAsync(who, organisationId)
+                .ConfigureAwait(false);
+
+            AddViewModel model = new AddViewModel(
+                formState: FormState.Initial,
+                organisationId: organisationId,
+                name: string.Empty,
+                description: string.Empty);
+
+            return this.ExitRedirectToAction(
+                this.logger,
+                this.RedirectToAction("Add", model));
         }
 
         /// <summary>
         /// Adds this instance.
         /// </summary>
+        /// <param name="model">Add view model.</param>
         /// <returns>View.</returns>
-        public IActionResult Add()
+        [HttpGet]
+        [HttpPost]
+        public async Task<IActionResult> Add(AddViewModel model)
         {
             IWho who = this.Who(nameof(this.Add));
 
-            this.Entry(this.logger);
+            this.logger.LogDebug(
+                "ENTRY {ActionName}(who, model) {@who} {@model}",
+                who.ActionName,
+                who,
+                model);
 
-            throw new NotImplementedException();
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
+            if (model.FormState == FormState.Initial)
+            {
+                this.ModelState.Clear();
+            }
+            else
+            {
+                if (this.ModelState.IsValid)
+                {
+                    this.logger.LogDebug(
+                        "{@Who} inserting model {@Model}",
+                        who,
+                        model);
+
+                    await this.InsertRecordAsync(who, model).ConfigureAwait(false);
+
+                    return this.ExitRedirectToAction(
+                        this.logger,
+                        this.RedirectToAction(
+                            "Index",
+                            "Organisation",
+                            new { id = model.OrganisationId }));
+                }
+            }
+
+            return this.ExitView(this.logger, this.View(model));
+        }
+
+        /// <summary>
+        /// Insert Organisation.
+        /// </summary>
+        /// <param name="who">Who called it.</param>
+        /// <param name="model">Add view model.</param>
+        /// <returns>Nothing.</returns>
+        private async Task InsertRecordAsync(
+            IWho who,
+            AddViewModel model)
+        {
+            this.logger.LogTrace(
+                "ENTRY {Method}(who, model) {@who} {@model}",
+                nameof(this.InsertRecordAsync),
+                who,
+                model);
+
+            IOrganisation organisation = await this.service.GetOrganisationByIdAsync(
+                    who,
+                    model.OrganisationId)
+                .ConfigureAwait(false);
+
+            ICommittee committee = model.ToDomain(organisation);
+
+            await this.service
+                .CreateCommitteeAsync(who, committee)
+                .ConfigureAwait(false);
+
+            this.logger.LogTrace(
+                "EXIT {Method}(who) {@who}",
+                nameof(this.InsertRecordAsync),
+                who);
         }
     }
 }

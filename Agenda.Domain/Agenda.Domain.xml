@@ -30,6 +30,61 @@
         <member name="P:Agenda.Domain.DomainObjects.Committees.Committee.Description">
             <inheritdoc/>
         </member>
+        <member name="T:Agenda.Domain.DomainObjects.Committees.Committee.DomainMetadata">
+            <summary>
+            Metadata for the <see cref="P:Agenda.Domain.DomainObjects.Committees.Committee.Organisation"/>.
+            </summary>
+        </member>
+        <member name="T:Agenda.Domain.DomainObjects.Committees.Committee.DomainMetadata.Name">
+            <summary>
+            Metadata for the <see cref="T:Agenda.Domain.DomainObjects.Committees.Committee.DomainMetadata.Name"></see> property.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.Committees.Committee.DomainMetadata.Name.MinLength">
+            <summary>
+            The minimum length.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.Committees.Committee.DomainMetadata.Name.MaxLength">
+            <summary>
+            The maximum length.
+            </summary>
+        </member>
+        <member name="T:Agenda.Domain.DomainObjects.Committees.Committee.DomainMetadata.Description">
+            <summary>
+            Metadata for the <see cref="T:Agenda.Domain.DomainObjects.Committees.Committee.DomainMetadata.Description"></see> property.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.Committees.Committee.DomainMetadata.Description.MinLength">
+            <summary>
+            The minimum length.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.Committees.Committee.DomainMetadata.Description.MaxLength">
+            <summary>
+            The maximum length.
+            </summary>
+        </member>
+        <member name="T:Agenda.Domain.DomainObjects.Committees.CommitteeWithMeetings">
+            <summary>
+             Committee with Meetings.
+            </summary>
+            <seealso cref="T:Agenda.Domain.DomainObjects.Committees.Committee" />
+            <seealso cref="T:Agenda.Domain.DomainObjects.Committees.ICommitteeWithMeetings" />
+        </member>
+        <member name="M:Agenda.Domain.DomainObjects.Committees.CommitteeWithMeetings.#ctor(System.Guid,Agenda.Domain.DomainObjects.Organisations.IOrganisation,System.String,System.String,System.Collections.Generic.IList{Agenda.Domain.DomainObjects.Meetings.IMeeting})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Domain.DomainObjects.Committees.CommitteeWithMeetings"/> class.
+            </summary>
+            <param name="id">Committee Id.</param>
+            <param name="organisation">Organisation.</param>
+            <param name="name">Committee Name.</param>
+            <param name="description">Committee Description.</param>
+            <param name="meetings">Meetings.</param>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Committees.CommitteeWithMeetings.Meetings">
+            <inheritdoc/>
+        </member>
         <member name="T:Agenda.Domain.DomainObjects.Committees.ICommittee">
             <summary>
             Committee.
@@ -53,6 +108,16 @@
         <member name="P:Agenda.Domain.DomainObjects.Committees.ICommittee.Description">
             <summary>
             Gets the Committee Description.
+            </summary>
+        </member>
+        <member name="T:Agenda.Domain.DomainObjects.Committees.ICommitteeWithMeetings">
+            <summary>
+            Committee with Meetings.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Committees.ICommitteeWithMeetings.Meetings">
+            <summary>
+            Gets Meetings.
             </summary>
         </member>
         <member name="T:Agenda.Domain.DomainObjects.Meetings.IMeeting">
@@ -199,6 +264,8 @@
             <summary>
             Organisation with Committees.
             </summary>
+            <seealso cref="T:Agenda.Domain.DomainObjects.Organisations.Organisation" />
+            <seealso cref="T:Agenda.Domain.DomainObjects.Organisations.IOrganisationWithCommittees" />
         </member>
         <member name="M:Agenda.Domain.DomainObjects.Organisations.OrganisationWithCommittees.#ctor(System.Guid,System.String,System.String,System.Collections.Generic.IList{Agenda.Domain.DomainObjects.Committees.ICommittee})">
             <summary>

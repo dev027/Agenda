@@ -11,6 +11,8 @@ namespace Agenda.Domain.DomainObjects.Organisations
     /// <summary>
     /// Organisation with Committees.
     /// </summary>
+    /// <seealso cref="Organisation" />
+    /// <seealso cref="IOrganisationWithCommittees" />
     public class OrganisationWithCommittees : Organisation, IOrganisationWithCommittees
     {
         /// <summary>

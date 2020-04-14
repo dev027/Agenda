@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Agenda.Domain.DomainObjects.Committees;
 using Agenda.Domain.DomainObjects.Meetings;
 using Agenda.Domain.DomainObjects.Organisations;
 using Agenda.Domain.ValueObjects.SetupStatii;
@@ -42,8 +43,8 @@ namespace Agenda.Service
         /// </summary>
         /// <param name="who">Who called it.</param>
         /// <param name="organisation">Organisation.</param>
-        /// <returns>True if created.</returns>
-        Task<bool> CreateOrganisationAsync(
+        /// <returns>Nothing.</returns>
+        Task CreateOrganisationAsync(
             IWho who,
             IOrganisation organisation);
 
@@ -66,7 +67,7 @@ namespace Agenda.Service
             Guid organisationId);
 
         /// <summary>
-        /// Gets the Organisation by Id with it's Committees.
+        /// Gets the Organisation by Id with its Committees.
         /// </summary>
         /// <param name="who">Who called it.</param>
         /// <param name="organisationId">Organisation Id.</param>
@@ -80,9 +81,29 @@ namespace Agenda.Service
         /// </summary>
         /// <param name="who">Who called it.</param>
         /// <param name="organisation">Organisation to update.</param>
-        /// <returns>True if updated.</returns>
-        Task<bool> UpdateOrganisationAsync(
+        /// <returns>Nothing.</returns>
+        Task UpdateOrganisationAsync(
             IWho who,
             IOrganisation organisation);
+
+        /// <summary>
+        /// Creates the committee.
+        /// </summary>
+        /// <param name="who">Who called it.</param>
+        /// <param name="committee">Committee.</param>
+        /// <returns>Nothing.</returns>
+        Task CreateCommitteeAsync(
+            IWho who,
+            ICommittee committee);
+
+        /// <summary>
+        /// Gets the Committee by Id with its Meetings.
+        /// </summary>
+        /// <param name="who">Who called it.</param>
+        /// <param name="committeeId">Committee Id.</param>
+        /// <returns>Committee with Meetings.</returns>
+        Task<ICommitteeWithMeetings> GetCommitteeByIdWithMeetingsAsync(
+            IWho who,
+            Guid committeeId);
     }
 }

@@ -27,7 +27,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Agenda.Service.AgendaService.GetAllOrganisationsAsync(Agenda.Utilities.Models.Whos.IWho)">
-            <param name="who"></param>
             <inheritdoc/>
         </member>
         <member name="M:Agenda.Service.AgendaService.GetOrganisationByIdAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
@@ -37,6 +36,12 @@
             <inheritdoc/>
         </member>
         <member name="M:Agenda.Service.AgendaService.UpdateOrganisationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Service.AgendaService.CreateCommitteeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Committees.ICommittee)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Service.AgendaService.GetCommitteeByIdWithMeetingsAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
             <inheritdoc/>
         </member>
         <member name="T:Agenda.Service.IAgendaService">
@@ -66,7 +71,7 @@
             </summary>
             <param name="who">Who called it.</param>
             <param name="organisation">Organisation.</param>
-            <returns>True if created.</returns>
+            <returns>Nothing.</returns>
         </member>
         <member name="M:Agenda.Service.IAgendaService.GetAllOrganisationsAsync(Agenda.Utilities.Models.Whos.IWho)">
             <summary>
@@ -85,7 +90,7 @@
         </member>
         <member name="M:Agenda.Service.IAgendaService.GetOrganisationByIdWithCommitteesAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
             <summary>
-            Gets the Organisation by Id with it's Committees.
+            Gets the Organisation by Id with its Committees.
             </summary>
             <param name="who">Who called it.</param>
             <param name="organisationId">Organisation Id.</param>
@@ -97,7 +102,23 @@
             </summary>
             <param name="who">Who called it.</param>
             <param name="organisation">Organisation to update.</param>
-            <returns>True if updated.</returns>
+            <returns>Nothing.</returns>
+        </member>
+        <member name="M:Agenda.Service.IAgendaService.CreateCommitteeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Committees.ICommittee)">
+            <summary>
+            Creates the committee.
+            </summary>
+            <param name="who">Who called it.</param>
+            <param name="committee">Committee.</param>
+            <returns>Nothing.</returns>
+        </member>
+        <member name="M:Agenda.Service.IAgendaService.GetCommitteeByIdWithMeetingsAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
+            <summary>
+            Gets the Committee by Id with its Meetings.
+            </summary>
+            <param name="who">Who called it.</param>
+            <param name="committeeId">Committee Id.</param>
+            <returns>Committee with Meetings.</returns>
         </member>
         <member name="T:Agenda.Service.Resources.LoggerResources">
             <summary>

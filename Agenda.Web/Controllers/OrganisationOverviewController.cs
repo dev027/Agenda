@@ -45,7 +45,10 @@ namespace Agenda.Web.Controllers
         {
             IWho who = this.Who(nameof(this.Index));
 
-            this.Entry(this.logger);
+            this.logger.LogDebug(
+                "ENTRY {Action}(who) {@who}",
+                who.ActionName,
+                who);
 
             IList<IOrganisation> organisations = (await this.service
                 .GetAllOrganisationsAsync(who)

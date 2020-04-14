@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Agenda.Domain.DomainObjects.Committees;
 using Agenda.Domain.DomainObjects.Meetings;
 using Agenda.Domain.DomainObjects.Organisations;
 using Agenda.Utilities.Models.Whos;
@@ -26,6 +27,24 @@ namespace Agenda.Data.Crud
         Task<bool> HaveCommitteesAsync(
             IWho who);
 
+        /// <summary>
+        /// Creates the Committee.
+        /// </summary>
+        /// <param name="who">Who details.</param>
+        /// <param name="committee">Committee.</param>
+        /// <returns>Nothing.</returns>
+        Task CreateCommitteeAsync(IWho who, ICommittee committee);
+
+        /// <summary>
+        /// Gets the Committee by Id with its meetings.
+        /// </summary>
+        /// <param name="who">Who details.</param>
+        /// <param name="committeeId">Committee id.</param>
+        /// <returns>Committee with Meetings.</returns>
+        Task<ICommitteeWithMeetings> GetCommitteeByIdWithMeetingsAsync(
+            IWho who,
+            Guid committeeId);
+
         #endregion Committees
 
         #region Meetings
@@ -45,13 +64,6 @@ namespace Agenda.Data.Crud
         #endregion Meetings
 
         #region Organisations
-
-        /// <summary>
-        /// Checks if we have Organisations.
-        /// </summary>
-        /// <param name="who">Who details.</param>
-        /// <returns>True if Organisations exist.</returns>
-        Task<bool> HaveOrganisationsAsync(IWho who);
 
         /// <summary>
         /// Creates the Organisation.
@@ -89,6 +101,13 @@ namespace Agenda.Data.Crud
         Task<IOrganisationWithCommittees> GetOrganisationByIdWithCommitteesAsync(
             IWho who,
             Guid organisationId);
+
+        /// <summary>
+        /// Checks if we have Organisations.
+        /// </summary>
+        /// <param name="who">Who details.</param>
+        /// <returns>True if Organisations exist.</returns>
+        Task<bool> HaveOrganisationsAsync(IWho who);
 
         /// <summary>
         /// Updates the Organisation.

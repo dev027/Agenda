@@ -1,26 +1,25 @@
-﻿// <copyright file="CommitteeViewModel.cs" company="Do It Wright">
+﻿// <copyright file="IndexViewModel.cs" company="Do It Wright">
 // Copyright (c) Do It Wright. All rights reserved.
 // </copyright>
 
 using System;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using Agenda.Domain.DomainObjects.Committees;
 
-namespace Agenda.Web.ViewModels.Organisation
+namespace Agenda.Web.ViewModels.Committee
 {
     /// <summary>
-    /// Committee view model.
+    /// View Organisation view model.
     /// </summary>
-    public class CommitteeViewModel
+    public class IndexViewModel
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CommitteeViewModel"/> class.
+        /// Initializes a new instance of the <see cref="IndexViewModel"/> class.
         /// </summary>
         /// <param name="id">Committee Id.</param>
         /// <param name="name">Committee Name.</param>
         /// <param name="description">Committee Description.</param>
-        public CommitteeViewModel(
+        public IndexViewModel(
             Guid id,
             string name,
             string description)
@@ -31,10 +30,16 @@ namespace Agenda.Web.ViewModels.Organisation
         }
 
         /// <summary>
-        /// Gets the view action button text.
+        /// Gets the Page Title.
         /// </summary>
-        [Display(Name = "View")]
-        public string ViewActionButtonText { get; } = null;
+        [Display(Name = "View Organisation")]
+        public string PageTitle { get; } = null;
+
+        /// <summary>
+        /// Gets the Card Title.
+        /// </summary>
+        [Display(Name = "Organisation")]
+        public string CardTitle { get; } = null;
 
         /// <summary>
         /// Gets the Committee Id.
@@ -44,27 +49,29 @@ namespace Agenda.Web.ViewModels.Organisation
         /// <summary>
         /// Gets the Committee Name.
         /// </summary>
-        [DisplayName("Name")]
+        [Display(Name = "Name")]
         public string Name { get; }
 
         /// <summary>
-        /// Gets the Committee Description.
+        /// Gets Committee Description.
         /// </summary>
+        [Display(Name = "Description")]
         public string Description { get; }
 
         /// <summary>
-        /// Creates the view model.
+        /// Creates the Index view model.
         /// </summary>
         /// <param name="committee">Committee.</param>
         /// <returns>View model.</returns>
-        public static CommitteeViewModel Create(ICommittee committee)
+        public static IndexViewModel Create(
+            ICommitteeWithMeetings committee)
         {
             if (committee == null)
             {
                 throw new ArgumentNullException(nameof(committee));
             }
 
-            return new CommitteeViewModel(
+            return new IndexViewModel(
                 id: committee.Id,
                 name: committee.Name,
                 description: committee.Description);

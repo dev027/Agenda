@@ -46,7 +46,11 @@ namespace Agenda.Web.Controllers
         {
             IWho who = this.Who(nameof(this.Index));
 
-            this.Entry(this.logger);
+            this.logger.LogDebug(
+                "ENTRY {Action}(who, id) {@who} {id}",
+                who.ActionName,
+                who,
+                id);
 
             IOrganisationWithCommittees organisation = await this.service
                 .GetOrganisationByIdWithCommitteesAsync(
@@ -70,7 +74,11 @@ namespace Agenda.Web.Controllers
         {
             IWho who = this.Who(nameof(this.Add));
 
-            this.Entry(this.logger);
+            this.logger.LogDebug(
+                "ENTRY {Action}(who, model) {@who} {@model}",
+                who.ActionName,
+                who,
+                model);
 
             if (model == null)
             {
@@ -89,14 +97,11 @@ namespace Agenda.Web.Controllers
             {
                 if (this.ModelState.IsValid)
                 {
-                    if (await this.InsertRecordAsync(who, model).ConfigureAwait(false))
-                    {
-                        return this.ExitRedirectToAction(
-                            this.logger,
-                            this.RedirectToAction("Index", "Home"));
-                    }
+                    await this.InsertRecordAsync(who, model).ConfigureAwait(false);
 
-                    this.ModelState.AddModelError("Save", "Record insert failure");
+                    return this.ExitRedirectToAction(
+                        this.logger,
+                        this.RedirectToAction("Index", "Home"));
                 }
             }
 
@@ -115,7 +120,12 @@ namespace Agenda.Web.Controllers
         {
             IWho who = this.Who(nameof(this.StartEdit));
 
-            this.Entry(this.logger);
+            this.logger.LogDebug(
+                "ENTRY {Action}(who, id, ajaxMode) {@who} {id} {ajaxMode}",
+                who.ActionName,
+                who,
+                id,
+                ajaxMode);
 
             IOrganisation organisation = await this.service
                 .GetOrganisationByIdAsync(who, id)
@@ -143,7 +153,11 @@ namespace Agenda.Web.Controllers
         {
             IWho who = this.Who(nameof(this.Edit));
 
-            this.Entry(this.logger);
+            this.logger.LogDebug(
+                "ENTRY {Action}(who, model) {@who} {model}",
+                who.ActionName,
+                who,
+                model);
 
             if (model == null)
             {
@@ -152,17 +166,14 @@ namespace Agenda.Web.Controllers
 
             if (this.ModelState.IsValid)
             {
-                if (await this.UpdateRecordAsync(who, model).ConfigureAwait(false))
-                {
-                    return this.ExitRedirectToAction(
-                        this.logger,
-                        this.RedirectToAction(
-                            "Index",
-                            "Organisation",
-                            new { id = model.Id }));
-                }
+                await this.UpdateRecordAsync(who, model).ConfigureAwait(false);
 
-                this.ModelState.AddModelError("Save", "Record update failure");
+                return this.ExitRedirectToAction(
+                    this.logger,
+                    this.RedirectToAction(
+                        "Index",
+                        "Organisation",
+                        new { id = model.Id }));
             }
 
             return this.View(model);
@@ -173,16 +184,27 @@ namespace Agenda.Web.Controllers
         /// </summary>
         /// <param name="who">Who called it.</param>
         /// <param name="model">Add view model.</param>
-        /// <returns>True if inserted.</returns>
-        private async Task<bool> InsertRecordAsync(
+        /// <returns>Nothing.</returns>
+        private async Task InsertRecordAsync(
             IWho who,
             AddViewModel model)
         {
+            this.logger.LogTrace(
+                "ENTRY {Method}(who, model) {@who} {model}",
+                nameof(this.InsertRecordAsync),
+                who,
+                model);
+
             IOrganisation organisation = model.ToDomain();
 
-            return await this.service
+            await this.service
                 .CreateOrganisationAsync(who, organisation)
                 .ConfigureAwait(false);
+
+            this.logger.LogTrace(
+                "EXIT {Method}(who) {@who}",
+                nameof(this.InsertRecordAsync),
+                who);
         }
 
         /// <summary>
@@ -190,16 +212,27 @@ namespace Agenda.Web.Controllers
         /// </summary>
         /// <param name="who">Who called it.</param>
         /// <param name="model">Edit view model.</param>
-        /// <returns>True if updated.</returns>
-        private async Task<bool> UpdateRecordAsync(
+        /// <returns>Nothing.</returns>
+        private async Task UpdateRecordAsync(
             IWho who,
             EditViewModel model)
         {
+            this.logger.LogTrace(
+                "ENTRY {Method}(who, model) {@who} {model}",
+                nameof(this.UpdateRecordAsync),
+                who,
+                model);
+
             IOrganisation organisation = model.ToDomain();
 
-            return await this.service
+            await this.service
                 .UpdateOrganisationAsync(who, organisation)
                 .ConfigureAwait(false);
+
+            this.logger.LogTrace(
+                "EXIT {Method}(who) {@who}",
+                nameof(this.UpdateRecordAsync),
+                who);
         }
     }
 }

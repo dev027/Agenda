@@ -45,8 +45,13 @@
             <param name="methodName">Method Name.</param>
             <returns>Tag.</returns>
         </member>
+        <member name="M:Agenda.Data.Crud.AgendaData.CreateCommitteeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Committees.ICommittee)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Data.Crud.AgendaData.GetCommitteeByIdWithMeetingsAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
+            <inheritdoc />
+        </member>
         <member name="M:Agenda.Data.Crud.AgendaData.HaveCommitteesAsync(Agenda.Utilities.Models.Whos.IWho)">
-            <param name="who"></param>
             <inheritdoc/>
         </member>
         <member name="M:Agenda.Data.Crud.AgendaData.GetRecentMeetingsMostRecentFirstAsync(Agenda.Utilities.Models.Whos.IWho,System.TimeSpan,System.Int32)">
@@ -82,6 +87,22 @@
             <param name="who">Who details.</param>
             <returns>True if Committees exist.</returns>
         </member>
+        <member name="M:Agenda.Data.Crud.IAgendaData.CreateCommitteeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Committees.ICommittee)">
+            <summary>
+            Creates the Committee.
+            </summary>
+            <param name="who">Who details.</param>
+            <param name="committee">Committee.</param>
+            <returns>Nothing.</returns>
+        </member>
+        <member name="M:Agenda.Data.Crud.IAgendaData.GetCommitteeByIdWithMeetingsAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
+            <summary>
+            Gets the Committee by Id with its meetings.
+            </summary>
+            <param name="who">Who details.</param>
+            <param name="committeeId">Committee id.</param>
+            <returns>Committee with Meetings.</returns>
+        </member>
         <member name="M:Agenda.Data.Crud.IAgendaData.GetRecentMeetingsMostRecentFirstAsync(Agenda.Utilities.Models.Whos.IWho,System.TimeSpan,System.Int32)">
             <summary>
             Gets the recent meetings with the most recent first.
@@ -90,13 +111,6 @@
             <param name="timeSpan">The time span define what is recent.</param>
             <param name="maxNumberOfMeetings">The maximum number of meetings to return.</param>
             <returns>List of Meetings.</returns>
-        </member>
-        <member name="M:Agenda.Data.Crud.IAgendaData.HaveOrganisationsAsync(Agenda.Utilities.Models.Whos.IWho)">
-            <summary>
-            Checks if we have Organisations.
-            </summary>
-            <param name="who">Who details.</param>
-            <returns>True if Organisations exist.</returns>
         </member>
         <member name="M:Agenda.Data.Crud.IAgendaData.CreateOrganisationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
             <summary>
@@ -128,6 +142,13 @@
             <param name="who">Who details.</param>
             <param name="organisationId">Organisation Id.</param>
             <returns>Organisation (Null=Not Found).</returns>
+        </member>
+        <member name="M:Agenda.Data.Crud.IAgendaData.HaveOrganisationsAsync(Agenda.Utilities.Models.Whos.IWho)">
+            <summary>
+            Checks if we have Organisations.
+            </summary>
+            <param name="who">Who details.</param>
+            <returns>True if Organisations exist.</returns>
         </member>
         <member name="M:Agenda.Data.Crud.IAgendaData.UpdateOrganisationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
             <summary>
@@ -240,6 +261,11 @@
             Gets the Organisation.
             </summary>
         </member>
+        <member name="P:Agenda.Data.Dtos.CommitteeDto.Meetings">
+            <summary>
+            Gets the Meetings.
+            </summary>
+        </member>
         <member name="M:Agenda.Data.Dtos.CommitteeDto.ToDto(Agenda.Domain.DomainObjects.Committees.ICommittee)">
             <summary>
             Converts domain object to DTO.
@@ -252,6 +278,12 @@
             Converts instance to domain object.
             </summary>
             <returns>Committee.</returns>
+        </member>
+        <member name="M:Agenda.Data.Dtos.CommitteeDto.ToDomainWithMeetings">
+            <summary>
+            Converts instance to domain object with meetings.
+            </summary>
+            <returns>Committee with Meetings.</returns>
         </member>
         <member name="T:Agenda.Data.Dtos.MeetingDto">
             <summary>

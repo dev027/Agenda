@@ -3,9 +3,11 @@
 // </copyright>
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
+using System.Linq;
 using Agenda.Data.DbContexts;
 using Agenda.Data.Resources;
 using Agenda.Domain.DomainObjects.Committees;
@@ -107,7 +109,16 @@ namespace Agenda.Data.Dtos
         [ForeignKey(nameof(OrganisationId))]
         public OrganisationDto? Organisation { get; private set; } = null!;
 
-        #endregion
+        #endregion Parent Properties
+
+        #region Child Properties
+
+        /// <summary>
+        /// Gets the Meetings.
+        /// </summary>
+        public IList<MeetingDto> Meetings { get; private set; } = null!;
+
+        #endregion Child Properties
 
         #region Public Properties
 
@@ -153,6 +164,40 @@ namespace Agenda.Data.Dtos
                 description: this.Description);
         }
 
-        #endregion
+        /// <summary>
+        /// Converts instance to domain object with meetings.
+        /// </summary>
+        /// <returns>Committee with Meetings.</returns>
+        public ICommitteeWithMeetings ToDomainWithMeetings()
+        {
+            if (this.Organisation == null)
+            {
+                throw new InvalidOperationException(
+                    string.Format(
+                        CultureInfo.InvariantCulture,
+                        ExceptionResource.CannotConvertTo___If___IsNull,
+                        nameof(IOrganisation),
+                        nameof(this.Organisation)));
+            }
+
+            if (this.Meetings == null)
+            {
+                throw new InvalidOperationException(
+                    string.Format(
+                        CultureInfo.InvariantCulture,
+                        ExceptionResource.CannotConvertTo___If___IsNull,
+                        nameof(IOrganisation),
+                        nameof(this.Meetings)));
+            }
+
+            return new CommitteeWithMeetings(
+                id: this.Id,
+                organisation: this.Organisation.ToDomain(),
+                name: this.Name,
+                description: this.Description,
+                meetings: this.Meetings.Select(m => m.ToDomain()).ToList());
+        }
+
+        #endregion Public Properties
     }
 }

@@ -6,10 +6,10 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Agenda.Data.Crud;
+using Agenda.Domain.DomainObjects.Committees;
 using Agenda.Domain.DomainObjects.Meetings;
 using Agenda.Domain.DomainObjects.Organisations;
 using Agenda.Domain.ValueObjects.SetupStatii;
-using Agenda.Service.Resources;
 using Agenda.Utilities.Models.Whos;
 using Microsoft.Extensions.Logging;
 
@@ -44,81 +44,134 @@ namespace Agenda.Service
             int? maxNumberOfMeetings = null)
         {
             this.logger.LogTrace(
-                LoggerResources.___EntryBy___,
+                "ENTRY {Method}(who, timeSpan, maxNumberOfMeetings) {@who} {timeSpan} {maxNumberOfMeetings}",
                 nameof(this.GetRecentMeetingsMostRecentFirstAsync),
-                who);
+                who,
+                timeSpan,
+                maxNumberOfMeetings);
 
-            return await this.data.GetRecentMeetingsMostRecentFirstAsync(
+            IList<IMeeting> meetings = await this.data
+                .GetRecentMeetingsMostRecentFirstAsync(
                     who: who,
                     timeSpan: timeSpan ?? TimeSpan.FromDays(365),
                     maxNumberOfMeetings: maxNumberOfMeetings ?? 20)
                 .ConfigureAwait(false);
+
+            this.logger.LogTrace(
+                "EXIT {Method}(who, meetings) {@who} {@meetings}",
+                nameof(this.GetRecentMeetingsMostRecentFirstAsync),
+                who,
+                meetings);
+
+            return meetings;
         }
 
         /// <inheritdoc/>
         public async Task<ISetupStatus> GetSetupStatusAsync(IWho who)
         {
             this.logger.LogTrace(
-                LoggerResources.___EntryBy___,
+                "ENTRY {Method}(who) {@who}",
                 nameof(this.GetSetupStatusAsync),
                 who);
 
-            bool haveOrganisations = await this.data.HaveOrganisationsAsync(who).ConfigureAwait(false);
+            bool haveOrganisations = await this.data
+                .HaveOrganisationsAsync(who)
+                .ConfigureAwait(false);
+            SetupStatus setupStatus;
 
             if (!haveOrganisations)
             {
-                return new SetupStatus(
+                setupStatus = new SetupStatus(
                     haveOrganisations: false,
                     haveCommittees: false);
             }
+            else
+            {
+                bool haveCommittees = await this.data
+                    .HaveCommitteesAsync(who)
+                    .ConfigureAwait(false);
 
-            bool haveCommittees = await this.data.HaveCommitteesAsync(who).ConfigureAwait(false);
+                setupStatus = new SetupStatus(
+                    haveOrganisations: true,
+                    haveCommittees: haveCommittees);
+            }
 
-            return new SetupStatus(
-                haveOrganisations: true,
-                haveCommittees: haveCommittees);
+            this.logger.LogTrace(
+                "EXIT {Method}(who, setupStatus) {@who} {@setupStatus}",
+                nameof(this.GetSetupStatusAsync),
+                who,
+                setupStatus);
+
+            return setupStatus;
         }
 
         /// <inheritdoc/>
-        public async Task<bool> CreateOrganisationAsync(
+        public async Task CreateOrganisationAsync(
             IWho who,
             IOrganisation organisation)
         {
             this.logger.LogTrace(
-                LoggerResources.___EntryBy___,
+                "ENTRY {Method}(who, organisation) {@who} {@organisation}",
                 nameof(this.CreateOrganisationAsync),
                 who);
 
-            await this.data.CreateOrganisationAsync(who, organisation).ConfigureAwait(false);
+            await this.data
+                .CreateOrganisationAsync(
+                    who: who,
+                    organisation: organisation)
+                .ConfigureAwait(false);
 
-            return true;
+            this.logger.LogTrace(
+                "EXIT {Method}(who) {@who}",
+                nameof(this.CreateOrganisationAsync),
+                who);
         }
 
-        /// <param name="who"></param>
         /// <inheritdoc/>
         public async Task<IList<IOrganisation>> GetAllOrganisationsAsync(IWho who)
         {
             this.logger.LogTrace(
-                LoggerResources.___EntryBy___,
+                "ENTRY {Method}(who) {@who}",
                 nameof(this.GetAllOrganisationsAsync),
                 who);
 
-            return await this.data.GetAllOrganisationsAsync(who)
+            IList<IOrganisation> organisations = await this.data
+                .GetAllOrganisationsAsync(who)
                 .ConfigureAwait(false);
+
+            this.logger.LogTrace(
+                "EXIT {Method}(who, organisations) {@who} {@organisations}",
+                nameof(this.GetAllOrganisationsAsync),
+                who,
+                organisations);
+
+            return organisations;
         }
 
         /// <inheritdoc/>
-        public async Task<IOrganisation> GetOrganisationByIdAsync(IWho who, Guid organisationId)
+        public async Task<IOrganisation> GetOrganisationByIdAsync(
+            IWho who,
+            Guid organisationId)
         {
             this.logger.LogTrace(
-                LoggerResources.___EntryBy___,
+                "ENTRY {Method}(who, organisationId) {@who} {organisationId}",
                 nameof(this.GetOrganisationByIdAsync),
-                who);
+                who,
+                organisationId);
 
-            return await this.data.GetOrganisationByIdAsync(
+            IOrganisation organisation = await this.data
+                .GetOrganisationByIdAsync(
                     who: who,
                     organisationId: organisationId)
                 .ConfigureAwait(false);
+
+            this.logger.LogTrace(
+                "EXIT {Method}(who, organisation) {@who} {@organisation}",
+                nameof(this.GetOrganisationByIdAsync),
+                who,
+                organisation);
+
+            return organisation;
         }
 
         /// <inheritdoc/>
@@ -127,30 +180,95 @@ namespace Agenda.Service
             Guid organisationId)
         {
             this.logger.LogTrace(
-                LoggerResources.___EntryBy___,
+                "ENTRY {Method}(who, organisationId) {@who} {organisationId}",
                 nameof(this.GetOrganisationByIdWithCommitteesAsync),
-                who);
+                who,
+                organisationId);
 
-            return await this.data.GetOrganisationByIdWithCommitteesAsync(
+            IOrganisationWithCommittees organisationWithCommittees = await this.data
+                .GetOrganisationByIdWithCommitteesAsync(
                     who: who,
                     organisationId: organisationId)
                 .ConfigureAwait(false);
+
+            this.logger.LogTrace(
+                "EXIT {Method}(who, organisationWithCommittees) {@who} {@organisationWithCommittees}",
+                nameof(this.GetOrganisationByIdWithCommitteesAsync),
+                who,
+                organisationWithCommittees);
+
+            return organisationWithCommittees;
         }
 
         /// <inheritdoc/>
-        public async Task<bool> UpdateOrganisationAsync(IWho who, IOrganisation organisation)
+        public async Task UpdateOrganisationAsync(
+            IWho who,
+            IOrganisation organisation)
         {
             this.logger.LogTrace(
-                LoggerResources.___EntryBy___,
+                "ENTRY {Method}(who, organisation) {@who} {@organisation}",
                 nameof(this.UpdateOrganisationAsync),
-                who);
+                who,
+                organisation);
 
-            await this.data.UpdateOrganisationAsync(
+            await this.data
+                .UpdateOrganisationAsync(
                     who: who,
                     organisation: organisation)
                 .ConfigureAwait(false);
 
-            return true;
+            this.logger.LogTrace(
+                "EXIT {Method}(who) {@who}",
+                nameof(this.UpdateOrganisationAsync),
+                who);
+        }
+
+        /// <inheritdoc/>
+        public async Task CreateCommitteeAsync(
+            IWho who,
+            ICommittee committee)
+        {
+            this.logger.LogTrace(
+                "ENTRY {Method}(who, committee) {@who} {@committee}",
+                nameof(this.CreateCommitteeAsync),
+                who,
+                committee);
+
+            await this.data.CreateCommitteeAsync(
+                    who,
+                    committee)
+                .ConfigureAwait(false);
+
+            this.logger.LogTrace(
+                "EXIT {Method}(who) {@who}",
+                nameof(this.CreateCommitteeAsync),
+                who);
+        }
+
+        /// <inheritdoc/>
+        public async Task<ICommitteeWithMeetings> GetCommitteeByIdWithMeetingsAsync(
+            IWho who,
+            Guid committeeId)
+        {
+            this.logger.LogTrace(
+                "ENTRY {Method}(who, committeeId) {@who} {committeeId}",
+                nameof(this.GetCommitteeByIdWithMeetingsAsync),
+                who,
+                committeeId);
+
+            ICommitteeWithMeetings committeeWithMeetings = await this.data
+                .GetCommitteeByIdWithMeetingsAsync(
+                    who: who,
+                    committeeId: committeeId)
+                .ConfigureAwait(false);
+
+            this.logger.LogTrace(
+                "EXIT {Method}(who, committeeWithMeetings) {@who} {@committeeWithMeetings}",
+                nameof(this.GetCommitteeByIdWithMeetingsAsync),
+                who,
+                committeeWithMeetings);
+
+            return committeeWithMeetings;
         }
     }
 }

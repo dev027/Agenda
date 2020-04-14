@@ -49,7 +49,10 @@ namespace Agenda.Web.Controllers
         {
             IWho who = this.Who(nameof(this.Index));
 
-            this.Entry(this.logger);
+            this.logger.LogDebug(
+                "ENTRY {Action}(who) {@who}",
+                who.ActionName,
+                who);
 
             IList<IMeeting> meetings = await this.service
                 .GetRecentMeetingsMostRecentFirstAsync(who)

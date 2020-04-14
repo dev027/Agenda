@@ -47,30 +47,6 @@ namespace Agenda.Web.Controllers
         }
 
         /// <summary>
-        /// Log entry into a controller action.
-        /// </summary>
-        /// <param name="logger">The logger.</param>
-        protected void Entry(ILogger logger)
-        {
-            logger.LogDebug(
-                "{ActionName} ENTRY by {@Who}",
-                this.who.ActionName,
-                this.who);
-        }
-
-        /// <summary>
-        /// Log exit from a controller action.
-        /// </summary>
-        /// <param name="logger">The logger.</param>
-        protected void Exit(ILogger logger)
-        {
-            logger.LogDebug(
-                "{ActionName} EXIT by {@Who}",
-                this.who.ActionName,
-                this.who);
-        }
-
-        /// <summary>
         /// Log exit from a controller action when redirecting to a different action.
         /// </summary>
         /// <param name="logger">The logger.</param>
@@ -86,11 +62,13 @@ namespace Agenda.Web.Controllers
             }
 
             logger.LogDebug(
-                "EXIT: {ActionName}: " +
-                "Redirect to {RedirectControllerName}/{RedirectActionName} by {@Who}",
+                "EXIT {ActionName}: " +
+                "Redirect to {RedirectControllerName}/{RedirectActionName}, " +
+                "RouteValue {RouteValue} by {@Who}",
                 this.who.ActionName,
-                redirectToAction.ControllerName,
+                redirectToAction.ControllerName ?? this.who.ControllerName,
                 redirectToAction.ActionName,
+                redirectToAction.RouteValues,
                 this.who);
 
             return redirectToAction;
@@ -112,10 +90,10 @@ namespace Agenda.Web.Controllers
             }
 
             logger.LogDebug(
-                "EXIT: {ActionName}: " +
+                "EXIT {ActionName}: " +
                 "View {ViewName}, Model: {@Model}, Status: {StatusCode} by {@Who}",
                 this.who.ActionName,
-                view.ViewName,
+                view.ViewName ?? this.who.ActionName,
                 view.Model,
                 view.StatusCode,
                 this.who);
