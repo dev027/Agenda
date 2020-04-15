@@ -39,6 +39,34 @@ namespace Agenda.Data.Crud
                 who);
         }
 
+        /// <inheritdoc/>
+        public async Task<ICommittee> GetCommitteeByIdAsync(
+            IWho who,
+            Guid committeeId)
+        {
+            this.logger.LogTrace(
+                "ENTRY {Method}(who, committeeId) {@who} {committeeId}",
+                nameof(this.GetCommitteeByIdAsync),
+                who,
+                committeeId);
+
+            ICommittee committee = (await this.context.Committees
+                    .AsNoTracking()
+                    .TagWith(this.Tag(who, nameof(this.GetCommitteeByIdAsync)))
+                    .Include(c => c.Organisation)
+                    .FirstOrDefaultAsync(c => c.Id == committeeId)
+                    .ConfigureAwait(false))
+                .ToDomain();
+
+            this.logger.LogTrace(
+                "EXIT {Method}(who, committee) {@who} {@committee}",
+                nameof(this.GetCommitteeByIdAsync),
+                who,
+                committee);
+
+            return committee;
+        }
+
         /// <inheritdoc />
         public async Task<ICommitteeWithMeetings> GetCommitteeByIdWithMeetingsAsync(
             IWho who,
@@ -53,6 +81,7 @@ namespace Agenda.Data.Crud
             ICommitteeWithMeetings committeeWithMeetings = (await this.context.Committees
                     .AsNoTracking()
                     .TagWith(this.Tag(who, nameof(this.GetCommitteeByIdWithMeetingsAsync)))
+                    .Include(c => c.Organisation)
                     .Include(c => c.Meetings)
                     .FirstOrDefaultAsync(c => c.Id == committeeId)
                     .ConfigureAwait(false))
@@ -65,6 +94,28 @@ namespace Agenda.Data.Crud
                 committeeWithMeetings);
 
             return committeeWithMeetings;
+        }
+
+        /// <inheritdoc/>
+        public async Task UpdateCommitteeAsync(
+            IWho who,
+            ICommittee committee)
+        {
+            this.logger.LogTrace(
+                "ENTRY {Method}(who, committee) {@who} {@committee}",
+                nameof(this.UpdateCommitteeAsync),
+                who,
+                committee);
+
+            CommitteeDto dto = CommitteeDto.ToDto(committee);
+
+            this.context.Committees.Update(dto);
+            await this.context.SaveChangesAsync().ConfigureAwait(false);
+
+            this.logger.LogTrace(
+                "EXIT {Method}(who) {@who}",
+                nameof(this.UpdateCommitteeAsync),
+                who);
         }
 
         /// <inheritdoc/>

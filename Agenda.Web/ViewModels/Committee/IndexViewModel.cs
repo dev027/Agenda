@@ -17,14 +17,17 @@ namespace Agenda.Web.ViewModels.Committee
         /// Initializes a new instance of the <see cref="IndexViewModel"/> class.
         /// </summary>
         /// <param name="id">Committee Id.</param>
+        /// <param name="organisationName">Organisation Name.</param>
         /// <param name="name">Committee Name.</param>
         /// <param name="description">Committee Description.</param>
         public IndexViewModel(
             Guid id,
+            string organisationName,
             string name,
             string description)
         {
             this.Id = id;
+            this.OrganisationName = organisationName;
             this.Name = name;
             this.Description = description;
         }
@@ -32,19 +35,25 @@ namespace Agenda.Web.ViewModels.Committee
         /// <summary>
         /// Gets the Page Title.
         /// </summary>
-        [Display(Name = "View Organisation")]
+        [Display(Name = "View Committee")]
         public string PageTitle { get; } = null;
 
         /// <summary>
         /// Gets the Card Title.
         /// </summary>
-        [Display(Name = "Organisation")]
+        [Display(Name = "Committee")]
         public string CardTitle { get; } = null;
 
         /// <summary>
         /// Gets the Committee Id.
         /// </summary>
         public Guid Id { get; }
+
+        /// <summary>
+        /// Gets the Organisation Name.
+        /// </summary>
+        [Display(Name = "Organisation")]
+        public string OrganisationName { get; }
 
         /// <summary>
         /// Gets the Committee Name.
@@ -73,6 +82,7 @@ namespace Agenda.Web.ViewModels.Committee
 
             return new IndexViewModel(
                 id: committee.Id,
+                organisationName: committee.Organisation.Name,
                 name: committee.Name,
                 description: committee.Description);
         }

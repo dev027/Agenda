@@ -241,12 +241,35 @@
             <param name="model">Add view model.</param>
             <returns>View.</returns>
         </member>
+        <member name="M:Agenda.Web.Controllers.CommitteeController.StartEdit(System.Guid,System.Int32)">
+            <summary>
+            Starts the edit.
+            </summary>
+            <param name="id">The Committee id.</param>
+            <param name="ajaxMode">AJAX mode(0=No; 1=Yes).</param>
+            <returns>View.</returns>
+        </member>
+        <member name="M:Agenda.Web.Controllers.CommitteeController.Edit(Agenda.Web.ViewModels.Committee.EditViewModel)">
+            <summary>
+            Edits the specified committee.
+            </summary>
+            <param name="model">Edit view model.</param>
+            <returns>View.</returns>
+        </member>
         <member name="M:Agenda.Web.Controllers.CommitteeController.InsertRecordAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Web.ViewModels.Committee.AddViewModel)">
             <summary>
             Insert Organisation.
             </summary>
             <param name="who">Who called it.</param>
             <param name="model">Add view model.</param>
+            <returns>Nothing.</returns>
+        </member>
+        <member name="M:Agenda.Web.Controllers.CommitteeController.UpdateRecordAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Web.ViewModels.Committee.EditViewModel)">
+            <summary>
+            Update Committee.
+            </summary>
+            <param name="who">Who called it.</param>
+            <param name="model">Edit view model.</param>
             <returns>Nothing.</returns>
         </member>
         <member name="T:Agenda.Web.Controllers.ControllerBase">
@@ -616,16 +639,76 @@
             <param name="organisation">Organisation.</param>
             <returns>Committee domain object.</returns>
         </member>
+        <member name="T:Agenda.Web.ViewModels.Committee.EditViewModel">
+            <summary>
+            Add view model.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Committee.EditViewModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Committee.EditViewModel"/> class.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Committee.EditViewModel.#ctor(Agenda.Web.Models.FormState,System.Guid,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Committee.EditViewModel"/> class.
+            </summary>
+            <param name="formState">Form State.</param>
+            <param name="id">Committee Id.</param>
+            <param name="organisationName">Organisation Name.</param>
+            <param name="name">Committee Name.</param>
+            <param name="description">Committee Description.</param>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Committee.EditViewModel.FormState">
+            <summary>
+            Gets or sets the Form State.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Committee.EditViewModel.Id">
+            <summary>
+            Gets or sets the Committee Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Committee.EditViewModel.OrganisationName">
+            <summary>
+            Gets or sets the Organisation Name.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Committee.EditViewModel.Name">
+            <summary>
+            Gets or sets the Committee Name.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Committee.EditViewModel.Description">
+            <summary>
+            Gets or sets the Committee Description.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Committee.EditViewModel.Create(Agenda.Domain.DomainObjects.Committees.ICommittee)">
+            <summary>
+            Creates the view model.
+            </summary>
+            <param name="committee">Organisation.</param>
+            <returns>Edit view model.</returns>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Committee.EditViewModel.ToDomain(Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
+            <summary>
+            Converts instance to Committee domain object.
+            </summary>
+            <param name="organisation">Organisation.</param>
+            <returns>Committee domain object.</returns>
+        </member>
         <member name="T:Agenda.Web.ViewModels.Committee.IndexViewModel">
             <summary>
             View Organisation view model.
             </summary>
         </member>
-        <member name="M:Agenda.Web.ViewModels.Committee.IndexViewModel.#ctor(System.Guid,System.String,System.String)">
+        <member name="M:Agenda.Web.ViewModels.Committee.IndexViewModel.#ctor(System.Guid,System.String,System.String,System.String)">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Committee.IndexViewModel"/> class.
             </summary>
             <param name="id">Committee Id.</param>
+            <param name="organisationName">Organisation Name.</param>
             <param name="name">Committee Name.</param>
             <param name="description">Committee Description.</param>
         </member>
@@ -642,6 +725,11 @@
         <member name="P:Agenda.Web.ViewModels.Committee.IndexViewModel.Id">
             <summary>
             Gets the Committee Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Committee.IndexViewModel.OrganisationName">
+            <summary>
+            Gets the Organisation Name.
             </summary>
         </member>
         <member name="P:Agenda.Web.ViewModels.Committee.IndexViewModel.Name">

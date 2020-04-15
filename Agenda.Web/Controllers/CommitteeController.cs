@@ -144,6 +144,77 @@ namespace Agenda.Web.Controllers
         }
 
         /// <summary>
+        /// Starts the edit.
+        /// </summary>
+        /// <param name="id">The Committee id.</param>
+        /// <param name="ajaxMode">AJAX mode(0=No; 1=Yes).</param>
+        /// <returns>View.</returns>
+        public async Task<IActionResult> StartEdit(
+            Guid id,
+            int ajaxMode)
+        {
+            IWho who = this.Who(nameof(this.StartEdit));
+
+            this.logger.LogDebug(
+                "ENTRY {Action}(who, id, ajaxMode) {@who} {id} {ajaxMode}",
+                who.ActionName,
+                who,
+                id,
+                ajaxMode);
+
+            ICommittee committee = await this.service
+                .GetCommitteeByIdAsync(who, id)
+                .ConfigureAwait(false);
+
+            EditViewModel model = EditViewModel.Create(committee);
+
+            switch (ajaxMode)
+            {
+                case 0:
+                    return this.ExitView(this.logger, this.View("Edit", model));
+
+                default:
+                    throw new NotImplementedException($"AjaxMode {ajaxMode} not implemented yet.");
+            }
+        }
+
+        /// <summary>
+        /// Edits the specified committee.
+        /// </summary>
+        /// <param name="model">Edit view model.</param>
+        /// <returns>View.</returns>
+        [HttpPost]
+        public async Task<IActionResult> Edit(EditViewModel model)
+        {
+            IWho who = this.Who(nameof(this.Edit));
+
+            this.logger.LogDebug(
+                "ENTRY {Action}(who, model) {@who} {model}",
+                who.ActionName,
+                who,
+                model);
+
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
+            if (this.ModelState.IsValid)
+            {
+                await this.UpdateRecordAsync(who, model).ConfigureAwait(false);
+
+                return this.ExitRedirectToAction(
+                    this.logger,
+                    this.RedirectToAction(
+                        "Index",
+                        "Committee",
+                        new { id = model.Id }));
+            }
+
+            return this.View(model);
+        }
+
+        /// <summary>
         /// Insert Organisation.
         /// </summary>
         /// <param name="who">Who called it.</param>
@@ -173,6 +244,42 @@ namespace Agenda.Web.Controllers
             this.logger.LogTrace(
                 "EXIT {Method}(who) {@who}",
                 nameof(this.InsertRecordAsync),
+                who);
+        }
+
+        /// <summary>
+        /// Update Committee.
+        /// </summary>
+        /// <param name="who">Who called it.</param>
+        /// <param name="model">Edit view model.</param>
+        /// <returns>Nothing.</returns>
+        private async Task UpdateRecordAsync(
+            IWho who,
+            EditViewModel model)
+        {
+            this.logger.LogTrace(
+                "ENTRY {Method}(who, model) {@who} {model}",
+                nameof(this.UpdateRecordAsync),
+                who,
+                model);
+
+            ICommittee originalCommittee = await this.service
+                .GetCommitteeByIdAsync(
+                    who: who,
+                    committeeId: model.Id)
+                .ConfigureAwait(false);
+
+            ICommittee committee = model.ToDomain(originalCommittee.Organisation);
+
+            await this.service
+                .UpdateCommitteeAsync(
+                    who,
+                    committee)
+                .ConfigureAwait(false);
+
+            this.logger.LogTrace(
+                "EXIT {Method}(who) {@who}",
+                nameof(this.UpdateRecordAsync),
                 who);
         }
     }

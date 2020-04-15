@@ -176,7 +176,7 @@ namespace Agenda.Data.Dtos
                     string.Format(
                         CultureInfo.InvariantCulture,
                         ExceptionResource.CannotConvertTo___If___IsNull,
-                        nameof(IOrganisation),
+                        nameof(ICommittee),
                         nameof(this.Organisation)));
             }
 
@@ -186,7 +186,7 @@ namespace Agenda.Data.Dtos
                     string.Format(
                         CultureInfo.InvariantCulture,
                         ExceptionResource.CannotConvertTo___If___IsNull,
-                        nameof(IOrganisation),
+                        nameof(ICommittee),
                         nameof(this.Meetings)));
             }
 

@@ -48,8 +48,14 @@
         <member name="M:Agenda.Data.Crud.AgendaData.CreateCommitteeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Committees.ICommittee)">
             <inheritdoc/>
         </member>
+        <member name="M:Agenda.Data.Crud.AgendaData.GetCommitteeByIdAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
+            <inheritdoc/>
+        </member>
         <member name="M:Agenda.Data.Crud.AgendaData.GetCommitteeByIdWithMeetingsAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
             <inheritdoc />
+        </member>
+        <member name="M:Agenda.Data.Crud.AgendaData.UpdateCommitteeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Committees.ICommittee)">
+            <inheritdoc/>
         </member>
         <member name="M:Agenda.Data.Crud.AgendaData.HaveCommitteesAsync(Agenda.Utilities.Models.Whos.IWho)">
             <inheritdoc/>
@@ -95,6 +101,14 @@
             <param name="committee">Committee.</param>
             <returns>Nothing.</returns>
         </member>
+        <member name="M:Agenda.Data.Crud.IAgendaData.GetCommitteeByIdAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
+            <summary>
+            Gets the Committee by Id.
+            </summary>
+            <param name="who">Who details.</param>
+            <param name="committeeId">Committee Id.</param>
+            <returns>Committee.</returns>
+        </member>
         <member name="M:Agenda.Data.Crud.IAgendaData.GetCommitteeByIdWithMeetingsAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
             <summary>
             Gets the Committee by Id with its meetings.
@@ -102,6 +116,14 @@
             <param name="who">Who details.</param>
             <param name="committeeId">Committee id.</param>
             <returns>Committee with Meetings.</returns>
+        </member>
+        <member name="M:Agenda.Data.Crud.IAgendaData.UpdateCommitteeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Committees.ICommittee)">
+            <summary>
+            Updates the Committee asynchronous.
+            </summary>
+            <param name="who">Who details.</param>
+            <param name="committee">The committee.</param>
+            <returns>Nothing.</returns>
         </member>
         <member name="M:Agenda.Data.Crud.IAgendaData.GetRecentMeetingsMostRecentFirstAsync(Agenda.Utilities.Models.Whos.IWho,System.TimeSpan,System.Int32)">
             <summary>

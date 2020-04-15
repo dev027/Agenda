@@ -36,6 +36,16 @@ namespace Agenda.Data.Crud
         Task CreateCommitteeAsync(IWho who, ICommittee committee);
 
         /// <summary>
+        /// Gets the Committee by Id.
+        /// </summary>
+        /// <param name="who">Who details.</param>
+        /// <param name="committeeId">Committee Id.</param>
+        /// <returns>Committee.</returns>
+        Task<ICommittee> GetCommitteeByIdAsync(
+            IWho who,
+            Guid committeeId);
+
+        /// <summary>
         /// Gets the Committee by Id with its meetings.
         /// </summary>
         /// <param name="who">Who details.</param>
@@ -44,6 +54,14 @@ namespace Agenda.Data.Crud
         Task<ICommitteeWithMeetings> GetCommitteeByIdWithMeetingsAsync(
             IWho who,
             Guid committeeId);
+
+        /// <summary>
+        /// Updates the Committee asynchronous.
+        /// </summary>
+        /// <param name="who">Who details.</param>
+        /// <param name="committee">The committee.</param>
+        /// <returns>Nothing.</returns>
+        Task UpdateCommitteeAsync(IWho who, ICommittee committee);
 
         #endregion Committees
 
@@ -120,6 +138,5 @@ namespace Agenda.Data.Crud
             IOrganisation organisation);
 
         #endregion Organisations
-
     }
 }

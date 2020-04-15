@@ -97,6 +97,16 @@ namespace Agenda.Service
             ICommittee committee);
 
         /// <summary>
+        /// Gets the Committee by Id.
+        /// </summary>
+        /// <param name="who">Who called it.</param>
+        /// <param name="committeeId">Committee Id.</param>
+        /// <returns>Committee.</returns>
+        Task<ICommittee> GetCommitteeByIdAsync(
+            IWho who,
+            Guid committeeId);
+
+        /// <summary>
         /// Gets the Committee by Id with its Meetings.
         /// </summary>
         /// <param name="who">Who called it.</param>
@@ -105,5 +115,13 @@ namespace Agenda.Service
         Task<ICommitteeWithMeetings> GetCommitteeByIdWithMeetingsAsync(
             IWho who,
             Guid committeeId);
+
+        /// <summary>
+        /// Updates the Committee.
+        /// </summary>
+        /// <param name="who">Who called it.</param>
+        /// <param name="committee">Committee to update.</param>
+        /// <returns>Nothing.</returns>
+        Task UpdateCommitteeAsync(IWho who, ICommittee committee);
     }
 }

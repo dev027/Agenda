@@ -246,6 +246,32 @@ namespace Agenda.Service
         }
 
         /// <inheritdoc/>
+        public async Task<ICommittee> GetCommitteeByIdAsync(
+            IWho who,
+            Guid committeeId)
+        {
+            this.logger.LogTrace(
+                "ENTRY {Method}(who, committeeId) {@who} {committeeId}",
+                nameof(this.GetCommitteeByIdAsync),
+                who,
+                committeeId);
+
+            ICommittee committee = await this.data
+                .GetCommitteeByIdAsync(
+                    who: who,
+                    committeeId: committeeId)
+                .ConfigureAwait(false);
+
+            this.logger.LogTrace(
+                "EXIT {Method}(who, committee) {@who} {@committee}",
+                nameof(this.GetCommitteeByIdAsync),
+                who,
+                committee);
+
+            return committee;
+        }
+
+        /// <inheritdoc/>
         public async Task<ICommitteeWithMeetings> GetCommitteeByIdWithMeetingsAsync(
             IWho who,
             Guid committeeId)
@@ -269,6 +295,29 @@ namespace Agenda.Service
                 committeeWithMeetings);
 
             return committeeWithMeetings;
+        }
+
+        /// <inheritdoc/>
+        public async Task UpdateCommitteeAsync(
+            IWho who,
+            ICommittee committee)
+        {
+            this.logger.LogTrace(
+                "ENTRY {Method}(who, committee) {@who} {@committee}",
+                nameof(this.UpdateCommitteeAsync),
+                who,
+                committee);
+
+            await this.data
+                .UpdateCommitteeAsync(
+                    who: who,
+                    committee: committee)
+                .ConfigureAwait(false);
+
+            this.logger.LogTrace(
+                "EXIT {Method}(who) {@who}",
+                nameof(this.UpdateCommitteeAsync),
+                who);
         }
     }
 }
