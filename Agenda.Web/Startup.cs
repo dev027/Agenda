@@ -3,9 +3,12 @@
 // </copyright>
 
 using Agenda.Data.Crud;
+using Agenda.Data.DbContexts;
 using Agenda.Service;
 using Agenda.Utilities.DependencyInjection;
+using Agenda.Web.Helpers;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
@@ -33,12 +36,18 @@ namespace Agenda.Web
         /// For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940.
         /// </summary>
         /// <param name="services">Service Collection.</param>
-        public static void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
             // TODO: Change to using .Net Core DI.
             //// InstanceFactory.RegisterTransient<IAgendaService, AgendaService>();
             InstanceFactory.RegisterTransient<IAgendaData, AgendaData>();
 
+            string connectionString = this.configuration.GetConnectionString("Default");
+            DbContextOptionsBuilder<DataContext> builder = new DbContextOptionsBuilder<DataContext>();
+            builder.UseSqlServer(connectionString);
+            DbContextOptions<DataContext> options = builder.Options;
+
+            services.AddTransient(p => p.ResolveWith<DataContext>(options));
             services.AddTransient<IAgendaService, AgendaService>();
             services.AddTransient<IAgendaData, AgendaData>();
 
@@ -52,7 +61,11 @@ namespace Agenda.Web
         /// IWebHostEnvironment env.
         /// </summary>
         /// <param name="app">Application pipeline.</param>
-        public static void Configure(
+        [System.Diagnostics.CodeAnalysis.SuppressMessage(
+            "Performance",
+            "CA1822:Mark members as static",
+            Justification = "Keep StyleCop happy!")]
+        public void Configure(
             IApplicationBuilder app)
         {
             // Add exception handler

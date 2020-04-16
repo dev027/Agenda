@@ -19,12 +19,12 @@
             CRUD operations for Organisations.
             </summary>
         </member>
-        <member name="M:Agenda.Data.Crud.AgendaData.#ctor(Microsoft.Extensions.Logging.ILogger{Agenda.Data.Crud.AgendaData},Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:Agenda.Data.Crud.AgendaData.#ctor(Microsoft.Extensions.Logging.ILogger{Agenda.Data.Crud.AgendaData},Agenda.Data.DbContexts.DataContext)">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Data.Crud.AgendaData"/> class.
             </summary>
             <param name="logger">The logger.</param>
-            <param name="configuration">The configuration.</param>
+            <param name="dataContext">Data Context.</param>
         </member>
         <member name="M:Agenda.Data.Crud.AgendaData.Dispose">
             <summary>
@@ -190,14 +190,11 @@
             </summary>
             <seealso cref="T:Microsoft.EntityFrameworkCore.DbContext" />
         </member>
-        <member name="M:Agenda.Data.DbContexts.DataContext.#ctor(System.String)">
+        <member name="M:Agenda.Data.DbContexts.DataContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions)">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Data.DbContexts.DataContext"/> class.
             </summary>
-            <param name="connectionString">Connection string.</param>
-        </member>
-        <member name="M:Agenda.Data.DbContexts.DataContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
-            <inheritdoc/>
+            <param name="options">DBContext Options.</param>
         </member>
         <member name="M:Agenda.Data.DbContexts.DataContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <summary>

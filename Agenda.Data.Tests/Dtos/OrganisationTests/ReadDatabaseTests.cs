@@ -21,7 +21,7 @@ namespace Agenda.Data.Tests.Dtos.OrganisationTests
         [TestMethod]
         public void Test_Read_From_Database()
         {
-            using DataContext context = new DataContext(TestUtils.ConnectionString);
+            using DataContext context = new DataContext(TestUtils.DbContextOptions);
 
             _ = context.Organisations.Any();
             _ = context.Organisations.FirstOrDefault();

@@ -15,35 +15,13 @@ namespace Agenda.Data.DbContexts
     /// <seealso cref="DbContext" />
     public partial class DataContext : DbContext
     {
-        private readonly string connectionString;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="DataContext"/> class.
         /// </summary>
-        /// <param name="connectionString">Connection string.</param>
-        public DataContext(string connectionString)
+        /// <param name="options">DBContext Options.</param>
+        public DataContext(DbContextOptions options)
+        : base(options)
         {
-            this.connectionString = connectionString;
-        }
-
-        /// <inheritdoc/>
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (optionsBuilder == null)
-            {
-                throw new ArgumentNullException(nameof(optionsBuilder));
-            }
-
-            if (optionsBuilder.IsConfigured)
-            {
-                return;
-            }
-
-            ////const string connectionString = "data source=WRIGHT1\\SQLEXPRESS01;" +
-            ////                                "initial catalog=Agenda;" +
-            ////                                "Integrated Security=True";
-
-            optionsBuilder.UseSqlServer(this.connectionString);
         }
 
         /// <summary>

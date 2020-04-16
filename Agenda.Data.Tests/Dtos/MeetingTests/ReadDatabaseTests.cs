@@ -21,7 +21,7 @@ namespace Agenda.Data.Tests.Dtos.MeetingTests
         [TestMethod]
         public void Test_Read_From_Database()
         {
-            using DataContext context = new DataContext(TestUtils.ConnectionString);
+            using DataContext context = new DataContext(TestUtils.DbContextOptions);
 
             _ = context.Meetings.Any();
             _ = context.Meetings.FirstOrDefault();

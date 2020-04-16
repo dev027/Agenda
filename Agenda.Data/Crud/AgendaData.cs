@@ -25,14 +25,14 @@ namespace Agenda.Data.Crud
         /// Initializes a new instance of the <see cref="AgendaData"/> class.
         /// </summary>
         /// <param name="logger">The logger.</param>
-        /// <param name="configuration">The configuration.</param>
+        /// <param name="dataContext">Data Context.</param>
         public AgendaData(
             ILogger<AgendaData> logger,
-            IConfiguration configuration)
+            DataContext dataContext)
        {
             this.logger = logger;
-            this.context = new DataContext(configuration.GetConnectionString("default"));
-        }
+            this.context = dataContext;
+       }
 
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.

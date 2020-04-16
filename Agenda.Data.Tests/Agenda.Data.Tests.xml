@@ -4,38 +4,6 @@
         <name>Agenda.Data.Tests</name>
     </assembly>
     <members>
-        <member name="T:Agenda.Data.Tests.DbContexts.DataContextTests.OnConfiguringTests">
-            <summary>
-            Test the <see cref="M:Agenda.Data.DbContexts.DataContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)"/> method.
-            </summary>
-        </member>
-        <member name="M:Agenda.Data.Tests.DbContexts.DataContextTests.OnConfiguringTests.Test_With_No_PreConfiguration">
-            <summary>
-            Test that <see cref="M:Agenda.Data.DbContexts.DataContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)"/> works with no pre-configuration.
-            </summary>
-        </member>
-        <member name="M:Agenda.Data.Tests.DbContexts.DataContextTests.OnConfiguringTests.Test_With_PreConfiguration_Options">
-            <summary>
-            Test that <see cref="M:Agenda.Data.DbContexts.DataContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)"/> works with pre-configuration options.
-            </summary>
-        </member>
-        <member name="M:Agenda.Data.Tests.DbContexts.DataContextTests.OnConfiguringTests.Test_When_Called_With_Null_Options_Throw_Exceptions">
-            <summary>
-            Test that <see cref="M:Agenda.Data.DbContexts.DataContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)"/> throws exception with null options.
-            </summary>
-        </member>
-        <member name="T:Agenda.Data.Tests.DbContexts.DataContextTests.OnConfiguringTests.DataContextWrapper">
-            <summary>
-            Test Wrapper for DataContext so we can access the <see cref="M:Agenda.Data.DbContexts.DataContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)"/>.
-            </summary>
-            <seealso cref="T:Agenda.Data.DbContexts.DataContext" />
-        </member>
-        <member name="M:Agenda.Data.Tests.DbContexts.DataContextTests.OnConfiguringTests.DataContextWrapper.TestOnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
-            <summary>
-            Tests the protected <see cref="M:Agenda.Data.DbContexts.DataContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)"/> method.
-            </summary>
-            <param name="optionsBuilder">Options Builder.</param>
-        </member>
         <member name="T:Agenda.Data.Tests.DbContexts.DataContextTests.OnModelCreatingTests">
             <summary>
             Test the <see cref="M:Agenda.Data.DbContexts.DataContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)"/> method.
@@ -43,25 +11,25 @@
         </member>
         <member name="M:Agenda.Data.Tests.DbContexts.DataContextTests.OnModelCreatingTests.Test_With_PreConfiguration_Options">
             <summary>
-            Test that <see cref="M:Agenda.Data.DbContexts.DataContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)"/> works with pre-configuration options.
+            Test that <see cref="M:Agenda.Data.DbContexts.DataContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)"/> works with pre-configuration options.
             </summary>
         </member>
         <member name="M:Agenda.Data.Tests.DbContexts.DataContextTests.OnModelCreatingTests.Test_When_Called_With_Null_Options_Throw_Exceptions">
             <summary>
-            Test that <see cref="M:Agenda.Data.DbContexts.DataContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)"/> throws exception with null options.
+            Test that <see cref="M:Agenda.Data.DbContexts.DataContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)"/> throws exception with null options.
             </summary>
         </member>
         <member name="T:Agenda.Data.Tests.DbContexts.DataContextTests.OnModelCreatingTests.DataContextWrapper">
             <summary>
-            Test Wrapper for DataContext so we can access the <see cref="M:Agenda.Data.DbContexts.DataContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)"/>.
+            Test Wrapper for DataContext so we can access the <see cref="M:Agenda.Data.DbContexts.DataContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)"/>.
             </summary>
             <seealso cref="T:Agenda.Data.DbContexts.DataContext" />
         </member>
-        <member name="M:Agenda.Data.Tests.DbContexts.DataContextTests.OnModelCreatingTests.DataContextWrapper.#ctor(System.String)">
+        <member name="M:Agenda.Data.Tests.DbContexts.DataContextTests.OnModelCreatingTests.DataContextWrapper.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{Agenda.Data.DbContexts.DataContext})">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Data.Tests.DbContexts.DataContextTests.OnModelCreatingTests.DataContextWrapper"/> class.
             </summary>
-            <param name="connectionString">Connection string.</param>
+            <param name="options">DbContext Options.</param>
         </member>
         <member name="M:Agenda.Data.Tests.DbContexts.DataContextTests.OnModelCreatingTests.DataContextWrapper.TestOnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <summary>
@@ -238,6 +206,14 @@
             <summary>
             Gets the connection string.
             </summary>
+        </member>
+        <member name="P:Agenda.Data.Tests.TestUtilities.TestUtils.DbContextOptions">
+            <summary>
+            Gets the database context options.
+            </summary>
+            <value>
+            The database context options.
+            </value>
         </member>
     </members>
 </doc>

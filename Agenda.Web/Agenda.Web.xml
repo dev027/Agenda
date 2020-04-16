@@ -447,6 +447,20 @@
             </summary>
             <returns>View.</returns>
         </member>
+        <member name="T:Agenda.Web.Helpers.ServiceProviderExtensions">
+            <summary>
+            Service Provider extension methods.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.Helpers.ServiceProviderExtensions.ResolveWith``1(System.IServiceProvider,System.Object[])">
+            <summary>
+            Used to shorten code registration code.
+            </summary>
+            <typeparam name="T">Type.</typeparam>
+            <param name="provider">The provider.</param>
+            <param name="parameters">The parameters.</param>
+            <returns>TYpe.</returns>
+        </member>
         <member name="T:Agenda.Web.Models.FormState">
             <summary>
             The submit status of a form.

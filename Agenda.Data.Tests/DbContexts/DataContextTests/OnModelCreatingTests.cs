@@ -18,13 +18,13 @@ namespace Agenda.Data.Tests.DbContexts.DataContextTests
     public class OnModelCreatingTests
     {
         /// <summary>
-        /// Test that <see cref="DataContext.OnConfiguring"/> works with pre-configuration options.
+        /// Test that <see cref="DataContext.OnModelCreating"/> works with pre-configuration options.
         /// </summary>
         [TestMethod]
         public void Test_With_PreConfiguration_Options()
         {
             // ARRANGE
-            using DataContextWrapper contextWrapper = new DataContextWrapper(TestUtils.ConnectionString);
+            using DataContextWrapper contextWrapper = new DataContextWrapper(TestUtils.DbContextOptions);
             ModelBuilder modelBuilder = new ModelBuilder(new ConventionSet());
 
             // ACT
@@ -32,21 +32,21 @@ namespace Agenda.Data.Tests.DbContexts.DataContextTests
         }
 
         /// <summary>
-        /// Test that <see cref="DataContext.OnConfiguring"/> throws exception with null options.
+        /// Test that <see cref="DataContext.OnModelCreating"/> throws exception with null options.
         /// </summary>
         [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
         public void Test_When_Called_With_Null_Options_Throw_Exceptions()
         {
             // ARRANGE
-            using DataContextWrapper dataContextWrapper = new DataContextWrapper(TestUtils.ConnectionString);
+            using DataContextWrapper dataContextWrapper = new DataContextWrapper(TestUtils.DbContextOptions);
 
             // ACT
             dataContextWrapper.TestOnModelCreating(null);
         }
 
         /// <summary>
-        /// Test Wrapper for DataContext so we can access the <see cref="DataContext.OnConfiguring"/>.
+        /// Test Wrapper for DataContext so we can access the <see cref="DataContext.OnModelCreating"/>.
         /// </summary>
         /// <seealso cref="DataContext" />
         private class DataContextWrapper : DataContext
@@ -54,9 +54,9 @@ namespace Agenda.Data.Tests.DbContexts.DataContextTests
             /// <summary>
             /// Initializes a new instance of the <see cref="DataContextWrapper"/> class.
             /// </summary>
-            /// <param name="connectionString">Connection string.</param>
-            public DataContextWrapper(string connectionString)
-                : base(connectionString)
+            /// <param name="options">DbContext Options.</param>
+            public DataContextWrapper(DbContextOptions<DataContext> options)
+                : base(options)
             {
             }
 
