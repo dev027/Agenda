@@ -3,7 +3,9 @@
 // </copyright>
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using Agenda.Domain.DomainObjects.Committees;
 
 namespace Agenda.Web.ViewModels.Committee
@@ -20,16 +22,19 @@ namespace Agenda.Web.ViewModels.Committee
         /// <param name="organisationName">Organisation Name.</param>
         /// <param name="name">Committee Name.</param>
         /// <param name="description">Committee Description.</param>
+        /// <param name="meetingViewModels">Meeting view models.</param>
         public IndexViewModel(
             Guid id,
             string organisationName,
             string name,
-            string description)
+            string description,
+            IList<MeetingViewModel> meetingViewModels)
         {
             this.Id = id;
             this.OrganisationName = organisationName;
             this.Name = name;
             this.Description = description;
+            this.MeetingViewModels = meetingViewModels;
         }
 
         /// <summary>
@@ -68,6 +73,11 @@ namespace Agenda.Web.ViewModels.Committee
         public string Description { get; }
 
         /// <summary>
+        /// Gets the Meeting view models.
+        /// </summary>
+        public IList<MeetingViewModel> MeetingViewModels { get; }
+
+        /// <summary>
         /// Creates the Index view model.
         /// </summary>
         /// <param name="committee">Committee.</param>
@@ -84,7 +94,11 @@ namespace Agenda.Web.ViewModels.Committee
                 id: committee.Id,
                 organisationName: committee.Organisation.Name,
                 name: committee.Name,
-                description: committee.Description);
+                description: committee.Description,
+                meetingViewModels: committee.Meetings
+                    .OrderByDescending(m => m.MeetingDateTime)
+                    .Select(MeetingViewModel.Create)
+                    .ToList());
         }
     }
 }

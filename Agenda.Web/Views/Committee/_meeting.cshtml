@@ -1,0 +1,21 @@
+﻿@using Agenda.Web.Models
+@model Agenda.Web.ViewModels.Committee.MeetingViewModel
+
+<tr>
+    <td>
+        <a class="btn btn-secondary btn-sm"
+           asp-controller="Meeting"
+           asp-action="Index"
+           asp-route-id="@Model.Id">
+            <i class="@Icon.View"></i>
+            @Html.DisplayNameFor(m => m.ViewActionButtonText)
+        </a>
+    </td>
+    <td class="d-flex flex-column">
+        <div class="d-flex flex-row justify-content-between">
+            <div>@Model.MeetingDate</div>
+            <div>@Model.MeetingTime</div>
+        </div>
+        <div><i>@Model.Location</i></div>
+    </td>
+</tr>
