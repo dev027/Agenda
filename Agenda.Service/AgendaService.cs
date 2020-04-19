@@ -343,5 +343,54 @@ namespace Agenda.Service
                 nameof(this.CreateMeetingAsync),
                 who);
         }
+
+        /// <inheritdoc/>
+        public async Task<IMeeting> GetMeetingByIdAsync(
+            IWho who,
+            Guid meetingId)
+        {
+            this.logger.LogTrace(
+                "ENTRY {Method}(who, meetingId) {@who} {meetingId}",
+                nameof(this.GetMeetingByIdAsync),
+                who,
+                meetingId);
+
+            IMeeting meeting = await this.data
+                .GetMeetingByIdAsync(
+                    who: who,
+                    meetingId: meetingId)
+                .ConfigureAwait(false);
+
+            this.logger.LogTrace(
+                "EXIT {Method}(who, meeting) {@who} {@meeting}",
+                nameof(this.GetMeetingByIdAsync),
+                who,
+                meeting);
+
+            return meeting;
+        }
+
+        /// <inheritdoc/>
+        public async Task UpdateMeetingAsync(
+            IWho who,
+            IMeeting meeting)
+        {
+            this.logger.LogTrace(
+                "ENTRY {Method}(who, meeting) {@who} {@organisation}",
+                nameof(this.UpdateMeetingAsync),
+                who,
+                meeting);
+
+            await this.data
+                .UpdateMeetingAsync(
+                    who: who,
+                    meeting: meeting)
+                .ConfigureAwait(false);
+
+            this.logger.LogTrace(
+                "EXIT {Method}(who) {@who}",
+                nameof(this.UpdateMeetingAsync),
+                who);
+        }
     }
 }

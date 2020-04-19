@@ -53,6 +53,12 @@
         <member name="M:Agenda.Service.AgendaService.CreateMeetingAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Meetings.IMeeting)">
             <inheritdoc/>
         </member>
+        <member name="M:Agenda.Service.AgendaService.GetMeetingByIdAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Service.AgendaService.UpdateMeetingAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Meetings.IMeeting)">
+            <inheritdoc/>
+        </member>
         <member name="T:Agenda.Service.IAgendaService">
             <summary>
             Service Layer.
@@ -62,7 +68,7 @@
             <summary>
             Gets the recent meetings most recent first.
             </summary>
-            <param name="who">Who called it.</param>
+            <param name="who">Who Details.</param>
             <param name="timeSpan">The time span.</param>
             <param name="maxNumberOfMeetings">The maximum number of meetings.</param>
             <returns>List of recent meetings.</returns>
@@ -71,14 +77,14 @@
             <summary>
             Gets the setup status.
             </summary>
-            <param name="who">Who called it.</param>
+            <param name="who">Who Details.</param>
             <returns>Setup status.</returns>
         </member>
         <member name="M:Agenda.Service.IAgendaService.CreateOrganisationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
             <summary>
             Creates the organisation.
             </summary>
-            <param name="who">Who called it.</param>
+            <param name="who">Who Details.</param>
             <param name="organisation">Organisation.</param>
             <returns>Nothing.</returns>
         </member>
@@ -86,14 +92,14 @@
             <summary>
             Gets all Organisations.
             </summary>
-            <param name="who">Who called it.</param>
+            <param name="who">Who Details.</param>
             <returns>List of Organisations.</returns>
         </member>
         <member name="M:Agenda.Service.IAgendaService.GetOrganisationByIdAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
             <summary>
             Gets the Organisation by Id.
             </summary>
-            <param name="who">Who called it.</param>
+            <param name="who">Who Details.</param>
             <param name="organisationId">Organisation Id.</param>
             <returns>Organisation.</returns>
         </member>
@@ -101,7 +107,7 @@
             <summary>
             Gets the Organisation by Id with its Committees.
             </summary>
-            <param name="who">Who called it.</param>
+            <param name="who">Who Details.</param>
             <param name="organisationId">Organisation Id.</param>
             <returns>Organisation.</returns>
         </member>
@@ -109,7 +115,7 @@
             <summary>
             Updates the Organisation.
             </summary>
-            <param name="who">Who called it.</param>
+            <param name="who">Who Details.</param>
             <param name="organisation">Organisation to update.</param>
             <returns>Nothing.</returns>
         </member>
@@ -117,7 +123,7 @@
             <summary>
             Creates the committee.
             </summary>
-            <param name="who">Who called it.</param>
+            <param name="who">Who Details.</param>
             <param name="committee">Committee.</param>
             <returns>Nothing.</returns>
         </member>
@@ -125,7 +131,7 @@
             <summary>
             Gets the Committee by Id.
             </summary>
-            <param name="who">Who called it.</param>
+            <param name="who">Who Details.</param>
             <param name="committeeId">Committee Id.</param>
             <returns>Committee.</returns>
         </member>
@@ -133,7 +139,7 @@
             <summary>
             Gets the Committee by Id with its Meetings.
             </summary>
-            <param name="who">Who called it.</param>
+            <param name="who">Who Details.</param>
             <param name="committeeId">Committee Id.</param>
             <returns>Committee with Meetings.</returns>
         </member>
@@ -141,7 +147,7 @@
             <summary>
             Updates the Committee.
             </summary>
-            <param name="who">Who called it.</param>
+            <param name="who">Who Details.</param>
             <param name="committee">Committee to update.</param>
             <returns>Nothing.</returns>
         </member>
@@ -149,7 +155,23 @@
             <summary>
             Creates the Meeting.
             </summary>
-            <param name="who">Who called it.</param>
+            <param name="who">Who Details.</param>
+            <param name="meeting">Meeting.</param>
+            <returns>Nothing.</returns>
+        </member>
+        <member name="M:Agenda.Service.IAgendaService.GetMeetingByIdAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
+            <summary>
+            Gets the Meeting by Id.
+            </summary>
+            <param name="who">Who Details.</param>
+            <param name="meetingId">Meeting Id.</param>
+            <returns>Meeting.</returns>
+        </member>
+        <member name="M:Agenda.Service.IAgendaService.UpdateMeetingAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Meetings.IMeeting)">
+            <summary>
+            Updates the Meeting.
+            </summary>
+            <param name="who">Who Details.</param>
             <param name="meeting">Meeting.</param>
             <returns>Nothing.</returns>
         </member>

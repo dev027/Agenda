@@ -21,7 +21,7 @@ namespace Agenda.Service
         /// <summary>
         /// Gets the recent meetings most recent first.
         /// </summary>
-        /// <param name="who">Who called it.</param>
+        /// <param name="who">Who Details.</param>
         /// <param name="timeSpan">The time span.</param>
         /// <param name="maxNumberOfMeetings">The maximum number of meetings.</param>
         /// <returns>List of recent meetings.</returns>
@@ -33,7 +33,7 @@ namespace Agenda.Service
         /// <summary>
         /// Gets the setup status.
         /// </summary>
-        /// <param name="who">Who called it.</param>
+        /// <param name="who">Who Details.</param>
         /// <returns>Setup status.</returns>
         Task<ISetupStatus> GetSetupStatusAsync(
             IWho who);
@@ -41,7 +41,7 @@ namespace Agenda.Service
         /// <summary>
         /// Creates the organisation.
         /// </summary>
-        /// <param name="who">Who called it.</param>
+        /// <param name="who">Who Details.</param>
         /// <param name="organisation">Organisation.</param>
         /// <returns>Nothing.</returns>
         Task CreateOrganisationAsync(
@@ -51,7 +51,7 @@ namespace Agenda.Service
         /// <summary>
         /// Gets all Organisations.
         /// </summary>
-        /// <param name="who">Who called it.</param>
+        /// <param name="who">Who Details.</param>
         /// <returns>List of Organisations.</returns>
         Task<IList<IOrganisation>> GetAllOrganisationsAsync(
             IWho who);
@@ -59,7 +59,7 @@ namespace Agenda.Service
         /// <summary>
         /// Gets the Organisation by Id.
         /// </summary>
-        /// <param name="who">Who called it.</param>
+        /// <param name="who">Who Details.</param>
         /// <param name="organisationId">Organisation Id.</param>
         /// <returns>Organisation.</returns>
         Task<IOrganisation> GetOrganisationByIdAsync(
@@ -69,7 +69,7 @@ namespace Agenda.Service
         /// <summary>
         /// Gets the Organisation by Id with its Committees.
         /// </summary>
-        /// <param name="who">Who called it.</param>
+        /// <param name="who">Who Details.</param>
         /// <param name="organisationId">Organisation Id.</param>
         /// <returns>Organisation.</returns>
         Task<IOrganisationWithCommittees> GetOrganisationByIdWithCommitteesAsync(
@@ -79,7 +79,7 @@ namespace Agenda.Service
         /// <summary>
         /// Updates the Organisation.
         /// </summary>
-        /// <param name="who">Who called it.</param>
+        /// <param name="who">Who Details.</param>
         /// <param name="organisation">Organisation to update.</param>
         /// <returns>Nothing.</returns>
         Task UpdateOrganisationAsync(
@@ -89,7 +89,7 @@ namespace Agenda.Service
         /// <summary>
         /// Creates the committee.
         /// </summary>
-        /// <param name="who">Who called it.</param>
+        /// <param name="who">Who Details.</param>
         /// <param name="committee">Committee.</param>
         /// <returns>Nothing.</returns>
         Task CreateCommitteeAsync(
@@ -99,7 +99,7 @@ namespace Agenda.Service
         /// <summary>
         /// Gets the Committee by Id.
         /// </summary>
-        /// <param name="who">Who called it.</param>
+        /// <param name="who">Who Details.</param>
         /// <param name="committeeId">Committee Id.</param>
         /// <returns>Committee.</returns>
         Task<ICommittee> GetCommitteeByIdAsync(
@@ -109,7 +109,7 @@ namespace Agenda.Service
         /// <summary>
         /// Gets the Committee by Id with its Meetings.
         /// </summary>
-        /// <param name="who">Who called it.</param>
+        /// <param name="who">Who Details.</param>
         /// <param name="committeeId">Committee Id.</param>
         /// <returns>Committee with Meetings.</returns>
         Task<ICommitteeWithMeetings> GetCommitteeByIdWithMeetingsAsync(
@@ -119,7 +119,7 @@ namespace Agenda.Service
         /// <summary>
         /// Updates the Committee.
         /// </summary>
-        /// <param name="who">Who called it.</param>
+        /// <param name="who">Who Details.</param>
         /// <param name="committee">Committee to update.</param>
         /// <returns>Nothing.</returns>
         Task UpdateCommitteeAsync(
@@ -129,10 +129,30 @@ namespace Agenda.Service
         /// <summary>
         /// Creates the Meeting.
         /// </summary>
-        /// <param name="who">Who called it.</param>
+        /// <param name="who">Who Details.</param>
         /// <param name="meeting">Meeting.</param>
         /// <returns>Nothing.</returns>
         Task CreateMeetingAsync(
+            IWho who,
+            IMeeting meeting);
+
+        /// <summary>
+        /// Gets the Meeting by Id.
+        /// </summary>
+        /// <param name="who">Who Details.</param>
+        /// <param name="meetingId">Meeting Id.</param>
+        /// <returns>Meeting.</returns>
+        Task<IMeeting> GetMeetingByIdAsync(
+            IWho who,
+            Guid meetingId);
+
+        /// <summary>
+        /// Updates the Meeting.
+        /// </summary>
+        /// <param name="who">Who Details.</param>
+        /// <param name="meeting">Meeting.</param>
+        /// <returns>Nothing.</returns>
+        Task UpdateMeetingAsync(
             IWho who,
             IMeeting meeting);
     }

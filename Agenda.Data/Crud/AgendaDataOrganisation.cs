@@ -1,4 +1,4 @@
-﻿// <copyright file="Organisations.cs" company="Do It Wright">
+﻿// <copyright file="AgendaDataOrganisation.cs" company="Do It Wright">
 // Copyright (c) Do It Wright. All rights reserved.
 // </copyright>
 
@@ -19,27 +19,7 @@ namespace Agenda.Data.Crud
     /// </summary>
     public partial class AgendaData
     {
-        /// <inheritdoc/>
-        public async Task<bool> HaveOrganisationsAsync(IWho who)
-        {
-            this.logger.LogTrace(
-                "ENTRY {Method}(who) {@who}",
-                nameof(this.HaveOrganisationsAsync),
-                who);
-
-            bool haveOrganisations = await this.context.Organisations
-                .TagWith(this.Tag(who, nameof(this.HaveOrganisationsAsync)))
-                .AnyAsync()
-                .ConfigureAwait(false);
-
-            this.logger.LogTrace(
-                "EXIT {Method}(who, haveOrganisations) {@who} {haveOrganisations}",
-                nameof(this.HaveOrganisationsAsync),
-                who,
-                haveOrganisations);
-
-            return haveOrganisations;
-        }
+        #region Create
 
         /// <inheritdoc />
         public async Task CreateOrganisationAsync(
@@ -62,6 +42,10 @@ namespace Agenda.Data.Crud
                 nameof(this.CreateOrganisationAsync),
                 who);
         }
+
+        #endregion Create
+
+        #region Read
 
         /// <inheritdoc />
         public async Task<IList<IOrganisation>> GetAllOrganisationsAsync(IWho who)
@@ -145,6 +129,32 @@ namespace Agenda.Data.Crud
         }
 
         /// <inheritdoc/>
+        public async Task<bool> HaveOrganisationsAsync(IWho who)
+        {
+            this.logger.LogTrace(
+                "ENTRY {Method}(who) {@who}",
+                nameof(this.HaveOrganisationsAsync),
+                who);
+
+            bool haveOrganisations = await this.context.Organisations
+                .TagWith(this.Tag(who, nameof(this.HaveOrganisationsAsync)))
+                .AnyAsync()
+                .ConfigureAwait(false);
+
+            this.logger.LogTrace(
+                "EXIT {Method}(who, haveOrganisations) {@who} {haveOrganisations}",
+                nameof(this.HaveOrganisationsAsync),
+                who,
+                haveOrganisations);
+
+            return haveOrganisations;
+        }
+
+        #endregion Read
+
+        #region Update
+
+        /// <inheritdoc/>
         public async Task UpdateOrganisationAsync(
             IWho who,
             IOrganisation organisation)
@@ -165,5 +175,7 @@ namespace Agenda.Data.Crud
                 nameof(this.UpdateOrganisationAsync),
                 who);
         }
+
+        #endregion Update
     }
 }

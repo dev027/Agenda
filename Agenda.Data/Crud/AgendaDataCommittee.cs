@@ -1,4 +1,4 @@
-﻿// <copyright file="Committees.cs" company="Do It Wright">
+﻿// <copyright file="AgendaDataCommittee.cs" company="Do It Wright">
 // Copyright (c) Do It Wright. All rights reserved.
 // </copyright>
 
@@ -17,6 +17,8 @@ namespace Agenda.Data.Crud
     /// </summary>
     public partial class AgendaData
     {
+        #region Create
+
         /// <inheritdoc/>
         public async Task CreateCommitteeAsync(
             IWho who,
@@ -38,6 +40,10 @@ namespace Agenda.Data.Crud
                 nameof(this.CreateCommitteeAsync),
                 who);
         }
+
+        #endregion Create
+
+        #region Read
 
         /// <inheritdoc/>
         public async Task<ICommittee> GetCommitteeByIdAsync(
@@ -97,6 +103,32 @@ namespace Agenda.Data.Crud
         }
 
         /// <inheritdoc/>
+        public async Task<bool> HaveCommitteesAsync(IWho who)
+        {
+            this.logger.LogTrace(
+                "ENTRY {Method}(who) {@who}",
+                nameof(this.HaveCommitteesAsync),
+                who);
+
+            bool haveCommittees = await this.context.Committees
+                .TagWith(this.Tag(who, nameof(this.HaveCommitteesAsync)))
+                .AnyAsync()
+                .ConfigureAwait(false);
+
+            this.logger.LogTrace(
+                "EXIT {Method}(who, haveCommittees) {@who} {haveCommittees}",
+                nameof(this.HaveCommitteesAsync),
+                who,
+                haveCommittees);
+
+            return haveCommittees;
+        }
+
+        #endregion Read
+
+        #region Update
+
+        /// <inheritdoc/>
         public async Task UpdateCommitteeAsync(
             IWho who,
             ICommittee committee)
@@ -118,26 +150,6 @@ namespace Agenda.Data.Crud
                 who);
         }
 
-        /// <inheritdoc/>
-        public async Task<bool> HaveCommitteesAsync(IWho who)
-        {
-            this.logger.LogTrace(
-                "ENTRY {Method}(who) {@who}",
-                nameof(this.HaveCommitteesAsync),
-                who);
-
-            bool haveCommittees = await this.context.Committees
-                .TagWith(this.Tag(who, nameof(this.HaveCommitteesAsync)))
-                .AnyAsync()
-                .ConfigureAwait(false);
-
-            this.logger.LogTrace(
-                "EXIT {Method}(who, haveCommittees) {@who} {haveCommittees}",
-                nameof(this.HaveCommitteesAsync),
-                who,
-                haveCommittees);
-
-            return haveCommittees;
-        }
+        #endregion Update
     }
 }

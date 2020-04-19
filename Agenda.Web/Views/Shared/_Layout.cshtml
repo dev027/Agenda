@@ -16,7 +16,7 @@
 <div class="wrapper d-flex flex-column justify-content-between">
     @await Html.PartialAsync("_header")
     <div class="content d-flex flex-grow-1">
-        <nav class="sidebar">
+        <nav class="sidebar d-none d-sm-flex">
             <div class="list-group">
                 <a class="list-group-item list-group-item-action" asp-controller="Home" asp-action="Index">Dashboard</a>
                 <a class="list-group-item list-group-item-action" asp-controller="OrganisationOverview" asp-action="Index">Organisations</a>

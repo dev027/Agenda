@@ -66,7 +66,7 @@ namespace Agenda.Data.Crud
         /// <param name="who">Who details.</param>
         /// <param name="methodName">Method Name.</param>
         /// <returns>Tag.</returns>
-        protected string Tag(IWho who, string methodName)
+        private string Tag(IWho who, string methodName)
         {
             if (who == null)
             {

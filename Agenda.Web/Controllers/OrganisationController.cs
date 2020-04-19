@@ -182,7 +182,7 @@ namespace Agenda.Web.Controllers
         /// <summary>
         /// Insert Organisation.
         /// </summary>
-        /// <param name="who">Who called it.</param>
+        /// <param name="who">Who Details.</param>
         /// <param name="model">Add view model.</param>
         /// <returns>Nothing.</returns>
         private async Task InsertRecordAsync(
@@ -210,7 +210,7 @@ namespace Agenda.Web.Controllers
         /// <summary>
         /// Update Organisation.
         /// </summary>
-        /// <param name="who">Who called it.</param>
+        /// <param name="who">Who Details.</param>
         /// <param name="model">Edit view model.</param>
         /// <returns>Nothing.</returns>
         private async Task UpdateRecordAsync(

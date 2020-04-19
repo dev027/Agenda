@@ -1,0 +1,42 @@
+﻿@using Agenda.Web.Models
+@using Agenda.Web.ViewModels.Meeting
+@model IndexViewModel
+
+<main class="container-fluid flex-grow-1">
+    <h1>@Html.DisplayNameFor(m => m.PageTitle)</h1>
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-6 col-xl-4">
+            <div class="card card-default">
+                <div class="card-header"><h5><span class="@Icon.Meeting"></span> @Html.DisplayNameFor(m => m.CardTitle)</h5></div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>@Html.DisplayNameFor(m => m.OrganisationName)</label>
+                        <div class="form-control">@Model.OrganisationName</div>
+                    </div>
+                    <div class="form-group">
+                        <label>@Html.DisplayNameFor(m => m.CommitteeName)</label>
+                        <div class="form-control">@Model.CommitteeName</div>
+                    </div>                    <div class="form-group">
+                        <label>@Html.DisplayNameFor(m => m.Location)</label>
+                        <div class="form-control">@Model.Location</div>
+                    </div>
+                    <div class="d-flex flex-row justify-content-between">
+                        <div class="form-group flex-grow-1">
+                            <label>@Html.DisplayNameFor(m => m.MeetingDate)</label>
+                            <div class="form-control">@Model.MeetingDate</div>
+                        </div>
+                        <div class="form-group">
+                            <label>@Html.DisplayNameFor(m => m.MeetingTime)</label>
+                            <div class="form-control">@Model.MeetingTime</div>
+                        </div>
+                    </div>
+                    <a asp-controller="Meeting"
+                       asp-action="StartEdit"
+                       asp-route-id="@Model.Id"
+                       asp-route-ajaxMode="0"
+                       class="btn btn-primary"><span class="@Icon.Edit"></span> Edit</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

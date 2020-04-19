@@ -16,7 +16,7 @@ using Microsoft.Extensions.Logging;
 namespace Agenda.Web.Controllers
 {
     /// <summary>
-    /// SOMETHING.
+    /// Meetings.
     /// </summary>
     /// <seealso cref="Controller" />
     public class MeetingController : ControllerBase
@@ -36,6 +36,32 @@ namespace Agenda.Web.Controllers
         {
             this.logger = logger;
             this.service = service;
+        }
+
+        /// <summary>
+        /// Display the specified Meeting.
+        /// </summary>
+        /// <param name="id">Meeting Id.</param>
+        /// <returns>View.</returns>
+        public async Task<IActionResult> Index(Guid id)
+        {
+            IWho who = this.Who(nameof(this.Index));
+
+            this.logger.LogDebug(
+                "ENTRY {ActionName}(who, id) {@who} {id}",
+                who.ActionName,
+                who,
+                id);
+
+            IMeeting meeting = await this.service
+                .GetMeetingByIdAsync(
+                    who: who,
+                    meetingId: id)
+                .ConfigureAwait(false);
+
+            IndexViewModel model = IndexViewModel.Create(meeting);
+
+            return this.ExitView(this.logger, this.View(model));
         }
 
         /// <summary>
@@ -112,9 +138,80 @@ namespace Agenda.Web.Controllers
         }
 
         /// <summary>
+        /// Starts the edit.
+        /// </summary>
+        /// <param name="id">The Meeting Id.</param>
+        /// <param name="ajaxMode">AJAX mode(0=No; 1=Yes).</param>
+        /// <returns>View.</returns>
+        public async Task<IActionResult> StartEdit(
+            Guid id,
+            int ajaxMode)
+        {
+            IWho who = this.Who(nameof(this.StartEdit));
+
+            this.logger.LogDebug(
+                "ENTRY {Action}(who, id, ajaxMode) {@who} {id} {ajaxMode}",
+                who.ActionName,
+                who,
+                id,
+                ajaxMode);
+
+            IMeeting meeting = await this.service
+                .GetMeetingByIdAsync(who, id)
+                .ConfigureAwait(false);
+
+            EditViewModel model = EditViewModel.Create(meeting);
+
+            switch (ajaxMode)
+            {
+                case 0:
+                    return this.ExitView(this.logger, this.View("Edit", model));
+
+                default:
+                    throw new NotImplementedException($"AjaxMode {ajaxMode} not implemented yet.");
+            }
+        }
+
+        /// <summary>
+        /// Edits the specified Meeting.
+        /// </summary>
+        /// <param name="model">Edit view model.</param>
+        /// <returns>View.</returns>
+        [HttpPost]
+        public async Task<IActionResult> Edit(EditViewModel model)
+        {
+            IWho who = this.Who(nameof(this.Edit));
+
+            this.logger.LogDebug(
+                "ENTRY {Action}(who, model) {@who} {@model}",
+                who.ActionName,
+                who,
+                model);
+
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
+            if (this.ModelState.IsValid)
+            {
+                await this.UpdateRecordAsync(who, model).ConfigureAwait(false);
+
+                return this.ExitRedirectToAction(
+                    this.logger,
+                    this.RedirectToAction(
+                        "Index",
+                        "Meeting",
+                        new { id = model.Id }));
+            }
+
+            return this.View(model);
+        }
+
+        /// <summary>
         /// Insert Meeting.
         /// </summary>
-        /// <param name="who">Who called it.</param>
+        /// <param name="who">Who Details.</param>
         /// <param name="model">Add view model.</param>
         /// <returns>Nothing.</returns>
         private async Task InsertRecordAsync(
@@ -141,6 +238,42 @@ namespace Agenda.Web.Controllers
             this.logger.LogTrace(
                 "EXIT {Method}(who) {@who}",
                 nameof(this.InsertRecordAsync),
+                who);
+        }
+
+        /// <summary>
+        /// Update Meeting.
+        /// </summary>
+        /// <param name="who">Who Details.</param>
+        /// <param name="model">Edit view model.</param>
+        /// <returns>Nothing.</returns>
+        private async Task UpdateRecordAsync(
+            IWho who,
+            EditViewModel model)
+        {
+            this.logger.LogTrace(
+                "ENTRY {Method}(who, model) {@who} {@model}",
+                nameof(this.UpdateRecordAsync),
+                who,
+                model);
+
+            IMeeting originalMeeting = await this.service
+                .GetMeetingByIdAsync(
+                    who: who,
+                    meetingId: model.Id)
+                .ConfigureAwait(false);
+
+            IMeeting meeting = model.ToDomain(originalMeeting.Committee);
+
+            await this.service
+                .UpdateMeetingAsync(
+                    who,
+                    meeting)
+                .ConfigureAwait(false);
+
+            this.logger.LogTrace(
+                "EXIT {Method}(who) {@who}",
+                nameof(this.UpdateRecordAsync),
                 who);
         }
     }

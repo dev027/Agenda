@@ -260,7 +260,7 @@
             <summary>
             Insert Committee.
             </summary>
-            <param name="who">Who called it.</param>
+            <param name="who">Who Details.</param>
             <param name="model">Add view model.</param>
             <returns>Nothing.</returns>
         </member>
@@ -268,7 +268,7 @@
             <summary>
             Update Committee.
             </summary>
-            <param name="who">Who called it.</param>
+            <param name="who">Who Details.</param>
             <param name="model">Edit view model.</param>
             <returns>Nothing.</returns>
         </member>
@@ -353,7 +353,7 @@
         </member>
         <member name="T:Agenda.Web.Controllers.MeetingController">
             <summary>
-            SOMETHING.
+            Meetings.
             </summary>
             <seealso cref="T:Microsoft.AspNetCore.Mvc.Controller" />
         </member>
@@ -363,6 +363,13 @@
             </summary>
             <param name="logger">Logger.</param>
             <param name="service">Agenda Service.</param>
+        </member>
+        <member name="M:Agenda.Web.Controllers.MeetingController.Index(System.Guid)">
+            <summary>
+            Display the specified Meeting.
+            </summary>
+            <param name="id">Meeting Id.</param>
+            <returns>View.</returns>
         </member>
         <member name="M:Agenda.Web.Controllers.MeetingController.StartAdd(System.Guid)">
             <summary>
@@ -378,12 +385,35 @@
             <param name="model">Add view model.</param>
             <returns>View.</returns>
         </member>
+        <member name="M:Agenda.Web.Controllers.MeetingController.StartEdit(System.Guid,System.Int32)">
+            <summary>
+            Starts the edit.
+            </summary>
+            <param name="id">The Meeting Id.</param>
+            <param name="ajaxMode">AJAX mode(0=No; 1=Yes).</param>
+            <returns>View.</returns>
+        </member>
+        <member name="M:Agenda.Web.Controllers.MeetingController.Edit(Agenda.Web.ViewModels.Meeting.EditViewModel)">
+            <summary>
+            Edits the specified Meeting.
+            </summary>
+            <param name="model">Edit view model.</param>
+            <returns>View.</returns>
+        </member>
         <member name="M:Agenda.Web.Controllers.MeetingController.InsertRecordAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Web.ViewModels.Meeting.AddViewModel)">
             <summary>
             Insert Meeting.
             </summary>
-            <param name="who">Who called it.</param>
+            <param name="who">Who Details.</param>
             <param name="model">Add view model.</param>
+            <returns>Nothing.</returns>
+        </member>
+        <member name="M:Agenda.Web.Controllers.MeetingController.UpdateRecordAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Web.ViewModels.Meeting.EditViewModel)">
+            <summary>
+            Update Meeting.
+            </summary>
+            <param name="who">Who Details.</param>
+            <param name="model">Edit view model.</param>
             <returns>Nothing.</returns>
         </member>
         <member name="T:Agenda.Web.Controllers.OrganisationController">
@@ -432,7 +462,7 @@
             <summary>
             Insert Organisation.
             </summary>
-            <param name="who">Who called it.</param>
+            <param name="who">Who Details.</param>
             <param name="model">Add view model.</param>
             <returns>Nothing.</returns>
         </member>
@@ -440,7 +470,7 @@
             <summary>
             Update Organisation.
             </summary>
-            <param name="who">Who called it.</param>
+            <param name="who">Who Details.</param>
             <param name="model">Edit view model.</param>
             <returns>Nothing.</returns>
         </member>
@@ -972,6 +1002,140 @@
             </summary>
             <param name="committee">Committee.</param>
             <returns>Meeting domain object.</returns>
+        </member>
+        <member name="T:Agenda.Web.ViewModels.Meeting.EditViewModel">
+            <summary>
+            Add view model.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Meeting.EditViewModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Meeting.EditViewModel"/> class.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Meeting.EditViewModel.#ctor(Agenda.Web.Models.FormState,System.Guid,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Meeting.EditViewModel"/> class.
+            </summary>
+            <param name="formState">Form State.</param>
+            <param name="id">Meeting Id.</param>
+            <param name="organisationName">Organisation Name.</param>
+            <param name="committeeName">Committee Name.</param>
+            <param name="location">Location.</param>
+            <param name="meetingDate">Meeting Date.</param>
+            <param name="meetingTime">Meeting Time.</param>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Meeting.EditViewModel.FormState">
+            <summary>
+            Gets or sets the Form State.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Meeting.EditViewModel.Id">
+            <summary>
+            Gets or sets the Meeting Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Meeting.EditViewModel.OrganisationName">
+            <summary>
+            Gets or sets the Organisation Name.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Meeting.EditViewModel.CommitteeName">
+            <summary>
+            Gets or sets the Committee Name.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Meeting.EditViewModel.Location">
+            <summary>
+            Gets or sets the Location.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Meeting.EditViewModel.MeetingDate">
+            <summary>
+            Gets or sets the Meeting Date.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Meeting.EditViewModel.MeetingTime">
+            <summary>
+            Gets or sets the Meeting Time.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Meeting.EditViewModel.Create(Agenda.Domain.DomainObjects.Meetings.IMeeting)">
+            <summary>
+            Creates the view model.
+            </summary>
+            <param name="meeting">Meeting.</param>
+            <returns>Edit view model.</returns>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Meeting.EditViewModel.ToDomain(Agenda.Domain.DomainObjects.Committees.ICommittee)">
+            <summary>
+            Converts instance to Committee domain object.
+            </summary>
+            <param name="committee">Committee.</param>
+            <returns>Committee domain object.</returns>
+        </member>
+        <member name="T:Agenda.Web.ViewModels.Meeting.IndexViewModel">
+            <summary>
+            View Meeint view model.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Meeting.IndexViewModel.#ctor(System.Guid,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Meeting.IndexViewModel"/> class.
+            </summary>
+            <param name="id">Committee Id.</param>
+            <param name="organisationName">Organisation Name.</param>
+            <param name="committeeName">Committee Name.</param>
+            <param name="location">Location.</param>
+            <param name="meetingDate">Meeting Date.</param>
+            <param name="meetingTime">Meeting Time.</param>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Meeting.IndexViewModel.PageTitle">
+            <summary>
+            Gets the Page Title.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Meeting.IndexViewModel.CardTitle">
+            <summary>
+            Gets the Card Title.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Meeting.IndexViewModel.Id">
+            <summary>
+            Gets the Committee Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Meeting.IndexViewModel.OrganisationName">
+            <summary>
+            Gets the Organisation Name.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Meeting.IndexViewModel.CommitteeName">
+            <summary>
+            Gets the Committee Name.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Meeting.IndexViewModel.Location">
+            <summary>
+            Gets Location.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Meeting.IndexViewModel.MeetingDate">
+            <summary>
+            Gets Meeting Date.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Meeting.IndexViewModel.MeetingTime">
+            <summary>
+            Gets Meeting Time.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Meeting.IndexViewModel.Create(Agenda.Domain.DomainObjects.Meetings.IMeeting)">
+            <summary>
+            Creates the Index view model.
+            </summary>
+            <param name="meeting">Meeting.</param>
+            <returns>View model.</returns>
         </member>
         <member name="T:Agenda.Web.ViewModels.OrganisationOverview.IndexViewModel">
             <summary>

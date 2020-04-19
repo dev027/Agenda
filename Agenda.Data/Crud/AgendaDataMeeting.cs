@@ -1,4 +1,4 @@
-﻿// <copyright file="Meetings.cs" company="Do It Wright">
+﻿// <copyright file="AgendaDataMeeting.cs" company="Do It Wright">
 // Copyright (c) Do It Wright. All rights reserved.
 // </copyright>
 
@@ -19,6 +19,8 @@ namespace Agenda.Data.Crud
     /// </summary>
     public partial class AgendaData
     {
+        #region Create
+
         /// <inheritdoc/>
         public async Task CreateMeetingAsync(
             IWho who,
@@ -40,6 +42,10 @@ namespace Agenda.Data.Crud
                 nameof(this.CreateMeetingAsync),
                 who);
         }
+
+        #endregion Create
+
+        #region Read
 
         /// <inheritdoc />
         public async Task<IList<IMeeting>> GetRecentMeetingsMostRecentFirstAsync(
@@ -75,5 +81,60 @@ namespace Agenda.Data.Crud
 
             return meetings;
         }
+
+        /// <inheritdoc />
+        public async Task<IMeeting> GetMeetingByIdAsync(IWho who, Guid meetingId)
+        {
+            this.logger.LogTrace(
+                "ENTRY {Method}(who, meetingId) {@who} {meetingId}",
+                nameof(this.GetMeetingByIdAsync),
+                who,
+                meetingId);
+
+            IMeeting meeting = (await this.context.Meetings
+                    .AsNoTracking()
+                    .TagWith(this.Tag(who, nameof(this.GetMeetingByIdAsync)))
+                    .Include(m => m.Committee)
+                    .ThenInclude(c => c!.Organisation)
+                    .FirstOrDefaultAsync(m => m.Id == meetingId)
+                    .ConfigureAwait(false))
+                .ToDomain();
+
+            this.logger.LogTrace(
+                "EXIT {Method}(who, meeting) {@who} {@meeting}",
+                nameof(this.GetMeetingByIdAsync),
+                who,
+                meeting);
+
+            return meeting;
+        }
+
+        #endregion Read
+
+        #region Update
+
+        /// <inheritdoc/>
+        public async Task UpdateMeetingAsync(
+            IWho who,
+            IMeeting meeting)
+        {
+            this.logger.LogTrace(
+                "ENTRY {Method}(who, meeting) {@who} {@meeting}",
+                nameof(this.UpdateMeetingAsync),
+                who,
+                meeting);
+
+            MeetingDto dto = MeetingDto.ToDto(meeting);
+
+            this.context.Meetings.Update(dto);
+            await this.context.SaveChangesAsync().ConfigureAwait(false);
+
+            this.logger.LogTrace(
+                "EXIT {Method}(who) {@who}",
+                nameof(this.UpdateMeetingAsync),
+                who);
+        }
+
+        #endregion Update
     }
 }
