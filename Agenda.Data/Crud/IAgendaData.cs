@@ -68,6 +68,16 @@ namespace Agenda.Data.Crud
         #region Meetings
 
         /// <summary>
+        /// Creates the Meeting.
+        /// </summary>
+        /// <param name="who">Who details.</param>
+        /// <param name="meeting">Meeting.</param>
+        /// <returns>Nothing.</returns>
+        Task CreateMeetingAsync(
+            IWho who,
+            IMeeting meeting);
+
+        /// <summary>
         /// Gets the recent meetings with the most recent first.
         /// </summary>
         /// <param name="who">Who details.</param>

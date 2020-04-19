@@ -4,7 +4,6 @@
 
 using Agenda.Data.DbContexts;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 
 namespace Agenda.Data.Tests.TestUtilities
 {

@@ -19,6 +19,28 @@ namespace Agenda.Data.Crud
     /// </summary>
     public partial class AgendaData
     {
+        /// <inheritdoc/>
+        public async Task CreateMeetingAsync(
+            IWho who,
+            IMeeting meeting)
+        {
+            this.logger.LogTrace(
+                "ENTRY {Method}(who, meeting) {@who} {@meeting}",
+                nameof(this.CreateMeetingAsync),
+                who,
+                meeting);
+
+            MeetingDto dto = MeetingDto.ToDto(meeting);
+
+            this.context.Meetings.Add(dto);
+            await this.context.SaveChangesAsync().ConfigureAwait(false);
+
+            this.logger.LogTrace(
+                "EXIT {Method}(who) {@who}",
+                nameof(this.CreateMeetingAsync),
+                who);
+        }
+
         /// <inheritdoc />
         public async Task<IList<IMeeting>> GetRecentMeetingsMostRecentFirstAsync(
             IWho who,

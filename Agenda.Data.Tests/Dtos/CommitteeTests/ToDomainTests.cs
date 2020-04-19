@@ -58,7 +58,7 @@ namespace Agenda.Data.Tests.Dtos.CommitteeTests
                 organisationId: Guid.NewGuid(),
                 name: "TSC",
                 description: "Tournament Sub-Committee",
-                organisation: null);
+                organisation: null!);
 
             // ACT
             _ = committeeDto.ToDomain();

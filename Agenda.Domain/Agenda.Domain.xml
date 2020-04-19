@@ -30,41 +30,6 @@
         <member name="P:Agenda.Domain.DomainObjects.Committees.Committee.Description">
             <inheritdoc/>
         </member>
-        <member name="T:Agenda.Domain.DomainObjects.Committees.Committee.DomainMetadata">
-            <summary>
-            Metadata for the <see cref="P:Agenda.Domain.DomainObjects.Committees.Committee.Organisation"/>.
-            </summary>
-        </member>
-        <member name="T:Agenda.Domain.DomainObjects.Committees.Committee.DomainMetadata.Name">
-            <summary>
-            Metadata for the <see cref="T:Agenda.Domain.DomainObjects.Committees.Committee.DomainMetadata.Name"></see> property.
-            </summary>
-        </member>
-        <member name="F:Agenda.Domain.DomainObjects.Committees.Committee.DomainMetadata.Name.MinLength">
-            <summary>
-            The minimum length.
-            </summary>
-        </member>
-        <member name="F:Agenda.Domain.DomainObjects.Committees.Committee.DomainMetadata.Name.MaxLength">
-            <summary>
-            The maximum length.
-            </summary>
-        </member>
-        <member name="T:Agenda.Domain.DomainObjects.Committees.Committee.DomainMetadata.Description">
-            <summary>
-            Metadata for the <see cref="T:Agenda.Domain.DomainObjects.Committees.Committee.DomainMetadata.Description"></see> property.
-            </summary>
-        </member>
-        <member name="F:Agenda.Domain.DomainObjects.Committees.Committee.DomainMetadata.Description.MinLength">
-            <summary>
-            The minimum length.
-            </summary>
-        </member>
-        <member name="F:Agenda.Domain.DomainObjects.Committees.Committee.DomainMetadata.Description.MaxLength">
-            <summary>
-            The maximum length.
-            </summary>
-        </member>
         <member name="T:Agenda.Domain.DomainObjects.Committees.CommitteeWithMeetings">
             <summary>
              Committee with Meetings.
@@ -84,6 +49,41 @@
         </member>
         <member name="P:Agenda.Domain.DomainObjects.Committees.CommitteeWithMeetings.Meetings">
             <inheritdoc/>
+        </member>
+        <member name="T:Agenda.Domain.DomainObjects.Committees.DomainMetadata">
+            <summary>
+            Metadata for the <see cref="T:Agenda.Domain.DomainObjects.Committees.ICommittee"/>.
+            </summary>
+        </member>
+        <member name="T:Agenda.Domain.DomainObjects.Committees.DomainMetadata.Name">
+            <summary>
+            Metadata for the <see cref="P:Agenda.Domain.DomainObjects.Committees.ICommittee.Name"></see> property.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.Committees.DomainMetadata.Name.MinLength">
+            <summary>
+            The minimum length.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.Committees.DomainMetadata.Name.MaxLength">
+            <summary>
+            The maximum length.
+            </summary>
+        </member>
+        <member name="T:Agenda.Domain.DomainObjects.Committees.DomainMetadata.Description">
+            <summary>
+            Metadata for the <see cref="P:Agenda.Domain.DomainObjects.Committees.ICommittee.Description"></see> property.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.Committees.DomainMetadata.Description.MinLength">
+            <summary>
+            The minimum length.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.Committees.DomainMetadata.Description.MaxLength">
+            <summary>
+            The maximum length.
+            </summary>
         </member>
         <member name="T:Agenda.Domain.DomainObjects.Committees.ICommittee">
             <summary>
@@ -118,6 +118,26 @@
         <member name="P:Agenda.Domain.DomainObjects.Committees.ICommitteeWithMeetings.Meetings">
             <summary>
             Gets Meetings.
+            </summary>
+        </member>
+        <member name="T:Agenda.Domain.DomainObjects.Meetings.DomainMetadata">
+            <summary>
+            Metadata for the <see cref="T:Agenda.Domain.DomainObjects.Organisations.IOrganisation"/>.
+            </summary>
+        </member>
+        <member name="T:Agenda.Domain.DomainObjects.Meetings.DomainMetadata.Location">
+            <summary>
+            Metadata for the <see cref="P:Agenda.Domain.DomainObjects.Meetings.IMeeting.Location"></see> property.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.Meetings.DomainMetadata.Location.MinLength">
+            <summary>
+            The minimum length.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.Meetings.DomainMetadata.Location.MaxLength">
+            <summary>
+            The maximum length.
             </summary>
         </member>
         <member name="T:Agenda.Domain.DomainObjects.Meetings.IMeeting">
@@ -172,6 +192,41 @@
         <member name="P:Agenda.Domain.DomainObjects.Meetings.Meeting.Location">
             <inheritdoc/>
         </member>
+        <member name="T:Agenda.Domain.DomainObjects.Organisations.DomainMetadata">
+            <summary>
+            Metadata for the <see cref="T:Agenda.Domain.DomainObjects.Organisations.IOrganisation"/>.
+            </summary>
+        </member>
+        <member name="T:Agenda.Domain.DomainObjects.Organisations.DomainMetadata.Code">
+            <summary>
+            Metadata for the <see cref="P:Agenda.Domain.DomainObjects.Organisations.IOrganisation.Code"></see> property.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.Organisations.DomainMetadata.Code.MinLength">
+            <summary>
+            The minimum length.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.Organisations.DomainMetadata.Code.MaxLength">
+            <summary>
+            The maximum length.
+            </summary>
+        </member>
+        <member name="T:Agenda.Domain.DomainObjects.Organisations.DomainMetadata.Name">
+            <summary>
+            Metadata for the <see cref="P:Agenda.Domain.DomainObjects.Organisations.IOrganisation.Name"></see> property.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.Organisations.DomainMetadata.Name.MinLength">
+            <summary>
+            The minimum length.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.Organisations.DomainMetadata.Name.MaxLength">
+            <summary>
+            The maximum length.
+            </summary>
+        </member>
         <member name="T:Agenda.Domain.DomainObjects.Organisations.IOrganisation">
             <summary>
             Organisation.
@@ -224,41 +279,6 @@
         </member>
         <member name="P:Agenda.Domain.DomainObjects.Organisations.Organisation.Name">
             <inheritdoc/>
-        </member>
-        <member name="T:Agenda.Domain.DomainObjects.Organisations.Organisation.DomainMetadata">
-            <summary>
-            Metadata for the <see cref="T:Agenda.Domain.DomainObjects.Organisations.Organisation"/>.
-            </summary>
-        </member>
-        <member name="T:Agenda.Domain.DomainObjects.Organisations.Organisation.DomainMetadata.Code">
-            <summary>
-            Metadata for the <see cref="T:Agenda.Domain.DomainObjects.Organisations.Organisation.DomainMetadata.Code"></see> property.
-            </summary>
-        </member>
-        <member name="F:Agenda.Domain.DomainObjects.Organisations.Organisation.DomainMetadata.Code.MinLength">
-            <summary>
-            The minimum length.
-            </summary>
-        </member>
-        <member name="F:Agenda.Domain.DomainObjects.Organisations.Organisation.DomainMetadata.Code.MaxLength">
-            <summary>
-            The maximum length.
-            </summary>
-        </member>
-        <member name="T:Agenda.Domain.DomainObjects.Organisations.Organisation.DomainMetadata.Name">
-            <summary>
-            Metadata for the <see cref="T:Agenda.Domain.DomainObjects.Organisations.Organisation.DomainMetadata.Name"></see> property.
-            </summary>
-        </member>
-        <member name="F:Agenda.Domain.DomainObjects.Organisations.Organisation.DomainMetadata.Name.MinLength">
-            <summary>
-            The minimum length.
-            </summary>
-        </member>
-        <member name="F:Agenda.Domain.DomainObjects.Organisations.Organisation.DomainMetadata.Name.MaxLength">
-            <summary>
-            The maximum length.
-            </summary>
         </member>
         <member name="T:Agenda.Domain.DomainObjects.Organisations.OrganisationWithCommittees">
             <summary>

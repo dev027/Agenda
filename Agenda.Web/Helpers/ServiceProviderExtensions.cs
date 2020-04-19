@@ -18,7 +18,7 @@ namespace Agenda.Web.Helpers
         /// <typeparam name="T">Type.</typeparam>
         /// <param name="provider">The provider.</param>
         /// <param name="parameters">The parameters.</param>
-        /// <returns>TYpe.</returns>
+        /// <returns>Instance of Type T.</returns>
         public static T ResolveWith<T>(this IServiceProvider provider, params object[] parameters)
             where T : class =>
             ActivatorUtilities.CreateInstance<T>(provider, parameters);

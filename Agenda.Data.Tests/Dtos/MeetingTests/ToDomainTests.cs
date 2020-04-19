@@ -64,7 +64,7 @@ namespace Agenda.Data.Tests.Dtos.MeetingTests
                 committeeId: Guid.NewGuid(),
                 meetingDateTime: new DateTime(2019, 12, 30, 19, 15, 00),
                 location: "County Bridge Club - Committee Room",
-                committee: null);
+                committee: null!);
 
             // ACT
             _ = meetingDto.ToDomain();

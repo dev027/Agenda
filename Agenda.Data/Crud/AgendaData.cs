@@ -5,7 +5,6 @@
 using System;
 using Agenda.Data.DbContexts;
 using Agenda.Utilities.Models.Whos;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace Agenda.Data.Crud

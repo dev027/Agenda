@@ -1,5 +1,5 @@
 ﻿@using Agenda.Web.Models
-@using Metadata=Agenda.Domain.DomainObjects.Committees.Committee.DomainMetadata
+@using Metadata=Agenda.Domain.DomainObjects.Committees.DomainMetadata
 @model Agenda.Web.ViewModels.Committee.AddViewModel
 
 <nav class="sidebar d-none">
@@ -24,6 +24,16 @@
                         <input type="hidden" value="@FormState.SubmittedBySubmitButton" name="FormState"/>
                         <input type="hidden" value="@Model.OrganisationId" name="OrganisationId"/>
                         <div class="form-group">
+                            @Html.LabelFor(m => m.OrganisationName)
+                            @Html.TextBoxFor(m => m.OrganisationName,
+                                Model.OrganisationName,
+                                new
+                                {
+                                    @class = "form-control",
+                                    disabled = "disabled"
+                                })
+                        </div>
+                         <div class="form-group">
                             @Html.LabelFor(m => m.Name)
                             @Html.TextBoxFor(m => m.Name,
                                 Model.Name,

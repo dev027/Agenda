@@ -7,7 +7,8 @@ using System.ComponentModel.DataAnnotations;
 using Agenda.Domain.DomainObjects.Committees;
 using Agenda.Domain.DomainObjects.Organisations;
 using Agenda.Web.Models;
-using DomainMetadata = Agenda.Domain.DomainObjects.Committees.Committee.DomainMetadata;
+using Agenda.Web.Models.ValidationAttributes;
+using DomainMetadata = Agenda.Domain.DomainObjects.Committees.DomainMetadata;
 
 namespace Agenda.Web.ViewModels.Committee
 {

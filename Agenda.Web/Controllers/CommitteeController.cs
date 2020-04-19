@@ -79,15 +79,11 @@ namespace Agenda.Web.Controllers
                 who,
                 organisationId);
 
-            IOrganisation fred = await this.service
+            IOrganisation organisation = await this.service
                 .GetOrganisationByIdAsync(who, organisationId)
                 .ConfigureAwait(false);
 
-            AddViewModel model = new AddViewModel(
-                formState: FormState.Initial,
-                organisationId: organisationId,
-                name: string.Empty,
-                description: string.Empty);
+            AddViewModel model = AddViewModel.Create(organisation);
 
             return this.ExitRedirectToAction(
                 this.logger,
@@ -215,7 +211,7 @@ namespace Agenda.Web.Controllers
         }
 
         /// <summary>
-        /// Insert Organisation.
+        /// Insert Committee.
         /// </summary>
         /// <param name="who">Who called it.</param>
         /// <param name="model">Add view model.</param>

@@ -113,7 +113,8 @@ namespace Agenda.Service
             this.logger.LogTrace(
                 "ENTRY {Method}(who, organisation) {@who} {@organisation}",
                 nameof(this.CreateOrganisationAsync),
-                who);
+                who,
+                organisation);
 
             await this.data
                 .CreateOrganisationAsync(
@@ -317,6 +318,29 @@ namespace Agenda.Service
             this.logger.LogTrace(
                 "EXIT {Method}(who) {@who}",
                 nameof(this.UpdateCommitteeAsync),
+                who);
+        }
+
+        /// <inheritdoc/>
+        public async Task CreateMeetingAsync(
+            IWho who,
+            IMeeting meeting)
+        {
+            this.logger.LogTrace(
+                "ENTRY {Method}(who, meeting) {@who} {@meeting}",
+                nameof(this.CreateMeetingAsync),
+                who,
+                meeting);
+
+            await this.data
+                .CreateMeetingAsync(
+                    who: who,
+                    meeting: meeting)
+                .ConfigureAwait(false);
+
+            this.logger.LogTrace(
+                "EXIT {Method}(who) {@who}",
+                nameof(this.CreateMeetingAsync),
                 who);
         }
     }

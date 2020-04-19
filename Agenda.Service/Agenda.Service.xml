@@ -50,6 +50,9 @@
         <member name="M:Agenda.Service.AgendaService.UpdateCommitteeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Committees.ICommittee)">
             <inheritdoc/>
         </member>
+        <member name="M:Agenda.Service.AgendaService.CreateMeetingAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Meetings.IMeeting)">
+            <inheritdoc/>
+        </member>
         <member name="T:Agenda.Service.IAgendaService">
             <summary>
             Service Layer.
@@ -140,6 +143,14 @@
             </summary>
             <param name="who">Who called it.</param>
             <param name="committee">Committee to update.</param>
+            <returns>Nothing.</returns>
+        </member>
+        <member name="M:Agenda.Service.IAgendaService.CreateMeetingAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Meetings.IMeeting)">
+            <summary>
+            Creates the Meeting.
+            </summary>
+            <param name="who">Who called it.</param>
+            <param name="meeting">Meeting.</param>
             <returns>Nothing.</returns>
         </member>
         <member name="T:Agenda.Service.Resources.LoggerResources">

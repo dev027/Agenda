@@ -60,6 +60,9 @@
         <member name="M:Agenda.Data.Crud.AgendaData.HaveCommitteesAsync(Agenda.Utilities.Models.Whos.IWho)">
             <inheritdoc/>
         </member>
+        <member name="M:Agenda.Data.Crud.AgendaData.CreateMeetingAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Meetings.IMeeting)">
+            <inheritdoc/>
+        </member>
         <member name="M:Agenda.Data.Crud.AgendaData.GetRecentMeetingsMostRecentFirstAsync(Agenda.Utilities.Models.Whos.IWho,System.TimeSpan,System.Int32)">
             <inheritdoc />
         </member>
@@ -123,6 +126,14 @@
             </summary>
             <param name="who">Who details.</param>
             <param name="committee">The committee.</param>
+            <returns>Nothing.</returns>
+        </member>
+        <member name="M:Agenda.Data.Crud.IAgendaData.CreateMeetingAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Meetings.IMeeting)">
+            <summary>
+            Creates the Meeting.
+            </summary>
+            <param name="who">Who details.</param>
+            <param name="meeting">Meeting.</param>
             <returns>Nothing.</returns>
         </member>
         <member name="M:Agenda.Data.Crud.IAgendaData.GetRecentMeetingsMostRecentFirstAsync(Agenda.Utilities.Models.Whos.IWho,System.TimeSpan,System.Int32)">

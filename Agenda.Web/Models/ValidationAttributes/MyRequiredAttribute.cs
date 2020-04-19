@@ -5,7 +5,7 @@
 using System.ComponentModel.DataAnnotations;
 using Agenda.Web.Resources;
 
-namespace Agenda.Web.Models
+namespace Agenda.Web.Models.ValidationAttributes
 {
     /// <summary>
     /// Custom Required attribute.

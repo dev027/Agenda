@@ -1,0 +1,90 @@
+﻿@using Agenda.Web.Models
+@using Metadata = Agenda.Domain.DomainObjects.Meetings.DomainMetadata
+@model Agenda.Web.ViewModels.Meeting.AddViewModel
+
+<nav class="sidebar d-none">
+    <h1>Sidebar</h1>
+</nav>
+<main class="container-fluid flex-grow-1">
+    <h1>Add Meeting</h1>
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-9 col-md-7 col-lg-5 col-xl-4">
+            <div class="card card-default">
+                <div class="card-header"><h5>Meeting</h5></div>
+                <div class="card-body">
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="close">&times;</button>
+                            @Html.ValidationSummary(false, "Errors: ")
+                        </div>
+                    }
+                    @using (Html.BeginForm("Add", "Meeting", FormMethod.Post))
+                    {
+                        <input type="hidden" value="@FormState.SubmittedBySubmitButton" name="FormState" />
+                        <input type="hidden" value="@Model.CommitteeId" name="CommitteeId" />
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.OrganisationName)
+                            @Html.TextBoxFor(m => m.OrganisationName,
+                                Model.OrganisationName,
+                                new
+                                {
+                                    @class = "form-control",
+                                    @readonly = "readonly"
+                                })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.CommitteeName)
+                            @Html.TextBoxFor(m => m.CommitteeName,
+                                Model.CommitteeName,
+                                new
+                                {
+                                    @class = "form-control",
+                                    @readonly = "readonly"
+                                })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Location)
+                            @Html.TextBoxFor(m => m.Location,
+                                Model.Location,
+                                new
+                                {
+                                    @class = "form-control",
+                                    maxLength = Metadata.Location.MaxLength
+                                })
+                            @Html.ValidationMessageFor(m => m.Location, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.MeetingDate)
+                            @Html.TextBoxFor(m => m.MeetingDate,
+                                Model.MeetingDate,
+                                new
+                                {
+                                    @class = "form-control",
+                                    placeholder = "DD/MM/YYYY",
+                                    maxLength = 10
+                                })
+                            @Html.ValidationMessageFor(m => m.MeetingDate, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.MeetingTime)
+                            @Html.TextBoxFor(m => m.MeetingTime,
+                                Model.MeetingTime,
+                                new
+                                {
+                                    @class = "form-control",
+                                    placeholder = "HH:MM",
+                                    maxLength = 5
+                                })
+                            @Html.ValidationMessageFor(m => m.MeetingTime, null, new { @class = "text-danger" })
+                        </div>
+                        <button class="btn btn-primary" type="submit">Add Meeting</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

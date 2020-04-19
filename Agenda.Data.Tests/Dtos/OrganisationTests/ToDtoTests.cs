@@ -44,7 +44,7 @@ namespace Agenda.Data.Tests.Dtos.OrganisationTests
         public void Test_Passing_Null_Organisation_Throws_Exception()
         {
             // ACT
-            _ = OrganisationDto.ToDto(null);
+            _ = OrganisationDto.ToDto(null!);
         }
     }
 }

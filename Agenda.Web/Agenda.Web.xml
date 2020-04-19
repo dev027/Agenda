@@ -258,7 +258,7 @@
         </member>
         <member name="M:Agenda.Web.Controllers.CommitteeController.InsertRecordAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Web.ViewModels.Committee.AddViewModel)">
             <summary>
-            Insert Organisation.
+            Insert Committee.
             </summary>
             <param name="who">Who called it.</param>
             <param name="model">Add view model.</param>
@@ -364,11 +364,27 @@
             <param name="logger">Logger.</param>
             <param name="service">Agenda Service.</param>
         </member>
-        <member name="M:Agenda.Web.Controllers.MeetingController.Add">
+        <member name="M:Agenda.Web.Controllers.MeetingController.StartAdd(System.Guid)">
+            <summary>
+            Starts the add.
+            </summary>
+            <param name="committeeId">Committee Id.</param>
+            <returns>Redirect To Action.</returns>
+        </member>
+        <member name="M:Agenda.Web.Controllers.MeetingController.Add(Agenda.Web.ViewModels.Meeting.AddViewModel)">
             <summary>
             Adds this instance.
             </summary>
+            <param name="model">Add view model.</param>
             <returns>View.</returns>
+        </member>
+        <member name="M:Agenda.Web.Controllers.MeetingController.InsertRecordAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Web.ViewModels.Meeting.AddViewModel)">
+            <summary>
+            Insert Meeting.
+            </summary>
+            <param name="who">Who called it.</param>
+            <param name="model">Add view model.</param>
+            <returns>Nothing.</returns>
         </member>
         <member name="T:Agenda.Web.Controllers.OrganisationController">
             <summary>
@@ -459,7 +475,7 @@
             <typeparam name="T">Type.</typeparam>
             <param name="provider">The provider.</param>
             <param name="parameters">The parameters.</param>
-            <returns>TYpe.</returns>
+            <returns>Instance of Type T.</returns>
         </member>
         <member name="T:Agenda.Web.Models.FormState">
             <summary>
@@ -521,29 +537,87 @@
             Cancel.
             </summary>
         </member>
-        <member name="T:Agenda.Web.Models.MyRequiredAttribute">
+        <member name="T:Agenda.Web.Models.ValidationAttributes.MyRequiredAttribute">
             <summary>
             Custom Required attribute.
             </summary>
             <seealso cref="T:System.ComponentModel.DataAnnotations.RequiredAttribute" />
         </member>
-        <member name="M:Agenda.Web.Models.MyRequiredAttribute.#ctor">
+        <member name="M:Agenda.Web.Models.ValidationAttributes.MyRequiredAttribute.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:Agenda.Web.Models.MyRequiredAttribute"/> class.
+            Initializes a new instance of the <see cref="T:Agenda.Web.Models.ValidationAttributes.MyRequiredAttribute"/> class.
             </summary>
         </member>
-        <member name="T:Agenda.Web.Models.MyStringLengthAttribute">
+        <member name="T:Agenda.Web.Models.ValidationAttributes.MyStringLengthAttribute">
             <summary>
             Custom StringLength attribute.
             </summary>
             <seealso cref="T:System.ComponentModel.DataAnnotations.StringLengthAttribute" />
         </member>
-        <member name="M:Agenda.Web.Models.MyStringLengthAttribute.#ctor(System.Int32,System.Int32)">
+        <member name="M:Agenda.Web.Models.ValidationAttributes.MyStringLengthAttribute.#ctor(System.Int32,System.Int32)">
             <summary>
-            Initializes a new instance of the <see cref="T:Agenda.Web.Models.MyStringLengthAttribute"/> class.
+            Initializes a new instance of the <see cref="T:Agenda.Web.Models.ValidationAttributes.MyStringLengthAttribute"/> class.
             </summary>
             <param name="maxLength">The maximum length.</param>
             <param name="minLength">The minimum length.</param>
+        </member>
+        <member name="T:Agenda.Web.Models.ValidationAttributes.ValidDateAttribute">
+            <summary>
+            Validation attribute for Id.
+            </summary>
+            <seealso cref="T:System.ComponentModel.DataAnnotations.ValidationAttribute" />
+        </member>
+        <member name="P:Agenda.Web.Models.ValidationAttributes.ValidDateAttribute.Culture">
+            <summary>
+            Gets or sets the culture.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.Models.ValidationAttributes.ValidDateAttribute.IsValid(System.Object)">
+            <summary>
+            Returns true if ... is valid.
+            </summary>
+            <param name="value">The value of the object to validate.</param>
+            <returns>
+              <see langword="true" /> if the specified value is valid; otherwise, <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:Agenda.Web.Models.ValidationAttributes.ValidDateAttribute.FormatErrorMessage(System.String)">
+            <summary>
+            Applies formatting to an error message, based on the data field where the error occurred.
+            </summary>
+            <param name="name">The name to include in the formatted message.</param>
+            <returns>
+            An instance of the formatted error message.
+            </returns>
+        </member>
+        <member name="T:Agenda.Web.Models.ValidationAttributes.ValidTimeAttribute">
+            <summary>
+            Validation attribute for Id.
+            </summary>
+            <seealso cref="T:System.ComponentModel.DataAnnotations.ValidationAttribute" />
+        </member>
+        <member name="P:Agenda.Web.Models.ValidationAttributes.ValidTimeAttribute.Culture">
+            <summary>
+            Gets or sets the culture.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.Models.ValidationAttributes.ValidTimeAttribute.IsValid(System.Object)">
+            <summary>
+            Returns true if ... is valid.
+            </summary>
+            <param name="value">The value of the object to validate.</param>
+            <returns>
+              <see langword="true" /> if the specified value is valid; otherwise, <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:Agenda.Web.Models.ValidationAttributes.ValidTimeAttribute.FormatErrorMessage(System.String)">
+            <summary>
+            Applies formatting to an error message, based on the data field where the error occurred.
+            </summary>
+            <param name="name">The name to include in the formatted message.</param>
+            <returns>
+            An instance of the formatted error message.
+            </returns>
         </member>
         <member name="T:Agenda.Web.Program">
             <summary>
@@ -617,12 +691,13 @@
             Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Committee.AddViewModel"/> class.
             </summary>
         </member>
-        <member name="M:Agenda.Web.ViewModels.Committee.AddViewModel.#ctor(Agenda.Web.Models.FormState,System.Guid,System.String,System.String)">
+        <member name="M:Agenda.Web.ViewModels.Committee.AddViewModel.#ctor(Agenda.Web.Models.FormState,System.Guid,System.String,System.String,System.String)">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Committee.AddViewModel"/> class.
             </summary>
             <param name="formState">Form State.</param>
             <param name="organisationId">Organisation Id.</param>
+            <param name="organisationName">Organisation Name.</param>
             <param name="name">Committee Name.</param>
             <param name="description">Committee Description.</param>
         </member>
@@ -636,15 +711,27 @@
             Gets or sets the Organisation Id.
             </summary>
         </member>
-        <member name="P:Agenda.Web.ViewModels.Committee.AddViewModel.Name">
+        <member name="P:Agenda.Web.ViewModels.Committee.AddViewModel.OrganisationName">
             <summary>
             Gets or sets the Organisation Name.
             </summary>
         </member>
+        <member name="P:Agenda.Web.ViewModels.Committee.AddViewModel.Name">
+            <summary>
+            Gets or sets the Committee Name.
+            </summary>
+        </member>
         <member name="P:Agenda.Web.ViewModels.Committee.AddViewModel.Description">
             <summary>
-            Gets or sets the Organisation Description.
+            Gets or sets the Committee Description.
             </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Committee.AddViewModel.Create(Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
+            <summary>
+            Creates the Add view model.
+            </summary>
+            <param name="organisation">Organisation.</param>
+            <returns>Add view model.</returns>
         </member>
         <member name="M:Agenda.Web.ViewModels.Committee.AddViewModel.ToDomain(Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
             <summary>
@@ -762,6 +849,77 @@
             </summary>
             <param name="committee">Committee.</param>
             <returns>View model.</returns>
+        </member>
+        <member name="T:Agenda.Web.ViewModels.Meeting.AddViewModel">
+            <summary>
+            Add view model.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Meeting.AddViewModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Meeting.AddViewModel"/> class.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Meeting.AddViewModel.#ctor(Agenda.Web.Models.FormState,System.Guid,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Meeting.AddViewModel"/> class.
+            </summary>
+            <param name="formState">Form State.</param>
+            <param name="committeeId">Committee Id.</param>
+            <param name="organisationName">Organisation Name.</param>
+            <param name="committeeName">Committee Name.</param>
+            <param name="location">Location.</param>
+            <param name="meetingDate">Meeting Date.</param>
+            <param name="meetingTime">Meeting Time.</param>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Meeting.AddViewModel.FormState">
+            <summary>
+            Gets or sets the Form State.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Meeting.AddViewModel.CommitteeId">
+            <summary>
+            Gets or sets the Committee Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Meeting.AddViewModel.OrganisationName">
+            <summary>
+            Gets or sets the Organisation Name.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Meeting.AddViewModel.CommitteeName">
+            <summary>
+            Gets or sets the Committee Name.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Meeting.AddViewModel.Location">
+            <summary>
+            Gets or sets the Meeting Location.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Meeting.AddViewModel.MeetingDate">
+            <summary>
+            Gets or sets the Meeting Date.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Meeting.AddViewModel.MeetingTime">
+            <summary>
+            Gets or sets the Meeting Time.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Meeting.AddViewModel.Create(Agenda.Domain.DomainObjects.Committees.ICommittee)">
+            <summary>
+            Create instance of AddNewModel.
+            </summary>
+            <param name="committee">Committee.</param>
+            <returns>AddNewModel.</returns>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Meeting.AddViewModel.ToDomain(Agenda.Domain.DomainObjects.Committees.ICommittee)">
+            <summary>
+            Converts view model to Meeting domain object.
+            </summary>
+            <param name="committee">Committee.</param>
+            <returns>Meeting domain object.</returns>
         </member>
         <member name="T:Agenda.Web.ViewModels.OrganisationOverview.IndexViewModel">
             <summary>

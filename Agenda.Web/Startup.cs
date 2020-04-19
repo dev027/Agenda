@@ -5,7 +5,6 @@
 using Agenda.Data.Crud;
 using Agenda.Data.DbContexts;
 using Agenda.Service;
-using Agenda.Utilities.DependencyInjection;
 using Agenda.Web.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
@@ -20,7 +19,7 @@ namespace Agenda.Web
     /// </summary>
     public class Startup
     {
-        private IConfiguration configuration;
+        private readonly IConfiguration configuration;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Startup"/> class.
@@ -38,10 +37,6 @@ namespace Agenda.Web
         /// <param name="services">Service Collection.</param>
         public void ConfigureServices(IServiceCollection services)
         {
-            // TODO: Change to using .Net Core DI.
-            //// InstanceFactory.RegisterTransient<IAgendaService, AgendaService>();
-            InstanceFactory.RegisterTransient<IAgendaData, AgendaData>();
-
             string connectionString = this.configuration.GetConnectionString("Default");
             DbContextOptionsBuilder<DataContext> builder = new DbContextOptionsBuilder<DataContext>();
             builder.UseSqlServer(connectionString);

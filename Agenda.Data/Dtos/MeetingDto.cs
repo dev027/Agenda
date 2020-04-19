@@ -10,6 +10,7 @@ using Agenda.Data.DbContexts;
 using Agenda.Data.Resources;
 using Agenda.Domain.DomainObjects.Meetings;
 using Agenda.Domain.DomainObjects.Organisations;
+using DomainMetadata = Agenda.Domain.DomainObjects.Meetings.DomainMetadata;
 
 namespace Agenda.Data.Dtos
 {
@@ -95,7 +96,7 @@ namespace Agenda.Data.Dtos
         /// <summary>
         /// Gets the Location.
         /// </summary>
-        [MaxLength(100)]
+        [MaxLength(DomainMetadata.Location.MaxLength)]
         public string Location { get; private set; } = null!;
 
         #endregion Properties

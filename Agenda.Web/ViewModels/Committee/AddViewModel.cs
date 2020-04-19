@@ -7,7 +7,8 @@ using System.ComponentModel.DataAnnotations;
 using Agenda.Domain.DomainObjects.Committees;
 using Agenda.Domain.DomainObjects.Organisations;
 using Agenda.Web.Models;
-using DomainMetadata = Agenda.Domain.DomainObjects.Committees.Committee.DomainMetadata;
+using Agenda.Web.Models.ValidationAttributes;
+using DomainMetadata = Agenda.Domain.DomainObjects.Committees.DomainMetadata;
 
 namespace Agenda.Web.ViewModels.Committee
 {
@@ -30,16 +31,19 @@ namespace Agenda.Web.ViewModels.Committee
         /// </summary>
         /// <param name="formState">Form State.</param>
         /// <param name="organisationId">Organisation Id.</param>
+        /// <param name="organisationName">Organisation Name.</param>
         /// <param name="name">Committee Name.</param>
         /// <param name="description">Committee Description.</param>
         public AddViewModel(
             FormState formState,
             Guid organisationId,
+            string organisationName,
             string name,
             string description)
         {
             this.FormState = formState;
             this.OrganisationId = organisationId;
+            this.OrganisationName = organisationName;
             this.Name = name;
             this.Description = description;
         }
@@ -61,6 +65,12 @@ namespace Agenda.Web.ViewModels.Committee
         /// <summary>
         /// Gets or sets the Organisation Name.
         /// </summary>
+        [Display(Name = "Organisation")]
+        public string OrganisationName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Committee Name.
+        /// </summary>
         [Display(Name = "Name")]
         [MyStringLength(
             DomainMetadata.Name.MaxLength,
@@ -69,7 +79,7 @@ namespace Agenda.Web.ViewModels.Committee
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the Organisation Description.
+        /// Gets or sets the Committee Description.
         /// </summary>
         [Display(Name = "Description")]
         [MyStringLength(
@@ -81,6 +91,26 @@ namespace Agenda.Web.ViewModels.Committee
         #endregion Properties
 
         #region Public Methods
+
+        /// <summary>
+        /// Creates the Add view model.
+        /// </summary>
+        /// <param name="organisation">Organisation.</param>
+        /// <returns>Add view model.</returns>
+        public static AddViewModel Create(IOrganisation organisation)
+        {
+            if (organisation == null)
+            {
+                throw new ArgumentNullException(nameof(organisation));
+            }
+
+            return new AddViewModel(
+                formState: FormState.Initial,
+                organisationId: organisation.Id,
+                organisationName: organisation.Name,
+                name: string.Empty,
+                description: string.Empty);
+        }
 
         /// <summary>
         /// Converts view model to Committee domain object.

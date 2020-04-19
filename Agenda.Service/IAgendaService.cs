@@ -122,6 +122,18 @@ namespace Agenda.Service
         /// <param name="who">Who called it.</param>
         /// <param name="committee">Committee to update.</param>
         /// <returns>Nothing.</returns>
-        Task UpdateCommitteeAsync(IWho who, ICommittee committee);
+        Task UpdateCommitteeAsync(
+            IWho who,
+            ICommittee committee);
+
+        /// <summary>
+        /// Creates the Meeting.
+        /// </summary>
+        /// <param name="who">Who called it.</param>
+        /// <param name="meeting">Meeting.</param>
+        /// <returns>Nothing.</returns>
+        Task CreateMeetingAsync(
+            IWho who,
+            IMeeting meeting);
     }
 }

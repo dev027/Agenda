@@ -12,6 +12,7 @@ using Agenda.Data.DbContexts;
 using Agenda.Data.Resources;
 using Agenda.Domain.DomainObjects.Committees;
 using Agenda.Domain.DomainObjects.Organisations;
+using DomainMetadata=Agenda.Domain.DomainObjects.Committees.DomainMetadata;
 
 namespace Agenda.Data.Dtos
 {
@@ -89,14 +90,14 @@ namespace Agenda.Data.Dtos
         /// Gets the Committee Name.
         /// </summary>
         [Required]
-        [MaxLength(50)]
+        [MaxLength(DomainMetadata.Name.MaxLength)]
         public string Name { get; private set; } = null!;
 
         /// <summary>
         /// Gets the Committee Description.
         /// </summary>
         [Required]
-        [MaxLength(50)]
+        [MaxLength(DomainMetadata.Description.MaxLength)]
         public string Description { get; private set; } = null!;
 
         #endregion Properties

@@ -50,7 +50,7 @@ namespace Agenda.Data.Tests.Dtos.CommitteeTests
         public void Test_Passing_Null_Committee_Throws_Exception()
         {
             // ACT
-            _ = CommitteeDto.ToDto(null);
+            _ = CommitteeDto.ToDto(null!);
         }
     }
 }
