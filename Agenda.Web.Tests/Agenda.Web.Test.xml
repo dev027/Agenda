@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Agenda.Web.Tests</name>
+    </assembly>
+    <members>
+        <member name="T:Agenda.Web.Tests.Controllers.HomeController.IndexTests">
+            <summary>
+            SOMETHING.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.Tests.Controllers.HomeController.IndexTests.NoMeetings">
+            <summary>
+            Test that when no meetings exists, it gets the SetUp status.
+            </summary>
+            <returns>Nothing.</returns>
+        </member>
+        <member name="M:Agenda.Web.Tests.Controllers.HomeController.IndexTests.HaveMeetings">
+            <summary>
+            Test that when Meetings exists, it does not get the SetUp status.
+            </summary>
+            <returns>Nothing.</returns>
+        </member>
+    </members>
+</doc>

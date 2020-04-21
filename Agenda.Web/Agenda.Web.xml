@@ -213,12 +213,13 @@
             </summary>
             <seealso cref="T:Microsoft.AspNetCore.Mvc.Controller" />
         </member>
-        <member name="M:Agenda.Web.Controllers.CommitteeController.#ctor(Microsoft.Extensions.Logging.ILogger{Agenda.Web.Controllers.CommitteeController},Agenda.Service.IAgendaService)">
+        <member name="M:Agenda.Web.Controllers.CommitteeController.#ctor(Microsoft.Extensions.Logging.ILogger{Agenda.Web.Controllers.CommitteeController},Agenda.Service.IAgendaService,System.Boolean)">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Web.Controllers.CommitteeController"/> class.
             </summary>
             <param name="logger">Logger.</param>
             <param name="service">Agenda Service.</param>
+            <param name="isTestMode">Is Test Mode.</param>
         </member>
         <member name="M:Agenda.Web.Controllers.CommitteeController.Index(System.Guid)">
             <summary>
@@ -278,11 +279,12 @@
             </summary>
             <seealso cref="T:Microsoft.AspNetCore.Mvc.Controller" />
         </member>
-        <member name="M:Agenda.Web.Controllers.ControllerBase.#ctor(System.Type)">
+        <member name="M:Agenda.Web.Controllers.ControllerBase.#ctor(System.Type,System.Boolean)">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Web.Controllers.ControllerBase"/> class.
             </summary>
             <param name="controllerType">Type of the controller.</param>
+            <param name="isTestingMode">Is Testing Mode.</param>
         </member>
         <member name="M:Agenda.Web.Controllers.ControllerBase.Who(System.String)">
             <summary>
@@ -338,12 +340,13 @@
             </summary>
             <seealso cref="T:Microsoft.AspNetCore.Mvc.Controller" />
         </member>
-        <member name="M:Agenda.Web.Controllers.HomeController.#ctor(Microsoft.Extensions.Logging.ILogger{Agenda.Web.Controllers.HomeController},Agenda.Service.IAgendaService)">
+        <member name="M:Agenda.Web.Controllers.HomeController.#ctor(Microsoft.Extensions.Logging.ILogger{Agenda.Web.Controllers.HomeController},Agenda.Service.IAgendaService,System.Boolean)">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Web.Controllers.HomeController"/> class.
             </summary>
             <param name="logger">The logger.</param>
             <param name="service">The agenda service.</param>
+            <param name="isTestMode">Is Test Mode.</param>
         </member>
         <member name="M:Agenda.Web.Controllers.HomeController.Index">
             <summary>
@@ -357,12 +360,13 @@
             </summary>
             <seealso cref="T:Microsoft.AspNetCore.Mvc.Controller" />
         </member>
-        <member name="M:Agenda.Web.Controllers.MeetingController.#ctor(Microsoft.Extensions.Logging.ILogger{Agenda.Web.Controllers.MeetingController},Agenda.Service.IAgendaService)">
+        <member name="M:Agenda.Web.Controllers.MeetingController.#ctor(Microsoft.Extensions.Logging.ILogger{Agenda.Web.Controllers.MeetingController},Agenda.Service.IAgendaService,System.Boolean)">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Web.Controllers.MeetingController"/> class.
             </summary>
             <param name="logger">Logger.</param>
             <param name="service">Agenda Service.</param>
+            <param name="isTestMode">Is Test Mode.</param>
         </member>
         <member name="M:Agenda.Web.Controllers.MeetingController.Index(System.Guid)">
             <summary>
@@ -422,12 +426,13 @@
             </summary>
             <seealso cref="T:Microsoft.AspNetCore.Mvc.Controller" />
         </member>
-        <member name="M:Agenda.Web.Controllers.OrganisationController.#ctor(Microsoft.Extensions.Logging.ILogger{Agenda.Web.Controllers.OrganisationController},Agenda.Service.IAgendaService)">
+        <member name="M:Agenda.Web.Controllers.OrganisationController.#ctor(Microsoft.Extensions.Logging.ILogger{Agenda.Web.Controllers.OrganisationController},Agenda.Service.IAgendaService,System.Boolean)">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Web.Controllers.OrganisationController"/> class.
             </summary>
             <param name="logger">Logger.</param>
             <param name="service">Agenda Service.</param>
+            <param name="isTestMode">Is Test Mode.</param>
         </member>
         <member name="M:Agenda.Web.Controllers.OrganisationController.Index(System.Guid)">
             <summary>
@@ -480,12 +485,13 @@
             </summary>
             <seealso cref="T:Microsoft.AspNetCore.Mvc.Controller" />
         </member>
-        <member name="M:Agenda.Web.Controllers.OrganisationOverviewController.#ctor(Microsoft.Extensions.Logging.ILogger{Agenda.Web.Controllers.OrganisationController},Agenda.Service.IAgendaService)">
+        <member name="M:Agenda.Web.Controllers.OrganisationOverviewController.#ctor(Microsoft.Extensions.Logging.ILogger{Agenda.Web.Controllers.OrganisationController},Agenda.Service.IAgendaService,System.Boolean)">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Web.Controllers.OrganisationOverviewController"/> class.
             </summary>
             <param name="logger">The logger.</param>
             <param name="service">The agenda service.</param>
+            <param name="isTestMode">Is Test Mode.</param>
         </member>
         <member name="M:Agenda.Web.Controllers.OrganisationOverviewController.Index">
             <summary>

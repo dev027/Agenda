@@ -29,10 +29,12 @@ namespace Agenda.Web.Controllers
         /// </summary>
         /// <param name="logger">The logger.</param>
         /// <param name="service">The agenda service.</param>
+        /// <param name="isTestMode">Is Test Mode.</param>
         public HomeController(
             ILogger<HomeController> logger,
-            IAgendaService service)
-        : base(typeof(HomeController))
+            IAgendaService service,
+            bool isTestMode = false)
+        : base(typeof(HomeController), isTestMode)
         {
             this.logger = logger;
             this.service = service;

@@ -22,7 +22,10 @@ namespace Agenda.Web.Controllers
         /// Initializes a new instance of the <see cref="ControllerBase"/> class.
         /// </summary>
         /// <param name="controllerType">Type of the controller.</param>
-        protected ControllerBase(Type controllerType)
+        /// <param name="isTestingMode">Is Testing Mode.</param>
+        protected ControllerBase(
+            Type controllerType,
+            bool isTestingMode)
         {
             if (controllerType == null)
             {
@@ -30,6 +33,15 @@ namespace Agenda.Web.Controllers
             }
 
             this.controllerName = controllerType.Name;
+
+            if (isTestingMode)
+            {
+                this.who = new Who(
+                    controllerName: this.controllerName,
+                    actionName: "Action",
+                    path: "Path",
+                    queryString: "QueryString");
+            }
         }
 
         /// <summary>
@@ -42,8 +54,8 @@ namespace Agenda.Web.Controllers
             return this.who ??= new Who(
                 controllerName: this.controllerName,
                 actionName: actionName,
-                path: this.Request.Path,
-                queryString: this.Request.QueryString.ToString());
+                path: this.Request?.Path ?? "No Path",
+                queryString: this.Request?.QueryString.ToString() ?? "No Query String");
         }
 
         /// <summary>

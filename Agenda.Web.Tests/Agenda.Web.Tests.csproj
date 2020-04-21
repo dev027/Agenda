@@ -6,7 +6,7 @@
     <Company>Do It Wright</Company>
     <Authors>Steve Wright</Authors>
     <Product>Agenda</Product>
-    <Description>Tests for Data access layer for Agenda.</Description>
+    <Description>Test for Web Site for Agenda.</Description>
     <NeutralLanguage>en-GB</NeutralLanguage>
   </PropertyGroup>
 
@@ -14,12 +14,8 @@
     <CodeAnalysisRuleSet>C:\Users\Steve\Documents\Visual Studio 2019\DoItWright.ruleset</CodeAnalysisRuleSet>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <WarningsAsErrors />
-    <DocumentationFile>Agenda.Data.Tests.xml</DocumentationFile>
+    <DocumentationFile>Agenda.Web.Test.xml</DocumentationFile>
   </PropertyGroup>
-
-  <ItemGroup>
-    <AdditionalFiles Include="stylecop.json" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.3.1" />
@@ -27,10 +23,15 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Moq" Version="4.13.1" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,8 +45,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Agenda.Data\Agenda.Data.csproj" />
-    <ProjectReference Include="..\Agenda.Domain\Agenda.Domain.csproj" />
+    <ProjectReference Include="..\Agenda.Web\Agenda.Web.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="TestHelpers\" />
   </ItemGroup>
 
 </Project>

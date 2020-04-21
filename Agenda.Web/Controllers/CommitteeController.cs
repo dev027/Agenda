@@ -29,10 +29,12 @@ namespace Agenda.Web.Controllers
         /// </summary>
         /// <param name="logger">Logger.</param>
         /// <param name="service">Agenda Service.</param>
+        /// <param name="isTestMode">Is Test Mode.</param>
         public CommitteeController(
             ILogger<CommitteeController> logger,
-            IAgendaService service)
-            : base(typeof(CommitteeController))
+            IAgendaService service,
+            bool isTestMode = false)
+            : base(typeof(CommitteeController), isTestMode)
         {
             this.logger = logger;
             this.service = service;
