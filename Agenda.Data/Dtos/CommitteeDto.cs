@@ -11,13 +11,12 @@ using System.Linq;
 using Agenda.Data.DbContexts;
 using Agenda.Data.Resources;
 using Agenda.Domain.DomainObjects.Committees;
-using Agenda.Domain.DomainObjects.Organisations;
 using DomainMetadata=Agenda.Domain.DomainObjects.Committees.DomainMetadata;
 
 namespace Agenda.Data.Dtos
 {
     /// <summary>
-    /// Organiser DTO.
+    /// Committee DTO.
     /// </summary>
     [Table(nameof(DataContext.Committees))]
     public class CommitteeDto
@@ -154,7 +153,7 @@ namespace Agenda.Data.Dtos
                     string.Format(
                         CultureInfo.InvariantCulture,
                         ExceptionResource.CannotConvertTo___If___IsNull,
-                        nameof(IOrganisation),
+                        nameof(ICommittee),
                         nameof(this.Organisation)));
             }
 

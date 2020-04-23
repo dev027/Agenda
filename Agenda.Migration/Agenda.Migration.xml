@@ -37,6 +37,11 @@
             Gets or sets the Committees.
             </summary>
         </member>
+        <member name="P:Agenda.Migration.DbContexts.MigrationContext.Locations">
+            <summary>
+            Gets or sets the Locations.
+            </summary>
+        </member>
         <member name="P:Agenda.Migration.DbContexts.MigrationContext.Meetings">
             <summary>
             Gets or sets the Meetings.
@@ -233,6 +238,21 @@
             <inheritdoc/>
         </member>
         <member name="M:Agenda.Migration.Migrations.AddMaxLengthToAllStringFields.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Agenda.Migration.Migrations.AddLocationTable">
+            <summary>
+            Add Location Table.
+            </summary>
+            <seealso cref="T:Microsoft.EntityFrameworkCore.Migrations.Migration" />
+        </member>
+        <member name="M:Agenda.Migration.Migrations.AddLocationTable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Migration.Migrations.AddLocationTable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Migration.Migrations.AddLocationTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc/>
         </member>
         <member name="T:Agenda.Migration.Program">

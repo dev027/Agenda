@@ -13,6 +13,9 @@
             CRUD operations for Committees.
             </summary>
             <summary>
+            CRUD operations for Location.
+            </summary>
+            <summary>
             CRUD operations for Meetings.
             </summary>
             <summary>
@@ -91,6 +94,9 @@
             <inheritdoc/>
         </member>
         <member name="T:Agenda.Data.Crud.IAgendaData">
+            <summary>
+            Data access.
+            </summary>
             <summary>
             Data access.
             </summary>
@@ -255,6 +261,11 @@
             Gets or sets the Committees.
             </summary>
         </member>
+        <member name="P:Agenda.Data.DbContexts.DataContext.Locations">
+            <summary>
+            Gets or sets the Locations.
+            </summary>
+        </member>
         <member name="P:Agenda.Data.DbContexts.DataContext.Meetings">
             <summary>
             Gets or sets the Meetings.
@@ -267,7 +278,7 @@
         </member>
         <member name="T:Agenda.Data.Dtos.CommitteeDto">
             <summary>
-            Organiser DTO.
+            Committee DTO.
             </summary>
         </member>
         <member name="M:Agenda.Data.Dtos.CommitteeDto.#ctor">
@@ -342,6 +353,94 @@
             Converts instance to domain object with meetings.
             </summary>
             <returns>Committee with Meetings.</returns>
+        </member>
+        <member name="T:Agenda.Data.Dtos.LocationDto">
+            <summary>
+            Location DTO.
+            </summary>
+        </member>
+        <member name="M:Agenda.Data.Dtos.LocationDto.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Data.Dtos.LocationDto"/> class.
+            </summary>
+        </member>
+        <member name="M:Agenda.Data.Dtos.LocationDto.#ctor(System.Guid,System.Guid,System.String,System.String,System.String,System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Data.Dtos.LocationDto"/> class.
+            </summary>
+            <param name="id">Location Id.</param>
+            <param name="organisationId">Organisation Id.</param>
+            <param name="name">Location Name.</param>
+            <param name="address">Address.</param>
+            <param name="what3Words">What3Words Address.</param>
+            <param name="latitude">Latitude.</param>
+            <param name="longitude">Longitude.</param>
+        </member>
+        <member name="M:Agenda.Data.Dtos.LocationDto.#ctor(System.Guid,System.Guid,System.String,System.String,System.String,System.Double,System.Double,Agenda.Data.Dtos.OrganisationDto)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Data.Dtos.LocationDto"/> class.
+            </summary>
+            <param name="id">Location Id.</param>
+            <param name="organisationId">Organisation Id.</param>
+            <param name="name">Location Name.</param>
+            <param name="address">Address.</param>
+            <param name="what3Words">What3Words Address.</param>
+            <param name="latitude">Latitude.</param>
+            <param name="longitude">Longitude.</param>
+            <param name="organisation">Organisation.</param>
+        </member>
+        <member name="P:Agenda.Data.Dtos.LocationDto.Id">
+            <summary>
+            Gets the Location Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Dtos.LocationDto.OrganisationId">
+            <summary>
+            Gets the Organisation Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Dtos.LocationDto.Name">
+            <summary>
+            Gets the Committee Name.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Dtos.LocationDto.Address">
+            <summary>
+            Gets the Address.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Dtos.LocationDto.What3Words">
+            <summary>
+            Gets the What3Word Address.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Dtos.LocationDto.Latitude">
+            <summary>
+            Gets the Latitude.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Dtos.LocationDto.Longitude">
+            <summary>
+            Gets the Longitude.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Dtos.LocationDto.Organisation">
+            <summary>
+            Gets the Organisation.
+            </summary>
+        </member>
+        <member name="M:Agenda.Data.Dtos.LocationDto.ToDto(Agenda.Domain.DomainObjects.Locations.ILocation)">
+            <summary>
+            Converts domain object to DTO.
+            </summary>
+            <param name="location">Location.</param>
+            <returns>Committee DTO.</returns>
+        </member>
+        <member name="M:Agenda.Data.Dtos.LocationDto.ToDomain">
+            <summary>
+            Converts instance to domain object.
+            </summary>
+            <returns>Location.</returns>
         </member>
         <member name="T:Agenda.Data.Dtos.MeetingDto">
             <summary>

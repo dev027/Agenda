@@ -120,6 +120,190 @@
             Gets Meetings.
             </summary>
         </member>
+        <member name="T:Agenda.Domain.DomainObjects.Locations.DomainMetadata">
+            <summary>
+            Metadata for the <see cref="T:Agenda.Domain.DomainObjects.Locations.ILocation"/>.
+            </summary>
+        </member>
+        <member name="T:Agenda.Domain.DomainObjects.Locations.DomainMetadata.Name">
+            <summary>
+            Metadata for the <see cref="P:Agenda.Domain.DomainObjects.Locations.ILocation.Name"></see> property.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.Locations.DomainMetadata.Name.MinLength">
+            <summary>
+            The minimum length.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.Locations.DomainMetadata.Name.MaxLength">
+            <summary>
+            The maximum length.
+            </summary>
+        </member>
+        <member name="T:Agenda.Domain.DomainObjects.Locations.DomainMetadata.Address">
+            <summary>
+            Metadata for the <see cref="P:Agenda.Domain.DomainObjects.Locations.ILocation.Address"></see> property.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.Locations.DomainMetadata.Address.MinLength">
+            <summary>
+            The minimum length.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.Locations.DomainMetadata.Address.MaxLength">
+            <summary>
+            The maximum length.
+            </summary>
+        </member>
+        <member name="T:Agenda.Domain.DomainObjects.Locations.DomainMetadata.What3Words">
+            <summary>
+            Metadata for the <see cref="P:Agenda.Domain.DomainObjects.Locations.ILocation.What3Words"></see> property.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.Locations.DomainMetadata.What3Words.MinLength">
+            <summary>
+            The minimum length.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.Locations.DomainMetadata.What3Words.MaxLength">
+            <summary>
+            The maximum length.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.Locations.DomainMetadata.What3Words.Prefix">
+            <summary>
+            The Prefix for W3W addresses.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.Locations.DomainMetadata.What3Words.Separator">
+            <summary>
+            The separator for W3W addresses.
+            </summary>
+        </member>
+        <member name="T:Agenda.Domain.DomainObjects.Locations.DomainMetadata.What3Words.Part">
+            <summary>
+            The Part of the W3W address, of which there are three.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.Locations.DomainMetadata.What3Words.Part.MinLength">
+            <summary>
+            The minimum length.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.Locations.DomainMetadata.What3Words.Part.MaxLength">
+            <summary>
+            The maximum length.
+            </summary>
+        </member>
+        <member name="T:Agenda.Domain.DomainObjects.Locations.DomainMetadata.Latitude">
+            <summary>
+            Latitude.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.Locations.DomainMetadata.Latitude.MinValue">
+            <summary>
+            The minimum value.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.Locations.DomainMetadata.Latitude.MaxValue">
+            <summary>
+            The maximum value.
+            </summary>
+        </member>
+        <member name="T:Agenda.Domain.DomainObjects.Locations.DomainMetadata.Longitude">
+            <summary>
+            Longitude.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.Locations.DomainMetadata.Longitude.MinValue">
+            <summary>
+            The minimum value.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.Locations.DomainMetadata.Longitude.MaxValue">
+            <summary>
+            The maximum value.
+            </summary>
+        </member>
+        <member name="T:Agenda.Domain.DomainObjects.Locations.ILocation">
+            <summary>
+            Organisation.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Locations.ILocation.Id">
+            <summary>
+            Gets the Location Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Locations.ILocation.Organisation">
+            <summary>
+            Gets the Organisation.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Locations.ILocation.Name">
+            <summary>
+            Gets the Location Name.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Locations.ILocation.Address">
+            <summary>
+            Gets the Address.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Locations.ILocation.What3Words">
+            <summary>
+            Gets the What3Word address.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Locations.ILocation.Latitude">
+            <summary>
+            Gets the Latitude.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Locations.ILocation.Longitude">
+            <summary>
+            Gets the Longitude.
+            </summary>
+        </member>
+        <member name="T:Agenda.Domain.DomainObjects.Locations.Location">
+            <summary>
+            Location.
+            </summary>
+            <seealso cref="T:Agenda.Domain.DomainObjects.Locations.ILocation" />
+        </member>
+        <member name="M:Agenda.Domain.DomainObjects.Locations.Location.#ctor(System.Guid,Agenda.Domain.DomainObjects.Organisations.IOrganisation,System.String,System.String,System.String,System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Domain.DomainObjects.Locations.Location"/> class.
+            </summary>
+            <param name="id">Location Id.</param>
+            <param name="organisation">Organisation.</param>
+            <param name="name">Location Name.</param>
+            <param name="address">Address.</param>
+            <param name="what3Words">What3Words Address.</param>
+            <param name="latitude">Latitude.</param>
+            <param name="longitude">Longitude.</param>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Locations.Location.Id">
+            <inheritdoc/>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Locations.Location.Organisation">
+            <inheritdoc/>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Locations.Location.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Locations.Location.Address">
+            <inheritdoc/>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Locations.Location.What3Words">
+            <inheritdoc/>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Locations.Location.Latitude">
+            <inheritdoc/>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Locations.Location.Longitude">
+            <inheritdoc/>
+        </member>
         <member name="T:Agenda.Domain.DomainObjects.Meetings.DomainMetadata">
             <summary>
             Metadata for the <see cref="T:Agenda.Domain.DomainObjects.Organisations.IOrganisation"/>.
