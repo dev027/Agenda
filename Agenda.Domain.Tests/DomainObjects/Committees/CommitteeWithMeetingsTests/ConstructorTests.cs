@@ -38,7 +38,7 @@ namespace Agenda.Domain.Tests.DomainObjects.Committees.CommitteeWithMeetingsTest
                 name: paramName,
                 description: paramDescription);
 
-            IList<IMeeting> meetings = new List<IMeeting>
+            IList<IMeeting> paramMeetings = new List<IMeeting>
             {
                 new Meeting(
                     id: Guid.NewGuid(),
@@ -53,14 +53,14 @@ namespace Agenda.Domain.Tests.DomainObjects.Committees.CommitteeWithMeetingsTest
                 organisation: paramOrganisation,
                 name: paramName,
                 description: paramDescription,
-                meetings: meetings);
+                meetings: paramMeetings);
 
             // ASSERT
             Assert.AreEqual(paramId, committeeWithMeetings.Id);
             Assert.AreSame(paramOrganisation, committeeWithMeetings.Organisation);
             Assert.AreEqual(paramName, committeeWithMeetings.Name);
             Assert.AreEqual(paramDescription, committeeWithMeetings.Description);
-            Assert.AreSame(meetings, committeeWithMeetings.Meetings);
+            Assert.AreSame(paramMeetings, committeeWithMeetings.Meetings);
         }
 
         /// <summary>
