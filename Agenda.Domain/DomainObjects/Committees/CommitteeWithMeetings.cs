@@ -33,7 +33,7 @@ namespace Agenda.Domain.DomainObjects.Committees
             : base(
                 id, organisation, name, description)
         {
-            this.Meetings = meetings;
+            this.Meetings = meetings ?? throw new ArgumentNullException(nameof(organisation));
         }
 
         /// <inheritdoc/>

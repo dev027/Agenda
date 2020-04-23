@@ -3,7 +3,6 @@
 // </copyright>
 
 using System;
-using Agenda.Domain.DomainObjects.Committees;
 using Agenda.Domain.DomainObjects.Locations;
 using Agenda.Domain.DomainObjects.Organisations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -70,7 +69,7 @@ namespace Agenda.Domain.Tests.DomainObjects.Locations.LocationTests
             const double paramLongitude = -1.181126;
 
             // ACT
-            ILocation location = new Location(
+            _ = new Location(
                 id: paramId,
                 organisation: null,
                 name: paramName,
@@ -102,7 +101,7 @@ namespace Agenda.Domain.Tests.DomainObjects.Locations.LocationTests
             const double paramLongitude = -1.181126;
 
             // ACT
-            ILocation location = new Location(
+            _ = new Location(
                 id: paramId,
                 organisation: paramOrganisation,
                 name: null,
@@ -134,7 +133,7 @@ namespace Agenda.Domain.Tests.DomainObjects.Locations.LocationTests
             const double paramLongitude = -1.181126;
 
             // ACT
-            ILocation location = new Location(
+            _ = new Location(
                 id: paramId,
                 organisation: paramOrganisation,
                 name: paramName,
@@ -166,7 +165,7 @@ namespace Agenda.Domain.Tests.DomainObjects.Locations.LocationTests
             const double paramLongitude = -1.181126;
 
             // ACT
-            ILocation location = new Location(
+            _ = new Location(
                 id: paramId,
                 organisation: paramOrganisation,
                 name: paramName,

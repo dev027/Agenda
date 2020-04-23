@@ -29,6 +29,21 @@
             Tests the constructor null description throws exception.
             </summary>
         </member>
+        <member name="T:Agenda.Domain.Tests.DomainObjects.Committees.CommitteeWithMeetingsTests.ConstructorTests">
+            <summary>
+            Test the constructor for <see cref="T:Agenda.Domain.DomainObjects.Committees.CommitteeWithMeetings"/>.
+            </summary>
+        </member>
+        <member name="M:Agenda.Domain.Tests.DomainObjects.Committees.CommitteeWithMeetingsTests.ConstructorTests.Test_Basic_Constructor">
+            <summary>
+            Tests the basic constructor.
+            </summary>
+        </member>
+        <member name="M:Agenda.Domain.Tests.DomainObjects.Committees.CommitteeWithMeetingsTests.ConstructorTests.Test_Constructor_Null_Organisation_Throws_Exception">
+            <summary>
+            Tests the constructor meetings throws exception.
+            </summary>
+        </member>
         <member name="T:Agenda.Domain.Tests.DomainObjects.Locations.LocationTests.ConstructorTests">
             <summary>
             Test the constructor for <see cref="T:Agenda.Domain.DomainObjects.Locations.Location"/>.
