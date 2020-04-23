@@ -10,7 +10,7 @@ namespace Agenda.Domain.DomainObjects.Locations
     /// <summary>
     /// Location.
     /// </summary>
-    /// <seealso cref="Agenda.Domain.DomainObjects.Locations.ILocation" />
+    /// <seealso cref="ILocation" />
     public class Location : ILocation
     {
         /// <summary>
