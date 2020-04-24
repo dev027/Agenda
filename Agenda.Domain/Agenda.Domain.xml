@@ -442,6 +442,17 @@
             Gets the Committees.
             </summary>
         </member>
+        <member name="T:Agenda.Domain.DomainObjects.Organisations.IOrganisationWithLocations">
+            <summary>
+            Organisation with Locations.
+            </summary>
+            <seealso cref="T:Agenda.Domain.DomainObjects.Organisations.IOrganisation" />
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Organisations.IOrganisationWithLocations.Locations">
+            <summary>
+            Gets the Locations.
+            </summary>
+        </member>
         <member name="T:Agenda.Domain.DomainObjects.Organisations.Organisation">
             <summary>
             Organisation.
@@ -481,6 +492,27 @@
             <param name="committees">Committees.</param>
         </member>
         <member name="P:Agenda.Domain.DomainObjects.Organisations.OrganisationWithCommittees.Committees">
+            <summary>
+            Gets the Committees.
+            </summary>
+        </member>
+        <member name="T:Agenda.Domain.DomainObjects.Organisations.OrganisationWithLocations">
+            <summary>
+            Organisation with Committees.
+            </summary>
+            <seealso cref="T:Agenda.Domain.DomainObjects.Organisations.Organisation" />
+            <seealso cref="T:Agenda.Domain.DomainObjects.Organisations.IOrganisationWithLocations" />
+        </member>
+        <member name="M:Agenda.Domain.DomainObjects.Organisations.OrganisationWithLocations.#ctor(System.Guid,System.String,System.String,System.Collections.Generic.IList{Agenda.Domain.DomainObjects.Locations.ILocation})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Domain.DomainObjects.Organisations.OrganisationWithLocations"/> class.
+            </summary>
+            <param name="id">Organisation Id.</param>
+            <param name="code">Organisation Code.</param>
+            <param name="name">Organisation Name.</param>
+            <param name="locations">Locations.</param>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Organisations.OrganisationWithLocations.Locations">
             <summary>
             Gets the Committees.
             </summary>
