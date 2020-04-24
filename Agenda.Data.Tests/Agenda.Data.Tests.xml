@@ -77,6 +77,21 @@
             Tests the with null organisation throws exception.
             </summary>
         </member>
+        <member name="T:Agenda.Data.Tests.Dtos.CommitteeTests.ToDomainWithMeetingsTests">
+            <summary>
+            Tests <see cref="M:Agenda.Data.Dtos.CommitteeDto.ToDomainWithMeetings"/>.
+            </summary>
+        </member>
+        <member name="M:Agenda.Data.Tests.Dtos.CommitteeTests.ToDomainWithMeetingsTests.Test_With_Valid_List_Of_Meetings">
+            <summary>
+            Tests with valid list of Meetings.
+            </summary>
+        </member>
+        <member name="M:Agenda.Data.Tests.Dtos.CommitteeTests.ToDomainWithMeetingsTests.Test_That_Null_List_Of_Meetings_Throws_Exception">
+            <summary>
+            Tests that null list of meetings throws exception.
+            </summary>
+        </member>
         <member name="T:Agenda.Data.Tests.Dtos.CommitteeTests.ToDtoTests">
             <summary>
             Test <see cref="M:Agenda.Data.Dtos.CommitteeDto.ToDto(Agenda.Domain.DomainObjects.Committees.ICommittee)"/>.
