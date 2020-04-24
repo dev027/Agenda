@@ -77,6 +77,11 @@ namespace Agenda.Data.Dtos
         /// </summary>
         public IList<CommitteeDto> Committees { get; private set; } = null!;
 
+        /// <summary>
+        /// Gets the Locations.
+        /// </summary>
+        public IList<LocationDto> Locations { get; private set; } = null!;
+
         #endregion Child Properties
 
         #region Public Properties
@@ -102,19 +107,19 @@ namespace Agenda.Data.Dtos
         /// <summary>
         /// Converts instance to domain object.
         /// </summary>
-        /// <returns>Organiser.</returns>
+        /// <returns>Organisation.</returns>
         public IOrganisation ToDomain()
         {
             return new Organisation(
-                this.Id,
-                this.Code,
-                this.Name);
+                id: this.Id,
+                code: this.Code,
+                name: this.Name);
         }
 
         /// <summary>
         /// Converts to domain object with committees.
         /// </summary>
-        /// <returns>Organiser with Committees.</returns>
+        /// <returns>Organisation with Committees.</returns>
         public IOrganisationWithCommittees ToDomainWithCommittees()
         {
             if (this.Committees == null)
@@ -128,10 +133,33 @@ namespace Agenda.Data.Dtos
             }
 
             return new OrganisationWithCommittees(
-                this.Id,
-                this.Code,
-                this.Name,
-                this.Committees.Select(c => c.ToDomain()).ToList());
+                id: this.Id,
+                code: this.Code,
+                name: this.Name,
+                committees: this.Committees.Select(c => c.ToDomain()).ToList());
+        }
+
+        /// <summary>
+        /// Converts to domain object with locations.
+        /// </summary>
+        /// <returns>Organisation with Locations.</returns>
+        public IOrganisationWithLocations ToDomainWithLocations()
+        {
+            if (this.Locations == null)
+            {
+                throw new InvalidOperationException(
+                    string.Format(
+                        CultureInfo.InvariantCulture,
+                        ExceptionResource.CannotConvertTo___If___IsNull,
+                        nameof(IOrganisationWithCommittees),
+                        nameof(this.Locations)));
+            }
+
+            return new OrganisationWithLocations(
+                id: this.Id,
+                code: this.Code,
+                name: this.Name,
+                locations: this.Locations.Select(l => l.ToDomain()).ToList());
         }
 
         #endregion Public Properties

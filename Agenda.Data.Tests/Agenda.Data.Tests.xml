@@ -272,6 +272,21 @@
             Tests that null list of committees throws exception.
             </summary>
         </member>
+        <member name="T:Agenda.Data.Tests.Dtos.OrganisationTests.ToDomainWithLocationsTests">
+            <summary>
+            Tests <see cref="M:Agenda.Data.Dtos.OrganisationDto.ToDomainWithLocations"/>.
+            </summary>
+        </member>
+        <member name="M:Agenda.Data.Tests.Dtos.OrganisationTests.ToDomainWithLocationsTests.Test_With_Valid_List_Of_Locations">
+            <summary>
+            Tests with valid list of locations.
+            </summary>
+        </member>
+        <member name="M:Agenda.Data.Tests.Dtos.OrganisationTests.ToDomainWithLocationsTests.Test_That_Null_List_Of_Locations_Throws_Exception">
+            <summary>
+            Tests that null list of locations throws exception.
+            </summary>
+        </member>
         <member name="T:Agenda.Data.Tests.Dtos.OrganisationTests.ToDtoTests">
             <summary>
             Test <see cref="M:Agenda.Data.Dtos.OrganisationDto.ToDto(Agenda.Domain.DomainObjects.Organisations.IOrganisation)"/>.

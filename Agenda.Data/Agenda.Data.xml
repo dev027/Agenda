@@ -547,6 +547,11 @@
             Gets the Committees.
             </summary>
         </member>
+        <member name="P:Agenda.Data.Dtos.OrganisationDto.Locations">
+            <summary>
+            Gets the Locations.
+            </summary>
+        </member>
         <member name="M:Agenda.Data.Dtos.OrganisationDto.ToDto(Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
             <summary>
             Converts domain object to DTO.
@@ -558,13 +563,19 @@
             <summary>
             Converts instance to domain object.
             </summary>
-            <returns>Organiser.</returns>
+            <returns>Organisation.</returns>
         </member>
         <member name="M:Agenda.Data.Dtos.OrganisationDto.ToDomainWithCommittees">
             <summary>
             Converts to domain object with committees.
             </summary>
-            <returns>Organiser with Committees.</returns>
+            <returns>Organisation with Committees.</returns>
+        </member>
+        <member name="M:Agenda.Data.Dtos.OrganisationDto.ToDomainWithLocations">
+            <summary>
+            Converts to domain object with locations.
+            </summary>
+            <returns>Organisation with Locations.</returns>
         </member>
         <member name="T:Agenda.Data.Resources.ExceptionResource">
             <summary>
