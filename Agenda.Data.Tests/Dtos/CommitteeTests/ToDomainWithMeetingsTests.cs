@@ -106,5 +106,45 @@ namespace Agenda.Data.Tests.Dtos.CommitteeTests
             // ACT
             _ = committeeDto.ToDomainWithMeetings();
         }
+
+        /// <summary>
+        /// Tests that null organisation throws exception.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void Test_That_Null_Organisation_Throws_Exception()
+        {
+            Guid paramId = Guid.NewGuid();
+            const string paramName = "TSC";
+            const string paramDescription = "Tournament Sub-Committee";
+
+            OrganisationDto organisationDto = new OrganisationDto(
+                id: Guid.NewGuid(),
+                code: "CBC",
+                name: "County Bridge Club");
+
+            CommitteeDto committeeDto = new CommitteeDto(
+                id: paramId,
+                organisationId: organisationDto.Id,
+                name: paramName,
+                description: paramDescription);
+
+            IList<MeetingDto> paramMeetings = new List<MeetingDto>
+            {
+                new MeetingDto(
+                    id: Guid.NewGuid(),
+                    committeeId: committeeDto.Id,
+                    meetingDateTime: DateTime.Now,
+                    location: "County Bridge Club, St. Oswalds Road, New Parks",
+                    committee: committeeDto)
+            };
+
+            committeeDto.SetPrivatePropertyValue(
+                propName: nameof(CommitteeDto.Meetings),
+                value: paramMeetings);
+
+            // ACT
+            _ = committeeDto.ToDomainWithMeetings();
+        }
     }
 }
