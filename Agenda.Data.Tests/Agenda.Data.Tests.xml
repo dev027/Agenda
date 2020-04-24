@@ -237,6 +237,21 @@
             Tests passing valid values.
             </summary>
         </member>
+        <member name="T:Agenda.Data.Tests.Dtos.OrganisationTests.ToDomainWithCommitteesTests">
+            <summary>
+            Tests <see cref="M:Agenda.Data.Dtos.OrganisationDto.ToDomainWithCommittees"/>.
+            </summary>
+        </member>
+        <member name="M:Agenda.Data.Tests.Dtos.OrganisationTests.ToDomainWithCommitteesTests.Test_With_Valid_List_Of_Committees">
+            <summary>
+            Tests with valid list of committees.
+            </summary>
+        </member>
+        <member name="M:Agenda.Data.Tests.Dtos.OrganisationTests.ToDomainWithCommitteesTests.Test_That_Null_List_Of_Committees_Throws_Exception">
+            <summary>
+            Tests that null list of committees throws exception.
+            </summary>
+        </member>
         <member name="T:Agenda.Data.Tests.Dtos.OrganisationTests.ToDtoTests">
             <summary>
             Test <see cref="M:Agenda.Data.Dtos.OrganisationDto.ToDto(Agenda.Domain.DomainObjects.Organisations.IOrganisation)"/>.
@@ -250,6 +265,27 @@
         <member name="M:Agenda.Data.Tests.Dtos.OrganisationTests.ToDtoTests.Test_Passing_Null_Organisation_Throws_Exception">
             <summary>
             Tests passing null Organisation throws exception.
+            </summary>
+        </member>
+        <member name="T:Agenda.Data.Tests.Resources.ExceptionResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Tests.Resources.ExceptionResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Tests.Resources.ExceptionResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Tests.Resources.ExceptionResources.Property___WasNotFoundInType___">
+            <summary>
+              Looks up a localized string similar to Property {0} was not found in Type {1}.
             </summary>
         </member>
         <member name="T:Agenda.Data.Tests.TestUtilities.TestUtils">
@@ -269,6 +305,15 @@
             <value>
             The database context options.
             </value>
+        </member>
+        <member name="M:Agenda.Data.Tests.TestUtilities.TestUtils.SetPrivatePropertyValue``1(System.Object,System.String,``0)">
+            <summary>
+            Sets the private property value.
+            </summary>
+            <typeparam name="T">Property Type.</typeparam>
+            <param name="target">Target object.</param>
+            <param name="propName">Property name.</param>
+            <param name="value">Value to set.</param>
         </member>
     </members>
 </doc>
