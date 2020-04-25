@@ -22,7 +22,7 @@
                     @using (Html.BeginForm("Edit", "Meeting", FormMethod.Post))
                     {
                         <input type="hidden" value="@FormState.SubmittedBySubmitButton" name="FormState" />
-                        <input type="hidden" value="@Model.Id" name="Id" />
+                        <input type="hidden" value="@Model.MeetingId" name="MeetingId" />
                                                                         
                         <div class="form-group">
                             @Html.LabelFor(m => m.OrganisationName)
@@ -85,7 +85,7 @@
                            type="button"
                            asp-controller="Meeting"
                            asp-action="Index"
-                           asp-route-id="@Model.Id">
+                           asp-route-meetingId="@Model.MeetingId">
                             <span class="@Icon.Cancel"></span>    
                             Cancel
                         </a>

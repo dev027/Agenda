@@ -87,6 +87,9 @@
         <member name="M:Agenda.Data.Crud.AgendaData.GetOrganisationByIdWithCommitteesAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
             <inheritdoc/>
         </member>
+        <member name="M:Agenda.Data.Crud.AgendaData.GetOrganisationByIdWithLocationsAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
+            <inheritdoc/>
+        </member>
         <member name="M:Agenda.Data.Crud.AgendaData.HaveOrganisationsAsync(Agenda.Utilities.Models.Whos.IWho)">
             <inheritdoc/>
         </member>
@@ -205,6 +208,14 @@
         <member name="M:Agenda.Data.Crud.IAgendaData.GetOrganisationByIdWithCommitteesAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
             <summary>
             Gets the Organisation by Id with its Committees.
+            </summary>
+            <param name="who">Who details.</param>
+            <param name="organisationId">Organisation Id.</param>
+            <returns>Organisation (Null=Not Found).</returns>
+        </member>
+        <member name="M:Agenda.Data.Crud.IAgendaData.GetOrganisationByIdWithLocationsAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
+            <summary>
+            Gets the Organisation by Id with its Locations.
             </summary>
             <param name="who">Who details.</param>
             <param name="organisationId">Organisation Id.</param>

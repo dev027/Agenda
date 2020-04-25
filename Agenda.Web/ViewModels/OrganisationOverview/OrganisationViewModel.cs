@@ -17,15 +17,15 @@ namespace Agenda.Web.ViewModels.OrganisationOverview
         /// <summary>
         /// Initializes a new instance of the <see cref="OrganisationViewModel"/> class.
         /// </summary>
-        /// <param name="id">Organisation Id.</param>
+        /// <param name="organisationId">Organisation Id.</param>
         /// <param name="code">Organisation Code.</param>
         /// <param name="name">Organisation Name.</param>
         public OrganisationViewModel(
-            Guid id,
+            Guid organisationId,
             string code,
             string name)
         {
-            this.Id = id;
+            this.OrganisationId = organisationId;
             this.Code = code;
             this.Name = name;
         }
@@ -39,7 +39,7 @@ namespace Agenda.Web.ViewModels.OrganisationOverview
         /// <summary>
         /// Gets the Organisation Id.
         /// </summary>
-        public Guid Id { get; }
+        public Guid OrganisationId { get; }
 
         /// <summary>
         /// Gets the Organisation Code.
@@ -66,9 +66,9 @@ namespace Agenda.Web.ViewModels.OrganisationOverview
             }
 
             return new OrganisationViewModel(
-                organisation.Id,
-                organisation.Code,
-                organisation.Name);
+                organisationId: organisation.Id,
+                code: organisation.Code,
+                name: organisation.Name);
         }
     }
 }

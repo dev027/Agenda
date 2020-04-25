@@ -17,11 +17,19 @@
                         <label>@Html.DisplayNameFor(m => m.Name)</label>
                         <div class="form-control">@Model.Name</div>
                     </div>
-                    <a asp-controller="Organisation"
-                       asp-action="StartEdit"
-                       asp-route-id="@Model.Id"
-                       asp-route-ajaxMode="0"
-                       class="btn btn-primary"><span class="@Icon.Edit"></span> Edit</a>
+                    <div class="d-flex flex-row justify-content-between">
+                        <a asp-controller="Organisation"
+                           asp-action="StartEdit"
+                           asp-route-organisationId="@Model.OrganisationId"
+                           asp-route-ajaxMode="0"
+                           class="btn btn-primary"><span class="@Icon.Edit"></span> Edit</a>
+                        <a asp-controller="LocationOverview"
+                           asp-action="Index"
+                           asp-route-organisationId="@Model.OrganisationId"
+                           class="btn btn-secondary">
+                            <i class="@Icon.View"></i> View Locations
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -42,9 +50,10 @@
                     }
                     </tbody>
                 </table>
-                <a asp-controller="Committee" 
+                
+                <a asp-controller="Committee"
                    asp-action="StartAdd"
-                   asp-route-organisationId="@Model.Id"
+                   asp-route-organisationId="@Model.OrganisationId"
                    class="btn btn-primary">
                     Add New Committee
                 </a>

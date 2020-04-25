@@ -1,6 +1,6 @@
 ﻿@using Agenda.Web.Models
 @using Agenda.Web.ViewModels.Committee
-@model Agenda.Web.ViewModels.Committee.IndexViewModel
+@model IndexViewModel
 
 <main class="container-fluid flex-grow-1">
     <h1>@Html.DisplayNameFor(m => m.PageTitle)</h1>
@@ -23,7 +23,7 @@
                     </div>
                     <a asp-controller="Committee"
                        asp-action="StartEdit"
-                       asp-route-id="@Model.Id"
+                       asp-route-committeeId="@Model.CommitteeId"
                        asp-route-ajaxMode="0"
                        class="btn btn-primary"><span class="@Icon.Edit"></span> Edit</a>
                 </div>
@@ -48,7 +48,7 @@
                 </table>
                 <a asp-controller="Meeting"
                    asp-action="StartAdd"
-                   asp-route-committeeId="@Model.Id"
+                   asp-route-committeeId="@Model.CommitteeId"
                    class="btn btn-primary">
                     Add New Meeting
                 </a>

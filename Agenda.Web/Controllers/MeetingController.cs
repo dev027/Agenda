@@ -43,22 +43,22 @@ namespace Agenda.Web.Controllers
         /// <summary>
         /// Display the specified Meeting.
         /// </summary>
-        /// <param name="id">Meeting Id.</param>
+        /// <param name="meetingId">Meeting Id.</param>
         /// <returns>View.</returns>
-        public async Task<IActionResult> Index(Guid id)
+        public async Task<IActionResult> Index(Guid meetingId)
         {
             IWho who = this.Who(nameof(this.Index));
 
             this.logger.LogDebug(
-                "ENTRY {ActionName}(who, id) {@who} {id}",
+                "ENTRY {ActionName}(who, meetingId) {@who} {meetingId}",
                 who.ActionName,
                 who,
-                id);
+                meetingId);
 
             IMeeting meeting = await this.service
                 .GetMeetingByIdAsync(
                     who: who,
-                    meetingId: id)
+                    meetingId: meetingId)
                 .ConfigureAwait(false);
 
             IndexViewModel model = IndexViewModel.Create(meeting);
@@ -76,7 +76,7 @@ namespace Agenda.Web.Controllers
             IWho who = this.Who(nameof(this.StartAdd));
 
             this.logger.LogDebug(
-                "ENTRY {ActionName}(who, id) {@who} {committeeId}",
+                "ENTRY {ActionName}(who, committeeId) {@who} {committeeId}",
                 who.ActionName,
                 who,
                 committeeId);
@@ -132,7 +132,7 @@ namespace Agenda.Web.Controllers
                         this.RedirectToAction(
                             "Index",
                             "Committee",
-                            new { id = model.CommitteeId }));
+                            new { committeeId = model.CommitteeId }));
                 }
             }
 
@@ -142,24 +142,24 @@ namespace Agenda.Web.Controllers
         /// <summary>
         /// Starts the edit.
         /// </summary>
-        /// <param name="id">The Meeting Id.</param>
+        /// <param name="meetingId">The Meeting Id.</param>
         /// <param name="ajaxMode">AJAX mode(0=No; 1=Yes).</param>
         /// <returns>View.</returns>
         public async Task<IActionResult> StartEdit(
-            Guid id,
+            Guid meetingId,
             int ajaxMode)
         {
             IWho who = this.Who(nameof(this.StartEdit));
 
             this.logger.LogDebug(
-                "ENTRY {Action}(who, id, ajaxMode) {@who} {id} {ajaxMode}",
+                "ENTRY {Action}(who, meetingId, ajaxMode) {@who} {meetingId} {ajaxMode}",
                 who.ActionName,
                 who,
-                id,
+                meetingId,
                 ajaxMode);
 
             IMeeting meeting = await this.service
-                .GetMeetingByIdAsync(who, id)
+                .GetMeetingByIdAsync(who, meetingId)
                 .ConfigureAwait(false);
 
             EditViewModel model = EditViewModel.Create(meeting);
@@ -204,7 +204,7 @@ namespace Agenda.Web.Controllers
                     this.RedirectToAction(
                         "Index",
                         "Meeting",
-                        new { id = model.Id }));
+                        new { meetingId = model.MeetingId }));
             }
 
             return this.View(model);
@@ -262,7 +262,7 @@ namespace Agenda.Web.Controllers
             IMeeting originalMeeting = await this.service
                 .GetMeetingByIdAsync(
                     who: who,
-                    meetingId: model.Id)
+                    meetingId: model.MeetingId)
                 .ConfigureAwait(false);
 
             IMeeting meeting = model.ToDomain(originalMeeting.Committee);

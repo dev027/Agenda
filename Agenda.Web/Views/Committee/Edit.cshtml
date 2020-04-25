@@ -22,7 +22,7 @@
                     @using (Html.BeginForm("Edit", "Committee", FormMethod.Post))
                     {
                         <input type="hidden" value="@FormState.SubmittedBySubmitButton" name="FormState" />
-                        <input type="hidden" value="@Model.Id" name="Id" />
+                        <input type="hidden" value="@Model.CommitteeId" name="CommitteeId" />
                                                                         
                         <div class="form-group">
                             @Html.LabelFor(m => m.OrganisationName)
@@ -64,7 +64,7 @@
                                 type="button"
                                 asp-controller="Committee"
                                 asp-action="Index"
-                                asp-route-id="@Model.Id">
+                                asp-route-committeeId="@Model.CommitteeId">
                             <span class="@Icon.Cancel"></span>    
                             Cancel
                         </a>

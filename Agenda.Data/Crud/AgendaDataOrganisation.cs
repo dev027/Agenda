@@ -129,6 +129,34 @@ namespace Agenda.Data.Crud
         }
 
         /// <inheritdoc/>
+        public async Task<IOrganisationWithLocations> GetOrganisationByIdWithLocationsAsync(
+            IWho who,
+            Guid organisationId)
+        {
+            this.logger.LogTrace(
+                "ENTRY {Method}(who, organisationId) {@who} {organisationId}",
+                nameof(this.GetOrganisationByIdWithLocationsAsync),
+                who,
+                organisationId);
+
+            IOrganisationWithLocations organisationWithLocations = (await this.context.Organisations
+                    .AsNoTracking()
+                    .TagWith(this.Tag(who, nameof(this.GetOrganisationByIdWithLocationsAsync)))
+                    .Include(o => o.Locations)
+                    .FirstOrDefaultAsync(o => o.Id == organisationId)
+                    .ConfigureAwait(false))
+                .ToDomainWithLocations();
+
+            this.logger.LogTrace(
+                "EXIT {Method}(who, organisationWithLocations) {@who} {@organisationWithLocations}",
+                nameof(this.GetOrganisationByIdWithLocationsAsync),
+                who,
+                organisationWithLocations);
+
+            return organisationWithLocations;
+        }
+
+        /// <inheritdoc/>
         public async Task<bool> HaveOrganisationsAsync(IWho who)
         {
             this.logger.LogTrace(

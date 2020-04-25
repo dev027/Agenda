@@ -31,7 +31,7 @@ namespace Agenda.Web.ViewModels.Meeting
         /// Initializes a new instance of the <see cref="EditViewModel"/> class.
         /// </summary>
         /// <param name="formState">Form State.</param>
-        /// <param name="id">Meeting Id.</param>
+        /// <param name="meetingId">Meeting Id.</param>
         /// <param name="organisationName">Organisation Name.</param>
         /// <param name="committeeName">Committee Name.</param>
         /// <param name="location">Location.</param>
@@ -39,7 +39,7 @@ namespace Agenda.Web.ViewModels.Meeting
         /// <param name="meetingTime">Meeting Time.</param>
         public EditViewModel(
             FormState formState,
-            Guid id,
+            Guid meetingId,
             string organisationName,
             string committeeName,
             string location,
@@ -47,7 +47,7 @@ namespace Agenda.Web.ViewModels.Meeting
             string meetingTime)
         {
             this.FormState = formState;
-            this.Id = id;
+            this.MeetingId = meetingId;
             this.OrganisationName = organisationName;
             this.CommitteeName = committeeName;
             this.Location = location;
@@ -68,7 +68,7 @@ namespace Agenda.Web.ViewModels.Meeting
         /// Gets or sets the Meeting Id.
         /// </summary>
         [MyRequired]
-        public Guid Id { get; set; }
+        public Guid MeetingId { get; set; }
 
         /// <summary>
         /// Gets or sets the Organisation Name.
@@ -130,7 +130,7 @@ namespace Agenda.Web.ViewModels.Meeting
 
             return new EditViewModel(
                 formState: FormState.Initial,
-                id: meeting.Id,
+                meetingId: meeting.Id,
                 organisationName: meeting.Committee.Organisation.Name,
                 committeeName: meeting.Committee.Name,
                 location: meeting.Location,
@@ -152,7 +152,7 @@ namespace Agenda.Web.ViewModels.Meeting
             meetingDateTime = meetingDateTime.AddMinutes(int.Parse(timeParts[1], cultureInfo));
 
             return new Domain.DomainObjects.Meetings.Meeting(
-                id: this.Id,
+                id: this.MeetingId,
                 committee: committee,
                 meetingDateTime: meetingDateTime,
                 location: this.Location);

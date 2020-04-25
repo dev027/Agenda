@@ -30,19 +30,19 @@ namespace Agenda.Web.ViewModels.Committee
         /// Initializes a new instance of the <see cref="EditViewModel"/> class.
         /// </summary>
         /// <param name="formState">Form State.</param>
-        /// <param name="id">Committee Id.</param>
+        /// <param name="committeeId">Committee Id.</param>
         /// <param name="organisationName">Organisation Name.</param>
         /// <param name="name">Committee Name.</param>
         /// <param name="description">Committee Description.</param>
         public EditViewModel(
             FormState formState,
-            Guid id,
+            Guid committeeId,
             string organisationName,
             string name,
             string description)
         {
             this.FormState = formState;
-            this.Id = id;
+            this.CommitteeId = committeeId;
             this.OrganisationName = organisationName;
             this.Name = name;
             this.Description = description;
@@ -61,7 +61,7 @@ namespace Agenda.Web.ViewModels.Committee
         /// Gets or sets the Committee Id.
         /// </summary>
         [MyRequired]
-        public Guid Id { get; set; }
+        public Guid CommitteeId { get; set; }
 
         /// <summary>
         /// Gets or sets the Organisation Name.
@@ -108,7 +108,7 @@ namespace Agenda.Web.ViewModels.Committee
 
             return new EditViewModel(
                 formState: FormState.Initial,
-                id: committee.Id,
+                committeeId: committee.Id,
                 organisationName: committee.Organisation.Name,
                 name: committee.Name,
                 description: committee.Description);
@@ -122,7 +122,7 @@ namespace Agenda.Web.ViewModels.Committee
         public ICommittee ToDomain(IOrganisation organisation)
         {
             return new Domain.DomainObjects.Committees.Committee(
-                id: this.Id,
+                id: this.CommitteeId,
                 organisation: organisation,
                 name: this.Name,
                 description: this.Description);

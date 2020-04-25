@@ -59,6 +59,16 @@ namespace Agenda.Service
             IWho who,
             Guid organisationId);
 
+        /// <summary>
+        /// Gets the Organisation by Id with its Locations.
+        /// </summary>
+        /// <param name="who">Who Details.</param>
+        /// <param name="organisationId">Organisation Id.</param>
+        /// <returns>Organisation.</returns>
+        Task<IOrganisationWithLocations> GetOrganisationByIdWithLocationsAsync(
+            IWho who,
+            Guid organisationId);
+
         #endregion Read
 
         #region Update

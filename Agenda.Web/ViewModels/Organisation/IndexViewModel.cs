@@ -18,17 +18,17 @@ namespace Agenda.Web.ViewModels.Organisation
         /// <summary>
         /// Initializes a new instance of the <see cref="IndexViewModel"/> class.
         /// </summary>
-        /// <param name="id">Organisation Id.</param>
+        /// <param name="organisationId">Organisation Id.</param>
         /// <param name="code">Organisation Code.</param>
         /// <param name="name">Organisation Name.</param>
         /// <param name="committeeViewModels">Committee view models.</param>
         public IndexViewModel(
-            Guid id,
+            Guid organisationId,
             string code,
             string name,
             IList<CommitteeViewModel> committeeViewModels)
         {
-            this.Id = id;
+            this.OrganisationId = organisationId;
             this.Code = code;
             this.Name = name;
             this.CommitteeViewModels = committeeViewModels;
@@ -55,7 +55,7 @@ namespace Agenda.Web.ViewModels.Organisation
         /// <summary>
         /// Gets the Organisation Id.
         /// </summary>
-        public Guid Id { get; }
+        public Guid OrganisationId { get; }
 
         /// <summary>
         /// Gets the Organisation Code.
@@ -88,7 +88,7 @@ namespace Agenda.Web.ViewModels.Organisation
             }
 
             return new IndexViewModel(
-                id: organisation.Id,
+                organisationId: organisation.Id,
                 code: organisation.Code,
                 name: organisation.Name,
                 committeeViewModels: organisation.Committees.Select(CommitteeViewModel.Create).ToList());

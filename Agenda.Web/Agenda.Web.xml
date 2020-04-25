@@ -223,9 +223,9 @@
         </member>
         <member name="M:Agenda.Web.Controllers.CommitteeController.Index(System.Guid)">
             <summary>
-            Display the specified Organisation.
+            Display the specified Committee.
             </summary>
-            <param name="id">Organisation Id.</param>
+            <param name="committeeId">Committee Id.</param>
             <returns>View.</returns>
         </member>
         <member name="M:Agenda.Web.Controllers.CommitteeController.StartAdd(System.Guid)">
@@ -246,7 +246,7 @@
             <summary>
             Starts the edit.
             </summary>
-            <param name="id">The Committee id.</param>
+            <param name="committeeId">The Committee id.</param>
             <param name="ajaxMode">AJAX mode(0=No; 1=Yes).</param>
             <returns>View.</returns>
         </member>
@@ -354,6 +354,27 @@
             </summary>
             <returns>Default View.</returns>
         </member>
+        <member name="T:Agenda.Web.Controllers.LocationOverviewController">
+            <summary>
+            SOMETHING.
+            </summary>
+            <seealso cref="T:Microsoft.AspNetCore.Mvc.Controller" />
+        </member>
+        <member name="M:Agenda.Web.Controllers.LocationOverviewController.#ctor(Microsoft.Extensions.Logging.ILogger{Agenda.Web.Controllers.LocationOverviewController},Agenda.Service.IAgendaService,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.Controllers.LocationOverviewController"/> class.
+            </summary>
+            <param name="logger">Logger.</param>
+            <param name="service">Agenda Service.</param>
+            <param name="isTestMode">Is Test Mode.</param>
+        </member>
+        <member name="M:Agenda.Web.Controllers.LocationOverviewController.Index(System.Guid)">
+            <summary>
+            Display the specified Organisation with lts Locations.
+            </summary>
+            <param name="organisationId">Organisation Id.</param>
+            <returns>View.</returns>
+        </member>
         <member name="T:Agenda.Web.Controllers.MeetingController">
             <summary>
             Meetings.
@@ -372,7 +393,7 @@
             <summary>
             Display the specified Meeting.
             </summary>
-            <param name="id">Meeting Id.</param>
+            <param name="meetingId">Meeting Id.</param>
             <returns>View.</returns>
         </member>
         <member name="M:Agenda.Web.Controllers.MeetingController.StartAdd(System.Guid)">
@@ -393,7 +414,7 @@
             <summary>
             Starts the edit.
             </summary>
-            <param name="id">The Meeting Id.</param>
+            <param name="meetingId">The Meeting Id.</param>
             <param name="ajaxMode">AJAX mode(0=No; 1=Yes).</param>
             <returns>View.</returns>
         </member>
@@ -438,7 +459,7 @@
             <summary>
             Display the specified Organisation.
             </summary>
-            <param name="id">Organisation Id.</param>
+            <param name="organisationId">Organisation Id.</param>
             <returns>View.</returns>
         </member>
         <member name="M:Agenda.Web.Controllers.OrganisationController.Add(Agenda.Web.ViewModels.Organisation.AddViewModel)">
@@ -452,7 +473,7 @@
             <summary>
             Starts the edit.
             </summary>
-            <param name="id">The Organisation id.</param>
+            <param name="organisationId">The Organisation id.</param>
             <param name="ajaxMode">AJAX mode(0=No; 1=Yes).</param>
             <returns>View.</returns>
         </member>
@@ -791,7 +812,7 @@
             Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Committee.EditViewModel"/> class.
             </summary>
             <param name="formState">Form State.</param>
-            <param name="id">Committee Id.</param>
+            <param name="committeeId">Committee Id.</param>
             <param name="organisationName">Organisation Name.</param>
             <param name="name">Committee Name.</param>
             <param name="description">Committee Description.</param>
@@ -801,7 +822,7 @@
             Gets or sets the Form State.
             </summary>
         </member>
-        <member name="P:Agenda.Web.ViewModels.Committee.EditViewModel.Id">
+        <member name="P:Agenda.Web.ViewModels.Committee.EditViewModel.CommitteeId">
             <summary>
             Gets or sets the Committee Id.
             </summary>
@@ -844,7 +865,7 @@
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Committee.IndexViewModel"/> class.
             </summary>
-            <param name="id">Committee Id.</param>
+            <param name="committeeId">Committee Id.</param>
             <param name="organisationName">Organisation Name.</param>
             <param name="name">Committee Name.</param>
             <param name="description">Committee Description.</param>
@@ -860,7 +881,7 @@
             Gets the Card Title.
             </summary>
         </member>
-        <member name="P:Agenda.Web.ViewModels.Committee.IndexViewModel.Id">
+        <member name="P:Agenda.Web.ViewModels.Committee.IndexViewModel.CommitteeId">
             <summary>
             Gets the Committee Id.
             </summary>
@@ -901,7 +922,7 @@
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Committee.MeetingViewModel"/> class.
             </summary>
-            <param name="id">Meeting Id.</param>
+            <param name="meetingId">Meeting Id.</param>
             <param name="location">Location.</param>
             <param name="meetingDate">Meeting Date.</param>
             <param name="meetingTime">Meeting Time.</param>
@@ -911,7 +932,7 @@
             Gets the view action button text.
             </summary>
         </member>
-        <member name="P:Agenda.Web.ViewModels.Committee.MeetingViewModel.Id">
+        <member name="P:Agenda.Web.ViewModels.Committee.MeetingViewModel.MeetingId">
             <summary>
             Gets the Meeting Id.
             </summary>
@@ -937,6 +958,61 @@
             </summary>
             <param name="meeting">Meeting.</param>
             <returns>View model.</returns>
+        </member>
+        <member name="T:Agenda.Web.ViewModels.LocationOverview.IndexViewModel">
+            <summary>
+            Index View Model.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.LocationOverview.IndexViewModel.#ctor(System.Guid,System.String,System.Collections.Generic.IList{Agenda.Web.Views.LocationOverview.LocationViewModel})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.LocationOverview.IndexViewModel"/> class.
+            </summary>
+            <param name="organisationId">Organisation Id.</param>
+            <param name="organisationName">Organisation Name.</param>
+            <param name="locationViewModels">Location view models.</param>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.LocationOverview.IndexViewModel.PageTitle">
+            <summary>
+            Gets the Page Title.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.LocationOverview.IndexViewModel.ActionTitle">
+            <summary>
+            Gets the Action Title.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.LocationOverview.IndexViewModel.LocationName">
+            <summary>
+            Gets the Location Name.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.LocationOverview.IndexViewModel.LocationAddress">
+            <summary>
+            Gets the Location Address.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.LocationOverview.IndexViewModel.OrganisationId">
+            <summary>
+            Gets the Organisation Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.LocationOverview.IndexViewModel.OrganisationName">
+            <summary>
+            Gets the Organisation Name.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.LocationOverview.IndexViewModel.LocationViewModels">
+            <summary>
+            Gets the Location view models.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.LocationOverview.IndexViewModel.Create(Agenda.Domain.DomainObjects.Organisations.IOrganisationWithLocations)">
+            <summary>
+            Creates the Index view model.
+            </summary>
+            <param name="organisation">Organisation with Locations.</param>
+            <returns>Index view model.</returns>
         </member>
         <member name="T:Agenda.Web.ViewModels.Meeting.AddViewModel">
             <summary>
@@ -1024,7 +1100,7 @@
             Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Meeting.EditViewModel"/> class.
             </summary>
             <param name="formState">Form State.</param>
-            <param name="id">Meeting Id.</param>
+            <param name="meetingId">Meeting Id.</param>
             <param name="organisationName">Organisation Name.</param>
             <param name="committeeName">Committee Name.</param>
             <param name="location">Location.</param>
@@ -1036,7 +1112,7 @@
             Gets or sets the Form State.
             </summary>
         </member>
-        <member name="P:Agenda.Web.ViewModels.Meeting.EditViewModel.Id">
+        <member name="P:Agenda.Web.ViewModels.Meeting.EditViewModel.MeetingId">
             <summary>
             Gets or sets the Meeting Id.
             </summary>
@@ -1089,7 +1165,7 @@
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Meeting.IndexViewModel"/> class.
             </summary>
-            <param name="id">Committee Id.</param>
+            <param name="meetingId">Meeting Id.</param>
             <param name="organisationName">Organisation Name.</param>
             <param name="committeeName">Committee Name.</param>
             <param name="location">Location.</param>
@@ -1106,9 +1182,9 @@
             Gets the Card Title.
             </summary>
         </member>
-        <member name="P:Agenda.Web.ViewModels.Meeting.IndexViewModel.Id">
+        <member name="P:Agenda.Web.ViewModels.Meeting.IndexViewModel.MeetingId">
             <summary>
-            Gets the Committee Id.
+            Gets the Meeting Id.
             </summary>
         </member>
         <member name="P:Agenda.Web.ViewModels.Meeting.IndexViewModel.OrganisationName">
@@ -1200,7 +1276,7 @@
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.OrganisationOverview.OrganisationViewModel"/> class.
             </summary>
-            <param name="id">Organisation Id.</param>
+            <param name="organisationId">Organisation Id.</param>
             <param name="code">Organisation Code.</param>
             <param name="name">Organisation Name.</param>
         </member>
@@ -1209,7 +1285,7 @@
             Gets the view action button text.
             </summary>
         </member>
-        <member name="P:Agenda.Web.ViewModels.OrganisationOverview.OrganisationViewModel.Id">
+        <member name="P:Agenda.Web.ViewModels.OrganisationOverview.OrganisationViewModel.OrganisationId">
             <summary>
             Gets the Organisation Id.
             </summary>
@@ -1279,7 +1355,7 @@
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Organisation.CommitteeViewModel"/> class.
             </summary>
-            <param name="id">Committee Id.</param>
+            <param name="committeeId">Committee Id.</param>
             <param name="name">Committee Name.</param>
             <param name="description">Committee Description.</param>
         </member>
@@ -1288,7 +1364,7 @@
             Gets the view action button text.
             </summary>
         </member>
-        <member name="P:Agenda.Web.ViewModels.Organisation.CommitteeViewModel.Id">
+        <member name="P:Agenda.Web.ViewModels.Organisation.CommitteeViewModel.CommitteeId">
             <summary>
             Gets the Committee Id.
             </summary>
@@ -1325,7 +1401,7 @@
             Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Organisation.EditViewModel"/> class.
             </summary>
             <param name="formState">Form State.</param>
-            <param name="id">Organisation Id.</param>
+            <param name="organisationId">Organisation Id.</param>
             <param name="code">Organisation Code.</param>
             <param name="name">Organisation Name.</param>
         </member>
@@ -1334,7 +1410,7 @@
             Gets or sets the Form State.
             </summary>
         </member>
-        <member name="P:Agenda.Web.ViewModels.Organisation.EditViewModel.Id">
+        <member name="P:Agenda.Web.ViewModels.Organisation.EditViewModel.OrganisationId">
             <summary>
             Gets or sets the Organisation Id.
             </summary>
@@ -1371,7 +1447,7 @@
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Organisation.IndexViewModel"/> class.
             </summary>
-            <param name="id">Organisation Id.</param>
+            <param name="organisationId">Organisation Id.</param>
             <param name="code">Organisation Code.</param>
             <param name="name">Organisation Name.</param>
             <param name="committeeViewModels">Committee view models.</param>
@@ -1392,7 +1468,7 @@
             The page title.
             </value>
         </member>
-        <member name="P:Agenda.Web.ViewModels.Organisation.IndexViewModel.Id">
+        <member name="P:Agenda.Web.ViewModels.Organisation.IndexViewModel.OrganisationId">
             <summary>
             Gets the Organisation Id.
             </summary>
@@ -1418,6 +1494,46 @@
             </summary>
             <param name="organisation">Organisation.</param>
             <returns>View model.</returns>
+        </member>
+        <member name="T:Agenda.Web.Views.LocationOverview.LocationViewModel">
+            <summary>
+            Location view model.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.Views.LocationOverview.LocationViewModel.#ctor(System.Guid,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.Views.LocationOverview.LocationViewModel"/> class.
+            </summary>
+            <param name="locationId">Location Id.</param>
+            <param name="name">Location Name.</param>
+            <param name="address">Address.</param>
+        </member>
+        <member name="P:Agenda.Web.Views.LocationOverview.LocationViewModel.ViewActionButtonText">
+            <summary>
+            Gets the view action button text.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.Views.LocationOverview.LocationViewModel.LocationId">
+            <summary>
+            Gets the Location Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.Views.LocationOverview.LocationViewModel.Name">
+            <summary>
+            Gets the Location NAme.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.Views.LocationOverview.LocationViewModel.Address">
+            <summary>
+            Gets the Address.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.Views.LocationOverview.LocationViewModel.Create(Agenda.Domain.DomainObjects.Locations.ILocation)">
+            <summary>
+            Creates the Location view model.
+            </summary>
+            <param name="location">Location.</param>
+            <returns>Location view model.</returns>
         </member>
     </members>
 </doc>

@@ -42,22 +42,22 @@ namespace Agenda.Web.Controllers
         /// <summary>
         /// Display the specified Organisation.
         /// </summary>
-        /// <param name="id">Organisation Id.</param>
+        /// <param name="organisationId">Organisation Id.</param>
         /// <returns>View.</returns>
-        public async Task<IActionResult> Index(Guid id)
+        public async Task<IActionResult> Index(Guid organisationId)
         {
             IWho who = this.Who(nameof(this.Index));
 
             this.logger.LogDebug(
-                "ENTRY {Action}(who, id) {@who} {id}",
+                "ENTRY {Action}(who, organisationId) {@who} {organisationId}",
                 who.ActionName,
                 who,
-                id);
+                organisationId);
 
             IOrganisationWithCommittees organisation = await this.service
                 .GetOrganisationByIdWithCommitteesAsync(
                     who: who,
-                    organisationId: id)
+                    organisationId: organisationId)
                 .ConfigureAwait(false);
 
             IndexViewModel model = IndexViewModel.Create(organisation);
@@ -113,24 +113,24 @@ namespace Agenda.Web.Controllers
         /// <summary>
         /// Starts the edit.
         /// </summary>
-        /// <param name="id">The Organisation id.</param>
+        /// <param name="organisationId">The Organisation id.</param>
         /// <param name="ajaxMode">AJAX mode(0=No; 1=Yes).</param>
         /// <returns>View.</returns>
         public async Task<IActionResult> StartEdit(
-            Guid id,
+            Guid organisationId,
             int ajaxMode)
         {
             IWho who = this.Who(nameof(this.StartEdit));
 
             this.logger.LogDebug(
-                "ENTRY {Action}(who, id, ajaxMode) {@who} {id} {ajaxMode}",
+                "ENTRY {Action}(who, organisationId, ajaxMode) {@who} {organisationId} {ajaxMode}",
                 who.ActionName,
                 who,
-                id,
+                organisationId,
                 ajaxMode);
 
             IOrganisation organisation = await this.service
-                .GetOrganisationByIdAsync(who, id)
+                .GetOrganisationByIdAsync(who, organisationId)
                 .ConfigureAwait(false);
 
             EditViewModel model = EditViewModel.Create(organisation);
@@ -175,7 +175,7 @@ namespace Agenda.Web.Controllers
                     this.RedirectToAction(
                         "Index",
                         "Organisation",
-                        new { id = model.Id }));
+                        new { organisationId = model.OrganisationId }));
             }
 
             return this.View(model);

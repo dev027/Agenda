@@ -119,6 +119,30 @@ namespace Agenda.Service
             return organisationWithCommittees;
         }
 
+        /// <inheritdoc/>
+        public async Task<IOrganisationWithLocations> GetOrganisationByIdWithLocationsAsync(IWho who, Guid organisationId)
+        {
+            this.logger.LogTrace(
+                "ENTRY {Method}(who, organisationId) {@who} {organisationId}",
+                nameof(this.GetOrganisationByIdWithLocationsAsync),
+                who,
+                organisationId);
+
+            IOrganisationWithLocations organisationWithLocations = await this.data
+                .GetOrganisationByIdWithLocationsAsync(
+                    who: who,
+                    organisationId: organisationId)
+                .ConfigureAwait(false);
+
+            this.logger.LogTrace(
+                "EXIT {Method}(who, organisationWithLocations) {@who} {@organisationWithLocations}",
+                nameof(this.GetOrganisationByIdWithLocationsAsync),
+                who,
+                organisationWithLocations);
+
+            return organisationWithLocations;
+        }
+
         #endregion Read
 
         #region Update

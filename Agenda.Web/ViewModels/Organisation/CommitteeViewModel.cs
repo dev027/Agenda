@@ -17,15 +17,15 @@ namespace Agenda.Web.ViewModels.Organisation
         /// <summary>
         /// Initializes a new instance of the <see cref="CommitteeViewModel"/> class.
         /// </summary>
-        /// <param name="id">Committee Id.</param>
+        /// <param name="committeeId">Committee Id.</param>
         /// <param name="name">Committee Name.</param>
         /// <param name="description">Committee Description.</param>
         public CommitteeViewModel(
-            Guid id,
+            Guid committeeId,
             string name,
             string description)
         {
-            this.Id = id;
+            this.CommitteeId = committeeId;
             this.Name = name;
             this.Description = description;
         }
@@ -39,7 +39,7 @@ namespace Agenda.Web.ViewModels.Organisation
         /// <summary>
         /// Gets the Committee Id.
         /// </summary>
-        public Guid Id { get; }
+        public Guid CommitteeId { get; }
 
         /// <summary>
         /// Gets the Committee Name.
@@ -65,7 +65,7 @@ namespace Agenda.Web.ViewModels.Organisation
             }
 
             return new CommitteeViewModel(
-                id: committee.Id,
+                committeeId: committee.Id,
                 name: committee.Name,
                 description: committee.Description);
         }

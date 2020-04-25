@@ -1,0 +1,16 @@
+﻿@using Agenda.Web.Models
+@model Agenda.Web.Views.LocationOverview.LocationViewModel
+
+    <tr>
+        <td>
+            <a class="btn btn-secondary btn-sm"
+               asp-controller="Location"
+               asp-action="Index"
+               asp-route-locationId="@Model.LocationId">
+                <i class="@Icon.View"></i>
+                @Html.DisplayNameFor(m => m.ViewActionButtonText)
+            </a>
+        </td>
+        <td>@Model.Name</td>
+        <td>@Model.Address</td>
+    </tr>

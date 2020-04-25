@@ -18,17 +18,17 @@ namespace Agenda.Web.ViewModels.Committee
         /// <summary>
         /// Initializes a new instance of the <see cref="MeetingViewModel"/> class.
         /// </summary>
-        /// <param name="id">Meeting Id.</param>
+        /// <param name="meetingId">Meeting Id.</param>
         /// <param name="location">Location.</param>
         /// <param name="meetingDate">Meeting Date.</param>
         /// <param name="meetingTime">Meeting Time.</param>
         public MeetingViewModel(
-            Guid id,
+            Guid meetingId,
             string location,
             string meetingDate,
             string meetingTime)
         {
-            this.Id = id;
+            this.MeetingId = meetingId;
             this.Location = location;
             this.MeetingDate = meetingDate;
             this.MeetingTime = meetingTime;
@@ -43,7 +43,7 @@ namespace Agenda.Web.ViewModels.Committee
         /// <summary>
         /// Gets the Meeting Id.
         /// </summary>
-        public Guid Id { get; }
+        public Guid MeetingId { get; }
 
         /// <summary>
         /// Gets the Location.
@@ -81,7 +81,7 @@ namespace Agenda.Web.ViewModels.Committee
             string time = meeting.MeetingDateTime.ToString("h:mm tt", cultureInfo);
 
             return new MeetingViewModel(
-                id: meeting.Id,
+                meetingId: meeting.Id,
                 location: meeting.Location,
                 meetingDate: date,
                 meetingTime: time);

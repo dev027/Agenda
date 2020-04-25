@@ -29,17 +29,17 @@ namespace Agenda.Web.ViewModels.Organisation
         /// Initializes a new instance of the <see cref="EditViewModel"/> class.
         /// </summary>
         /// <param name="formState">Form State.</param>
-        /// <param name="id">Organisation Id.</param>
+        /// <param name="organisationId">Organisation Id.</param>
         /// <param name="code">Organisation Code.</param>
         /// <param name="name">Organisation Name.</param>
         public EditViewModel(
             FormState formState,
-            Guid id,
+            Guid organisationId,
             string code,
             string name)
         {
             this.FormState = formState;
-            this.Id = id;
+            this.OrganisationId = organisationId;
             this.Code = code;
             this.Name = name;
         }
@@ -57,7 +57,7 @@ namespace Agenda.Web.ViewModels.Organisation
         /// Gets or sets the Organisation Id.
         /// </summary>
         [MyRequired]
-        public Guid Id { get; set; }
+        public Guid OrganisationId { get; set; }
 
         /// <summary>
         /// Gets or sets the Organisation Code.
@@ -97,7 +97,7 @@ namespace Agenda.Web.ViewModels.Organisation
 
             return new EditViewModel(
                 formState: FormState.Initial,
-                id: organisation.Id,
+                organisationId: organisation.Id,
                 code: organisation.Code,
                 name: organisation.Name);
         }
@@ -109,9 +109,9 @@ namespace Agenda.Web.ViewModels.Organisation
         public IOrganisation ToDomain()
         {
             return new Domain.DomainObjects.Organisations.Organisation(
-                this.Id,
-                this.Code,
-                this.Name);
+                id: this.OrganisationId,
+                code: this.Code,
+                name: this.Name);
         }
 
         #endregion Public Methods

@@ -1,0 +1,42 @@
+﻿@using Agenda.Web.Models
+@using Agenda.Web.Views.LocationOverview
+@model Agenda.Web.ViewModels.LocationOverview.IndexViewModel
+
+<main class="container-fluid flex-grow-1">
+    <h1>@Html.DisplayNameFor(m => m.PageTitle)</h1>
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div class="card card-default">
+                <div class="card-header">
+                    <h5><span class="@Icon.Committee"></span> @Model.OrganisationName</h5>
+                </div>
+                <div class="card-body">
+                    @if (Model.LocationViewModels.Any())
+                    {
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>@Html.DisplayNameFor(m => m.ActionTitle)</th>
+                                <th>@Html.DisplayNameFor(m => m.LocationName)</th>
+                                <th>@Html.DisplayNameFor(m => m.LocationAddress)</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach (LocationViewModel locationViewModel in Model.LocationViewModels)
+                            {
+                                @await Html.PartialAsync("_Location", locationViewModel)
+                            }
+                            </tbody>
+                        </table>
+                    }
+                    <a asp-controller="Location"
+                       asp-action="StartAdd"
+                       asp-route-organisationId="@Model.OrganisationId"
+                       class="btn btn-primary">
+                        Add New Location
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
