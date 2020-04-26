@@ -63,6 +63,15 @@
         <member name="M:Agenda.Data.Crud.AgendaData.UpdateCommitteeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Committees.ICommittee)">
             <inheritdoc/>
         </member>
+        <member name="M:Agenda.Data.Crud.AgendaData.CreateLocationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Locations.ILocation)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Data.Crud.AgendaData.GetLocationByIdAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Data.Crud.AgendaData.UpdateLocationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Locations.ILocation)">
+            <inheritdoc/>
+        </member>
         <member name="M:Agenda.Data.Crud.AgendaData.CreateMeetingAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Meetings.IMeeting)">
             <inheritdoc/>
         </member>
@@ -98,7 +107,7 @@
         </member>
         <member name="T:Agenda.Data.Crud.IAgendaData">
             <summary>
-            Data access.
+            Data access - Committee.
             </summary>
             <summary>
             Data access.
@@ -143,10 +152,34 @@
         </member>
         <member name="M:Agenda.Data.Crud.IAgendaData.UpdateCommitteeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Committees.ICommittee)">
             <summary>
-            Updates the Committee asynchronous.
+            Updates the Committee.
             </summary>
             <param name="who">Who details.</param>
             <param name="committee">The committee.</param>
+            <returns>Nothing.</returns>
+        </member>
+        <member name="M:Agenda.Data.Crud.IAgendaData.CreateLocationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Locations.ILocation)">
+            <summary>
+            Creates the Location.
+            </summary>
+            <param name="who">Who details.</param>
+            <param name="location">Location.</param>
+            <returns>Nothing.</returns>
+        </member>
+        <member name="M:Agenda.Data.Crud.IAgendaData.GetLocationByIdAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
+            <summary>
+            Gets the Location by Id.
+            </summary>
+            <param name="who">Who details.</param>
+            <param name="locationId">Location Id.</param>
+            <returns>Location.</returns>
+        </member>
+        <member name="M:Agenda.Data.Crud.IAgendaData.UpdateLocationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Locations.ILocation)">
+            <summary>
+            Updates the Location.
+            </summary>
+            <param name="who">Who details.</param>
+            <param name="location">The Location.</param>
             <returns>Nothing.</returns>
         </member>
         <member name="M:Agenda.Data.Crud.IAgendaData.CreateMeetingAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Meetings.IMeeting)">

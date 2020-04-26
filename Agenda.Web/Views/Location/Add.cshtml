@@ -1,0 +1,108 @@
+﻿@using Agenda.Web.Models
+@using Metadata = Agenda.Domain.DomainObjects.Locations.DomainMetadata
+@model Agenda.Web.ViewModels.Location.AddViewModel
+
+<main class="container-fluid flex-grow-1">
+    <h1>Add Location</h1>
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-9 col-md-7 col-lg-5 col-xl-4">
+            <div class="card card-default">
+                <div class="card-header"><h5>Location</h5></div>
+                <div class="card-body">
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="close">&times;</button>
+                            @Html.ValidationSummary(false, "Errors: ")
+                        </div>
+                    }
+                    @using (Html.BeginForm("Add", "Location", FormMethod.Post))
+                    {
+                        <input type="hidden" value="@FormState.SubmittedBySubmitButton" name="FormState" />
+                        <input type="hidden" value="@Model.OrganisationId" name="OrganisationId" />
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.OrganisationName)
+                            @Html.TextBoxFor(m => m.OrganisationName,
+                                Model.OrganisationName,
+                                new
+                                {
+                                    @class = "form-control",
+                                    disabled = "disabled"
+                                })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Name)
+                            @Html.TextBoxFor(m => m.Name,
+                                Model.Name,
+                                new
+                                {
+                                    @class = "form-control",
+                                    maxLength = Metadata.Name.MaxLength
+                                })
+                            @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Address)
+                            @Html.TextBoxFor(m => m.Address,
+                                Model.Address,
+                                new
+                                {
+                                    @class = "form-control",
+                                    maxLength = Metadata.Address.MaxLength
+                                })
+                            @Html.ValidationMessageFor(m => m.Address, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.What3WordsPart1)
+                            <div class="d-flex flex-row">
+                                <div>
+                                    @Html.TextBoxFor(m => m.What3WordsPart1,
+                                        Model.What3WordsPart1,
+                                        new
+                                        {
+                                            @class = "form-control",
+                                            maxLength = Metadata.What3Words.Part.MaxLength
+                                        })
+                                    @Html.ValidationMessageFor(m => m.What3WordsPart1, null, new { @class = "text-danger" })
+                                </div>
+                                <div>
+                                    @Html.TextBoxFor(m => m.What3WordsPart2,
+                                        Model.What3WordsPart2,
+                                        new
+                                        {
+                                            @class = "form-control",
+                                            maxLength = Metadata.What3Words.Part.MaxLength
+                                        })
+                                    @Html.ValidationMessageFor(m => m.What3WordsPart2, null, new { @class = "text-danger" })
+                                </div>
+                                <div>
+                                    @Html.TextBoxFor(m => m.What3WordsPart3,
+                                        Model.What3WordsPart3,
+                                        new
+                                        {
+                                            @class = "form-control",
+                                            maxLength = Metadata.What3Words.Part.MaxLength
+                                        })
+                                    @Html.ValidationMessageFor(m => m.What3WordsPart3, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group d-flex flex-row">
+                            <div>
+                                @Html.LabelFor(m => m.Latitude)
+                                @Html.TextBoxFor(m => m.Latitude, Model.Latitude.ToString(), new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Latitude, null, new { @class = "text-danger" })
+                            </div>
+                              <div>
+                                @Html.LabelFor(m => m.Longitude)
+                                @Html.TextBoxFor(m => m.Longitude, Model.Longitude.ToString(), new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Longitude, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" type="submit">Add Location</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

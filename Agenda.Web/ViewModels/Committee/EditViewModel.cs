@@ -97,7 +97,7 @@ namespace Agenda.Web.ViewModels.Committee
         /// <summary>
         /// Creates the view model.
         /// </summary>
-        /// <param name="committee">Organisation.</param>
+        /// <param name="committee">Committee.</param>
         /// <returns>Edit view model.</returns>
         public static EditViewModel Create(ICommittee committee)
         {

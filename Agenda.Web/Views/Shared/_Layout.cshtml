@@ -21,17 +21,10 @@
                 <a class="list-group-item list-group-item-action" asp-controller="Home" asp-action="Index">Dashboard</a>
                 <a class="list-group-item list-group-item-action" asp-controller="OrganisationOverview" asp-action="Index">Organisations</a>
             </div>
-            </nav>
+        </nav>
         @RenderBody()
     </div>
-    <footer class="d-flex flex-row justify-content-between">
-        <h1>Footer</h1>
-        <div class="d-block d-sm-none"><button type="button" class="btn btn-secondary">XS</button></div>
-        <div class="d-none d-sm-block d-md-none"><button type="button" class="btn btn-success">SM</button></div>
-        <div class="d-none d-md-block d-lg-none"><button type="button" class="btn btn-primary">MD</button></div>
-        <div class="d-none d-lg-block d-xl-none"><button type="button" class="btn btn-warning">LG</button></div>
-        <div class="d-none d-xl-block"><button type="button" class="btn btn-danger">XL</button></div>
-    </footer>
+    @await Html.PartialAsync("_footer")
 </div>
 
 <script src="~/lib/jquery/jquery.js"></script>

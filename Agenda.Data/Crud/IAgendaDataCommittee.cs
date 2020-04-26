@@ -10,7 +10,7 @@ using Agenda.Utilities.Models.Whos;
 namespace Agenda.Data.Crud
 {
     /// <summary>
-    /// Data access.
+    /// Data access - Committee.
     /// </summary>
     public partial interface IAgendaData
     {
@@ -61,7 +61,7 @@ namespace Agenda.Data.Crud
         #region Update
 
         /// <summary>
-        /// Updates the Committee asynchronous.
+        /// Updates the Committee.
         /// </summary>
         /// <param name="who">Who details.</param>
         /// <param name="committee">The committee.</param>

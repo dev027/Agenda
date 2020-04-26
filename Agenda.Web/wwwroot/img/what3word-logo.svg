@@ -1,0 +1,32 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 87.77 87.77">
+    <defs>
+        <style>
+            .cls-1 {
+                fill: none;
+            }
+
+            .cls-2 {
+                clip-path: url(#clip-path);
+            }
+
+            .cls-3 {
+                fill: #e11f26;
+            }
+        </style>
+        <clipPath id="clip-path" transform="translate(-29.25 -29.25)">
+            <rect class="cls-1" width="146.27" height="146.27"/>
+        </clipPath>
+    </defs>
+    <title>w3w_SymbolSolid_RGB_Red</title>
+    <g id="Layer_2" data-name="Layer 2">
+        <g id="artwork">
+            <g id="Symbol_Solid_Navy" data-name="Symbol Solid Navy">
+                <g class="cls-2">
+                    <g class="cls-2">
+                        <path class="cls-3" d="M29.25,117H117V29.25H29.25ZM64.77,57.55l-11,32.91a2.73,2.73,0,0,1-2.6,1.87,2.64,2.64,0,0,1-.87-.14,2.75,2.75,0,0,1-1.74-3.47l11-32.91a2.74,2.74,0,1,1,5.2,1.74m16.46,0-11,32.91a2.73,2.73,0,0,1-2.6,1.87,2.58,2.58,0,0,1-.86-.14,2.74,2.74,0,0,1-1.74-3.47L76,55.81a2.75,2.75,0,0,1,5.21,1.74m16.45,0-11,32.91a2.73,2.73,0,0,1-2.6,1.87,2.64,2.64,0,0,1-.87-.14,2.73,2.73,0,0,1-1.73-3.47l11-32.91a2.74,2.74,0,0,1,5.2,1.74" transform="translate(-29.25 -29.25)"/>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

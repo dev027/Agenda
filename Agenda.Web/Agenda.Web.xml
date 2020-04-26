@@ -354,6 +354,72 @@
             </summary>
             <returns>Default View.</returns>
         </member>
+        <member name="T:Agenda.Web.Controllers.LocationController">
+            <summary>
+            Meetings.
+            </summary>
+            <seealso cref="T:Microsoft.AspNetCore.Mvc.Controller" />
+        </member>
+        <member name="M:Agenda.Web.Controllers.LocationController.#ctor(Microsoft.Extensions.Logging.ILogger{Agenda.Web.Controllers.LocationController},Agenda.Service.IAgendaService,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.Controllers.LocationController"/> class.
+            </summary>
+            <param name="logger">Logger.</param>
+            <param name="service">Agenda Service.</param>
+            <param name="isTestMode">Is Test Mode.</param>
+        </member>
+        <member name="M:Agenda.Web.Controllers.LocationController.Index(System.Guid)">
+            <summary>
+            Display the specified Location.
+            </summary>
+            <param name="locationId">Location Id.</param>
+            <returns>View.</returns>
+        </member>
+        <member name="M:Agenda.Web.Controllers.LocationController.StartAdd(System.Guid)">
+            <summary>
+            Starts the add.
+            </summary>
+            <param name="organisationId">Organisation Id.</param>
+            <returns>Redirect To Action.</returns>
+        </member>
+        <member name="M:Agenda.Web.Controllers.LocationController.Add(Agenda.Web.ViewModels.Location.AddViewModel)">
+            <summary>
+            Adds Location.
+            </summary>
+            <param name="model">Add view model.</param>
+            <returns>View.</returns>
+        </member>
+        <member name="M:Agenda.Web.Controllers.LocationController.StartEdit(System.Guid,System.Int32)">
+            <summary>
+            Starts the edit.
+            </summary>
+            <param name="locationId">The Location Id.</param>
+            <param name="ajaxMode">AJAX mode(0=No; 1=Yes).</param>
+            <returns>View.</returns>
+        </member>
+        <member name="M:Agenda.Web.Controllers.LocationController.Edit(Agenda.Web.ViewModels.Location.EditViewModel)">
+            <summary>
+            Edits the specified Location.
+            </summary>
+            <param name="model">Edit view model.</param>
+            <returns>View.</returns>
+        </member>
+        <member name="M:Agenda.Web.Controllers.LocationController.InsertRecordAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Web.ViewModels.Location.AddViewModel)">
+            <summary>
+            Insert Location.
+            </summary>
+            <param name="who">Who Details.</param>
+            <param name="model">Add view model.</param>
+            <returns>Nothing.</returns>
+        </member>
+        <member name="M:Agenda.Web.Controllers.LocationController.UpdateRecordAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Web.ViewModels.Location.EditViewModel)">
+            <summary>
+            Update Location.
+            </summary>
+            <param name="who">Who Details.</param>
+            <param name="model">Edit view model.</param>
+            <returns>Nothing.</returns>
+        </member>
         <member name="T:Agenda.Web.Controllers.LocationOverviewController">
             <summary>
             SOMETHING.
@@ -713,6 +779,27 @@
               Looks up a localized string similar to Please enter a {0} between {2} and {1} characters..
             </summary>
         </member>
+        <member name="T:Agenda.Web.Resources.ExceptionResource">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.Resources.ExceptionResource.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.Resources.ExceptionResource.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.Resources.ExceptionResource.CannotConvertTo___When___IsNull">
+            <summary>
+              Looks up a localized string similar to Cannot convert to  {0} when {1} is null..
+            </summary>
+        </member>
         <member name="T:Agenda.Web.Startup">
             <summary>
             Web application startup routines.
@@ -846,7 +933,7 @@
             <summary>
             Creates the view model.
             </summary>
-            <param name="committee">Organisation.</param>
+            <param name="committee">Committee.</param>
             <returns>Edit view model.</returns>
         </member>
         <member name="M:Agenda.Web.ViewModels.Committee.EditViewModel.ToDomain(Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
@@ -1012,6 +1099,253 @@
             Creates the Index view model.
             </summary>
             <param name="organisation">Organisation with Locations.</param>
+            <returns>Index view model.</returns>
+        </member>
+        <member name="T:Agenda.Web.ViewModels.Location.AddViewModel">
+            <summary>
+            Add view model.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Location.AddViewModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Location.AddViewModel"/> class.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Location.AddViewModel.#ctor(Agenda.Web.Models.FormState,System.Guid,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Double},System.Nullable{System.Double})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Location.AddViewModel"/> class.
+            </summary>
+            <param name="formState">Form State.</param>
+            <param name="organisationId">Organisation Id.</param>
+            <param name="organisationName">Organisation Name.</param>
+            <param name="name">Location Name.</param>
+            <param name="address">Address.</param>
+            <param name="what3WordsPart1">What3Words Address Part 1.</param>
+            <param name="what3WordsPart2">What3Words Address Part 2.</param>
+            <param name="what3WordsPart3">What3Words Address Part 3.</param>
+            <param name="latitude">Latitude.</param>
+            <param name="longitude">Longitude.</param>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Location.AddViewModel.FormState">
+            <summary>
+            Gets or sets the Form State.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Location.AddViewModel.OrganisationId">
+            <summary>
+            Gets or sets the Organisation Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Location.AddViewModel.OrganisationName">
+            <summary>
+            Gets or sets the Organisation Name.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Location.AddViewModel.Name">
+            <summary>
+            Gets or sets the Location Name.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Location.AddViewModel.Address">
+            <summary>
+            Gets or sets the Address.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Location.AddViewModel.What3WordsPart1">
+            <summary>
+            Gets or sets the What3Words Address Part 1.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Location.AddViewModel.What3WordsPart2">
+            <summary>
+            Gets or sets the What3Words Address Part 2.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Location.AddViewModel.What3WordsPart3">
+            <summary>
+            Gets or sets the What3Words Address Part 3.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Location.AddViewModel.Latitude">
+            <summary>
+            Gets or sets the Latitude.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Location.AddViewModel.Longitude">
+            <summary>
+            Gets or sets the Longitude.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Location.AddViewModel.Create(Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
+            <summary>
+            Creates Add view model.
+            </summary>
+            <param name="organisation">Organisation.</param>
+            <returns>Add view model.</returns>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Location.AddViewModel.ToDomain(Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
+            <summary>
+            Converts view model to Location domain object.
+            </summary>
+            <param name="organisation">Organisation.</param>
+            <returns>Location domain object.</returns>
+        </member>
+        <member name="T:Agenda.Web.ViewModels.Location.EditViewModel">
+            <summary>
+            Add view model.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Location.EditViewModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Location.EditViewModel"/> class.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Location.EditViewModel.#ctor(Agenda.Web.Models.FormState,System.Guid,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Double},System.Nullable{System.Double})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Location.EditViewModel"/> class.
+            </summary>
+            <param name="formState">Form State.</param>
+            <param name="locationId">Location Id.</param>
+            <param name="organisationName">Organisation Name.</param>
+            <param name="name">Location Name.</param>
+            <param name="address">Address.</param>
+            <param name="what3WordsPart1">What3Words Address Part 1.</param>
+            <param name="what3WordsPart2">What3Words Address Part 2.</param>
+            <param name="what3WordsPart3">What3Words Address Part 3.</param>
+            <param name="latitude">Latitude.</param>
+            <param name="longitude">Longitude.</param>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Location.EditViewModel.FormState">
+            <summary>
+            Gets or sets the Form State.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Location.EditViewModel.LocationId">
+            <summary>
+            Gets or sets the Location Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Location.EditViewModel.OrganisationName">
+            <summary>
+            Gets or sets the Organisation Name.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Location.EditViewModel.Name">
+            <summary>
+            Gets or sets the Location Name.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Location.EditViewModel.Address">
+            <summary>
+            Gets or sets the Address.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Location.EditViewModel.What3WordsPart1">
+            <summary>
+            Gets or sets the What3Words Address Part 1.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Location.EditViewModel.What3WordsPart2">
+            <summary>
+            Gets or sets the What3Words Address Part 2.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Location.EditViewModel.What3WordsPart3">
+            <summary>
+            Gets or sets the What3Words Address Part 3.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Location.EditViewModel.Latitude">
+            <summary>
+            Gets or sets the Latitude.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Location.EditViewModel.Longitude">
+            <summary>
+            Gets or sets the Longitude.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Location.EditViewModel.Create(Agenda.Domain.DomainObjects.Locations.ILocation)">
+            <summary>
+            Creates the view model.
+            </summary>
+            <param name="location">Location.</param>
+            <returns>Edit view model.</returns>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Location.EditViewModel.ToDomain(Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
+            <summary>
+            Converts instance to Location domain object.
+            </summary>
+            <param name="organisation">Organisation.</param>
+            <returns>Committee domain object.</returns>
+        </member>
+        <member name="T:Agenda.Web.ViewModels.Location.IndexViewModel">
+            <summary>
+            Index view model.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Location.IndexViewModel.#ctor(System.Guid,System.String,System.String,System.String,System.String,System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Location.IndexViewModel"/> class.
+            </summary>
+            <param name="locationId">Location Id.</param>
+            <param name="organisationName">Organisation Name.</param>
+            <param name="name">Location Name.</param>
+            <param name="address">Address.</param>
+            <param name="what3Words">What3Words Address.</param>
+            <param name="latitude">Latitude.</param>
+            <param name="longitude">Longitude.</param>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Location.IndexViewModel.PageTitle">
+            <summary>
+            Gets the Page Title.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Location.IndexViewModel.CardTitle">
+            <summary>
+            Gets the Card Title.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Location.IndexViewModel.LocationId">
+            <summary>
+            Gets the Location Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Location.IndexViewModel.OrganisationName">
+            <summary>
+            Gets the Organisation Name.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Location.IndexViewModel.Name">
+            <summary>
+            Gets the Location Name.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Location.IndexViewModel.Address">
+            <summary>
+            Gets the Address.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Location.IndexViewModel.What3Words">
+            <summary>
+            Gets the What3Words Address.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Location.IndexViewModel.Latitude">
+            <summary>
+            Gets the Latitude.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Location.IndexViewModel.Longitude">
+            <summary>
+            Gets the Longitude.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Location.IndexViewModel.Create(Agenda.Domain.DomainObjects.Locations.ILocation)">
+            <summary>
+            Creates Index view model.
+            </summary>
+            <param name="location">Location.</param>
             <returns>Index view model.</returns>
         </member>
         <member name="T:Agenda.Web.ViewModels.Meeting.AddViewModel">
