@@ -1,5 +1,6 @@
 ﻿@using Agenda.Web.Models
 @using Agenda.Web.ViewModels.Location
+@using Agenda.Domain.DomainObjects.Locations
 @model IndexViewModel
 
     <main class="container-fluid flex-grow-1">
@@ -25,7 +26,7 @@
                             <label>@Html.DisplayNameFor(m => m.What3Words)</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text"><img src="/img/what3word-logo.svg" alt="///" style="width: 1.5rem;" /></span>
+                                    <span class="input-group-text"><img src="/img/what3word-logo.svg" alt="@DomainMetadata.What3Words.Prefix" style="width: 1.5rem;" /></span>
                                 </div>
                                 <div class="form-control">@Model.What3Words</div>
                             </div>

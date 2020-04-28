@@ -59,7 +59,7 @@
                                 <div>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><img src="/img/what3word-logo.svg" alt="///" style="width: 1.5rem;" /></span>
+                                            <span class="input-group-text"><img src="/img/what3word-logo.svg" alt="@Metadata.What3Words.Prefix" style="width: 1.5rem;" /></span>
                                         </div>
                                         @Html.TextBoxFor(m => m.What3WordsPart1,
                                             Model.What3WordsPart1,
@@ -72,7 +72,7 @@
 
                                     @Html.ValidationMessageFor(m => m.What3WordsPart1, null, new { @class = "text-danger" })
                                 </div>
-                                <div>&nbsp;.&nbsp;</div>
+                                <div>&nbsp;@Metadata.What3Words.Separator&nbsp;</div>
                                 <div>
                                     @Html.TextBoxFor(m => m.What3WordsPart2,
                                         Model.What3WordsPart2,
@@ -84,7 +84,7 @@
 
                                     @Html.ValidationMessageFor(m => m.What3WordsPart2, null, new { @class = "text-danger" })
                                 </div>
-                                <div>&nbsp;.&nbsp;</div>
+                                <div>&nbsp;@Metadata.What3Words.Separator&nbsp;</div>
                                 <div>
                                     @Html.TextBoxFor(m => m.What3WordsPart3,
                                         Model.What3WordsPart3,
