@@ -121,7 +121,7 @@ namespace Agenda.Web.Controllers
                 if (this.ModelState.IsValid)
                 {
                     this.logger.LogDebug(
-                        "{@Who} inserting model {@Model}",
+                        "{@who} inserting model {@Model}",
                         who,
                         model);
 

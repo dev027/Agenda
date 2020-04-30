@@ -76,7 +76,7 @@ namespace Agenda.Web.Controllers
             logger.LogDebug(
                 "EXIT {ActionName}: " +
                 "Redirect to {RedirectControllerName}/{RedirectActionName}, " +
-                "RouteValue {RouteValue} by {@Who}",
+                "RouteValue {RouteValue} by {@who}",
                 this.who.ActionName,
                 redirectToAction.ControllerName ?? this.who.ControllerName,
                 redirectToAction.ActionName,
@@ -103,7 +103,7 @@ namespace Agenda.Web.Controllers
 
             logger.LogDebug(
                 "EXIT {ActionName}: " +
-                "View {ViewName}, Model: {@Model}, Status: {StatusCode} by {@Who}",
+                "View {ViewName}, Model: {@Model}, Status: {StatusCode} by {@who}",
                 this.who.ActionName,
                 view.ViewName ?? this.who.ActionName,
                 view.Model,
