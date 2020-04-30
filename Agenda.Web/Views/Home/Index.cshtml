@@ -1,24 +1,44 @@
-﻿@model Agenda.Web.Areas.Api.Models.Home.IndexViewModel
+﻿@using Agenda.Web.Models
+@model Agenda.Web.Areas.Api.Models.Home.IndexViewModel
 @{
+}
+@section BreadCrumb
+{
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">
+                <span class="@Icon.Dashboard"></span>
+                Dashboard
+            </li>
+        </ol>
+    </nav>
+    <nav class="actionsnavbar">
+        <div class="list-group list-group-horizontal">
+            <a class="list-group-item list-group-item-info"
+               asp-controller="OrganisationOverview"
+               asp-action="Index">
+                <span class="@Icon.Organisation"></span> Organisations
+            </a>
+        </div>
+    </nav>
 }
 
 
-    
 
-    
 
-        <main class="container-fluid flex-grow-1">
-            @if (Model.MeetingCardViewModels.Any())
-            {
 
-                <p>Have @Model.MeetingCardViewModels.Count meetings</p>
-            }
-            else
-            {
-                @await Html.PartialAsync("_NoRecentMeetings", Model.NoRecentMeetingsViewModel)
-            }
+<main class="container-fluid flex-grow-1">
+    @if (Model.MeetingCardViewModels.Any())
+    {
 
-        </main>
+        <p>Have @Model.MeetingCardViewModels.Count meetings</p>
+    }
+    else
+    {
+        @await Html.PartialAsync("_NoRecentMeetings", Model.NoRecentMeetingsViewModel)
+    }
+
+</main>
 
 
 

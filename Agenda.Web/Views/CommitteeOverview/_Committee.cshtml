@@ -1,0 +1,15 @@
+﻿@using Agenda.Web.Models
+@model Agenda.Web.ViewModels.CommitteeOverview.CommitteeViewModel
+
+<tr>
+    <td class="td-min">
+        <a class="btn btn-secondary btn-sm"
+           asp-controller="Committee"
+           asp-action="Index"
+           asp-route-committeeId="@Model.CommitteeId">
+            <i class="@Icon.View"></i>
+            View
+        </a>
+    </td>
+    <td>@Model.Name<br /><i>@Model.Description</i></td>
+</tr>

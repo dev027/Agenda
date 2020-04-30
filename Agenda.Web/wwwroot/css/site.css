@@ -26,10 +26,24 @@ main {
     background-color: purple;
 }
 
+.wrapper {
+    background-color: white;
+}
+
 .topnavbar {
     color: white;
     background-color: #23b7e5;
     background-image: linear-gradient(to right, #23b7e5 0, #51c6ea 100%);
+}
+
+.actionsnavbar {
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+}
+
+.td-min {
+    width: 1%;
+    white-space: nowrap;
 }
 
 main {

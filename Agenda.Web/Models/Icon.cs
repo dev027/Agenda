@@ -25,6 +25,16 @@ namespace Agenda.Web.Models
         public const string Meeting = "fas fa-file";
 
         /// <summary>
+        /// Location.
+        /// </summary>
+        public const string Location = "fas fa-map-marked-alt";
+
+        /// <summary>
+        /// Dashboard.
+        /// </summary>
+        public const string Dashboard = "fas fa-chess-board";
+
+        /// <summary>
         /// Edit.
         /// </summary>
         public const string Edit = "fas fa-edit";
@@ -43,5 +53,15 @@ namespace Agenda.Web.Models
         /// Cancel.
         /// </summary>
         public const string Cancel = "fas fa-times";
+
+        /// <summary>
+        /// Date.
+        /// </summary>
+        public const string Date = "fas fa-calendar-alt";
+
+        /// <summary>
+        /// Time.
+        /// </summary>
+        public const string Time = "fas fa-clock";
     }
 }

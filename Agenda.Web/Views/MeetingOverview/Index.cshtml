@@ -1,6 +1,6 @@
 ﻿@using Agenda.Web.Models
-@using Agenda.Web.ViewModels.LocationOverview
-@model Agenda.Web.ViewModels.LocationOverview.IndexViewModel
+@using Agenda.Web.ViewModels.MeetingOverview
+@model IndexViewModel
 
 @section BreadCrumb
 {
@@ -16,55 +16,55 @@
                    asp-action="Index"
                    asp-route-organisationId="@Model.OrganisationId">@Model.OrganisationName</a>
             </li>
+            <li class="breadcrumb-item">
+                <span class="@Icon.Committee"></span>
+                <a asp-controller="CommitteeOverview"
+                   asp-action="Index"
+                   asp-route-organisationId="@Model.OrganisationId">Committees</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a asp-controller="Committee"
+                   asp-action="Index"
+                   asp-route-committeeId="@Model.CommitteeId">@Model.CommitteeName</a>
+            </li>
             <li class="breadcrumb-item active" aria-current="page">
-                <span class="@Icon.Location"></span>
-                Locations
+                <span class="@Icon.Meeting"></span>
+                Meetings
             </li>
         </ol>
-    </nav>
-    <nav class="actionsnavbar">
-        <div class="list-group list-group-horizontal">
-            <a class="list-group-item list-group-item-info"
-               asp-controller="Home"
-               asp-action="Index">
-                <span class="@Icon.Dashboard"></span> Dashboard
-            </a>
-        </div>
     </nav>
 }
 
 <main class="container-fluid flex-grow-1">
-    <h1>@Html.DisplayNameFor(m => m.PageTitle)</h1>
     <div class="row justify-content-center">
-        <div class="col-12">
+        <div class="col-12 col-lg-6 col-xl-5">
             <div class="card card-default">
                 <div class="card-header">
-                    <h5><span class="@Icon.Committee"></span> @Model.OrganisationName</h5>
+                    <h5><span class="@Icon.Meeting"></span> Meetings</h5>
                 </div>
                 <div class="card-body">
-                    @if (Model.LocationViewModels.Any())
+                    @if (Model.MeetingViewModels.Any())
                     {
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>@Html.DisplayNameFor(m => m.ActionTitle)</th>
-                                    <th>@Html.DisplayNameFor(m => m.LocationName)</th>
-                                    <th>@Html.DisplayNameFor(m => m.LocationAddress)</th>
+                                    <th class="td-min">Action</th>
+                                    <th>Details</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (LocationViewModel locationViewModel in Model.LocationViewModels)
+                                @foreach (MeetingViewModel meetingViewModel in Model.MeetingViewModels)
                                 {
-                                    @await Html.PartialAsync("_Location", locationViewModel)
+                                    @await Html.PartialAsync("_Meeting", meetingViewModel)
                                 }
                             </tbody>
                         </table>
                     }
-                    <a asp-controller="Location"
+                    <a asp-controller="Meeting"
                        asp-action="StartAdd"
-                       asp-route-organisationId="@Model.OrganisationId"
+                       asp-route-committeeId="@Model.CommitteeId"
                        class="btn btn-primary">
-                        Add New Location
+                        Add New Meeting
                     </a>
                 </div>
             </div>

@@ -6,7 +6,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using Agenda.Domain.DomainObjects.Locations;
 
-namespace Agenda.Web.Views.LocationOverview
+namespace Agenda.Web.ViewModels.LocationOverview
 {
     /// <summary>
     /// Location view model.

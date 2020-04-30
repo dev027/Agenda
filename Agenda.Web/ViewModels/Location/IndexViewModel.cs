@@ -17,6 +17,7 @@ namespace Agenda.Web.ViewModels.Location
         /// Initializes a new instance of the <see cref="IndexViewModel"/> class.
         /// </summary>
         /// <param name="locationId">Location Id.</param>
+        /// <param name="organisationId">Organisation Id.</param>
         /// <param name="organisationName">Organisation Name.</param>
         /// <param name="name">Location Name.</param>
         /// <param name="address">Address.</param>
@@ -25,6 +26,7 @@ namespace Agenda.Web.ViewModels.Location
         /// <param name="longitude">Longitude.</param>
         public IndexViewModel(
             Guid locationId,
+            Guid organisationId,
             string organisationName,
             string name,
             string address,
@@ -33,6 +35,7 @@ namespace Agenda.Web.ViewModels.Location
             double longitude)
         {
             this.LocationId = locationId;
+            this.OrganisationId = organisationId;
             this.OrganisationName = organisationName;
             this.Name = name;
             this.Address = address;
@@ -57,6 +60,11 @@ namespace Agenda.Web.ViewModels.Location
         /// Gets the Location Id.
         /// </summary>
         public Guid LocationId { get; }
+
+        /// <summary>
+        /// Gets the Organisation Id.
+        /// </summary>
+        public Guid OrganisationId { get; }
 
         /// <summary>
         /// Gets the Organisation Name.
@@ -102,13 +110,14 @@ namespace Agenda.Web.ViewModels.Location
             }
 
             return new IndexViewModel(
-                location.Id,
-                location.Organisation.Name,
-                location.Name,
-                location.Address,
-                location.What3Words,
-                location.Latitude,
-                location.Longitude);
+                locationId: location.Id,
+                organisationId: location.Organisation.Id,
+                organisationName: location.Organisation.Name,
+                name: location.Name,
+                address: location.Address,
+                what3Words: location.What3Words,
+                latitude: location.Latitude,
+                longitude: location.Longitude);
         }
     }
 }

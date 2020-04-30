@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using Agenda.Domain.DomainObjects.Meetings;
 
-namespace Agenda.Web.ViewModels.Committee
+namespace Agenda.Web.ViewModels.MeetingOverview
 {
     /// <summary>
     /// Committee view model.

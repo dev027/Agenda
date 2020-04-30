@@ -16,7 +16,7 @@ using Microsoft.Extensions.Logging;
 namespace Agenda.Web.Controllers
 {
     /// <summary>
-    /// SOMETHING.
+    /// Committee Controller.
     /// </summary>
     /// <seealso cref="Controller" />
     public class CommitteeController : ControllerBase

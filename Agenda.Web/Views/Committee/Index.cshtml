@@ -2,8 +2,50 @@
 @using Agenda.Web.ViewModels.Committee
 @model IndexViewModel
 
+@section BreadCrumb
+{
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <span class="@Icon.Organisation"></span>
+                <a asp-controller="OrganisationOverview"
+                   asp-action="Index">Organisations</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a asp-controller="Organisation"
+                   asp-action="Index"
+                   asp-route-organisationId="@Model.OrganisationId">@Model.OrganisationName</a>
+            </li>
+            <li class="breadcrumb-item">
+                <span class="@Icon.Committee"></span>
+                <a asp-controller="CommitteeOverview"
+                   asp-action="Index"
+                   asp-route-organisationId="@Model.OrganisationId">Committees</a>
+            </li>
+            <li class="breadcrumb-item" aria-current="page">
+                @Model.Name
+            </li>
+        </ol>
+    </nav>
+    <nav class="actionsnavbar">
+        <div class="list-group list-group-horizontal">
+            <a class="list-group-item list-group-item-info"
+               asp-controller="Home"
+               asp-action="Index">
+                <span class="@Icon.Dashboard"></span> Dashboard
+            </a>
+            <a class="list-group-item list-group-item-info"
+               asp-controller="MeetingOverview"
+               asp-action="Index"
+               asp-route-committeeId="@Model.CommitteeId">
+                <span class="@Icon.Meeting"></span> Meetings
+            </a>
+        </div>
+    </nav>
+}
+
+
 <main class="container-fluid flex-grow-1">
-    <h1>@Html.DisplayNameFor(m => m.PageTitle)</h1>
     <div class="row justify-content-center">
         <div class="col-12 col-lg-6 col-xl-4">
             <div class="card card-default">
@@ -27,31 +69,6 @@
                        asp-route-ajaxMode="0"
                        class="btn btn-primary"><span class="@Icon.Edit"></span> Edit</a>
                 </div>
-            </div>
-        </div>
-        <div class="col-12 col-lg-6 col-xl-8">
-            <div class="card-header"><h5><span class="@Icon.Meeting"></span> Meetings</h5></div>
-            <div class="card-body">
-                <table class="table table-hover">
-                    <thead>
-                    <tr>
-                        <th>Action</th>
-                        <th>Name</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach (MeetingViewModel meetingViewModel in Model.MeetingViewModels)
-                    {
-                        @await Html.PartialAsync("_Meeting", meetingViewModel)
-                    }
-                    </tbody>
-                </table>
-                <a asp-controller="Meeting"
-                   asp-action="StartAdd"
-                   asp-route-committeeId="@Model.CommitteeId"
-                   class="btn btn-primary">
-                    Add New Meeting
-                </a>
             </div>
         </div>
     </div>

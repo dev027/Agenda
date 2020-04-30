@@ -8,10 +8,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Agenda.Domain.DomainObjects.Organisations;
 
-namespace Agenda.Web.ViewModels.LocationOverview
+namespace Agenda.Web.ViewModels.CommitteeOverview
 {
     /// <summary>
-    /// Index View Model.
+    /// Index view model.
     /// </summary>
     public class IndexViewModel
     {
@@ -20,40 +20,16 @@ namespace Agenda.Web.ViewModels.LocationOverview
         /// </summary>
         /// <param name="organisationId">Organisation Id.</param>
         /// <param name="organisationName">Organisation Name.</param>
-        /// <param name="locationViewModels">Location view models.</param>
+        /// <param name="committeeViewModels">Committee view models.</param>
         public IndexViewModel(
             Guid organisationId,
             string organisationName,
-            IList<LocationViewModel> locationViewModels)
+            IList<CommitteeViewModel> committeeViewModels)
         {
             this.OrganisationId = organisationId;
             this.OrganisationName = organisationName;
-            this.LocationViewModels = locationViewModels;
+            this.CommitteeViewModels = committeeViewModels;
         }
-
-        /// <summary>
-        /// Gets the Page Title.
-        /// </summary>
-        [Display(Name = "Locations")]
-        public string PageTitle { get; } = null;
-
-        /// <summary>
-        /// Gets the Action Title.
-        /// </summary>
-        [Display(Name = "Action")]
-        public string ActionTitle { get; } = null;
-
-        /// <summary>
-        /// Gets the Location Name.
-        /// </summary>
-        [Display(Name = "Name")]
-        public string LocationName { get; } = null;
-
-        /// <summary>
-        /// Gets the Location Address.
-        /// </summary>
-        [Display(Name = "Address")]
-        public string LocationAddress { get; } = null;
 
         /// <summary>
         /// Gets the Organisation Id.
@@ -63,19 +39,20 @@ namespace Agenda.Web.ViewModels.LocationOverview
         /// <summary>
         /// Gets the Organisation Name.
         /// </summary>
+        [Display(Name = "Organisation")]
         public string OrganisationName { get; }
 
         /// <summary>
-        /// Gets the Location view models.
+        /// Gets the Committee view models.
         /// </summary>
-        public IList<LocationViewModel> LocationViewModels { get; }
+        public IList<CommitteeViewModel> CommitteeViewModels { get; }
 
         /// <summary>
         /// Creates the Index view model.
         /// </summary>
-        /// <param name="organisation">Organisation with Locations.</param>
+        /// <param name="organisation">The organisation.</param>
         /// <returns>Index view model.</returns>
-        public static IndexViewModel Create(IOrganisationWithLocations organisation)
+        public static IndexViewModel Create(IOrganisationWithCommittees organisation)
         {
             if (organisation == null)
             {
@@ -85,7 +62,7 @@ namespace Agenda.Web.ViewModels.LocationOverview
             return new IndexViewModel(
                 organisationId: organisation.Id,
                 organisationName: organisation.Name,
-                locationViewModels: organisation.Locations.Select(LocationViewModel.Create).ToList());
+                committeeViewModels: organisation.Committees.Select(CommitteeViewModel.Create).ToList());
         }
     }
 }

@@ -1,9 +1,47 @@
 ﻿@using Agenda.Web.Models
 @using Agenda.Web.ViewModels.Organisation
-@model Agenda.Web.ViewModels.Organisation.IndexViewModel
+@model IndexViewModel
+
+@section BreadCrumb
+{
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <span class="@Icon.Organisation"></span>
+                <a asp-controller="OrganisationOverview"
+                   asp-action="Index">Organisations</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+                @Model.Name
+            </li>
+        </ol>
+    </nav>
+    <nav class="actionsnavbar">
+        <div class="list-group list-group-horizontal">
+            <a class="list-group-item list-group-item-info"
+               asp-controller="Home"
+               asp-action="Index">
+                <span class="@Icon.Dashboard"></span> Dashboard
+            </a>
+            <a class="list-group-item list-group-item-info"
+               asp-controller="CommitteeOverview"
+               asp-action="Index"
+               asp-route-organisationId="@Model.OrganisationId">
+                <span class="@Icon.Committee"></span> Committees
+            </a>
+
+            <a class="list-group-item list-group-item-info"
+               asp-controller="LocationOverview"
+               asp-action="Index"
+               asp-route-organisationId="@Model.OrganisationId">
+                <span class="@Icon.Location"></span> Locations
+            </a>
+
+        </div>
+    </nav>
+}
 
 <main class="container-fluid flex-grow-1">
-    <h1>@Html.DisplayNameFor(m => m.PageTitle)</h1>
     <div class="row justify-content-center">
         <div class="col-12 col-lg-6 col-xl-4">
             <div class="card card-default">
@@ -23,40 +61,8 @@
                            asp-route-organisationId="@Model.OrganisationId"
                            asp-route-ajaxMode="0"
                            class="btn btn-primary"><span class="@Icon.Edit"></span> Edit</a>
-                        <a asp-controller="LocationOverview"
-                           asp-action="Index"
-                           asp-route-organisationId="@Model.OrganisationId"
-                           class="btn btn-secondary">
-                            <i class="@Icon.View"></i> View Locations
-                        </a>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-12 col-lg-6 col-xl-8">
-            <div class="card-header"><h5><span class="@Icon.Committee"></span> Committees</h5></div>
-            <div class="card-body">
-                <table class="table table-hover">
-                    <thead>
-                    <tr>
-                        <th>Action</th>
-                        <th>Name</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach (CommitteeViewModel committeeViewModel in Model.CommitteeViewModels)
-                    {
-                        @await Html.PartialAsync("_Committee", committeeViewModel)
-                    }
-                    </tbody>
-                </table>
-                
-                <a asp-controller="Committee"
-                   asp-action="StartAdd"
-                   asp-route-organisationId="@Model.OrganisationId"
-                   class="btn btn-primary">
-                    Add New Committee
-                </a>
             </div>
         </div>
     </div>

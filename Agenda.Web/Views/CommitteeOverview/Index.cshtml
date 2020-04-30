@@ -1,0 +1,66 @@
+﻿@using Agenda.Web.Models
+@using Agenda.Web.ViewModels.CommitteeOverview
+@model Agenda.Web.ViewModels.CommitteeOverview.IndexViewModel
+
+@section BreadCrumb
+{
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <span class="@Icon.Organisation"></span>
+                <a asp-controller="OrganisationOverview"
+                   asp-action="Index">Organisations</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a asp-controller="Organisation"
+                   asp-action="Index"
+                   asp-route-organisationId="@Model.OrganisationId">@Model.OrganisationName</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+                <span class="@Icon.Committee"></span>
+                Committees
+            </li>
+        </ol>
+    </nav>
+    <nav class="actionsnavbar">
+        <div class="list-group list-group-horizontal">
+            <a class="list-group-item list-group-item-info"
+               asp-controller="Home"
+               asp-action="Index">
+                <span class="@Icon.Dashboard"></span> Dashboard
+            </a>
+        </div>
+    </nav>
+}
+
+
+<main class="container-fluid flex-grow-1">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-7">
+            <div class="card-header"><h5><span class="@Icon.Committee"></span> Committees</h5></div>
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th class="td-min">Action</th>
+                        <th>Name</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (CommitteeViewModel committeeViewModel in Model.CommitteeViewModels)
+                    {
+                        @await Html.PartialAsync("_Committee", committeeViewModel)
+                    }
+                    </tbody>
+                </table>
+
+                <a asp-controller="Committee"
+                   asp-action="StartAdd"
+                   asp-route-organisationId="@Model.OrganisationId"
+                   class="btn btn-primary">
+                    Add New Committee
+                </a>
+            </div>
+        </div>
+    </div>
+</main>

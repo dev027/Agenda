@@ -10,7 +10,7 @@ using Agenda.Domain.DomainObjects.Meetings;
 namespace Agenda.Web.ViewModels.Meeting
 {
     /// <summary>
-    /// View Meeint view model.
+    /// View Meeting view model.
     /// </summary>
     public class IndexViewModel
     {
@@ -18,21 +18,27 @@ namespace Agenda.Web.ViewModels.Meeting
         /// Initializes a new instance of the <see cref="IndexViewModel"/> class.
         /// </summary>
         /// <param name="meetingId">Meeting Id.</param>
+        /// <param name="organisationId">Organisation Id.</param>
         /// <param name="organisationName">Organisation Name.</param>
+        /// <param name="committeeId">Committee Id.</param>
         /// <param name="committeeName">Committee Name.</param>
         /// <param name="location">Location.</param>
         /// <param name="meetingDate">Meeting Date.</param>
         /// <param name="meetingTime">Meeting Time.</param>
         public IndexViewModel(
             Guid meetingId,
+            Guid organisationId,
             string organisationName,
+            Guid committeeId,
             string committeeName,
             string location,
             string meetingDate,
             string meetingTime)
         {
             this.MeetingId = meetingId;
+            this.OrganisationId = organisationId;
             this.OrganisationName = organisationName;
+            this.CommitteeId = committeeId;
             this.CommitteeName = committeeName;
             this.Location = location;
             this.MeetingDate = meetingDate;
@@ -57,10 +63,20 @@ namespace Agenda.Web.ViewModels.Meeting
         public Guid MeetingId { get; }
 
         /// <summary>
+        /// Gets the Organisation Id.
+        /// </summary>
+        public Guid OrganisationId { get; }
+
+        /// <summary>
         /// Gets the Organisation Name.
         /// </summary>
         [Display(Name = "Organisation")]
         public string OrganisationName { get; }
+
+        /// <summary>
+        /// Gets the Committee Id.
+        /// </summary>
+        public Guid CommitteeId { get; }
 
         /// <summary>
         /// Gets the Committee Name.
@@ -105,7 +121,9 @@ namespace Agenda.Web.ViewModels.Meeting
 
             return new IndexViewModel(
                 meetingId: meeting.Id,
+                organisationId: meeting.Committee.Organisation.Id,
                 organisationName: meeting.Committee.Organisation.Name,
+                committeeId: meeting.Committee.Id,
                 committeeName: meeting.Committee.Name,
                 location: meeting.Location,
                 meetingDate: date,

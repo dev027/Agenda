@@ -4,15 +4,13 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Agenda.Domain.DomainObjects.Committees;
-using Agenda.Web.ViewModels.MeetingOverview;
 
-namespace Agenda.Web.ViewModels.Committee
+namespace Agenda.Web.ViewModels.MeetingOverview
 {
     /// <summary>
-    /// View Organisation view model.
+    /// Index view model.
     /// </summary>
     public class IndexViewModel
     {
@@ -20,43 +18,33 @@ namespace Agenda.Web.ViewModels.Committee
         /// Initializes a new instance of the <see cref="IndexViewModel"/> class.
         /// </summary>
         /// <param name="committeeId">Committee Id.</param>
+        /// <param name="committeeName">Committee Name.</param>
         /// <param name="organisationId">Organisation Id.</param>
         /// <param name="organisationName">Organisation Name.</param>
-        /// <param name="name">Committee Name.</param>
-        /// <param name="description">Committee Description.</param>
         /// <param name="meetingViewModels">Meeting view models.</param>
         public IndexViewModel(
             Guid committeeId,
+            string committeeName,
             Guid organisationId,
             string organisationName,
-            string name,
-            string description,
             IList<MeetingViewModel> meetingViewModels)
         {
             this.CommitteeId = committeeId;
+            this.CommitteeName = committeeName;
             this.OrganisationId = organisationId;
             this.OrganisationName = organisationName;
-            this.Name = name;
-            this.Description = description;
             this.MeetingViewModels = meetingViewModels;
         }
-
-        /// <summary>
-        /// Gets the Page Title.
-        /// </summary>
-        [Display(Name = "View Committee")]
-        public string PageTitle { get; } = null;
-
-        /// <summary>
-        /// Gets the Card Title.
-        /// </summary>
-        [Display(Name = "Committee")]
-        public string CardTitle { get; } = null;
 
         /// <summary>
         /// Gets the Committee Id.
         /// </summary>
         public Guid CommitteeId { get; }
+
+        /// <summary>
+        /// Gets the Committee Name.
+        /// </summary>
+        public string CommitteeName { get; }
 
         /// <summary>
         /// Gets the Organisation Id.
@@ -66,20 +54,7 @@ namespace Agenda.Web.ViewModels.Committee
         /// <summary>
         /// Gets the Organisation Name.
         /// </summary>
-        [Display(Name = "Organisation")]
         public string OrganisationName { get; }
-
-        /// <summary>
-        /// Gets the Committee Name.
-        /// </summary>
-        [Display(Name = "Name")]
-        public string Name { get; }
-
-        /// <summary>
-        /// Gets Committee Description.
-        /// </summary>
-        [Display(Name = "Description")]
-        public string Description { get; }
 
         /// <summary>
         /// Gets the Meeting view models.
@@ -89,10 +64,9 @@ namespace Agenda.Web.ViewModels.Committee
         /// <summary>
         /// Creates the Index view model.
         /// </summary>
-        /// <param name="committee">Committee.</param>
-        /// <returns>View model.</returns>
-        public static IndexViewModel Create(
-            ICommitteeWithMeetings committee)
+        /// <param name="committee">The committee.</param>
+        /// <returns>Index view model.</returns>
+        public static IndexViewModel Create(ICommitteeWithMeetings committee)
         {
             if (committee == null)
             {
@@ -101,14 +75,10 @@ namespace Agenda.Web.ViewModels.Committee
 
             return new IndexViewModel(
                 committeeId: committee.Id,
+                committeeName: committee.Name,
                 organisationId: committee.Organisation.Id,
                 organisationName: committee.Organisation.Name,
-                name: committee.Name,
-                description: committee.Description,
-                meetingViewModels: committee.Meetings
-                    .OrderByDescending(m => m.MeetingDateTime)
-                    .Select(MeetingViewModel.Create)
-                    .ToList());
+                meetingViewModels: committee.Meetings.Select(MeetingViewModel.Create).ToList());
         }
     }
 }

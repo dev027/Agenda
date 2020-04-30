@@ -2,25 +2,52 @@
 @using Agenda.Web.ViewModels.OrganisationOverview
 @model IndexViewModel
 
-<main class="container-fluid flex-grow-1">
-    <h1><i class="@Icon.Organisation"></i> @Html.DisplayNameFor(m => m.PageTitle)</h1>
+@section BreadCrumb
+{
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page"><span class="@Icon.Organisation"></span>
+                Organisations
+            </li>
+        </ol>
+    </nav>
+    <nav class="actionsnavbar">
+        <div class="list-group list-group-horizontal">
+            <a class="list-group-item list-group-item-info"
+               asp-controller="Home"
+               asp-action="Index">
+                <span class="@Icon.Dashboard"></span> Dashboard
+            </a>
+        </div>
+    </nav>
+}
 
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <th>@Html.DisplayNameFor(m => m.ActionTitle)</th>
-            <th>@Html.DisplayNameFor(m => m.OrganisationCodeTitle)</th>
-            <th>@Html.DisplayNameFor(m => m.OrganisationNameTitle)</th>
-        </tr>
-        </thead>
-        <tbody>
-            @foreach (OrganisationViewModel organisationViewModel in Model.OrganisationViewModels)
-            {
-                @await Html.PartialAsync("_Organisation", organisationViewModel)
-            }
-        </tbody>
-    </table>
-    <a asp-controller="Organisation" asp-action="Add" class="btn btn-primary">
-        @Html.DisplayNameFor(m => m.AddNewOrganisationButtonText)
-    </a>
+<main class="container-fluid flex-grow-1">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8 col-xl-6">
+            <div class="card">
+                <div class="card-header"><h5><i class="@Icon.Organisation"></i> Organisations</h5></div>
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th class="td-min">@Html.DisplayNameFor(m => m.ActionTitle)</th>
+                            <th>@Html.DisplayNameFor(m => m.OrganisationCodeTitle)</th>
+                            <th>@Html.DisplayNameFor(m => m.OrganisationNameTitle)</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (OrganisationViewModel organisationViewModel in Model.OrganisationViewModels)
+                        {
+                            @await Html.PartialAsync("_Organisation", organisationViewModel)
+                        }
+                        </tbody>
+                    </table>
+                    <a asp-controller="Organisation" asp-action="Add" class="btn btn-primary">
+                        @Html.DisplayNameFor(m => m.AddNewOrganisationButtonText)
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
