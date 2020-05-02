@@ -32,12 +32,22 @@ namespace Agenda.Data.Tests.Dtos.MeetingTests
                 name: "TSC",
                 description: "Tournament Sub-Committee",
                 organisation: organisationDto);
+            LocationDto locationDto = new LocationDto(
+                id: Guid.NewGuid(),
+                organisationId: organisationDto.Id,
+                name: "Location",
+                address: "Address",
+                what3Words: "one.two.three",
+                latitude: 50,
+                longitude: -1,
+                organisation: organisationDto);
             MeetingDto meetingDto = new MeetingDto(
                 Guid.NewGuid(),
                 committeeId: committeeDto.Id,
+                locationId: locationDto.Id,
                 meetingDateTime: new DateTime(2019, 12, 30, 19, 15, 00),
-                location: "County Bridge Club - Committee Room",
-                committee: committeeDto);
+                committee: committeeDto,
+                location: locationDto);
 
             // ACT
             IMeeting meeting = meetingDto.ToDomain();
@@ -47,8 +57,9 @@ namespace Agenda.Data.Tests.Dtos.MeetingTests
             Assert.AreEqual(meetingDto.Id, meeting.Id);
             Assert.IsNotNull(meeting.Committee);
             Assert.AreEqual(meetingDto.CommitteeId, meeting.Committee.Id);
+            Assert.IsNotNull(meeting.Location);
+            Assert.AreEqual(meetingDto.LocationId, meeting.Location.Id);
             Assert.AreEqual(meetingDto.MeetingDateTime, meeting.MeetingDateTime);
-            Assert.AreEqual(meetingDto.Location, meeting.Location);
         }
 
         /// <summary>
@@ -59,12 +70,69 @@ namespace Agenda.Data.Tests.Dtos.MeetingTests
         public void Test_WithNull_Committee_Throws_Exception()
         {
             // ARRANGE
+            OrganisationDto organisationDto = new OrganisationDto(
+                id: Guid.NewGuid(),
+                code: "CBC",
+                name: "County Bridge Club");
+            CommitteeDto committeeDto = new CommitteeDto(
+                id: Guid.NewGuid(),
+                organisationId: organisationDto.Id,
+                name: "TSC",
+                description: "Tournament Sub-Committee",
+                organisation: organisationDto);
+            LocationDto locationDto = new LocationDto(
+                id: Guid.NewGuid(),
+                organisationId: organisationDto.Id,
+                name: "Location",
+                address: "Address",
+                what3Words: "one.two.three",
+                latitude: 50,
+                longitude: -1);
             MeetingDto meetingDto = new MeetingDto(
                 Guid.NewGuid(),
-                committeeId: Guid.NewGuid(),
+                committeeId: committeeDto.Id,
+                locationId: locationDto.Id,
                 meetingDateTime: new DateTime(2019, 12, 30, 19, 15, 00),
-                location: "County Bridge Club - Committee Room",
-                committee: null!);
+                committee: null!,
+                location: locationDto);
+
+            // ACT
+            _ = meetingDto.ToDomain();
+        }
+
+        /// <summary>
+        /// Tests the with null location throws exception.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void Test_WithNull_Location_Throws_Exception()
+        {
+            // ARRANGE
+            OrganisationDto organisationDto = new OrganisationDto(
+                id: Guid.NewGuid(),
+                code: "CBC",
+                name: "County Bridge Club");
+            CommitteeDto committeeDto = new CommitteeDto(
+                id: Guid.NewGuid(),
+                organisationId: organisationDto.Id,
+                name: "TSC",
+                description: "Tournament Sub-Committee",
+                organisation: organisationDto);
+            LocationDto locationDto = new LocationDto(
+                id: Guid.NewGuid(),
+                organisationId: organisationDto.Id,
+                name: "Location",
+                address: "Address",
+                what3Words: "one.two.three",
+                latitude: 50,
+                longitude: -1);
+            MeetingDto meetingDto = new MeetingDto(
+                Guid.NewGuid(),
+                committeeId: committeeDto.Id,
+                locationId: locationDto.Id,
+                meetingDateTime: new DateTime(2019, 12, 30, 19, 15, 00),
+                committee: committeeDto,
+                location: null!);
 
             // ACT
             _ = meetingDto.ToDomain();

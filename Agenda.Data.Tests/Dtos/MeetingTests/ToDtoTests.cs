@@ -5,6 +5,7 @@
 using System;
 using Agenda.Data.Dtos;
 using Agenda.Domain.DomainObjects.Committees;
+using Agenda.Domain.DomainObjects.Locations;
 using Agenda.Domain.DomainObjects.Meetings;
 using Agenda.Domain.DomainObjects.Organisations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -24,18 +25,27 @@ namespace Agenda.Data.Tests.Dtos.MeetingTests
         public void Test_Passing_Valid_Values()
         {
             // ARRANGE
-            IMeeting meeting = new Meeting(
-                Guid.NewGuid(),
-                new Committee(
+            IOrganisation organisation = new Organisation(
                 id: Guid.NewGuid(),
-                organisation: new Organisation(
+                code: "CBC",
+                name: "County Bridge Club");
+            ILocation location = new Location(
+                id: Guid.NewGuid(),
+                organisation: organisation,
+                name: "Location",
+                address: "Address",
+                what3Words: "one.two.three",
+                latitude: 50,
+                longitude: -1);
+            IMeeting meeting = new Meeting(
+                id: Guid.NewGuid(),
+                committee: new Committee(
                     id: Guid.NewGuid(),
-                    code: "CBC",
-                    name: "County Bridge Club"),
-                name: "TSC",
-                description: "Tournament Sub-Committee"),
-                new DateTime(2019, 12, 30, 19, 15, 00),
-                "County Bridge Club - Committee Room");
+                    organisation: organisation,
+                    name: "TSC",
+                    description: "Tournament Sub-Committee"),
+                location: location,
+                meetingDateTime: new DateTime(2019, 12, 30, 19, 15, 00));
 
             // ACT
             MeetingDto meetingDto = MeetingDto.ToDto(meeting);
@@ -44,7 +54,7 @@ namespace Agenda.Data.Tests.Dtos.MeetingTests
             Assert.AreEqual(meeting.Id, meetingDto.Id);
             Assert.AreEqual(meeting.Committee.Id, meetingDto.CommitteeId);
             Assert.AreEqual(meeting.MeetingDateTime, meetingDto.MeetingDateTime);
-            Assert.AreEqual(meeting.Location, meetingDto.Location);
+            Assert.AreEqual(meeting.Location.Id, meetingDto.LocationId);
         }
 
         /// <summary>

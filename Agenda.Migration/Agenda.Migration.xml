@@ -255,6 +255,33 @@
         <member name="M:Agenda.Migration.Migrations.AddLocationTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc/>
         </member>
+        <member name="T:Agenda.Migration.Migrations.LocationIsParentOfMeeting">
+            <summary>
+            Make the Locations table a parent of the Meetings table.
+            </summary>
+            <seealso cref="T:Microsoft.EntityFrameworkCore.Migrations.Migration" />
+        </member>
+        <member name="M:Agenda.Migration.Migrations.LocationIsParentOfMeeting.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Migration.Migrations.LocationIsParentOfMeeting.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Migration.Migrations.LocationIsParentOfMeeting.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Implemented to builds the <see cref="P:Microsoft.EntityFrameworkCore.Migrations.Migration.TargetModel" />.
+            </summary>
+            <param name="modelBuilder">The <see cref="T:Microsoft.EntityFrameworkCore.ModelBuilder" /> to use to build the model.</param>
+        </member>
+        <member name="T:Agenda.Migration.Migrations.MigrationContextModelSnapshot">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:Microsoft.EntityFrameworkCore.Infrastructure.ModelSnapshot" />
+        </member>
+        <member name="M:Agenda.Migration.Migrations.MigrationContextModelSnapshot.BuildModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc/>
+        </member>
         <member name="T:Agenda.Migration.Program">
             <summary>
             Migrations.

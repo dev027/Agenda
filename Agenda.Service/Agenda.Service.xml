@@ -84,6 +84,12 @@
         <member name="M:Agenda.Service.AgendaService.GetOrganisationByIdWithLocationsAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
             <inheritdoc/>
         </member>
+        <member name="M:Agenda.Service.AgendaService.GetOrganisationByCommitteeIdWithLocationsAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Service.AgendaService.GetOrganisationByMeetingIdWithLocationsAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
+            <inheritdoc/>
+        </member>
         <member name="M:Agenda.Service.AgendaService.UpdateOrganisationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
             <inheritdoc/>
         </member>
@@ -238,6 +244,22 @@
             <param name="who">Who Details.</param>
             <param name="organisationId">Organisation Id.</param>
             <returns>Organisation.</returns>
+        </member>
+        <member name="M:Agenda.Service.IAgendaService.GetOrganisationByCommitteeIdWithLocationsAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
+            <summary>
+            Gets the Organisation by Committee Id with Locations.
+            </summary>
+            <param name="who">Who Details.</param>
+            <param name="committeeId">Committee Id.</param>
+            <returns>Organisation with Locations.</returns>
+        </member>
+        <member name="M:Agenda.Service.IAgendaService.GetOrganisationByMeetingIdWithLocationsAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
+            <summary>
+            Gets the Organisation by Meeting Id with Locations.
+            </summary>
+            <param name="who">Who Details.</param>
+            <param name="meetingId">Meeting Id.</param>
+            <returns>Organisation with Locations.</returns>
         </member>
         <member name="M:Agenda.Service.IAgendaService.UpdateOrganisationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
             <summary>

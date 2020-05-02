@@ -207,6 +207,11 @@
             Tests the with null committee throws exception.
             </summary>
         </member>
+        <member name="M:Agenda.Data.Tests.Dtos.MeetingTests.ToDomainTests.Test_WithNull_Location_Throws_Exception">
+            <summary>
+            Tests the with null location throws exception.
+            </summary>
+        </member>
         <member name="T:Agenda.Data.Tests.Dtos.MeetingTests.ToDtoTests">
             <summary>
             Test <see cref="M:Agenda.Data.Dtos.MeetingDto.ToDto(Agenda.Domain.DomainObjects.Meetings.IMeeting)"/>.

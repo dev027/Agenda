@@ -207,8 +207,7 @@ namespace Agenda.Web.ViewModels.Location
                         nameof(this.Longitude)));
             }
 
-            string what3Words = string.Join(
-                DomainMetadata.What3Words.Separator,
+            string what3Words = Domain.DomainObjects.Locations.Location.What3WordsJoin(
                 this.What3WordsPart1,
                 this.What3WordsPart2,
                 this.What3WordsPart3);

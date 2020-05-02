@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Agenda.Domain.DomainObjects.Committees;
+using Agenda.Domain.DomainObjects.Locations;
 using Agenda.Domain.DomainObjects.Meetings;
 using Agenda.Domain.DomainObjects.Organisations;
 using Agenda.Domain.ValueObjects.SetupStatii;
@@ -83,20 +84,31 @@ namespace Agenda.Web.Tests.Controllers.HomeController
             // ARRANGE
             Mock<ILogger<MyHomeController>> loggerMock = CreateLoggerMock();
 
+            IOrganisation organisation = new Organisation(
+                id: Guid.NewGuid(),
+                code: "BRADGATE",
+                name: "Bradgate Bridge Club");
+
+            ILocation location = new Location(
+                id: Guid.NewGuid(),
+                organisation: organisation,
+                name: "Location",
+                address: "Address",
+                what3Words: "one.two.three",
+                latitude: 50,
+                longitude: -1);
+
             IList<IMeeting> meetingList = new List<IMeeting>
             {
                 new Meeting(
                     id: Guid.NewGuid(),
                     committee: new Committee(
                         id: Guid.NewGuid(),
-                        organisation: new Organisation(
-                            id: Guid.NewGuid(),
-                            code: "BRADGATE",
-                            name: "Bradgate Bridge Club"),
+                        organisation: organisation,
                         name: "Executive",
                         description: "Executive Committee"),
-                    meetingDateTime: DateTime.Today.AddHours(19).AddMinutes(30),
-                    location: "Rothley Centre")
+                    location: location,
+                    meetingDateTime: DateTime.Today.AddHours(19).AddMinutes(30))
             };
 
             Mock<IAgendaService> serviceMock = CreateServiceMock(

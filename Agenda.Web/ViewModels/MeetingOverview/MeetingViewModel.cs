@@ -68,7 +68,8 @@ namespace Agenda.Web.ViewModels.MeetingOverview
         /// </summary>
         /// <param name="meeting">Meeting.</param>
         /// <returns>View model.</returns>
-        public static MeetingViewModel Create(IMeeting meeting)
+        public static MeetingViewModel Create(
+            IMeeting meeting)
         {
             if (meeting == null)
             {
@@ -82,7 +83,7 @@ namespace Agenda.Web.ViewModels.MeetingOverview
 
             return new MeetingViewModel(
                 meetingId: meeting.Id,
-                location: meeting.Location,
+                location: meeting.Location.Name,
                 meetingDate: date,
                 meetingTime: time);
         }

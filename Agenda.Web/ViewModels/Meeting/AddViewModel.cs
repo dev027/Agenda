@@ -3,13 +3,15 @@
 // </copyright>
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using Agenda.Domain.DomainObjects.Committees;
+using Agenda.Domain.DomainObjects.Locations;
 using Agenda.Domain.DomainObjects.Meetings;
 using Agenda.Web.Models;
 using Agenda.Web.Models.ValidationAttributes;
-using DomainMetadata = Agenda.Domain.DomainObjects.Meetings.DomainMetadata;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Agenda.Web.ViewModels.Meeting
 {
@@ -34,7 +36,7 @@ namespace Agenda.Web.ViewModels.Meeting
         /// <param name="committeeId">Committee Id.</param>
         /// <param name="organisationName">Organisation Name.</param>
         /// <param name="committeeName">Committee Name.</param>
-        /// <param name="location">Location.</param>
+        /// <param name="locationId">Location Id.</param>
         /// <param name="meetingDate">Meeting Date.</param>
         /// <param name="meetingTime">Meeting Time.</param>
         public AddViewModel(
@@ -42,7 +44,7 @@ namespace Agenda.Web.ViewModels.Meeting
             Guid committeeId,
             string organisationName,
             string committeeName,
-            string location,
+            Guid locationId,
             string meetingDate,
             string meetingTime)
         {
@@ -50,7 +52,7 @@ namespace Agenda.Web.ViewModels.Meeting
             this.CommitteeId = committeeId;
             this.OrganisationName = organisationName;
             this.CommitteeName = committeeName;
-            this.Location = location;
+            this.LocationId = locationId;
             this.MeetingDate = meetingDate;
             this.MeetingTime = meetingTime;
         }
@@ -85,11 +87,8 @@ namespace Agenda.Web.ViewModels.Meeting
         /// Gets or sets the Meeting Location.
         /// </summary>
         [Display(Name = "Location")]
-        [MyStringLength(
-            DomainMetadata.Location.MaxLength,
-            DomainMetadata.Location.MinLength)]
         [MyRequired]
-        public string Location { get; set; }
+        public Guid LocationId { get; set; }
 
         /// <summary>
         /// Gets or sets the Meeting Date.
@@ -107,6 +106,11 @@ namespace Agenda.Web.ViewModels.Meeting
         [MyRequired]
         public string MeetingTime { get; set; }
 
+        /// <summary>
+        /// Gets or sets the Location options.
+        /// </summary>
+        public SelectList LocationOptions { get; set; }
+
         #endregion Properties
 
         #region Public Methods
@@ -116,7 +120,8 @@ namespace Agenda.Web.ViewModels.Meeting
         /// </summary>
         /// <param name="committee">Committee.</param>
         /// <returns>AddNewModel.</returns>
-        public static AddViewModel Create(ICommittee committee)
+        public static AddViewModel Create(
+            ICommittee committee)
         {
             if (committee == null)
             {
@@ -128,17 +133,34 @@ namespace Agenda.Web.ViewModels.Meeting
                 committeeId: committee.Id,
                 organisationName: committee.Organisation.Name,
                 committeeName: committee.Name,
-                location: string.Empty,
+                locationId: Guid.Empty,
                 meetingDate: string.Empty,
                 meetingTime: string.Empty);
+        }
+
+        /// <summary>
+        /// Refreshes the dropdown lists.
+        /// </summary>
+        /// <param name="locations">Locations.</param>
+        public void RefreshDropdowns(IList<ILocation> locations)
+        {
+            if (locations == null)
+            {
+                throw new ArgumentNullException(nameof(locations));
+            }
+
+            this.LocationOptions = LocationDropdownOptions(locations);
         }
 
         /// <summary>
         /// Converts view model to Meeting domain object.
         /// </summary>
         /// <param name="committee">Committee.</param>
+        /// <param name="location">Location.</param>
         /// <returns>Meeting domain object.</returns>
-        public IMeeting ToDomain(ICommittee committee)
+        public IMeeting ToDomain(
+            ICommittee committee,
+            ILocation location)
         {
             CultureInfo cultureInfo = new CultureInfo("en-GB");
             DateTime meetingDateTime = DateTime.Parse(this.MeetingDate, cultureInfo);
@@ -149,10 +171,20 @@ namespace Agenda.Web.ViewModels.Meeting
             return new Domain.DomainObjects.Meetings.Meeting(
                 id: Guid.NewGuid(),
                 committee: committee,
-                meetingDateTime: meetingDateTime,
-                location: this.Location);
+                location: location,
+                meetingDateTime: meetingDateTime);
         }
 
         #endregion Public Methods
+
+        #region Private Methods
+
+        private static SelectList LocationDropdownOptions(IList<ILocation> locations)
+        {
+            return new SelectList(
+                locations, nameof(ILocation.Id), nameof(ILocation.Name));
+        }
+
+        #endregion private Methods
     }
 }

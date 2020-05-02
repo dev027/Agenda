@@ -265,6 +265,14 @@
             Gets the Longitude.
             </summary>
         </member>
+        <member name="M:Agenda.Domain.DomainObjects.Locations.ILocation.What3WordsParts">
+            <summary>
+            Split the What3Words address into parts.
+            </summary>
+            <returns>
+            What3Word Address Parts.
+            </returns>
+        </member>
         <member name="T:Agenda.Domain.DomainObjects.Locations.Location">
             <summary>
             Location.
@@ -304,6 +312,18 @@
         <member name="P:Agenda.Domain.DomainObjects.Locations.Location.Longitude">
             <inheritdoc/>
         </member>
+        <member name="M:Agenda.Domain.DomainObjects.Locations.Location.What3WordsJoin(System.String,System.String,System.String)">
+            <summary>
+            Joins the three parts of a What3Words address.
+            </summary>
+            <param name="what3WordsPart1">What3Words Address Part 1.</param>
+            <param name="what3WordsPart2">What3Words Address Part 2.</param>
+            <param name="what3WordsPart3">What3Words Address Part 3.</param>
+            <returns>What3Words address.</returns>
+        </member>
+        <member name="M:Agenda.Domain.DomainObjects.Locations.Location.What3WordsParts">
+            <inheritdoc />
+        </member>
         <member name="T:Agenda.Domain.DomainObjects.Meetings.DomainMetadata">
             <summary>
             Metadata for the <see cref="T:Agenda.Domain.DomainObjects.Organisations.IOrganisation"/>.
@@ -312,16 +332,6 @@
         <member name="T:Agenda.Domain.DomainObjects.Meetings.DomainMetadata.Location">
             <summary>
             Metadata for the <see cref="P:Agenda.Domain.DomainObjects.Meetings.IMeeting.Location"></see> property.
-            </summary>
-        </member>
-        <member name="F:Agenda.Domain.DomainObjects.Meetings.DomainMetadata.Location.MinLength">
-            <summary>
-            The minimum length.
-            </summary>
-        </member>
-        <member name="F:Agenda.Domain.DomainObjects.Meetings.DomainMetadata.Location.MaxLength">
-            <summary>
-            The maximum length.
             </summary>
         </member>
         <member name="T:Agenda.Domain.DomainObjects.Meetings.IMeeting">
@@ -339,14 +349,14 @@
             Gets the committee.
             </summary>
         </member>
-        <member name="P:Agenda.Domain.DomainObjects.Meetings.IMeeting.MeetingDateTime">
-            <summary>
-            Gets the Meeting date and time.
-            </summary>
-        </member>
         <member name="P:Agenda.Domain.DomainObjects.Meetings.IMeeting.Location">
             <summary>
             Gets the Location.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Meetings.IMeeting.MeetingDateTime">
+            <summary>
+            Gets the Meeting date and time.
             </summary>
         </member>
         <member name="T:Agenda.Domain.DomainObjects.Meetings.Meeting">
@@ -355,14 +365,14 @@
             </summary>
             <seealso cref="T:Agenda.Domain.DomainObjects.Meetings.IMeeting" />
         </member>
-        <member name="M:Agenda.Domain.DomainObjects.Meetings.Meeting.#ctor(System.Guid,Agenda.Domain.DomainObjects.Committees.ICommittee,System.DateTime,System.String)">
+        <member name="M:Agenda.Domain.DomainObjects.Meetings.Meeting.#ctor(System.Guid,Agenda.Domain.DomainObjects.Committees.ICommittee,Agenda.Domain.DomainObjects.Locations.ILocation,System.DateTime)">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Domain.DomainObjects.Meetings.Meeting"/> class.
             </summary>
             <param name="id">Meeting Id.</param>
             <param name="committee">Committee.</param>
-            <param name="meetingDateTime">Date and Time of Meeting.</param>
             <param name="location">Location.</param>
+            <param name="meetingDateTime">Date and Time of Meeting.</param>
         </member>
         <member name="P:Agenda.Domain.DomainObjects.Meetings.Meeting.Id">
             <inheritdoc/>
@@ -370,10 +380,10 @@
         <member name="P:Agenda.Domain.DomainObjects.Meetings.Meeting.Committee">
             <inheritdoc/>
         </member>
-        <member name="P:Agenda.Domain.DomainObjects.Meetings.Meeting.MeetingDateTime">
+        <member name="P:Agenda.Domain.DomainObjects.Meetings.Meeting.Location">
             <inheritdoc/>
         </member>
-        <member name="P:Agenda.Domain.DomainObjects.Meetings.Meeting.Location">
+        <member name="P:Agenda.Domain.DomainObjects.Meetings.Meeting.MeetingDateTime">
             <inheritdoc/>
         </member>
         <member name="T:Agenda.Domain.DomainObjects.Organisations.DomainMetadata">

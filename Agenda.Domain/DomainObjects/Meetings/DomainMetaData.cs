@@ -16,15 +16,6 @@ namespace Agenda.Domain.DomainObjects.Meetings
         /// </summary>
         public static class Location
         {
-            /// <summary>
-            /// The minimum length.
-            /// </summary>
-            public const int MinLength = 1;
-
-            /// <summary>
-            /// The maximum length.
-            /// </summary>
-            public const int MaxLength = 100;
         }
     }
 }

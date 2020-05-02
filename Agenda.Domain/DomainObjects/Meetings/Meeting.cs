@@ -4,6 +4,7 @@
 
 using System;
 using Agenda.Domain.DomainObjects.Committees;
+using Agenda.Domain.DomainObjects.Locations;
 
 namespace Agenda.Domain.DomainObjects.Meetings
 {
@@ -18,18 +19,18 @@ namespace Agenda.Domain.DomainObjects.Meetings
         /// </summary>
         /// <param name="id">Meeting Id.</param>
         /// <param name="committee">Committee.</param>
-        /// <param name="meetingDateTime">Date and Time of Meeting.</param>
         /// <param name="location">Location.</param>
+        /// <param name="meetingDateTime">Date and Time of Meeting.</param>
         public Meeting(
             Guid id,
             ICommittee committee,
-            DateTime meetingDateTime,
-            string location)
+            ILocation location,
+            DateTime meetingDateTime)
         {
             this.Id = id;
             this.Committee = committee ?? throw new ArgumentNullException(nameof(committee));
+            this.Location = location ?? throw new ArgumentNullException(nameof(location));
             this.MeetingDateTime = meetingDateTime;
-            this.Location = location;
         }
 
         /// <inheritdoc/>
@@ -39,9 +40,9 @@ namespace Agenda.Domain.DomainObjects.Meetings
         public ICommittee Committee { get; }
 
         /// <inheritdoc/>
-        public DateTime MeetingDateTime { get; }
+        public ILocation Location { get; }
 
         /// <inheritdoc/>
-        public string Location { get; }
+        public DateTime MeetingDateTime { get; }
     }
 }

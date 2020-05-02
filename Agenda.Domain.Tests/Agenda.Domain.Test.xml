@@ -89,9 +89,9 @@
             Tests the constructor null committee throws exception.
             </summary>
         </member>
-        <member name="M:Agenda.Domain.Tests.DomainObjects.Meetings.MeetingTests.ConstructorTests.Test_Constructor_Null_Location_Does_Not_Throw_Exception">
+        <member name="M:Agenda.Domain.Tests.DomainObjects.Meetings.MeetingTests.ConstructorTests.Test_Constructor_Null_Location_Does_Throw_Exception">
             <summary>
-            Tests the constructor null location does not throw exception.
+            Tests the constructor null location does throw exception.
             </summary>
         </member>
         <member name="T:Agenda.Domain.Tests.DomainObjects.Organisations.OrganisationTests.ConstructorTests">

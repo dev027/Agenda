@@ -63,10 +63,30 @@ namespace Agenda.Data.Crud
         /// </summary>
         /// <param name="who">Who details.</param>
         /// <param name="organisationId">Organisation Id.</param>
-        /// <returns>Organisation (Null=Not Found).</returns>
+        /// <returns>Organisation with Locations.</returns>
         Task<IOrganisationWithLocations> GetOrganisationByIdWithLocationsAsync(
             IWho who,
             Guid organisationId);
+
+        /// <summary>
+        /// Gets the Organisation by Committee Id with its Locations.
+        /// </summary>
+        /// <param name="who">Who details.</param>
+        /// <param name="committeeId">Committee Id.</param>
+        /// <returns>Organisation with Locations.</returns>
+        Task<IOrganisationWithLocations> GetOrganisationByCommitteeIdWithLocationsAsync(
+            IWho who,
+            Guid committeeId);
+
+        /// <summary>
+        /// Gets the Organisation by Meeting Id with its Locations.
+        /// </summary>
+        /// <param name="who">Who details.</param>
+        /// <param name="meetingId">MeetingId Id.</param>
+        /// <returns>Organisation with Locations.</returns>
+        Task<IOrganisationWithLocations> GetOrganisationByMeetingIdWithLocationsAsync(
+            IWho who,
+            Guid meetingId);
 
         /// <summary>
         /// Checks if we have Organisations.

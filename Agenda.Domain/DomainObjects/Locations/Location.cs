@@ -3,6 +3,8 @@
 // </copyright>
 
 using System;
+using System.Globalization;
+using System.Linq;
 using Agenda.Domain.DomainObjects.Organisations;
 
 namespace Agenda.Domain.DomainObjects.Locations
@@ -61,5 +63,38 @@ namespace Agenda.Domain.DomainObjects.Locations
 
         /// <inheritdoc/>
         public double Longitude { get; }
+
+        /// <summary>
+        /// Joins the three parts of a What3Words address.
+        /// </summary>
+        /// <param name="what3WordsPart1">What3Words Address Part 1.</param>
+        /// <param name="what3WordsPart2">What3Words Address Part 2.</param>
+        /// <param name="what3WordsPart3">What3Words Address Part 3.</param>
+        /// <returns>What3Words address.</returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage(
+            "Globalization",
+            "CA1308:Normalize strings to uppercase",
+            Justification = "What3Words needs to be lowercase")]
+        public static string What3WordsJoin(
+            string what3WordsPart1,
+            string what3WordsPart2,
+            string what3WordsPart3)
+        {
+            return string.Join(
+                    DomainMetadata.What3Words.Separator,
+                    what3WordsPart1,
+                    what3WordsPart2,
+                    what3WordsPart3)
+                .ToLower(CultureInfo.InvariantCulture);
+        }
+
+        /// <inheritdoc />
+        public string[] What3WordsParts()
+        {
+            return this.What3Words.Split(
+                DomainMetadata.What3Words.Separator
+                    .ToCharArray()
+                    .First());
+        }
     }
 }

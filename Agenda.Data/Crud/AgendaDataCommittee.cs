@@ -89,6 +89,8 @@ namespace Agenda.Data.Crud
                     .TagWith(this.Tag(who, nameof(this.GetCommitteeByIdWithMeetingsAsync)))
                     .Include(c => c.Organisation)
                     .Include(c => c.Meetings)
+                    .ThenInclude(m => m.Location)
+                    .ThenInclude(l => l!.Organisation)
                     .FirstOrDefaultAsync(c => c.Id == committeeId)
                     .ConfigureAwait(false))
                 .ToDomainWithMeetings();
@@ -141,7 +143,9 @@ namespace Agenda.Data.Crud
 
             CommitteeDto dto = CommitteeDto.ToDto(committee);
 
-            this.context.Committees.Update(dto);
+            CommitteeDto original = await this.context.FindAsync<CommitteeDto>(committee.Id);
+
+            this.context.Entry(original).CurrentValues.SetValues(dto);
             await this.context.SaveChangesAsync().ConfigureAwait(false);
 
             this.logger.LogTrace(

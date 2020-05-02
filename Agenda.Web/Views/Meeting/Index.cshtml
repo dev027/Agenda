@@ -51,8 +51,18 @@
                         <div class="form-control">@Model.CommitteeName</div>
                     </div>
                     <div class="form-group">
-                        <label>@Html.DisplayNameFor(m => m.Location)</label>
-                        <div class="form-control">@Model.Location</div>
+                        <label>@Html.DisplayNameFor(m => m.LocationName)</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <a class="btn btn-secondary"
+                                   asp-controller="Location"
+                                   asp-action="Index"
+                                   asp-route-locationId="@Model.LocationId">
+                                    <span class="@Icon.Location"></span>
+                                </a>
+                            </div>
+                            <div class="form-control">@Model.LocationName</div>
+                        </div>
                     </div>
                     <div class="d-flex flex-row justify-content-between">
                         <div class="form-group flex-grow-1">

@@ -22,7 +22,8 @@ namespace Agenda.Web.ViewModels.Meeting
         /// <param name="organisationName">Organisation Name.</param>
         /// <param name="committeeId">Committee Id.</param>
         /// <param name="committeeName">Committee Name.</param>
-        /// <param name="location">Location.</param>
+        /// <param name="locationId">Location Id.</param>
+        /// <param name="locationName">Location Name.</param>
         /// <param name="meetingDate">Meeting Date.</param>
         /// <param name="meetingTime">Meeting Time.</param>
         public IndexViewModel(
@@ -31,7 +32,8 @@ namespace Agenda.Web.ViewModels.Meeting
             string organisationName,
             Guid committeeId,
             string committeeName,
-            string location,
+            Guid locationId,
+            string locationName,
             string meetingDate,
             string meetingTime)
         {
@@ -40,7 +42,8 @@ namespace Agenda.Web.ViewModels.Meeting
             this.OrganisationName = organisationName;
             this.CommitteeId = committeeId;
             this.CommitteeName = committeeName;
-            this.Location = location;
+            this.LocationId = locationId;
+            this.LocationName = locationName;
             this.MeetingDate = meetingDate;
             this.MeetingTime = meetingTime;
         }
@@ -85,10 +88,15 @@ namespace Agenda.Web.ViewModels.Meeting
         public string CommitteeName { get; }
 
         /// <summary>
-        /// Gets Location.
+        /// Gets the Location Id.
+        /// </summary>
+        public Guid LocationId { get;  }
+
+        /// <summary>
+        /// Gets Location Name.
         /// </summary>
         [Display(Name = "Location")]
-        public string Location { get; }
+        public string LocationName { get; }
 
         /// <summary>
         /// Gets Meeting Date.
@@ -125,7 +133,8 @@ namespace Agenda.Web.ViewModels.Meeting
                 organisationName: meeting.Committee.Organisation.Name,
                 committeeId: meeting.Committee.Id,
                 committeeName: meeting.Committee.Name,
-                location: meeting.Location,
+                locationId: meeting.Location.Id,
+                locationName: meeting.Location.Name,
                 meetingDate: date,
                 meetingTime: time);
         }

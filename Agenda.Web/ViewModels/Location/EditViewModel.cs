@@ -168,8 +168,7 @@ namespace Agenda.Web.ViewModels.Location
                 throw new ArgumentNullException(nameof(location));
             }
 
-            string[] what3WordsParts = location.What3Words.Split(
-                DomainMetadata.What3Words.Separator);
+            string[] what3WordsParts = location.What3WordsParts();
 
             return new EditViewModel(
                 formState: FormState.Initial,
@@ -211,8 +210,7 @@ namespace Agenda.Web.ViewModels.Location
                         nameof(this.Longitude)));
             }
 
-            string what3Words = string.Join(
-                DomainMetadata.What3Words.Separator,
+            string what3Words = Domain.DomainObjects.Locations.Location.What3WordsJoin(
                 this.What3WordsPart1,
                 this.What3WordsPart2,
                 this.What3WordsPart3);

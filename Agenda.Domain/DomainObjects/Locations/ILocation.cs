@@ -46,5 +46,13 @@ namespace Agenda.Domain.DomainObjects.Locations
         /// Gets the Longitude.
         /// </summary>
         double Longitude { get; }
+
+        /// <summary>
+        /// Split the What3Words address into parts.
+        /// </summary>
+        /// <returns>
+        /// What3Word Address Parts.
+        /// </returns>
+        string[] What3WordsParts();
     }
 }

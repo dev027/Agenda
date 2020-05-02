@@ -41,14 +41,25 @@ namespace Agenda.Data.Tests.Dtos.CommitteeTests
                 description: paramDescription,
                 organisation: organisationDto);
 
+            LocationDto locationDto = new LocationDto(
+                id: Guid.NewGuid(),
+                organisationId: organisationDto.Id,
+                name: "Location",
+                address: "Address",
+                what3Words: "one.two.three",
+                latitude: 50,
+                longitude: -1,
+                organisation: organisationDto);
+
             IList<MeetingDto> paramMeetings = new List<MeetingDto>
             {
                 new MeetingDto(
                     id: Guid.NewGuid(),
                     committeeId: committeeDto.Id,
+                    locationId: locationDto.Id,
                     meetingDateTime: DateTime.Now,
-                    location: "County Bridge Club, St. Oswalds Road, New Parks",
-                    committee: committeeDto)
+                    committee: committeeDto,
+                    location: locationDto)
             };
 
             committeeDto.SetPrivatePropertyValue(
@@ -114,6 +125,7 @@ namespace Agenda.Data.Tests.Dtos.CommitteeTests
         [ExpectedException(typeof(InvalidOperationException))]
         public void Test_That_Null_Organisation_Throws_Exception()
         {
+            // ARRANGE
             Guid paramId = Guid.NewGuid();
             const string paramName = "TSC";
             const string paramDescription = "Tournament Sub-Committee";
@@ -129,14 +141,25 @@ namespace Agenda.Data.Tests.Dtos.CommitteeTests
                 name: paramName,
                 description: paramDescription);
 
+            LocationDto locationDto = new LocationDto(
+                id: Guid.NewGuid(),
+                organisationId: organisationDto.Id,
+                name: "Location",
+                address: "Address",
+                what3Words: "one.two.three",
+                latitude: 50,
+                longitude: -1,
+                organisation: organisationDto);
+
             IList<MeetingDto> paramMeetings = new List<MeetingDto>
             {
                 new MeetingDto(
                     id: Guid.NewGuid(),
                     committeeId: committeeDto.Id,
+                    locationId: locationDto.Id,
                     meetingDateTime: DateTime.Now,
-                    location: "County Bridge Club, St. Oswalds Road, New Parks",
-                    committee: committeeDto)
+                    committee: committeeDto,
+                    location: locationDto)
             };
 
             committeeDto.SetPrivatePropertyValue(

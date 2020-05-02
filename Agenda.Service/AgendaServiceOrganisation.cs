@@ -143,6 +143,58 @@ namespace Agenda.Service
             return organisationWithLocations;
         }
 
+        /// <inheritdoc/>
+        public async Task<IOrganisationWithLocations> GetOrganisationByCommitteeIdWithLocationsAsync(
+            IWho who,
+            Guid committeeId)
+        {
+            this.logger.LogTrace(
+                "ENTRY {Method}(who, committeeId) {@who} {committeeId}",
+                nameof(this.GetOrganisationByCommitteeIdWithLocationsAsync),
+                who,
+                committeeId);
+
+            IOrganisationWithLocations organisationWithLocations = await this.data
+                .GetOrganisationByCommitteeIdWithLocationsAsync(
+                    who: who,
+                    committeeId: committeeId)
+                .ConfigureAwait(false);
+
+            this.logger.LogTrace(
+                "EXIT {Method}(who, organisationWithLocations) {@who} {@organisationWithLocations}",
+                nameof(this.GetOrganisationByCommitteeIdWithLocationsAsync),
+                who,
+                organisationWithLocations);
+
+            return organisationWithLocations;
+        }
+
+        /// <inheritdoc/>
+        public async Task<IOrganisationWithLocations> GetOrganisationByMeetingIdWithLocationsAsync(
+            IWho who,
+            Guid meetingId)
+        {
+            this.logger.LogTrace(
+                "ENTRY {Method}(who, meetingId) {@who} {meetingId}",
+                nameof(this.GetOrganisationByMeetingIdWithLocationsAsync),
+                who,
+                meetingId);
+
+            IOrganisationWithLocations organisationWithLocations = await this.data
+                .GetOrganisationByMeetingIdWithLocationsAsync(
+                    who: who,
+                    meetingId: meetingId)
+                .ConfigureAwait(false);
+
+            this.logger.LogTrace(
+                "EXIT {Method}(who, organisationWithLocations) {@who} {@organisationWithLocations}",
+                nameof(this.GetOrganisationByMeetingIdWithLocationsAsync),
+                who,
+                organisationWithLocations);
+
+            return organisationWithLocations;
+        }
+
         #endregion Read
 
         #region Update

@@ -69,6 +69,26 @@ namespace Agenda.Service
             IWho who,
             Guid organisationId);
 
+        /// <summary>
+        /// Gets the Organisation by Committee Id with Locations.
+        /// </summary>
+        /// <param name="who">Who Details.</param>
+        /// <param name="committeeId">Committee Id.</param>
+        /// <returns>Organisation with Locations.</returns>
+        Task<IOrganisationWithLocations> GetOrganisationByCommitteeIdWithLocationsAsync(
+            IWho who,
+            Guid committeeId);
+
+        /// <summary>
+        /// Gets the Organisation by Meeting Id with Locations.
+        /// </summary>
+        /// <param name="who">Who Details.</param>
+        /// <param name="meetingId">Meeting Id.</param>
+        /// <returns>Organisation with Locations.</returns>
+        Task<IOrganisationWithLocations> GetOrganisationByMeetingIdWithLocationsAsync(
+            IWho who,
+            Guid meetingId);
+
         #endregion Read
 
         #region Update

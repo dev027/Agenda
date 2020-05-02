@@ -99,6 +99,12 @@
         <member name="M:Agenda.Data.Crud.AgendaData.GetOrganisationByIdWithLocationsAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
             <inheritdoc/>
         </member>
+        <member name="M:Agenda.Data.Crud.AgendaData.GetOrganisationByCommitteeIdWithLocationsAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Data.Crud.AgendaData.GetOrganisationByMeetingIdWithLocationsAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
+            <inheritdoc/>
+        </member>
         <member name="M:Agenda.Data.Crud.AgendaData.HaveOrganisationsAsync(Agenda.Utilities.Models.Whos.IWho)">
             <inheritdoc/>
         </member>
@@ -252,7 +258,23 @@
             </summary>
             <param name="who">Who details.</param>
             <param name="organisationId">Organisation Id.</param>
-            <returns>Organisation (Null=Not Found).</returns>
+            <returns>Organisation with Locations.</returns>
+        </member>
+        <member name="M:Agenda.Data.Crud.IAgendaData.GetOrganisationByCommitteeIdWithLocationsAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
+            <summary>
+            Gets the Organisation by Committee Id with its Locations.
+            </summary>
+            <param name="who">Who details.</param>
+            <param name="committeeId">Committee Id.</param>
+            <returns>Organisation with Locations.</returns>
+        </member>
+        <member name="M:Agenda.Data.Crud.IAgendaData.GetOrganisationByMeetingIdWithLocationsAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
+            <summary>
+            Gets the Organisation by Meeting Id with its Locations.
+            </summary>
+            <param name="who">Who details.</param>
+            <param name="meetingId">MeetingId Id.</param>
+            <returns>Organisation with Locations.</returns>
         </member>
         <member name="M:Agenda.Data.Crud.IAgendaData.HaveOrganisationsAsync(Agenda.Utilities.Models.Whos.IWho)">
             <summary>
@@ -496,24 +518,25 @@
             Initializes a new instance of the <see cref="T:Agenda.Data.Dtos.MeetingDto"/> class.
             </summary>
         </member>
-        <member name="M:Agenda.Data.Dtos.MeetingDto.#ctor(System.Guid,System.Guid,System.DateTime,System.String)">
+        <member name="M:Agenda.Data.Dtos.MeetingDto.#ctor(System.Guid,System.Guid,System.Guid,System.DateTime)">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Data.Dtos.MeetingDto"/> class.
             </summary>
             <param name="id">Meeting Id.</param>
             <param name="committeeId">Committee Id.</param>
+            <param name="locationId">Location.</param>
             <param name="meetingDateTime">Date and Time of the Meeting.</param>
-            <param name="location">Location.</param>
         </member>
-        <member name="M:Agenda.Data.Dtos.MeetingDto.#ctor(System.Guid,System.Guid,System.DateTime,System.String,Agenda.Data.Dtos.CommitteeDto)">
+        <member name="M:Agenda.Data.Dtos.MeetingDto.#ctor(System.Guid,System.Guid,System.Guid,System.DateTime,Agenda.Data.Dtos.CommitteeDto,Agenda.Data.Dtos.LocationDto)">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Data.Dtos.MeetingDto"/> class.
             </summary>
             <param name="id">Meeting Id.</param>
             <param name="committeeId">Committee Id.</param>
+            <param name="locationId">Location Id.</param>
             <param name="meetingDateTime">Date and Time of the Meeting.</param>
-            <param name="location">Location.</param>
             <param name="committee">Committee.</param>
+            <param name="location">Location.</param>
         </member>
         <member name="P:Agenda.Data.Dtos.MeetingDto.Id">
             <summary>
@@ -530,14 +553,19 @@
             Gets the Date and Time of the Meeting.
             </summary>
         </member>
-        <member name="P:Agenda.Data.Dtos.MeetingDto.Location">
+        <member name="P:Agenda.Data.Dtos.MeetingDto.LocationId">
             <summary>
             Gets the Location.
             </summary>
         </member>
         <member name="P:Agenda.Data.Dtos.MeetingDto.Committee">
             <summary>
-            Gets the Organisation.
+            Gets the Committee.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Dtos.MeetingDto.Location">
+            <summary>
+            Gets the Location.
             </summary>
         </member>
         <member name="M:Agenda.Data.Dtos.MeetingDto.ToDto(Agenda.Domain.DomainObjects.Meetings.IMeeting)">

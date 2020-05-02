@@ -4,6 +4,7 @@
 
 using System;
 using Agenda.Domain.DomainObjects.Committees;
+using Agenda.Domain.DomainObjects.Locations;
 using Agenda.Domain.DomainObjects.Meetings;
 using Agenda.Domain.DomainObjects.Organisations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -23,24 +24,35 @@ namespace Agenda.Domain.Tests.DomainObjects.Meetings.MeetingTests
         public void Test_Basic_Constructor()
         {
             // ARRANGE
+            IOrganisation organisation = new Organisation(
+                id: Guid.NewGuid(),
+                code: "CBC",
+                name: "County Bridge Club");
+
             Guid paramId = Guid.NewGuid();
             ICommittee paramCommittee = new Committee(
                 id: Guid.NewGuid(),
-                organisation: new Organisation(
-                    id: Guid.NewGuid(),
-                    code: "CBC",
-                    name: "County Bridge Club"),
+                organisation: organisation,
                 name: "TSC",
                 description: "Tournament Sub-Committee");
+
+            ILocation paramLocation = new Location(
+                id: Guid.NewGuid(),
+                organisation: organisation,
+                name: "Location",
+                address: "Address",
+                what3Words: "one.two.three",
+                latitude: 50,
+                longitude: -1);
+
             DateTime paramMeetingDateTime = new DateTime(2019, 12, 30, 19, 15, 00);
-            const string paramLocation = "County Bridge Club - Committee Room";
 
             // ACT
             IMeeting meeting = new Meeting(
                 id: paramId,
                 committee: paramCommittee,
-                meetingDateTime: paramMeetingDateTime,
-                location: paramLocation);
+                location: paramLocation,
+                meetingDateTime: paramMeetingDateTime);
 
             // ASSERT
             Assert.AreEqual(paramId, meeting.Id);
@@ -57,51 +69,63 @@ namespace Agenda.Domain.Tests.DomainObjects.Meetings.MeetingTests
         public void Test_Constructor_Null_Committee_Throws_Exception()
         {
             // ARRANGE
+            IOrganisation organisation = new Organisation(
+                id: Guid.NewGuid(),
+                code: "CBC",
+                name: "County Bridge Club");
+
             Guid paramId = Guid.NewGuid();
+
+            ILocation paramLocation = new Location(
+                id: Guid.NewGuid(),
+                organisation: organisation,
+                name: "Location",
+                address: "Address",
+                what3Words: "one.two.three",
+                latitude: 50,
+                longitude: -1);
+
             DateTime paramMeetingDateTime = new DateTime(2019, 12, 30, 19, 15, 00);
-            const string paramLocation = "County Bridge Club - Committee Room";
 
             // ACT
             _ = new Meeting(
                 id: paramId,
                 committee: null,
-                meetingDateTime: paramMeetingDateTime,
-                location: paramLocation);
+                location: paramLocation,
+                meetingDateTime: paramMeetingDateTime);
 
             // ASSERT
             Assert.Fail();
         }
 
         /// <summary>
-        /// Tests the constructor null location does not throw exception.
+        /// Tests the constructor null location does throw exception.
         /// </summary>
         [TestMethod]
-        public void Test_Constructor_Null_Location_Does_Not_Throw_Exception()
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Test_Constructor_Null_Location_Does_Throw_Exception()
         {
             // ARRANGE
+            IOrganisation organisation = new Organisation(
+                id: Guid.NewGuid(),
+                code: "CBC",
+                name: "County Bridge Club");
+
             Guid paramId = Guid.NewGuid();
             ICommittee paramCommittee = new Committee(
                 id: Guid.NewGuid(),
-                organisation: new Organisation(
-                    id: Guid.NewGuid(),
-                    code: "CBC",
-                    name: "County Bridge Club"),
+                organisation: organisation,
                 name: "TSC",
                 description: "Tournament Sub-Committee");
+
             DateTime paramMeetingDateTime = new DateTime(2019, 12, 30, 19, 15, 00);
 
             // ACT
-            IMeeting meeting = new Meeting(
+            _ = new Meeting(
                 id: paramId,
                 committee: paramCommittee,
-                meetingDateTime: paramMeetingDateTime,
-                location: null);
-
-            // ASSERT
-            Assert.AreEqual(paramId, meeting.Id);
-            Assert.AreSame(paramCommittee, meeting.Committee);
-            Assert.AreEqual(paramMeetingDateTime, meeting.MeetingDateTime);
-            Assert.IsNull(meeting.Location);
+                location: null,
+                meetingDateTime: paramMeetingDateTime);
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿@using Agenda.Web.Models
-@using Metadata=Agenda.Domain.DomainObjects.Meetings.DomainMetadata
 @model Agenda.Web.ViewModels.Meeting.EditViewModel
 
 <nav class="sidebar d-none">
@@ -23,7 +22,7 @@
                     {
                         <input type="hidden" value="@FormState.SubmittedBySubmitButton" name="FormState" />
                         <input type="hidden" value="@Model.MeetingId" name="MeetingId" />
-                                                                        
+
                         <div class="form-group">
                             @Html.LabelFor(m => m.OrganisationName)
                             @Html.TextBoxFor(m => m.OrganisationName,
@@ -45,15 +44,16 @@
                                 })
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(m => m.Location)
-                            @Html.TextBoxFor(m => m.Location,
-                                Model.Location,
+                            @Html.LabelFor(m => m.LocationId)
+                            @Html.DropDownListFor(m => m.LocationId,
+                                Model.LocationOptions,
+                                "Please select",
                                 new
                                 {
-                                    @class = "form-control",
-                                    maxLength = Metadata.Location.MaxLength
+                                    @class = "form-control"
                                 })
-                            @Html.ValidationMessageFor(m => m.Location, null, new { @class = "text-danger" })
+
+                            @Html.ValidationMessageFor(m => m.LocationId, null, new { @class = "text-danger" })
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(m => m.MeetingDate)
@@ -86,7 +86,7 @@
                            asp-controller="Meeting"
                            asp-action="Index"
                            asp-route-meetingId="@Model.MeetingId">
-                            <span class="@Icon.Cancel"></span>    
+                            <span class="@Icon.Cancel"></span>
                             Cancel
                         </a>
                     }

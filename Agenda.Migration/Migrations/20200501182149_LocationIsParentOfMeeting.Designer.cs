@@ -4,18 +4,19 @@ using Agenda.Migration.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Agenda.Migration.Migrations
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <seealso cref="Microsoft.EntityFrameworkCore.Infrastructure.ModelSnapshot" />
     [DbContext(typeof(MigrationContext))]
-    public class MigrationContextModelSnapshot : ModelSnapshot
+    [Migration("20200501182149_LocationIsParentOfMeeting")]
+    partial class LocationIsParentOfMeeting
     {
-        /// <inheritdoc/>
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <summary>
+        /// Implemented to builds the <see cref="Microsoft.EntityFrameworkCore.Migrations.Migration.TargetModel" />.
+        /// </summary>
+        /// <param name="modelBuilder">The <see cref="Microsoft.EntityFrameworkCore.ModelBuilder" /> to use to build the model.</param>
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

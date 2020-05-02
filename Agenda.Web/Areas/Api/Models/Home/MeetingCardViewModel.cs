@@ -67,7 +67,7 @@ namespace Agenda.Web.Areas.Api.Models.Home
                 organisationName: meeting.Committee.Organisation.Name,
                 committeeName: meeting.Committee.Name,
                 meetingDateTime: meeting.MeetingDateTime,
-                location: meeting.Location);
+                location: meeting.Location.Name);
         }
     }
 }

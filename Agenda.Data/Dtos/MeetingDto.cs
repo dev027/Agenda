@@ -9,8 +9,6 @@ using System.Globalization;
 using Agenda.Data.DbContexts;
 using Agenda.Data.Resources;
 using Agenda.Domain.DomainObjects.Meetings;
-using Agenda.Domain.DomainObjects.Organisations;
-using DomainMetadata = Agenda.Domain.DomainObjects.Meetings.DomainMetadata;
 
 namespace Agenda.Data.Dtos
 {
@@ -35,18 +33,18 @@ namespace Agenda.Data.Dtos
         /// </summary>
         /// <param name="id">Meeting Id.</param>
         /// <param name="committeeId">Committee Id.</param>
+        /// <param name="locationId">Location.</param>
         /// <param name="meetingDateTime">Date and Time of the Meeting.</param>
-        /// <param name="location">Location.</param>
         public MeetingDto(
             Guid id,
             Guid committeeId,
-            DateTime meetingDateTime,
-            string location)
+            Guid locationId,
+            DateTime meetingDateTime)
         {
             this.Id = id;
             this.CommitteeId = committeeId;
+            this.LocationId = locationId;
             this.MeetingDateTime = meetingDateTime;
-            this.Location = location;
 
             this.Committee = null!;
         }
@@ -56,21 +54,24 @@ namespace Agenda.Data.Dtos
         /// </summary>
         /// <param name="id">Meeting Id.</param>
         /// <param name="committeeId">Committee Id.</param>
+        /// <param name="locationId">Location Id.</param>
         /// <param name="meetingDateTime">Date and Time of the Meeting.</param>
-        /// <param name="location">Location.</param>
         /// <param name="committee">Committee.</param>
+        /// <param name="location">Location.</param>
         public MeetingDto(
             Guid id,
             Guid committeeId,
+            Guid locationId,
             DateTime meetingDateTime,
-            string location,
-            CommitteeDto committee)
+            CommitteeDto committee,
+            LocationDto location)
         {
             this.Id = id;
             this.CommitteeId = committeeId;
             this.MeetingDateTime = meetingDateTime;
-            this.Location = location;
+            this.LocationId = locationId;
             this.Committee = committee;
+            this.Location = location;
         }
 
         #endregion Constructors
@@ -96,18 +97,24 @@ namespace Agenda.Data.Dtos
         /// <summary>
         /// Gets the Location.
         /// </summary>
-        [MaxLength(DomainMetadata.Location.MaxLength)]
-        public string Location { get; private set; } = null!;
+        [Required]
+        public Guid LocationId { get; private set; }
 
         #endregion Properties
 
         #region Parent Properties
 
         /// <summary>
-        /// Gets the Organisation.
+        /// Gets the Committee.
         /// </summary>
         [ForeignKey(nameof(CommitteeId))]
         public CommitteeDto? Committee { get; private set; } = null!;
+
+        /// <summary>
+        /// Gets the Location.
+        /// </summary>
+        [ForeignKey(nameof(LocationId))]
+        public LocationDto? Location { get; private set; } = null!;
 
         #endregion Parent Properties
 
@@ -128,8 +135,8 @@ namespace Agenda.Data.Dtos
             return new MeetingDto(
                 id: meeting.Id,
                 committeeId: meeting.Committee.Id,
-                meetingDateTime: meeting.MeetingDateTime,
-                location: meeting.Location);
+                locationId: meeting.Location.Id,
+                meetingDateTime: meeting.MeetingDateTime);
         }
 
         /// <summary>
@@ -144,15 +151,25 @@ namespace Agenda.Data.Dtos
                     string.Format(
                         CultureInfo.InvariantCulture,
                         ExceptionResource.CannotConvertTo___If___IsNull,
-                        nameof(IOrganisation),
+                        nameof(IMeeting),
                         nameof(this.Committee)));
+            }
+
+            if (this.Location == null)
+            {
+                throw new InvalidOperationException(
+                    string.Format(
+                        CultureInfo.InvariantCulture,
+                        ExceptionResource.CannotConvertTo___If___IsNull,
+                        nameof(IMeeting),
+                        nameof(this.Location)));
             }
 
             return new Meeting(
                 id: this.Id,
                 committee: this.Committee.ToDomain(),
-                meetingDateTime: this.MeetingDateTime,
-                location: this.Location);
+                location: this.Location.ToDomain(),
+                meetingDateTime: this.MeetingDateTime);
         }
 
         #endregion Public Properties

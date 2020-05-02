@@ -67,6 +67,8 @@ namespace Agenda.Data.Crud
                 .Take(maxNumberOfMeetings)
                 .Include(m => m.Committee)
                 .ThenInclude(c => c!.Organisation)
+                .Include(m => m.Location)
+                .ThenInclude(l => l!.Organisation)
                 .Where(m => m.MeetingDateTime >= earliestDate)
                 .ToListAsync()
                 .ConfigureAwait(false);
@@ -96,6 +98,8 @@ namespace Agenda.Data.Crud
                     .TagWith(this.Tag(who, nameof(this.GetMeetingByIdAsync)))
                     .Include(m => m.Committee)
                     .ThenInclude(c => c!.Organisation)
+                    .Include(m => m.Location)
+                    .ThenInclude(l => l!.Organisation)
                     .FirstOrDefaultAsync(m => m.Id == meetingId)
                     .ConfigureAwait(false))
                 .ToDomain();
