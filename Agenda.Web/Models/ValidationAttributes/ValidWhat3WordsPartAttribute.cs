@@ -1,10 +1,11 @@
-﻿// <copyright file="ValidTimeAttribute.cs" company="Do It Wright">
+﻿// <copyright file="ValidWhat3WordsPartAttribute.cs" company="Do It Wright">
 // Copyright (c) Do It Wright. All rights reserved.
 // </copyright>
 
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
+using Agenda.Domain.DomainObjects.Locations;
 
 namespace Agenda.Web.Models.ValidationAttributes
 {
@@ -16,7 +17,7 @@ namespace Agenda.Web.Models.ValidationAttributes
         AttributeTargets.Property |
         AttributeTargets.Field,
         AllowMultiple = false)]
-    public sealed class ValidTimeAttribute : ValidationAttribute
+    public sealed class ValidWhat3WordsPartAttribute : ValidationAttribute
     {
         /// <summary>
         /// Gets or sets the culture.
@@ -32,6 +33,11 @@ namespace Agenda.Web.Models.ValidationAttributes
         public bool AllowNull { get; set; }
 
         /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
         /// Returns true if ... is valid.
         /// </summary>
         /// <param name="value">The value of the object to validate.</param>
@@ -45,7 +51,7 @@ namespace Agenda.Web.Models.ValidationAttributes
                 return this.AllowNull;
             }
 
-            return Regex.IsMatch(value.ToString() !, "([01]?[0-9]|2[0-3]):[0-5][0-9]");
+            return Regex.IsMatch(value.ToString() !, DomainMetadata.What3Words.PartRegEx);
         }
 
         /// <summary>
@@ -57,7 +63,8 @@ namespace Agenda.Web.Models.ValidationAttributes
         /// </returns>
         public override string FormatErrorMessage(string name)
         {
-            return $"{name} is not a valid time";
+            string propertyName = this.Name ?? name;
+            return $"{propertyName} is not a valid what3words address";
         }
     }
 }

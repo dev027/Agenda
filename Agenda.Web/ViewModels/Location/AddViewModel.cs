@@ -8,6 +8,7 @@ using System.Globalization;
 using Agenda.Domain.DomainObjects.Locations;
 using Agenda.Domain.DomainObjects.Organisations;
 using Agenda.Web.Models;
+using Agenda.Web.Models.ValidationAttributes;
 using Agenda.Web.Resources;
 using DomainMetadata = Agenda.Domain.DomainObjects.Locations.DomainMetadata;
 
@@ -109,7 +110,7 @@ namespace Agenda.Web.ViewModels.Location
         /// Gets or sets the What3Words Address Part 1.
         /// </summary>
         [Display(Name = "What3Words Address")]
-        [Required]
+        [ValidWhat3WordsPart(Name="What3Words Address Part 1")]
         [StringLength(
             DomainMetadata.What3Words.Part.MaxLength,
             MinimumLength = DomainMetadata.What3Words.Part.MinLength)]
@@ -119,7 +120,7 @@ namespace Agenda.Web.ViewModels.Location
         /// Gets or sets the What3Words Address Part 2.
         /// </summary>
         [Display(Name = "What3Words Address")]
-        [Required]
+        [ValidWhat3WordsPart(Name = "What3Words Address Part 2")]
         [StringLength(
             DomainMetadata.What3Words.Part.MaxLength,
             MinimumLength = DomainMetadata.What3Words.Part.MinLength)]
@@ -129,7 +130,7 @@ namespace Agenda.Web.ViewModels.Location
         /// Gets or sets the What3Words Address Part 3.
         /// </summary>
         [Display(Name = "What3Words Address")]
-        [Required]
+        [ValidWhat3WordsPart(Name = "What3Words Address Part 3")]
         [StringLength(
             DomainMetadata.What3Words.Part.MaxLength,
             MinimumLength = DomainMetadata.What3Words.Part.MinLength)]

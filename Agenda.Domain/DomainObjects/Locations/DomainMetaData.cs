@@ -69,6 +69,11 @@ namespace Agenda.Domain.DomainObjects.Locations
             public const string Separator = ".";
 
             /// <summary>
+            /// The W3W part RegEx.
+            /// </summary>
+            public const string PartRegEx = "^[a-z]{1,10}$";
+
+            /// <summary>
             /// The Part of the W3W address, of which there are three.
             /// </summary>
             [SuppressMessage(

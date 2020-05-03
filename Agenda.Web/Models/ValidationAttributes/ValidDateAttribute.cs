@@ -24,6 +24,14 @@ namespace Agenda.Web.Models.ValidationAttributes
         public string Culture { get; set; } = "en-GB";
 
         /// <summary>
+        /// Gets or sets a value indicating whether [allow null].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [allow null]; otherwise, <c>false</c>.
+        /// </value>
+        public bool AllowNull { get; set; }
+
+        /// <summary>
         /// Returns true if ... is valid.
         /// </summary>
         /// <param name="value">The value of the object to validate.</param>
@@ -34,11 +42,12 @@ namespace Agenda.Web.Models.ValidationAttributes
         {
             if (value == null)
             {
-                return false;
+                return this.AllowNull;
             }
 
             CultureInfo cultureInfo = CultureInfo.GetCultureInfo(this.Culture);
 
+            // Should be a date and no time component.
             if (DateTime.TryParse(
                 value.ToString(),
                 cultureInfo,

@@ -74,6 +74,50 @@
             Tests the constructor null What3Words address throws exception.
             </summary>
         </member>
+        <member name="T:Agenda.Domain.Tests.DomainObjects.Locations.LocationTests.What3WordsJoinTests">
+            <summary>
+            Tests for <see cref="M:Agenda.Domain.DomainObjects.Locations.Location.What3WordsJoin(System.String,System.String,System.String)"/>() methods.
+            </summary>
+        </member>
+        <member name="M:Agenda.Domain.Tests.DomainObjects.Locations.LocationTests.What3WordsJoinTests.Test_With_Valid_Values">
+            <summary>
+            Tests the with valid values.
+            </summary>
+        </member>
+        <member name="M:Agenda.Domain.Tests.DomainObjects.Locations.LocationTests.What3WordsJoinTests.Test_That_Uppercase_Values_Are_Converted_To_Lowercase">
+            <summary>
+            Tests that uppercase values are converted to lowercase.
+            </summary>
+        </member>
+        <member name="M:Agenda.Domain.Tests.DomainObjects.Locations.LocationTests.What3WordsJoinTests.Test_That_When_Part1_Is_Null_Throws_Exception">
+            <summary>
+            Tests the that when part1 is null it throws an exception.
+            </summary>
+        </member>
+        <member name="M:Agenda.Domain.Tests.DomainObjects.Locations.LocationTests.What3WordsJoinTests.Test_That_When_Part2_Is_Null_Throws_Exception">
+            <summary>
+            Tests the that when part2 is null throws exception.
+            </summary>
+        </member>
+        <member name="M:Agenda.Domain.Tests.DomainObjects.Locations.LocationTests.What3WordsJoinTests.Test_That_When_Part3_Is_Null_Throws_Exception">
+            <summary>
+            Tests the that when part3 is null throws exception.
+            </summary>
+        </member>
+        <member name="T:Agenda.Domain.Tests.DomainObjects.Locations.LocationTests.What3WordsPart2Tests">
+            <summary>
+            Tests for <see cref="M:Agenda.Domain.DomainObjects.Locations.Location.What3WordsParts"/>() method.
+            </summary>
+        </member>
+        <member name="M:Agenda.Domain.Tests.DomainObjects.Locations.LocationTests.What3WordsPart2Tests.Test_With_Various_Values(System.String,System.String,System.String,System.String)">
+            <summary>
+            Tests the method with various values.
+            </summary>
+            <param name="what3WordsAddress">What3 words address to test.</param>
+            <param name="expectedPart1">Expected part1.</param>
+            <param name="expectedPart2">Expected part2.</param>
+            <param name="expectedPart3">Expected part3.</param>
+        </member>
         <member name="T:Agenda.Domain.Tests.DomainObjects.Meetings.MeetingTests.ConstructorTests">
             <summary>
             Test the constructor for <see cref="T:Agenda.Domain.DomainObjects.Meetings.Meeting"/>.
@@ -143,6 +187,41 @@
             <summary>
             Tests the constructor null locations throws exception.
             </summary>
+        </member>
+        <member name="T:Agenda.Domain.Tests.Resources.ExceptionResource">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.Tests.Resources.ExceptionResource.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.Tests.Resources.ExceptionResource.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.Tests.Resources.ExceptionResource.Property___WasNotFoundInType___">
+            <summary>
+              Looks up a localized string similar to Property {0} was not found in Type {1}.
+            </summary>
+        </member>
+        <member name="T:Agenda.Domain.Tests.TestUtilities.TestUtils">
+            <summary>
+            Test Utilities.
+            </summary>
+        </member>
+        <member name="M:Agenda.Domain.Tests.TestUtilities.TestUtils.SetPrivatePropertyValue``1(System.Object,System.String,``0)">
+            <summary>
+            Sets the private property value.
+            </summary>
+            <typeparam name="T">Property Type.</typeparam>
+            <param name="target">Target object.</param>
+            <param name="propName">Property name.</param>
+            <param name="value">Value to set.</param>
         </member>
         <member name="T:Agenda.Domain.Tests.ValueObjects.SetupStatii.SetupStatiiTests.ConstructorTests">
             <summary>

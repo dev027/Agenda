@@ -49,17 +49,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Resources\ExceptionResources.Designer.cs">
+    <Compile Update="Resources\ExceptionResource.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>ExceptionResources.resx</DependentUpon>
+      <DependentUpon>ExceptionResource.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Resources\ExceptionResources.resx">
+    <EmbeddedResource Update="Resources\ExceptionResource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ExceptionResources.Designer.cs</LastGenOutput>
+      <LastGenOutput>ExceptionResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

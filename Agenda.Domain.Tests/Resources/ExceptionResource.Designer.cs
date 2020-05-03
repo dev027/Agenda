@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Agenda.Data.Tests.Resources {
+namespace Agenda.Domain.Tests.Resources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace Agenda.Data.Tests.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ExceptionResources {
+    internal class ExceptionResource {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ExceptionResources() {
+        internal ExceptionResource() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Agenda.Data.Tests.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Agenda.Data.Tests.Resources.ExceptionResources", typeof(ExceptionResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Agenda.Domain.Tests.Resources.ExceptionResource", typeof(ExceptionResource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

@@ -180,6 +180,11 @@
             The separator for W3W addresses.
             </summary>
         </member>
+        <member name="F:Agenda.Domain.DomainObjects.Locations.DomainMetadata.What3Words.PartRegEx">
+            <summary>
+            The W3W part RegEx.
+            </summary>
+        </member>
         <member name="T:Agenda.Domain.DomainObjects.Locations.DomainMetadata.What3Words.Part">
             <summary>
             The Part of the W3W address, of which there are three.

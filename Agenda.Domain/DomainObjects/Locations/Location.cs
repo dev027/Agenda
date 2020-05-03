@@ -56,7 +56,7 @@ namespace Agenda.Domain.DomainObjects.Locations
         public string Address { get; }
 
         /// <inheritdoc/>
-        public string What3Words { get; }
+        public string What3Words { get; private set;  }
 
         /// <inheritdoc/>
         public double Latitude { get; }
@@ -80,6 +80,21 @@ namespace Agenda.Domain.DomainObjects.Locations
             string what3WordsPart2,
             string what3WordsPart3)
         {
+            if (what3WordsPart1 == null)
+            {
+                throw new ArgumentNullException(nameof(what3WordsPart1));
+            }
+
+            if (what3WordsPart2 == null)
+            {
+                throw new ArgumentNullException(nameof(what3WordsPart2));
+            }
+
+            if (what3WordsPart3 == null)
+            {
+                throw new ArgumentNullException(nameof(what3WordsPart3));
+            }
+
             return string.Join(
                     DomainMetadata.What3Words.Separator,
                     what3WordsPart1,
@@ -91,10 +106,28 @@ namespace Agenda.Domain.DomainObjects.Locations
         /// <inheritdoc />
         public string[] What3WordsParts()
         {
-            return this.What3Words.Split(
+            string[] what3WordsParts = this.What3Words?.Split(
                 DomainMetadata.What3Words.Separator
                     .ToCharArray()
-                    .First());
+                    .First()) ?? Array.Empty<string>();
+
+            if (what3WordsParts.Length == 3)
+            {
+                return what3WordsParts;
+            }
+
+            if (what3WordsParts.Length > 3)
+            {
+                return what3WordsParts.Take(3).ToArray();
+            }
+
+            return what3WordsParts
+                .ToList()
+                .Append(string.Empty)
+                .Append(string.Empty)
+                .Append(string.Empty)
+                .Take(3)
+                .ToArray();
         }
     }
 }
