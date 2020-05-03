@@ -1,13 +1,49 @@
 ﻿@using Agenda.Web.Models
-@using Metadata=Agenda.Domain.DomainObjects.Committees.DomainMetadata
+@using Metadata = Agenda.Domain.DomainObjects.Committees.DomainMetadata
 @model Agenda.Web.ViewModels.Committee.EditViewModel
 
+@section BreadCrumb
+{
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <span class="@Icon.Organisation"></span>
+                <a asp-controller="OrganisationOverview"
+                   asp-action="Index">Organisations</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a asp-controller="Organisation"
+                   asp-action="Index"
+                   asp-route-organisationId="@Model.OrganisationId">
+                    @Model.OrganisationName
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                <span class="@Icon.Committee"></span>
+                <a asp-controller="CommitteeOverview"
+                   asp-action="Index">Committees</a>
+            </li>
+            <li class="breadcrumb-item active">
+                @Model.Name
+            </li>
+        </ol>
+    </nav>
+    <nav class="actionsnavbar">
+        <div class="list-group list-group-horizontal">
+            <a class="list-group-item list-group-item-info"
+               asp-controller="Home"
+               asp-action="Index">
+                <span class="@Icon.Dashboard"></span> Dashboard
+            </a>
+        </div>
+    </nav>
+}
+
 <main class="container-fluid flex-grow-1">
-    <h1>Edit Committee</h1>
     <div class="row justify-content-center">
         <div class="col-12 col-sm-9 col-md-7 col-lg-5 col-xl-4">
             <div class="card card-default">
-                <div class="card-header"><h4>Committee</h4></div>
+                <div class="card-header"><h4><i class="@Icon.Committee"></i> Edit Committee</h4></div>
                 <div class="card-body">
                     @if (!ViewData.ModelState.IsValid)
                     {
@@ -20,18 +56,23 @@
                     {
                         <input type="hidden" value="@FormState.SubmittedBySubmitButton" name="FormState" />
                         <input type="hidden" value="@Model.CommitteeId" name="CommitteeId" />
-                                                                        
+                        <input type="hidden" value="@Model.OrganisationId" name="OrganisationId" />
+
                         <div class="form-group">
                             @Html.LabelFor(m => m.OrganisationName)
-                            @Html.TextBoxFor(m => m.OrganisationName,
-                                Model.OrganisationName,
-                                new
-                                {
-                                    @class = "form-control",
-                                    @readonly = "readonly"
-                                })
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <a class="btn btn-secondary"
+                                       asp-controller="Organisation"
+                                       asp-action="Index"
+                                       asp-route-organisationid="@Model.OrganisationId">
+                                        <span class="@Icon.Organisation"></span>
+                                    </a> 
+                                </div>
+                                @Html.TextBoxFor(m => m.OrganisationName, Model.OrganisationName, new { @class = "form-control", @readonly = "readonly" })
+                            </div>
                         </div>
-                         <div class="form-group">
+                        <div class="form-group">
                             @Html.LabelFor(m => m.Name)
                             @Html.TextBoxFor(m => m.Name,
                                 Model.Name,
@@ -58,11 +99,11 @@
                             Save Committee
                         </button>
                         <a class="btn btn-secondary"
-                                type="button"
-                                asp-controller="Committee"
-                                asp-action="Index"
-                                asp-route-committeeId="@Model.CommitteeId">
-                            <span class="@Icon.Cancel"></span>    
+                           type="button"
+                           asp-controller="Committee"
+                           asp-action="Index"
+                           asp-route-committeeId="@Model.CommitteeId">
+                            <span class="@Icon.Cancel"></span>
                             Cancel
                         </a>
                     }

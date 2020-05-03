@@ -1,13 +1,46 @@
 ﻿@using Agenda.Web.Models
-@using Metadata=Agenda.Domain.DomainObjects.Committees.DomainMetadata
+@using Metadata = Agenda.Domain.DomainObjects.Committees.DomainMetadata
 @model Agenda.Web.ViewModels.Committee.AddViewModel
 
+@section BreadCrumb
+{
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <span class="@Icon.Organisation"></span>
+                <a asp-controller="OrganisationOverview"
+                   asp-action="Index">Organisations</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a asp-controller="Organisation"
+                   asp-action="Index"
+                   asp-route-organisationId="@Model.OrganisationId">
+                    @Model.OrganisationName
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                <span class="@Icon.Committee"></span>
+                <a asp-controller="CommitteeOverview"
+                   asp-action="Index">Committees</a>
+            </li>
+        </ol>
+    </nav>
+    <nav class="actionsnavbar">
+        <div class="list-group list-group-horizontal">
+            <a class="list-group-item list-group-item-info"
+               asp-controller="Home"
+               asp-action="Index">
+                <span class="@Icon.Dashboard"></span> Dashboard
+            </a>
+        </div>
+    </nav>
+}
+
 <main class="container-fluid flex-grow-1">
-    <h1>Add Committee</h1>
     <div class="row justify-content-center">
         <div class="col-12 col-sm-9 col-md-7 col-lg-5 col-xl-4">
             <div class="card card-default">
-                <div class="card-header"><h4>Committee</h4></div>
+                <div class="card-header"><h4><i class="@Icon.Committee"></i> Add Committee</h4></div>
                 <div class="card-body">
                     @if (!ViewData.ModelState.IsValid)
                     {
@@ -18,8 +51,8 @@
                     }
                     @using (Html.BeginForm("Add", "Committee", FormMethod.Post))
                     {
-                        <input type="hidden" value="@FormState.SubmittedBySubmitButton" name="FormState"/>
-                        <input type="hidden" value="@Model.OrganisationId" name="OrganisationId"/>
+                        <input type="hidden" value="@FormState.SubmittedBySubmitButton" name="FormState" />
+                        <input type="hidden" value="@Model.OrganisationId" name="OrganisationId" />
                         <div class="form-group">
                             @Html.LabelFor(m => m.OrganisationName)
                             @Html.TextBoxFor(m => m.OrganisationName,
@@ -30,7 +63,7 @@
                                     disabled = "disabled"
                                 })
                         </div>
-                         <div class="form-group">
+                        <div class="form-group">
                             @Html.LabelFor(m => m.Name)
                             @Html.TextBoxFor(m => m.Name,
                                 Model.Name,
@@ -39,7 +72,7 @@
                                     @class = "form-control",
                                     maxLength = Metadata.Name.MaxLength
                                 })
-                            @Html.ValidationMessageFor(m => m.Name, null, new { @class="text-danger"})
+                            @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(m => m.Description)
@@ -53,6 +86,13 @@
                             @Html.ValidationMessageFor(m => m.Description, null, new { @class = "text-danger" })
                         </div>
                         <button class="btn btn-primary" type="submit">Add Committee</button>
+                        <a class="btn btn-secondary"
+                           asp-controller="CommitteeOverview"
+                           asp-action="Index"
+                           asp-route-organisationId="@Model.OrganisationId">
+                            <i class="@Icon.Cancel"></i>
+                            Cancel
+                        </a>
                     }
                 </div>
             </div>

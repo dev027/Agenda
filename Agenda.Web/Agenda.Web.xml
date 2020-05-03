@@ -1113,12 +1113,13 @@
             Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Committee.EditViewModel"/> class.
             </summary>
         </member>
-        <member name="M:Agenda.Web.ViewModels.Committee.EditViewModel.#ctor(Agenda.Web.Models.FormState,System.Guid,System.String,System.String,System.String)">
+        <member name="M:Agenda.Web.ViewModels.Committee.EditViewModel.#ctor(Agenda.Web.Models.FormState,System.Guid,System.Guid,System.String,System.String,System.String)">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Committee.EditViewModel"/> class.
             </summary>
             <param name="formState">Form State.</param>
             <param name="committeeId">Committee Id.</param>
+            <param name="organisationId">Organisation Id.</param>
             <param name="organisationName">Organisation Name.</param>
             <param name="name">Committee Name.</param>
             <param name="description">Committee Description.</param>
@@ -1131,6 +1132,11 @@
         <member name="P:Agenda.Web.ViewModels.Committee.EditViewModel.CommitteeId">
             <summary>
             Gets or sets the Committee Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Committee.EditViewModel.OrganisationId">
+            <summary>
+            Gets or sets the Organisation Id.
             </summary>
         </member>
         <member name="P:Agenda.Web.ViewModels.Committee.EditViewModel.OrganisationName">

@@ -31,18 +31,21 @@ namespace Agenda.Web.ViewModels.Committee
         /// </summary>
         /// <param name="formState">Form State.</param>
         /// <param name="committeeId">Committee Id.</param>
+        /// <param name="organisationId">Organisation Id.</param>
         /// <param name="organisationName">Organisation Name.</param>
         /// <param name="name">Committee Name.</param>
         /// <param name="description">Committee Description.</param>
         public EditViewModel(
             FormState formState,
             Guid committeeId,
+            Guid organisationId,
             string organisationName,
             string name,
             string description)
         {
             this.FormState = formState;
             this.CommitteeId = committeeId;
+            this.OrganisationId = organisationId;
             this.OrganisationName = organisationName;
             this.Name = name;
             this.Description = description;
@@ -62,6 +65,12 @@ namespace Agenda.Web.ViewModels.Committee
         /// </summary>
         [MyRequired]
         public Guid CommitteeId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Organisation Id.
+        /// </summary>
+        [MyRequired]
+        public Guid OrganisationId { get; set; }
 
         /// <summary>
         /// Gets or sets the Organisation Name.
@@ -109,6 +118,7 @@ namespace Agenda.Web.ViewModels.Committee
             return new EditViewModel(
                 formState: FormState.Initial,
                 committeeId: committee.Id,
+                organisationId: committee.Organisation.Id,
                 organisationName: committee.Organisation.Name,
                 name: committee.Name,
                 description: committee.Description);

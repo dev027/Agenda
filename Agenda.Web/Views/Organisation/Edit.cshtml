@@ -1,16 +1,37 @@
 ﻿@using Agenda.Web.Models
-@using Metadata=Agenda.Domain.DomainObjects.Organisations.DomainMetadata
+@using Metadata = Agenda.Domain.DomainObjects.Organisations.DomainMetadata
 @model Agenda.Web.ViewModels.Organisation.EditViewModel
 
-<nav class="sidebar d-none">
-    <h1>Sidebar</h1>
-</nav>
+@section BreadCrumb
+{
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item" aria-current="page">
+                <span class="@Icon.Organisation"></span>
+                <a asp-controller="OrganisationOverview"
+                   asp-action="Index">Organisations</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+                @Model.Name
+            </li>
+        </ol>
+    </nav>
+    <nav class="actionsnavbar">
+        <div class="list-group list-group-horizontal">
+            <a class="list-group-item list-group-item-info"
+               asp-controller="Home"
+               asp-action="Index">
+                <span class="@Icon.Dashboard"></span> Dashboard
+            </a>
+        </div>
+    </nav>
+}
+
 <main class="container-fluid flex-grow-1">
-    <h1>Add Organisation</h1>
     <div class="row justify-content-center">
         <div class="col-12 col-sm-9 col-md-7 col-lg-5 col-xl-4">
             <div class="card card-default">
-                <div class="card-header"><h4>Organisation</h4></div>
+                <div class="card-header"><h4><i class="@Icon.Organisation"></i> Edit Organisation</h4></div>
                 <div class="card-body">
                     @if (!ViewData.ModelState.IsValid)
                     {
@@ -50,11 +71,11 @@
                             Save Organisation
                         </button>
                         <a class="btn btn-secondary"
-                                type="button"
-                                asp-controller="Organisation"
-                                asp-action="Index"
-                                asp-route-organisationId="@Model.OrganisationId">
-                            <span class="@Icon.Cancel"></span>    
+                           type="button"
+                           asp-controller="Organisation"
+                           asp-action="Index"
+                           asp-route-organisationId="@Model.OrganisationId">
+                            <span class="@Icon.Cancel"></span>
                             Cancel
                         </a>
                     }
