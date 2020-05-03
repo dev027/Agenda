@@ -29,14 +29,12 @@
                asp-route-organisationId="@Model.OrganisationId">
                 <span class="@Icon.Committee"></span> Committees
             </a>
-
             <a class="list-group-item list-group-item-info"
                asp-controller="LocationOverview"
                asp-action="Index"
                asp-route-organisationId="@Model.OrganisationId">
                 <span class="@Icon.Location"></span> Locations
             </a>
-
         </div>
     </nav>
 }
@@ -45,7 +43,23 @@
     <div class="row justify-content-center">
         <div class="col-12 col-lg-6 col-xl-4">
             <div class="card card-default">
-                <div class="card-header"><h5><span class="@Icon.Organisation"></span> @Html.DisplayNameFor(m => m.CardTitle)</h5></div>
+                <div class="card-header d-flex flex-row justify-content-between">
+                    <h4><span class="@Icon.Organisation"></span> @Html.DisplayNameFor(m => m.CardTitle)</h4>
+                    <div class="list-group list-group-horizontal">
+                        <a class="list-group-item list-group-item-info py-1 px-2"
+                           asp-controller="CommitteeOverview"
+                           asp-action="Index"
+                           asp-route-organisationId="@Model.OrganisationId">
+                            <span class="@Icon.Committee"></span>
+                        </a>
+                        <a class="list-group-item list-group-item-info py-1 px-2"
+                           asp-controller="LocationOverview"
+                           asp-action="Index"
+                           asp-route-organisationId="@Model.OrganisationId">
+                            <span class="@Icon.Location"></span>
+                        </a>
+                    </div>
+                </div>
                 <div class="card-body">
                     <div class="form-group">
                         <label>@Html.DisplayNameFor(m => m.Code)</label>
