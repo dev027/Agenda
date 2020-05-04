@@ -92,14 +92,20 @@
             Meeting Card View Model.
             </summary>
         </member>
-        <member name="M:Agenda.Web.Areas.Api.Models.Home.MeetingCardViewModel.#ctor(System.String,System.String,System.DateTime,System.String)">
+        <member name="M:Agenda.Web.Areas.Api.Models.Home.MeetingCardViewModel.#ctor(System.Guid,System.String,System.String,System.DateTime,System.String)">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Web.Areas.Api.Models.Home.MeetingCardViewModel"/> class.
             </summary>
+            <param name="meetingId">Meeting Id.</param>
             <param name="organisationName">Organisation Name.</param>
             <param name="committeeName">Committee Name.</param>
             <param name="meetingDateTime">Date and Time of the Meeting.</param>
             <param name="location">Location.</param>
+        </member>
+        <member name="P:Agenda.Web.Areas.Api.Models.Home.MeetingCardViewModel.MeetingId">
+            <summary>
+            Gets the Meeting Id.
+            </summary>
         </member>
         <member name="P:Agenda.Web.Areas.Api.Models.Home.MeetingCardViewModel.OrganisationName">
             <summary>

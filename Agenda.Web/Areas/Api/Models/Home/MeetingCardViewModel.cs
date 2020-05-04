@@ -15,21 +15,29 @@ namespace Agenda.Web.Areas.Api.Models.Home
         /// <summary>
         /// Initializes a new instance of the <see cref="MeetingCardViewModel"/> class.
         /// </summary>
+        /// <param name="meetingId">Meeting Id.</param>
         /// <param name="organisationName">Organisation Name.</param>
         /// <param name="committeeName">Committee Name.</param>
         /// <param name="meetingDateTime">Date and Time of the Meeting.</param>
         /// <param name="location">Location.</param>
         public MeetingCardViewModel(
+            Guid meetingId,
             string organisationName,
             string committeeName,
             DateTime meetingDateTime,
             string location)
         {
+            this.MeetingId = meetingId;
             this.OrganisationName = organisationName;
             this.CommitteeName = committeeName;
             this.MeetingDateTime = meetingDateTime;
             this.Location = location;
         }
+
+        /// <summary>
+        /// Gets the Meeting Id.
+        /// </summary>
+        public Guid MeetingId { get; }
 
         /// <summary>
         /// Gets the Organisation Name.
@@ -64,6 +72,7 @@ namespace Agenda.Web.Areas.Api.Models.Home
             }
 
             return new MeetingCardViewModel(
+                meetingId: meeting.Id,
                 organisationName: meeting.Committee.Organisation.Name,
                 committeeName: meeting.Committee.Name,
                 meetingDateTime: meeting.MeetingDateTime,

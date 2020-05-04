@@ -1,4 +1,5 @@
-﻿@using Agenda.Web.Models
+﻿@using Agenda.Web.Areas.Api.Models.Home
+@using Agenda.Web.Models
 @model Agenda.Web.Areas.Api.Models.Home.IndexViewModel
 @{
 }
@@ -27,11 +28,15 @@
 
 
 
-<main class="container-fluid flex-grow-1">
+<main class="container-fluid x-flex-grow-1 d-flex flex-column">
     @if (Model.MeetingCardViewModels.Any())
     {
-
-        <p>Have @Model.MeetingCardViewModels.Count meetings</p>
+        <div class="row">
+        @foreach (MeetingCardViewModel model in Model.MeetingCardViewModels)
+        {
+            @await Html.PartialAsync("_MeetingCard", model)
+        }
+        </div>
     }
     else
     {
