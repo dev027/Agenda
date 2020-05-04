@@ -1425,12 +1425,13 @@
             Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Location.EditViewModel"/> class.
             </summary>
         </member>
-        <member name="M:Agenda.Web.ViewModels.Location.EditViewModel.#ctor(Agenda.Web.Models.FormState,System.Guid,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Double},System.Nullable{System.Double})">
+        <member name="M:Agenda.Web.ViewModels.Location.EditViewModel.#ctor(Agenda.Web.Models.FormState,System.Guid,System.Guid,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Double},System.Nullable{System.Double})">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Location.EditViewModel"/> class.
             </summary>
             <param name="formState">Form State.</param>
             <param name="locationId">Location Id.</param>
+            <param name="organisationId">Organisation Id.</param>
             <param name="organisationName">Organisation Name.</param>
             <param name="name">Location Name.</param>
             <param name="address">Address.</param>
@@ -1448,6 +1449,11 @@
         <member name="P:Agenda.Web.ViewModels.Location.EditViewModel.LocationId">
             <summary>
             Gets or sets the Location Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Location.EditViewModel.OrganisationId">
+            <summary>
+            Gets or sets the Organisation Id.
             </summary>
         </member>
         <member name="P:Agenda.Web.ViewModels.Location.EditViewModel.OrganisationName">

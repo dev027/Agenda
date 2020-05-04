@@ -2,12 +2,47 @@
 @using Metadata = Agenda.Domain.DomainObjects.Locations.DomainMetadata
 @model Agenda.Web.ViewModels.Location.EditViewModel
 
+@section BreadCrumb
+{
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <i class="@Icon.Organisation"></i>
+                <a asp-controller="OrganisationOverview"
+                   asp-action="Index">Organisations</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a asp-controller="Organisation"
+                   asp-action="Index"
+                   asp-route-organisationId="@Model.OrganisationId">
+                    @Model.OrganisationName
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                <i class="@Icon.Location"></i>
+                <a asp-controller="LocationOverview"
+                   asp-action="Index"
+                   asp-route-organisationId="@Model.OrganisationId">Locations</a>
+            </li>
+            <li class="breadcrumb-item active">@Model.Name</li>
+        </ol>
+    </nav>
+    <nav class="actionsnavbar">
+        <div class="list-group list-group-horizontal">
+            <a class="list-group-item list-group-item-info"
+               asp-controller="Home"
+               asp-action="Index">
+                <i class="@Icon.Dashboard"></i> Dashboard
+            </a>
+        </div>
+    </nav>
+}
+
 <main class="container-fluid flex-grow-1">
-    <h1>Edit Location</h1>
     <div class="row justify-content-center">
         <div class="col-12 col-sm-9 col-md-7 col-lg-5 col-xl-4">
             <div class="card card-default">
-                <div class="card-header"><h4>Location</h4></div>
+                <div class="card-header"><h4><i class="@Icon.Location"></i> Edit Location</h4></div>
                 <div class="card-body">
                     @if (!ViewData.ModelState.IsValid)
                     {
@@ -23,13 +58,23 @@
 
                         <div class="form-group">
                             @Html.LabelFor(m => m.OrganisationName)
-                            @Html.TextBoxFor(m => m.OrganisationName,
-                                Model.OrganisationName,
-                                new
-                                {
-                                    @class = "form-control",
-                                    @readonly = "readonly"
-                                })
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <a class="btn btn-secondary"
+                                       asp-controller="Organisation"
+                                       asp-action="Index"
+                                       asp-route-organisationid="@Model.OrganisationId">
+                                        <span class="@Icon.Organisation"></span>
+                                    </a>
+                                </div>
+                                @Html.TextBoxFor(m => m.OrganisationName,
+                                    Model.OrganisationName,
+                                    new
+                                    {
+                                        @class = "form-control",
+                                        @readonly = "readonly"
+                                    })
+                            </div>
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(m => m.Name)
@@ -118,7 +163,7 @@
                            asp-controller="Location"
                            asp-action="Index"
                            asp-route-locationId="@Model.LocationId">
-                            <span class="@Icon.Cancel"></span>    
+                            <span class="@Icon.Cancel"></span>
                             Cancel
                         </a>
                     }

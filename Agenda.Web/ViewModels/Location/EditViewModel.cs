@@ -33,6 +33,7 @@ namespace Agenda.Web.ViewModels.Location
         /// </summary>
         /// <param name="formState">Form State.</param>
         /// <param name="locationId">Location Id.</param>
+        /// <param name="organisationId">Organisation Id.</param>
         /// <param name="organisationName">Organisation Name.</param>
         /// <param name="name">Location Name.</param>
         /// <param name="address">Address.</param>
@@ -44,6 +45,7 @@ namespace Agenda.Web.ViewModels.Location
         public EditViewModel(
             FormState formState,
             Guid locationId,
+            Guid organisationId,
             string organisationName,
             string name,
             string address,
@@ -55,6 +57,7 @@ namespace Agenda.Web.ViewModels.Location
         {
             this.FormState = formState;
             this.LocationId = locationId;
+            this.OrganisationId = organisationId;
             this.OrganisationName = organisationName;
             this.Name = name;
             this.Address = address;
@@ -79,6 +82,12 @@ namespace Agenda.Web.ViewModels.Location
         /// </summary>
         [Required]
         public Guid LocationId { get; set; }
+
+         /// <summary>
+        /// Gets or sets the Organisation Id.
+        /// </summary>
+        [Required]
+        public Guid OrganisationId { get; set; }
 
         /// <summary>
         /// Gets or sets the Organisation Name.
@@ -174,6 +183,7 @@ namespace Agenda.Web.ViewModels.Location
             return new EditViewModel(
                 formState: FormState.Initial,
                 locationId: location.Id,
+                organisationId: location.Organisation.Id,
                 organisationName: location.Organisation.Name,
                 name: location.Name,
                 address: location.Address,

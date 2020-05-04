@@ -21,7 +21,8 @@
             <li class="breadcrumb-item">
                 <span class="@Icon.Committee"></span>
                 <a asp-controller="CommitteeOverview"
-                   asp-action="Index">Committees</a>
+                   asp-action="Index"
+                   asp-route-organisationId="@Model.OrganisationId">Committees</a>
             </li>
         </ol>
     </nav>
