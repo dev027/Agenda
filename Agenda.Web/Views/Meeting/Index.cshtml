@@ -33,6 +33,15 @@
             <li class="breadcrumb-item active" aria-current="page">@Model.MeetingDate</li>
         </ol>
     </nav>
+    <nav class="actionsnavbar">
+        <div class="list-group list-group-horizontal">
+            <a class="list-group-item list-group-item-info"
+               asp-controller="Home"
+               asp-action="Index">
+                <span class="@Icon.Dashboard"></span> Dashboard
+            </a>
+        </div>
+    </nav>
 }
 
 

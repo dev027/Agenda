@@ -34,6 +34,7 @@ namespace Agenda.Web.ViewModels.Meeting
         /// </summary>
         /// <param name="formState">Form State.</param>
         /// <param name="committeeId">Committee Id.</param>
+        /// <param name="organisationId">Organisation Id.</param>
         /// <param name="organisationName">Organisation Name.</param>
         /// <param name="committeeName">Committee Name.</param>
         /// <param name="locationId">Location Id.</param>
@@ -42,6 +43,7 @@ namespace Agenda.Web.ViewModels.Meeting
         public AddViewModel(
             FormState formState,
             Guid committeeId,
+            Guid organisationId,
             string organisationName,
             string committeeName,
             Guid locationId,
@@ -50,6 +52,7 @@ namespace Agenda.Web.ViewModels.Meeting
         {
             this.FormState = formState;
             this.CommitteeId = committeeId;
+            this.OrganisationId = organisationId;
             this.OrganisationName = organisationName;
             this.CommitteeName = committeeName;
             this.LocationId = locationId;
@@ -70,6 +73,11 @@ namespace Agenda.Web.ViewModels.Meeting
         /// Gets or sets the Committee Id.
         /// </summary>
         public Guid CommitteeId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Organsiation Id.
+        /// </summary>
+        public Guid OrganisationId { get; set; }
 
         /// <summary>
         /// Gets or sets the Organisation Name.
@@ -131,6 +139,7 @@ namespace Agenda.Web.ViewModels.Meeting
             return new AddViewModel(
                 formState: FormState.Initial,
                 committeeId: committee.Id,
+                organisationId: committee.Organisation.Id,
                 organisationName: committee.Organisation.Name,
                 committeeName: committee.Name,
                 locationId: Guid.Empty,

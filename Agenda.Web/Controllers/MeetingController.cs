@@ -133,7 +133,7 @@ namespace Agenda.Web.Controllers
                         this.logger,
                         this.RedirectToAction(
                             "Index",
-                            "Committee",
+                            "MeetingOverview",
                             new { committeeId = model.CommitteeId }));
                 }
             }

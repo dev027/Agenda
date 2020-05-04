@@ -1682,12 +1682,13 @@
             Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Meeting.AddViewModel"/> class.
             </summary>
         </member>
-        <member name="M:Agenda.Web.ViewModels.Meeting.AddViewModel.#ctor(Agenda.Web.Models.FormState,System.Guid,System.String,System.String,System.Guid,System.String,System.String)">
+        <member name="M:Agenda.Web.ViewModels.Meeting.AddViewModel.#ctor(Agenda.Web.Models.FormState,System.Guid,System.Guid,System.String,System.String,System.Guid,System.String,System.String)">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Meeting.AddViewModel"/> class.
             </summary>
             <param name="formState">Form State.</param>
             <param name="committeeId">Committee Id.</param>
+            <param name="organisationId">Organisation Id.</param>
             <param name="organisationName">Organisation Name.</param>
             <param name="committeeName">Committee Name.</param>
             <param name="locationId">Location Id.</param>
@@ -1702,6 +1703,11 @@
         <member name="P:Agenda.Web.ViewModels.Meeting.AddViewModel.CommitteeId">
             <summary>
             Gets or sets the Committee Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Meeting.AddViewModel.OrganisationId">
+            <summary>
+            Gets or sets the Organsiation Id.
             </summary>
         </member>
         <member name="P:Agenda.Web.ViewModels.Meeting.AddViewModel.OrganisationName">
@@ -1765,13 +1771,15 @@
             Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Meeting.EditViewModel"/> class.
             </summary>
         </member>
-        <member name="M:Agenda.Web.ViewModels.Meeting.EditViewModel.#ctor(Agenda.Web.Models.FormState,System.Guid,System.String,System.String,System.Guid,System.String,System.String)">
+        <member name="M:Agenda.Web.ViewModels.Meeting.EditViewModel.#ctor(Agenda.Web.Models.FormState,System.Guid,System.Guid,System.String,System.Guid,System.String,System.Guid,System.String,System.String)">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Meeting.EditViewModel"/> class.
             </summary>
             <param name="formState">Form State.</param>
             <param name="meetingId">Meeting Id.</param>
+            <param name="orgainsationId">Organisation Id.</param>
             <param name="organisationName">Organisation Name.</param>
+            <param name="committeeId">Committee Id.</param>
             <param name="committeeName">Committee Name.</param>
             <param name="locationId">Location Id.</param>
             <param name="meetingDate">Meeting Date.</param>
@@ -1787,9 +1795,19 @@
             Gets or sets the Meeting Id.
             </summary>
         </member>
+        <member name="P:Agenda.Web.ViewModels.Meeting.EditViewModel.OrganisationId">
+            <summary>
+            Gets or sets the Organisation Id.
+            </summary>
+        </member>
         <member name="P:Agenda.Web.ViewModels.Meeting.EditViewModel.OrganisationName">
             <summary>
             Gets or sets the Organisation Name.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Meeting.EditViewModel.CommitteeId">
+            <summary>
+            Gets or sets the Committee Id.
             </summary>
         </member>
         <member name="P:Agenda.Web.ViewModels.Meeting.EditViewModel.CommitteeName">

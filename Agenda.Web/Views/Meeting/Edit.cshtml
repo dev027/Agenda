@@ -1,14 +1,65 @@
 ﻿@using Agenda.Web.Models
 @model Agenda.Web.ViewModels.Meeting.EditViewModel
 
-<nav class="sidebar d-none">
-    <h1>Sidebar</h1>
-</nav>
+@section BreadCrumb
+{
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <span class="@Icon.Organisation"></span>
+                <a asp-controller="OrganisationOverview"
+                   asp-action="Index">Organisations</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a asp-controller="Organisation"
+                   asp-action="Index"
+                   asp-route-organisationId="@Model.OrganisationId">
+                    @Model.OrganisationName
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                <span class="@Icon.Committee"></span>
+                <a asp-controller="CommitteeOverview"
+                   asp-action="Index"
+                   asp-route-organisationId="@Model.OrganisationId">Committees</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a asp-controller="Committee"
+                   asp-action="Index"
+                   asp-route-organisationId="@Model.CommitteeId">
+                    @Model.CommitteeName
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                <span class="@Icon.Meeting"></span>
+                <a asp-controller="MeetingOverview"
+                   asp-action="Index"
+                   asp-route-committeeId="@Model.CommitteeId">Meetings</a>
+            </li>
+            <li class="breadcrumb-item">
+                <span class="@Icon.Meeting"></span>
+                <a asp-controller="Meeting"
+                   asp-action="Index"
+                   asp-route-meetingId="@Model.MeetingId">Meetings</a>
+            </li>
+        </ol>
+    </nav>
+    <nav class="actionsnavbar">
+        <div class="list-group list-group-horizontal">
+            <a class="list-group-item list-group-item-info"
+               asp-controller="Home"
+               asp-action="Index">
+                <span class="@Icon.Dashboard"></span> Dashboard
+            </a>
+        </div>
+    </nav>
+}
+
 <main class="container-fluid flex-grow-1">
     <div class="row justify-content-center">
         <div class="col-12 col-sm-9 col-md-7 col-lg-5 col-xl-4">
             <div class="card card-default">
-                <div class="card-header"><h4>Meeting</h4></div>
+                <div class="card-header"><h4><i class="@Icon.Meeting"></i> Edit Meeting</h4></div>
                 <div class="card-body">
                     @if (!ViewData.ModelState.IsValid)
                     {
@@ -21,37 +72,65 @@
                     {
                         <input type="hidden" value="@FormState.SubmittedBySubmitButton" name="FormState" />
                         <input type="hidden" value="@Model.MeetingId" name="MeetingId" />
+                        <input type="hidden" value="@Model.CommitteeId" name="CommitteeId" />
+                        <input type="hidden" value="@Model.OrganisationId" name="OrganisationId" />
 
                         <div class="form-group">
                             @Html.LabelFor(m => m.OrganisationName)
-                            @Html.TextBoxFor(m => m.OrganisationName,
-                                Model.OrganisationName,
-                                new
-                                {
-                                    @class = "form-control",
-                                    @readonly = "readonly"
-                                })
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <a class="btn btn-secondary"
+                                       asp-controller="Organisation"
+                                       asp-action="Index"
+                                       asp-route-organisationid="@Model.OrganisationId">
+                                        <i class="@Icon.Organisation"></i>
+                                    </a>
+                                </div>
+                                @Html.TextBoxFor(m => m.OrganisationName,
+                                    Model.OrganisationName,
+                                    new
+                                    {
+                                        @class = "form-control",
+                                        @readonly = "readonly"
+                                    })
+                            </div>
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(m => m.CommitteeName)
-                            @Html.TextBoxFor(m => m.CommitteeName,
-                                Model.CommitteeName,
-                                new
-                                {
-                                    @class = "form-control",
-                                    @readonly = "readonly"
-                                })
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <a class="btn btn-secondary"
+                                       asp-controller="Committee"
+                                       asp-action="Index"
+                                       asp-route-committeeId="@Model.CommitteeId">
+                                        <i class="@Icon.Committee"></i>
+                                    </a>
+                                </div>
+                                @Html.TextBoxFor(m => m.CommitteeName,
+                                    Model.CommitteeName,
+                                    new
+                                    {
+                                        @class = "form-control",
+                                        @readonly = "readonly"
+                                    })
+                            </div>
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(m => m.LocationId)
-                            @Html.DropDownListFor(m => m.LocationId,
-                                Model.LocationOptions,
-                                "Please select",
-                                new
-                                {
-                                    @class = "form-control"
-                                })
-
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="btn btn-secondary">
+                                        <i class="@Icon.Location"></i>
+                                    </span>
+                                </div>
+                                @Html.DropDownListFor(m => m.LocationId,
+                                    Model.LocationOptions,
+                                    "Please select",
+                                    new
+                                    {
+                                        @class = "form-control"
+                                    })
+                            </div>
                             @Html.ValidationMessageFor(m => m.LocationId, null, new { @class = "text-danger" })
                         </div>
                         <div class="form-group">

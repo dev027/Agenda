@@ -34,7 +34,9 @@ namespace Agenda.Web.ViewModels.Meeting
         /// </summary>
         /// <param name="formState">Form State.</param>
         /// <param name="meetingId">Meeting Id.</param>
+        /// <param name="orgainsationId">Organisation Id.</param>
         /// <param name="organisationName">Organisation Name.</param>
+        /// <param name="committeeId">Committee Id.</param>
         /// <param name="committeeName">Committee Name.</param>
         /// <param name="locationId">Location Id.</param>
         /// <param name="meetingDate">Meeting Date.</param>
@@ -42,7 +44,9 @@ namespace Agenda.Web.ViewModels.Meeting
         public EditViewModel(
             FormState formState,
             Guid meetingId,
+            Guid orgainsationId,
             string organisationName,
+            Guid committeeId,
             string committeeName,
             Guid locationId,
             string meetingDate,
@@ -50,7 +54,9 @@ namespace Agenda.Web.ViewModels.Meeting
         {
             this.FormState = formState;
             this.MeetingId = meetingId;
+            this.OrganisationId = orgainsationId;
             this.OrganisationName = organisationName;
+            this.CommitteeId = committeeId;
             this.CommitteeName = committeeName;
             this.LocationId = locationId;
             this.MeetingDate = meetingDate;
@@ -73,11 +79,21 @@ namespace Agenda.Web.ViewModels.Meeting
         public Guid MeetingId { get; set; }
 
         /// <summary>
+        /// Gets or sets the Organisation Id.
+        /// </summary>
+        public Guid OrganisationId { get; set; }
+
+        /// <summary>
         /// Gets or sets the Organisation Name.
         /// </summary>
         [Display(Name = "Organisation")]
         [MyRequired]
         public string OrganisationName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Committee Id.
+        /// </summary>
+        public Guid CommitteeId { get; set; }
 
         /// <summary>
         /// Gets or sets the Committee Name.
@@ -104,7 +120,7 @@ namespace Agenda.Web.ViewModels.Meeting
         /// <summary>
         /// Gets or sets the Meeting Time.
         /// </summary>
-        [Display(Name = "Date")]
+        [Display(Name = "Time")]
         [ValidTime]
         [MyRequired]
         public string MeetingTime { get; set; }
@@ -135,7 +151,9 @@ namespace Agenda.Web.ViewModels.Meeting
             return new EditViewModel(
                 formState: FormState.Initial,
                 meetingId: meeting.Id,
+                orgainsationId: meeting.Committee.Organisation.Id,
                 organisationName: meeting.Committee.Organisation.Name,
+                committeeId: meeting.Committee.Id,
                 committeeName: meeting.Committee.Name,
                 locationId: meeting.Location.Id,
                 meetingDate: meeting.MeetingDateTime.ToString("dd/MM/yyyy", cultureInfo),
