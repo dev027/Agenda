@@ -1,7 +1,13 @@
 ﻿@using Agenda.Web.Models
 @model Agenda.Web.Areas.Api.Models.Home.MeetingCardViewModel
 
-<div class="bg-dark p-3 m-2">
+@{
+    string bgClass = Model.MeetingDateTime < DateTime.Now
+        ? "bg-dark" // Historic
+        : "bg-success"; // Future
+}
+
+<div class="@bgClass p-3 m-2">
     <a asp-controller="Meeting"
        asp-action="Index" ,
        asp-route-meetingId="@Model.MeetingId">
