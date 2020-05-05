@@ -25,7 +25,8 @@ namespace Agenda.Data.Tests.Dtos.LocationTests
             OrganisationDto organisationDto = new OrganisationDto(
                 id: Guid.NewGuid(),
                 code: "CBC",
-                name: "County Bridge Club");
+                name: "County Bridge Club",
+                bgColour: "000000");
             LocationDto locationDto = new LocationDto(
                 id: Guid.NewGuid(),
                 organisationId: organisationDto.Id,

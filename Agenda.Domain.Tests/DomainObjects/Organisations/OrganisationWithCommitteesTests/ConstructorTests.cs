@@ -26,10 +26,12 @@ namespace Agenda.Domain.Tests.DomainObjects.Organisations.OrganisationWithCommit
             Guid paramId = Guid.NewGuid();
             const string paramCode = "CBC";
             const string paramName = "County Bridge Club";
+            const string paramBgColour = "000000";
             IOrganisation organisation = new Organisation(
                 id: paramId,
                 code: paramCode,
-                name: paramName);
+                name: paramName,
+                bgColour: paramBgColour);
 
             IList<ICommittee> paramCommittees = new List<ICommittee>
             {
@@ -45,12 +47,14 @@ namespace Agenda.Domain.Tests.DomainObjects.Organisations.OrganisationWithCommit
                 id: paramId,
                 code: paramCode,
                 name: paramName,
+                bgColour: paramBgColour,
                 committees: paramCommittees);
 
             // ASSERT
             Assert.AreEqual(paramId, organisationWithCommittees.Id);
             Assert.AreEqual(paramCode, organisationWithCommittees.Code);
             Assert.AreEqual(paramName, organisationWithCommittees.Name);
+            Assert.AreEqual(paramBgColour, organisationWithCommittees.BgColour);
             Assert.AreSame(paramCommittees, organisationWithCommittees.Committees);
         }
 
@@ -65,16 +69,15 @@ namespace Agenda.Domain.Tests.DomainObjects.Organisations.OrganisationWithCommit
             Guid paramId = Guid.NewGuid();
             const string paramCode = "CBC";
             const string paramName = "County Bridge Club";
+            const string paramBgColour = "000000";
 
             // ACT
             _ = new OrganisationWithCommittees(
                 id: paramId,
                 code: paramCode,
                 name: paramName,
+                bgColour: paramBgColour,
                 committees: null);
-
-            // ASSERT
-            Assert.Fail();
         }
     }
 }

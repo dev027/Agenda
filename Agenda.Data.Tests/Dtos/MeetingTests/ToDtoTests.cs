@@ -28,7 +28,8 @@ namespace Agenda.Data.Tests.Dtos.MeetingTests
             IOrganisation organisation = new Organisation(
                 id: Guid.NewGuid(),
                 code: "CBC",
-                name: "County Bridge Club");
+                name: "County Bridge Club",
+                bgColour: "000000");
             ILocation location = new Location(
                 id: Guid.NewGuid(),
                 organisation: organisation,

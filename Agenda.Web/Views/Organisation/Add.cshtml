@@ -66,12 +66,31 @@
                                 })
                             @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
                         </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.BgColour)
+                            <div class="input-group">
+                                <div class="input-group-prepend">#</div>
+                                @Html.TextBoxFor(m => m.BgColour,
+                                    Model.Name,
+                                    new
+                                    {
+                                        @class = "form-control"
+                                    })
+                            </div>
+                            @Html.TextBoxFor(m => m.BgColour,
+                                Model.Name,
+                                new
+                                {
+                                    @class = "form-control"
+                                })
+                            @Html.ValidationMessageFor(m => m.BgColour, null, new { @class = "text-danger" })
+                        </div>
                         <button class="btn btn-primary" type="submit">Add Organisation</button>
                         <a class="btn btn-secondary"
                            type="button"
                            asp-controller="OrganisationOverview"
                            asp-action="Index">
-                            <span class="@Icon.Cancel"></span>    
+                            <span class="@Icon.Cancel"></span>
                             Cancel
                         </a>
                     }

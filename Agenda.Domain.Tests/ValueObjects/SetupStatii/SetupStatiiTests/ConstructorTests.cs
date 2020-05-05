@@ -54,9 +54,6 @@ namespace Agenda.Domain.Tests.ValueObjects.SetupStatii.SetupStatiiTests
             _ = new SetupStatus(
                 haveOrganisations: paramHaveOrganisations,
                 haveCommittees: paramHaveCommittees);
-
-            // ASSERT
-            Assert.Fail();
         }
     }
 }

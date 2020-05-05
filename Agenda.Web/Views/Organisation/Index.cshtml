@@ -69,6 +69,13 @@
                         <label>@Html.DisplayNameFor(m => m.Name)</label>
                         <div class="form-control">@Model.Name</div>
                     </div>
+                    <div class="form-group">
+                        <label>@Html.DisplayNameFor(m => m.BgColour)</label>
+                        <div class="input-group">
+                            <div class="form-control">#@Model.BgColour</div>
+                            <div class="input-group-append" style="background-color: #@Model.BgColour; width: 3rem;"></div>
+                        </div>
+                    </div>
                     <div class="d-flex flex-row justify-content-between">
                         <a asp-controller="Organisation"
                            asp-action="StartEdit"

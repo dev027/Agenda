@@ -28,11 +28,13 @@ namespace Agenda.Data.Tests.Dtos.OrganisationTests
             Guid paramId = Guid.NewGuid();
             const string paramCode = "CBC";
             const string paramName = "County Bridge Club";
+            const string paramBgColour = "000000";
 
             OrganisationDto organisationDto = new OrganisationDto(
                 id: paramId,
                 code: paramCode,
-                name: paramName);
+                name: paramName,
+                bgColour: paramBgColour);
 
             IList<CommitteeDto> paramCommittees = new List<CommitteeDto>
             {
@@ -56,6 +58,7 @@ namespace Agenda.Data.Tests.Dtos.OrganisationTests
             Assert.AreEqual(paramId, organisationWithCommittees.Id);
             Assert.AreEqual(paramCode, organisationWithCommittees.Code);
             Assert.AreEqual(paramName, organisationWithCommittees.Name);
+            Assert.AreEqual(paramBgColour, organisationWithCommittees.BgColour);
             Assert.IsNotNull(organisationWithCommittees.Committees);
             Assert.AreEqual(1, organisationWithCommittees.Committees.Count);
 
@@ -76,11 +79,13 @@ namespace Agenda.Data.Tests.Dtos.OrganisationTests
             Guid paramId = Guid.NewGuid();
             const string paramCode = "CBC";
             const string paramName = "County Bridge Club";
+            const string paramBgColour = "000000";
 
             OrganisationDto organisationDto = new OrganisationDto(
                 id: paramId,
                 code: paramCode,
-                name: paramName);
+                name: paramName,
+                bgColour: paramBgColour);
 
             // ACT
             _ = organisationDto.ToDomainWithCommittees();

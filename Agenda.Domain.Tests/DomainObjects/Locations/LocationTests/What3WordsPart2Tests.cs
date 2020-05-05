@@ -42,7 +42,8 @@ namespace Agenda.Domain.Tests.DomainObjects.Locations.LocationTests
                 organisation: new Organisation(
                     id: Guid.NewGuid(),
                     code: "Code",
-                    name: "Name"),
+                    name: "Name",
+                    bgColour: "000000"),
                 name: "Location",
                 address: "Address",
                 what3Words: "one.two.three",

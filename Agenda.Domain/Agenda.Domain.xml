@@ -446,6 +446,11 @@
             Gets the Organisation Name.
             </summary>
         </member>
+        <member name="P:Agenda.Domain.DomainObjects.Organisations.IOrganisation.BgColour">
+            <summary>
+            Gets the Background Colour.
+            </summary>
+        </member>
         <member name="T:Agenda.Domain.DomainObjects.Organisations.IOrganisationWithCommittees">
             <summary>
             Organisation with Committees.
@@ -473,13 +478,14 @@
             Organisation.
             </summary>
         </member>
-        <member name="M:Agenda.Domain.DomainObjects.Organisations.Organisation.#ctor(System.Guid,System.String,System.String)">
+        <member name="M:Agenda.Domain.DomainObjects.Organisations.Organisation.#ctor(System.Guid,System.String,System.String,System.String)">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Domain.DomainObjects.Organisations.Organisation"/> class.
             </summary>
             <param name="id">Organisation Id.</param>
             <param name="code">Organisation Code.</param>
             <param name="name">Organisation Name.</param>
+            <param name="bgColour">Background Colour.</param>
         </member>
         <member name="P:Agenda.Domain.DomainObjects.Organisations.Organisation.Id">
             <inheritdoc/>
@@ -490,6 +496,9 @@
         <member name="P:Agenda.Domain.DomainObjects.Organisations.Organisation.Name">
             <inheritdoc/>
         </member>
+        <member name="P:Agenda.Domain.DomainObjects.Organisations.Organisation.BgColour">
+            <inheritdoc />
+        </member>
         <member name="T:Agenda.Domain.DomainObjects.Organisations.OrganisationWithCommittees">
             <summary>
             Organisation with Committees.
@@ -497,13 +506,14 @@
             <seealso cref="T:Agenda.Domain.DomainObjects.Organisations.Organisation" />
             <seealso cref="T:Agenda.Domain.DomainObjects.Organisations.IOrganisationWithCommittees" />
         </member>
-        <member name="M:Agenda.Domain.DomainObjects.Organisations.OrganisationWithCommittees.#ctor(System.Guid,System.String,System.String,System.Collections.Generic.IList{Agenda.Domain.DomainObjects.Committees.ICommittee})">
+        <member name="M:Agenda.Domain.DomainObjects.Organisations.OrganisationWithCommittees.#ctor(System.Guid,System.String,System.String,System.String,System.Collections.Generic.IList{Agenda.Domain.DomainObjects.Committees.ICommittee})">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Domain.DomainObjects.Organisations.OrganisationWithCommittees"/> class.
             </summary>
             <param name="id">Organisation Id.</param>
             <param name="code">Organisation Code.</param>
             <param name="name">Organisation Name.</param>
+            <param name="bgColour">Background Colour.</param>
             <param name="committees">Committees.</param>
         </member>
         <member name="P:Agenda.Domain.DomainObjects.Organisations.OrganisationWithCommittees.Committees">
@@ -518,13 +528,14 @@
             <seealso cref="T:Agenda.Domain.DomainObjects.Organisations.Organisation" />
             <seealso cref="T:Agenda.Domain.DomainObjects.Organisations.IOrganisationWithLocations" />
         </member>
-        <member name="M:Agenda.Domain.DomainObjects.Organisations.OrganisationWithLocations.#ctor(System.Guid,System.String,System.String,System.Collections.Generic.IList{Agenda.Domain.DomainObjects.Locations.ILocation})">
+        <member name="M:Agenda.Domain.DomainObjects.Organisations.OrganisationWithLocations.#ctor(System.Guid,System.String,System.String,System.String,System.Collections.Generic.IList{Agenda.Domain.DomainObjects.Locations.ILocation})">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Domain.DomainObjects.Organisations.OrganisationWithLocations"/> class.
             </summary>
             <param name="id">Organisation Id.</param>
             <param name="code">Organisation Code.</param>
             <param name="name">Organisation Name.</param>
+            <param name="bgColour">Background Colour.</param>
             <param name="locations">Locations.</param>
         </member>
         <member name="P:Agenda.Domain.DomainObjects.Organisations.OrganisationWithLocations.Locations">

@@ -158,6 +158,11 @@
             Tests the constructor null name throws exception.
             </summary>
         </member>
+        <member name="M:Agenda.Domain.Tests.DomainObjects.Organisations.OrganisationTests.ConstructorTests.Test_Constructor_Null_Background_Colour_Throws_Exception">
+            <summary>
+            Tests the constructor null background colour throws exception.
+            </summary>
+        </member>
         <member name="T:Agenda.Domain.Tests.DomainObjects.Organisations.OrganisationWithCommitteesTests.ConstructorTests">
             <summary>
             Test the constructor for <see cref="T:Agenda.Domain.DomainObjects.Organisations.OrganisationWithCommittees"/>.

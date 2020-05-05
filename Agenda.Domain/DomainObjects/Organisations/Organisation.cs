@@ -17,10 +17,12 @@ namespace Agenda.Domain.DomainObjects.Organisations
         /// <param name="id">Organisation Id.</param>
         /// <param name="code">Organisation Code.</param>
         /// <param name="name">Organisation Name.</param>
+        /// <param name="bgColour">Background Colour.</param>
         public Organisation(
             Guid id,
             string code,
-            string name)
+            string name,
+            string bgColour)
         {
             if (string.IsNullOrWhiteSpace(code))
             {
@@ -32,9 +34,15 @@ namespace Agenda.Domain.DomainObjects.Organisations
                 throw new ArgumentNullException(nameof(name));
             }
 
+            if (string.IsNullOrWhiteSpace(bgColour))
+            {
+                throw new ArgumentNullException(nameof(bgColour));
+            }
+
             this.Id = id;
             this.Code = code;
             this.Name = name;
+            this.BgColour = bgColour;
         }
 
         /// <inheritdoc/>
@@ -45,5 +53,8 @@ namespace Agenda.Domain.DomainObjects.Organisations
 
         /// <inheritdoc/>
         public string Name { get; }
+
+        /// <inheritdoc />
+        public string BgColour { get; }
     }
 }

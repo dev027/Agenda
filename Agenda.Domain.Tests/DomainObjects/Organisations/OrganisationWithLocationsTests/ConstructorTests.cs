@@ -26,10 +26,12 @@ namespace Agenda.Domain.Tests.DomainObjects.Organisations.OrganisationWithLocati
             Guid paramId = Guid.NewGuid();
             const string paramCode = "CBC";
             const string paramName = "County Bridge Club";
+            const string paramBgColour = "000000";
             IOrganisation organisation = new Organisation(
                 id: paramId,
                 code: paramCode,
-                name: paramName);
+                name: paramName,
+                bgColour: paramBgColour);
 
             IList<ILocation> paramLocations = new List<ILocation>
             {
@@ -48,12 +50,14 @@ namespace Agenda.Domain.Tests.DomainObjects.Organisations.OrganisationWithLocati
                 id: paramId,
                 code: paramCode,
                 name: paramName,
+                bgColour: paramBgColour,
                 locations: paramLocations);
 
             // ASSERT
             Assert.AreEqual(paramId, organisationWithLocations.Id);
             Assert.AreEqual(paramCode, organisationWithLocations.Code);
             Assert.AreEqual(paramName, organisationWithLocations.Name);
+            Assert.AreEqual(paramBgColour, organisationWithLocations.BgColour);
             Assert.AreSame(paramLocations, organisationWithLocations.Locations);
         }
 
@@ -68,16 +72,15 @@ namespace Agenda.Domain.Tests.DomainObjects.Organisations.OrganisationWithLocati
             Guid paramId = Guid.NewGuid();
             const string paramCode = "CBC";
             const string paramName = "County Bridge Club";
+            const string paramBgColour = "000000";
 
             // ACT
             _ = new OrganisationWithLocations(
                 id: paramId,
                 code: paramCode,
                 name: paramName,
+                bgColour: paramBgColour,
                 locations: null);
-
-            // ASSERT
-            Assert.Fail();
         }
     }
 }

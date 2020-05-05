@@ -87,7 +87,8 @@ namespace Agenda.Web.Tests.Controllers.HomeController
             IOrganisation organisation = new Organisation(
                 id: Guid.NewGuid(),
                 code: "BRADGATE",
-                name: "Bradgate Bridge Club");
+                name: "Bradgate Bridge Club",
+                bgColour: "000000");
 
             ILocation location = new Location(
                 id: Guid.NewGuid(),
@@ -152,7 +153,9 @@ namespace Agenda.Web.Tests.Controllers.HomeController
             return new Mock<ILogger<MyHomeController>>(MockBehavior.Loose);
         }
 
-        private static Mock<IAgendaService> CreateServiceMock(IList<IMeeting> meetingList, ISetupStatus setupStatus)
+        private static Mock<IAgendaService> CreateServiceMock(
+            IList<IMeeting> meetingList,
+            ISetupStatus setupStatus)
         {
             Mock<IAgendaService> serviceMock = new Mock<IAgendaService>(MockBehavior.Strict);
 
@@ -170,7 +173,9 @@ namespace Agenda.Web.Tests.Controllers.HomeController
             return serviceMock;
         }
 
-        private static MyHomeController CreateHomeController(Mock<ILogger<MyHomeController>> loggerMock, Mock<IAgendaService> serviceMock)
+        private static MyHomeController CreateHomeController(
+            Mock<ILogger<MyHomeController>> loggerMock,
+            Mock<IAgendaService> serviceMock)
         {
             return new MyHomeController(
                 logger: loggerMock.Object,

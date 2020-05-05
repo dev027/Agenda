@@ -21,16 +21,19 @@ namespace Agenda.Web.ViewModels.Organisation
         /// <param name="organisationId">Organisation Id.</param>
         /// <param name="code">Organisation Code.</param>
         /// <param name="name">Organisation Name.</param>
+        /// <param name="bgColour">Background Colour.</param>
         /// <param name="committeeViewModels">Committee view models.</param>
         public IndexViewModel(
             Guid organisationId,
             string code,
             string name,
+            string bgColour,
             IList<CommitteeViewModel> committeeViewModels)
         {
             this.OrganisationId = organisationId;
             this.Code = code;
             this.Name = name;
+            this.BgColour = bgColour;
             this.CommitteeViewModels = committeeViewModels;
         }
 
@@ -70,6 +73,12 @@ namespace Agenda.Web.ViewModels.Organisation
         public string Name { get; }
 
         /// <summary>
+        /// Gets Background Colour.
+        /// </summary>
+        [Display(Name = "Background Colour")]
+        public string BgColour { get; }
+
+        /// <summary>
         /// Gets the Committee view models.
         /// </summary>
         public IList<CommitteeViewModel> CommitteeViewModels { get; }
@@ -91,6 +100,7 @@ namespace Agenda.Web.ViewModels.Organisation
                 organisationId: organisation.Id,
                 code: organisation.Code,
                 name: organisation.Name,
+                bgColour: organisation.BgColour,
                 committeeViewModels: organisation.Committees.Select(CommitteeViewModel.Create).ToList());
         }
     }

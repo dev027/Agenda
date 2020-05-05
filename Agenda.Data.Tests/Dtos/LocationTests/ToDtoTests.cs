@@ -28,7 +28,8 @@ namespace Agenda.Data.Tests.Dtos.LocationTests
                     organisation: new Organisation(
                         id: Guid.NewGuid(),
                         code: "CBC",
-                        name: "County Bridge Club"),
+                        name: "County Bridge Club",
+                        bgColour: "000000"),
                     name: "County Bridge Club",
                     address: "St. Oswald's Road, New Parks",
                     what3Words: "voice.crash.fleet",

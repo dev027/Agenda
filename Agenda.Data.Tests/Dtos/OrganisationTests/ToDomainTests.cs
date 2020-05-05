@@ -25,7 +25,8 @@ namespace Agenda.Data.Tests.Dtos.OrganisationTests
             OrganisationDto organisationDto = new OrganisationDto(
                 id: Guid.NewGuid(),
                 code: "CBC",
-                name: "County Bridge Club");
+                name: "County Bridge Club",
+                bgColour: "000000");
 
             // ACT
             IOrganisation organisation = organisationDto.ToDomain();

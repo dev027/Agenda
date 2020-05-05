@@ -26,7 +26,8 @@ namespace Agenda.Domain.Tests.DomainObjects.Locations.LocationTests
             IOrganisation paramOrganisation = new Organisation(
                 id: Guid.NewGuid(),
                 code: "CBC",
-                name: "County Bridge Club");
+                name: "County Bridge Club",
+                bgColour: "000000");
             const string paramName = "County Bridge Club";
             const string paramAddress = "St. Oswald's Road, New Parks";
             const string paramWhat3Words = "voice.crash.fleet";
@@ -77,9 +78,6 @@ namespace Agenda.Domain.Tests.DomainObjects.Locations.LocationTests
                 what3Words: paramWhat3Words,
                 latitude: paramLatitude,
                 longitude: paramLongitude);
-
-            // ASSERT
-            Assert.Fail();
         }
 
         /// <summary>
@@ -94,7 +92,8 @@ namespace Agenda.Domain.Tests.DomainObjects.Locations.LocationTests
             IOrganisation paramOrganisation = new Organisation(
                 id: Guid.NewGuid(),
                 code: "CBC",
-                name: "County Bridge Club");
+                name: "County Bridge Club",
+                bgColour: "000000");
             const string paramAddress = "St. Oswald's Road, New Parks";
             const string paramWhat3Words = "voice.crash.fleet";
             const double paramLatitude = 52.643583;
@@ -109,9 +108,6 @@ namespace Agenda.Domain.Tests.DomainObjects.Locations.LocationTests
                 what3Words: paramWhat3Words,
                 latitude: paramLatitude,
                 longitude: paramLongitude);
-
-            // ASSERT
-            Assert.Fail();
         }
 
         /// <summary>
@@ -126,7 +122,8 @@ namespace Agenda.Domain.Tests.DomainObjects.Locations.LocationTests
             IOrganisation paramOrganisation = new Organisation(
                 id: Guid.NewGuid(),
                 code: "CBC",
-                name: "County Bridge Club");
+                name: "County Bridge Club",
+                bgColour: "000000");
             const string paramName = "County Bridge Club";
             const string paramWhat3Words = "voice.crash.fleet";
             const double paramLatitude = 52.643583;
@@ -141,9 +138,6 @@ namespace Agenda.Domain.Tests.DomainObjects.Locations.LocationTests
                 what3Words: paramWhat3Words,
                 latitude: paramLatitude,
                 longitude: paramLongitude);
-
-            // ASSERT
-            Assert.Fail();
         }
 
         /// <summary>
@@ -158,7 +152,8 @@ namespace Agenda.Domain.Tests.DomainObjects.Locations.LocationTests
             IOrganisation paramOrganisation = new Organisation(
                 id: Guid.NewGuid(),
                 code: "CBC",
-                name: "County Bridge Club");
+                name: "County Bridge Club",
+                bgColour: "000000");
             const string paramName = "County Bridge Club";
             const string paramAddress = "St. Oswald's Road, New Parks";
             const double paramLatitude = 52.643583;
@@ -173,9 +168,6 @@ namespace Agenda.Domain.Tests.DomainObjects.Locations.LocationTests
                 what3Words: null,
                 latitude: paramLatitude,
                 longitude: paramLongitude);
-
-            // ASSERT
-            Assert.Fail();
         }
     }
 }

@@ -20,18 +20,21 @@ namespace Agenda.Web.Areas.Api.Models.Home
         /// <param name="committeeName">Committee Name.</param>
         /// <param name="meetingDateTime">Date and Time of the Meeting.</param>
         /// <param name="location">Location.</param>
+        /// <param name="bgColor">BAckground Colour.</param>
         public MeetingCardViewModel(
             Guid meetingId,
             string organisationName,
             string committeeName,
             DateTime meetingDateTime,
-            string location)
+            string location,
+            string bgColor)
         {
             this.MeetingId = meetingId;
             this.OrganisationName = organisationName;
             this.CommitteeName = committeeName;
             this.MeetingDateTime = meetingDateTime;
-            this.Location = location;
+            this.Location = location ?? throw new ArgumentNullException(nameof(location));
+            this.BgColour = bgColor;
         }
 
         /// <summary>
@@ -59,6 +62,11 @@ namespace Agenda.Web.Areas.Api.Models.Home
         /// </summary>
         public string Location { get; }
 
+         /// <summary>
+        /// Gets the Background Colour.
+        /// </summary>
+        public string BgColour { get; }
+
         /// <summary>
         /// Creates the Meeting Card View Model.
         /// </summary>
@@ -76,7 +84,8 @@ namespace Agenda.Web.Areas.Api.Models.Home
                 organisationName: meeting.Committee.Organisation.Name,
                 committeeName: meeting.Committee.Name,
                 meetingDateTime: meeting.MeetingDateTime,
-                location: meeting.Location.Name);
+                location: meeting.Location.Name,
+                bgColor: meeting.Committee.Organisation.BgColour);
         }
     }
 }

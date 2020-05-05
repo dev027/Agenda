@@ -92,7 +92,7 @@
             Meeting Card View Model.
             </summary>
         </member>
-        <member name="M:Agenda.Web.Areas.Api.Models.Home.MeetingCardViewModel.#ctor(System.Guid,System.String,System.String,System.DateTime,System.String)">
+        <member name="M:Agenda.Web.Areas.Api.Models.Home.MeetingCardViewModel.#ctor(System.Guid,System.String,System.String,System.DateTime,System.String,System.String)">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Web.Areas.Api.Models.Home.MeetingCardViewModel"/> class.
             </summary>
@@ -101,6 +101,7 @@
             <param name="committeeName">Committee Name.</param>
             <param name="meetingDateTime">Date and Time of the Meeting.</param>
             <param name="location">Location.</param>
+            <param name="bgColor">BAckground Colour.</param>
         </member>
         <member name="P:Agenda.Web.Areas.Api.Models.Home.MeetingCardViewModel.MeetingId">
             <summary>
@@ -125,6 +126,11 @@
         <member name="P:Agenda.Web.Areas.Api.Models.Home.MeetingCardViewModel.Location">
             <summary>
             Gets the Location.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.Areas.Api.Models.Home.MeetingCardViewModel.BgColour">
+            <summary>
+            Gets the Background Colour.
             </summary>
         </member>
         <member name="M:Agenda.Web.Areas.Api.Models.Home.MeetingCardViewModel.Create(Agenda.Domain.DomainObjects.Meetings.IMeeting)">
@@ -810,6 +816,38 @@
             </returns>
         </member>
         <member name="M:Agenda.Web.Models.ValidationAttributes.ValidDateAttribute.FormatErrorMessage(System.String)">
+            <summary>
+            Applies formatting to an error message, based on the data field where the error occurred.
+            </summary>
+            <param name="name">The name to include in the formatted message.</param>
+            <returns>
+            An instance of the formatted error message.
+            </returns>
+        </member>
+        <member name="T:Agenda.Web.Models.ValidationAttributes.ValidRgbAttribute">
+            <summary>
+            Validation attribute for Id.
+            </summary>
+            <seealso cref="T:System.ComponentModel.DataAnnotations.ValidationAttribute" />
+        </member>
+        <member name="P:Agenda.Web.Models.ValidationAttributes.ValidRgbAttribute.AllowNull">
+            <summary>
+            Gets or sets a value indicating whether [allow null].
+            </summary>
+            <value>
+              <c>true</c> if [allow null]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:Agenda.Web.Models.ValidationAttributes.ValidRgbAttribute.IsValid(System.Object)">
+            <summary>
+            Returns true if ... is valid.
+            </summary>
+            <param name="value">The value of the object to validate.</param>
+            <returns>
+              <see langword="true" /> if the specified value is valid; otherwise, <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:Agenda.Web.Models.ValidationAttributes.ValidRgbAttribute.FormatErrorMessage(System.String)">
             <summary>
             Applies formatting to an error message, based on the data field where the error occurred.
             </summary>
@@ -2047,13 +2085,14 @@
             Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Organisation.AddViewModel"/> class.
             </summary>
         </member>
-        <member name="M:Agenda.Web.ViewModels.Organisation.AddViewModel.#ctor(Agenda.Web.Models.FormState,System.String,System.String)">
+        <member name="M:Agenda.Web.ViewModels.Organisation.AddViewModel.#ctor(Agenda.Web.Models.FormState,System.String,System.String,System.String)">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Organisation.AddViewModel"/> class.
             </summary>
             <param name="formState">Form State.</param>
             <param name="code">Organisation Code.</param>
             <param name="name">Organisation Name.</param>
+            <param name="bgColour">Background Colour.</param>
         </member>
         <member name="P:Agenda.Web.ViewModels.Organisation.AddViewModel.FormState">
             <summary>
@@ -2068,6 +2107,11 @@
         <member name="P:Agenda.Web.ViewModels.Organisation.AddViewModel.Name">
             <summary>
             Gets or sets the Organisation Name.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Organisation.AddViewModel.BgColour">
+            <summary>
+            Gets or sets the Background Colour.
             </summary>
         </member>
         <member name="M:Agenda.Web.ViewModels.Organisation.AddViewModel.ToDomain">
@@ -2126,7 +2170,7 @@
             Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Organisation.EditViewModel"/> class.
             </summary>
         </member>
-        <member name="M:Agenda.Web.ViewModels.Organisation.EditViewModel.#ctor(Agenda.Web.Models.FormState,System.Guid,System.String,System.String)">
+        <member name="M:Agenda.Web.ViewModels.Organisation.EditViewModel.#ctor(Agenda.Web.Models.FormState,System.Guid,System.String,System.String,System.String)">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Organisation.EditViewModel"/> class.
             </summary>
@@ -2134,6 +2178,7 @@
             <param name="organisationId">Organisation Id.</param>
             <param name="code">Organisation Code.</param>
             <param name="name">Organisation Name.</param>
+            <param name="bgColour">Background Colour.</param>
         </member>
         <member name="P:Agenda.Web.ViewModels.Organisation.EditViewModel.FormState">
             <summary>
@@ -2155,6 +2200,11 @@
             Gets or sets the Organisation Name.
             </summary>
         </member>
+        <member name="P:Agenda.Web.ViewModels.Organisation.EditViewModel.BgColour">
+            <summary>
+            Gets or sets the Background Colour.
+            </summary>
+        </member>
         <member name="M:Agenda.Web.ViewModels.Organisation.EditViewModel.Create(Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
             <summary>
             Creates the view model.
@@ -2173,13 +2223,14 @@
             View Organisation view model.
             </summary>
         </member>
-        <member name="M:Agenda.Web.ViewModels.Organisation.IndexViewModel.#ctor(System.Guid,System.String,System.String,System.Collections.Generic.IList{Agenda.Web.ViewModels.Organisation.CommitteeViewModel})">
+        <member name="M:Agenda.Web.ViewModels.Organisation.IndexViewModel.#ctor(System.Guid,System.String,System.String,System.String,System.Collections.Generic.IList{Agenda.Web.ViewModels.Organisation.CommitteeViewModel})">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Organisation.IndexViewModel"/> class.
             </summary>
             <param name="organisationId">Organisation Id.</param>
             <param name="code">Organisation Code.</param>
             <param name="name">Organisation Name.</param>
+            <param name="bgColour">Background Colour.</param>
             <param name="committeeViewModels">Committee view models.</param>
         </member>
         <member name="P:Agenda.Web.ViewModels.Organisation.IndexViewModel.PageTitle">
@@ -2211,6 +2262,11 @@
         <member name="P:Agenda.Web.ViewModels.Organisation.IndexViewModel.Name">
             <summary>
             Gets Organisation Name.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Organisation.IndexViewModel.BgColour">
+            <summary>
+            Gets Background Colour.
             </summary>
         </member>
         <member name="P:Agenda.Web.ViewModels.Organisation.IndexViewModel.CommitteeViewModels">

@@ -26,7 +26,8 @@ namespace Agenda.Domain.Tests.DomainObjects.Committees.CommitteeTests
             IOrganisation paramOrganisation = new Organisation(
                 id: Guid.NewGuid(),
                 code: "CBC",
-                name: "County Bridge Club");
+                name: "County Bridge Club",
+                bgColour: "000000");
             const string paramName = "TSC";
             const string paramDescription = "Tournament Sub-Committee";
 
@@ -62,9 +63,6 @@ namespace Agenda.Domain.Tests.DomainObjects.Committees.CommitteeTests
                 organisation: null,
                 name: paramName,
                 description: paramDescription);
-
-            // ASSERT
-            Assert.Fail();
         }
 
         /// <summary>
@@ -79,7 +77,8 @@ namespace Agenda.Domain.Tests.DomainObjects.Committees.CommitteeTests
             IOrganisation paramOrganisation = new Organisation(
                 id: Guid.NewGuid(),
                 code: "CBC",
-                name: "County Bridge Club");
+                name: "County Bridge Club",
+                bgColour: "000000");
             const string paramDescription = "Tournament Sub-Committee";
 
             // ACT
@@ -88,9 +87,6 @@ namespace Agenda.Domain.Tests.DomainObjects.Committees.CommitteeTests
                 organisation: paramOrganisation,
                 name: null,
                 description: paramDescription);
-
-            // ASSERT
-            Assert.Fail();
         }
 
         /// <summary>
@@ -105,7 +101,8 @@ namespace Agenda.Domain.Tests.DomainObjects.Committees.CommitteeTests
             IOrganisation paramOrganisation = new Organisation(
                 id: Guid.NewGuid(),
                 code: "CBC",
-                name: "County Bridge Club");
+                name: "County Bridge Club",
+                bgColour: "000000");
             const string paramName = "TSC";
 
             // ACT
@@ -114,9 +111,6 @@ namespace Agenda.Domain.Tests.DomainObjects.Committees.CommitteeTests
                 organisation: paramOrganisation,
                 name: paramName,
                 description: null);
-
-            // ASSERT
-            Assert.Fail();
         }
     }
 }

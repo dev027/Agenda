@@ -21,13 +21,15 @@ namespace Agenda.Domain.DomainObjects.Organisations
         /// <param name="id">Organisation Id.</param>
         /// <param name="code">Organisation Code.</param>
         /// <param name="name">Organisation Name.</param>
+        /// <param name="bgColour">Background Colour.</param>
         /// <param name="locations">Locations.</param>
         public OrganisationWithLocations(
             Guid id,
             string code,
             string name,
+            string bgColour,
             IList<ILocation> locations)
-            : base(id, code, name)
+            : base(id, code, name, bgColour)
         {
             this.Locations = locations ?? throw new ArgumentNullException(nameof(locations));
         }

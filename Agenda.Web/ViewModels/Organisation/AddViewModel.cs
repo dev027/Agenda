@@ -31,14 +31,17 @@ namespace Agenda.Web.ViewModels.Organisation
         /// <param name="formState">Form State.</param>
         /// <param name="code">Organisation Code.</param>
         /// <param name="name">Organisation Name.</param>
+        /// <param name="bgColour">Background Colour.</param>
         public AddViewModel(
             FormState formState,
             string code,
-            string name)
+            string name,
+            string bgColour)
         {
             this.FormState = formState;
             this.Code = code;
             this.Name = name;
+            this.BgColour = bgColour;
         }
 
         #endregion Constructors
@@ -70,6 +73,14 @@ namespace Agenda.Web.ViewModels.Organisation
         [MyRequired]
         public string Name { get; set; }
 
+        /// <summary>
+        /// Gets or sets the Background Colour.
+        /// </summary>
+        [Display(Name = "Background Colour")]
+        [ValidRgb]
+        [MyRequired]
+        public string BgColour { get; set; }
+
         #endregion Properties
 
         #region Public Methods
@@ -83,7 +94,8 @@ namespace Agenda.Web.ViewModels.Organisation
             return new Domain.DomainObjects.Organisations.Organisation(
                 id: Guid.NewGuid(),
                 code: this.Code,
-                name: this.Name);
+                name: this.Name,
+                bgColour: this.BgColour);
         }
 
         #endregion Public Methods

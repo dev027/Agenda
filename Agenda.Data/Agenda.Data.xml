@@ -591,13 +591,14 @@
             Initializes a new instance of the <see cref="T:Agenda.Data.Dtos.OrganisationDto"/> class.
             </summary>
         </member>
-        <member name="M:Agenda.Data.Dtos.OrganisationDto.#ctor(System.Guid,System.String,System.String)">
+        <member name="M:Agenda.Data.Dtos.OrganisationDto.#ctor(System.Guid,System.String,System.String,System.String)">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Data.Dtos.OrganisationDto"/> class.
             </summary>
             <param name="id">Organisation Id.</param>
             <param name="code">Organisation Code.</param>
             <param name="name">Organisation Name.</param>
+            <param name="bgColour">Background Colour.</param>
         </member>
         <member name="P:Agenda.Data.Dtos.OrganisationDto.Id">
             <summary>
@@ -612,6 +613,11 @@
         <member name="P:Agenda.Data.Dtos.OrganisationDto.Name">
             <summary>
             Gets the Organisation Name.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Dtos.OrganisationDto.BgColour">
+            <summary>
+            Gets the Background Colour.
             </summary>
         </member>
         <member name="P:Agenda.Data.Dtos.OrganisationDto.Committees">

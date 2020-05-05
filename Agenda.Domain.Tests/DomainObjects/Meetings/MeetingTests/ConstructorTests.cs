@@ -27,7 +27,8 @@ namespace Agenda.Domain.Tests.DomainObjects.Meetings.MeetingTests
             IOrganisation organisation = new Organisation(
                 id: Guid.NewGuid(),
                 code: "CBC",
-                name: "County Bridge Club");
+                name: "County Bridge Club",
+                bgColour: "000000");
 
             Guid paramId = Guid.NewGuid();
             ICommittee paramCommittee = new Committee(
@@ -72,7 +73,8 @@ namespace Agenda.Domain.Tests.DomainObjects.Meetings.MeetingTests
             IOrganisation organisation = new Organisation(
                 id: Guid.NewGuid(),
                 code: "CBC",
-                name: "County Bridge Club");
+                name: "County Bridge Club",
+                bgColour: "000000");
 
             Guid paramId = Guid.NewGuid();
 
@@ -93,9 +95,6 @@ namespace Agenda.Domain.Tests.DomainObjects.Meetings.MeetingTests
                 committee: null,
                 location: paramLocation,
                 meetingDateTime: paramMeetingDateTime);
-
-            // ASSERT
-            Assert.Fail();
         }
 
         /// <summary>
@@ -109,7 +108,8 @@ namespace Agenda.Domain.Tests.DomainObjects.Meetings.MeetingTests
             IOrganisation organisation = new Organisation(
                 id: Guid.NewGuid(),
                 code: "CBC",
-                name: "County Bridge Club");
+                name: "County Bridge Club",
+                bgColour: "000000");
 
             Guid paramId = Guid.NewGuid();
             ICommittee paramCommittee = new Committee(

@@ -32,7 +32,8 @@ namespace Agenda.Data.Tests.Dtos.CommitteeTests
             OrganisationDto organisationDto = new OrganisationDto(
                 id: Guid.NewGuid(),
                 code: "CBC",
-                name: "County Bridge Club");
+                name: "County Bridge Club",
+                bgColour: "000000");
 
             CommitteeDto committeeDto = new CommitteeDto(
                 id: paramId,
@@ -105,7 +106,8 @@ namespace Agenda.Data.Tests.Dtos.CommitteeTests
             OrganisationDto organisationDto = new OrganisationDto(
                 id: Guid.NewGuid(),
                 code: "CBC",
-                name: "County Bridge Club");
+                name: "County Bridge Club",
+                bgColour: "000000");
 
             CommitteeDto committeeDto = new CommitteeDto(
                 id: paramId,
@@ -133,7 +135,8 @@ namespace Agenda.Data.Tests.Dtos.CommitteeTests
             OrganisationDto organisationDto = new OrganisationDto(
                 id: Guid.NewGuid(),
                 code: "CBC",
-                name: "County Bridge Club");
+                name: "County Bridge Club",
+                bgColour: "000000");
 
             CommitteeDto committeeDto = new CommitteeDto(
                 id: paramId,

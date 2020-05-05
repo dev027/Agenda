@@ -25,5 +25,10 @@ namespace Agenda.Domain.DomainObjects.Organisations
         /// Gets the Organisation Name.
         /// </summary>
         string Name { get; }
+
+        /// <summary>
+        /// Gets the Background Colour.
+        /// </summary>
+        string BgColour { get; }
     }
 }

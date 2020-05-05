@@ -273,9 +273,24 @@
             </summary>
             <param name="modelBuilder">The <see cref="T:Microsoft.EntityFrameworkCore.ModelBuilder" /> to use to build the model.</param>
         </member>
+        <member name="T:Agenda.Migration.Migrations.AddBgColourToOrganisation">
+            <summary>
+            Add BgColour to Organisations.
+            </summary>
+            <seealso cref="T:Microsoft.EntityFrameworkCore.Migrations.Migration" />
+        </member>
+        <member name="M:Agenda.Migration.Migrations.AddBgColourToOrganisation.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Migration.Migrations.AddBgColourToOrganisation.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Migration.Migrations.AddBgColourToOrganisation.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc/>
+        </member>
         <member name="T:Agenda.Migration.Migrations.MigrationContextModelSnapshot">
             <summary>
-            
+            Snapshot.
             </summary>
             <seealso cref="T:Microsoft.EntityFrameworkCore.Infrastructure.ModelSnapshot" />
         </member>

@@ -29,7 +29,8 @@ namespace Agenda.Domain.Tests.DomainObjects.Committees.CommitteeWithMeetingsTest
             IOrganisation paramOrganisation = new Organisation(
                 id: Guid.NewGuid(),
                 code: "CBC",
-                name: "County Bridge Club");
+                name: "County Bridge Club",
+                bgColour: "000000");
             const string paramName = "TSC";
             const string paramDescription = "Tournament Sub-Committee";
 
@@ -85,7 +86,8 @@ namespace Agenda.Domain.Tests.DomainObjects.Committees.CommitteeWithMeetingsTest
             IOrganisation paramOrganisation = new Organisation(
                 id: Guid.NewGuid(),
                 code: "CBC",
-                name: "County Bridge Club");
+                name: "County Bridge Club",
+                bgColour: "000000");
             const string paramName = "TSC";
             const string paramDescription = "Tournament Sub-Committee";
 
@@ -96,9 +98,6 @@ namespace Agenda.Domain.Tests.DomainObjects.Committees.CommitteeWithMeetingsTest
                 name: paramName,
                 description: paramDescription,
                 meetings: null);
-
-            // ASSERT
-            Assert.Fail();
         }
     }
 }

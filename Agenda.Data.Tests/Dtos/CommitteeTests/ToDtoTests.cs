@@ -28,7 +28,8 @@ namespace Agenda.Data.Tests.Dtos.CommitteeTests
                 organisation: new Organisation(
                     id: Guid.NewGuid(),
                     code: "CBC",
-                    name: "County Bridge Club"),
+                    name: "County Bridge Club",
+                    bgColour: "000000"),
                 name: "TSC",
                 description: "Tournament Sub-Committee");
 

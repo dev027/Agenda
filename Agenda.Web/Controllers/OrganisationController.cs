@@ -92,7 +92,8 @@ namespace Agenda.Web.Controllers
                 model = new AddViewModel(
                     formState: FormState.Initial,
                     code: string.Empty,
-                    name: string.Empty);
+                    name: string.Empty,
+                    bgColour: string.Empty);
                 this.ModelState.Clear();
             }
             else

@@ -35,14 +35,17 @@ namespace Agenda.Data.Dtos
         /// <param name="id">Organisation Id.</param>
         /// <param name="code">Organisation Code.</param>
         /// <param name="name">Organisation Name.</param>
+        /// <param name="bgColour">Background Colour.</param>
         public OrganisationDto(
             Guid id,
             string code,
-            string name)
+            string name,
+            string bgColour)
         {
             this.Id = id;
             this.Code = code;
             this.Name = name;
+            this.BgColour = bgColour;
         }
 
         #endregion Constructors
@@ -67,6 +70,13 @@ namespace Agenda.Data.Dtos
         [Required]
         [MaxLength(DomainMetadata.Name.MaxLength)]
         public string Name { get; private set; } = null!;
+
+        /// <summary>
+        /// Gets the Background Colour.
+        /// </summary>
+        [Required]
+        [MaxLength(DomainMetadata.Name.MaxLength)]
+        public string BgColour { get; private set; } = null!;
 
         #endregion Properties
 
@@ -101,7 +111,8 @@ namespace Agenda.Data.Dtos
             return new OrganisationDto(
                 id: organisation.Id,
                 code: organisation.Code,
-                name: organisation.Name);
+                name: organisation.Name,
+                bgColour: organisation.BgColour);
         }
 
         /// <summary>
@@ -113,7 +124,8 @@ namespace Agenda.Data.Dtos
             return new Organisation(
                 id: this.Id,
                 code: this.Code,
-                name: this.Name);
+                name: this.Name,
+                bgColour: this.BgColour);
         }
 
         /// <summary>
@@ -136,6 +148,7 @@ namespace Agenda.Data.Dtos
                 id: this.Id,
                 code: this.Code,
                 name: this.Name,
+                bgColour: this.BgColour,
                 committees: this.Committees.Select(c => c.ToDomain()).ToList());
         }
 
@@ -159,6 +172,7 @@ namespace Agenda.Data.Dtos
                 id: this.Id,
                 code: this.Code,
                 name: this.Name,
+                bgColour: this.BgColour,
                 locations: this.Locations.Select(l => l.ToDomain()).ToList());
         }
 

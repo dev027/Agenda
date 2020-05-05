@@ -44,7 +44,8 @@ namespace Agenda.Data.Tests.Dtos.OrganisationTests
             OrganisationDto dto = new OrganisationDto(
                 id: paramId,
                 code: paramCode,
-                name: paramName);
+                name: paramName,
+                bgColour: "000000");
 
             // ASSERT
             Assert.AreEqual(paramId, dto.Id);
