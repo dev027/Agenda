@@ -130,7 +130,9 @@ namespace Agenda.Data.Crud
 
             MeetingDto dto = MeetingDto.ToDto(meeting);
 
-            this.context.Meetings.Update(dto);
+            MeetingDto original = await this.context.FindAsync<MeetingDto>(meeting.Id);
+
+            this.context.Entry(original).CurrentValues.SetValues(dto);
             await this.context.SaveChangesAsync().ConfigureAwait(false);
 
             this.logger.LogTrace(

@@ -90,7 +90,9 @@ namespace Agenda.Data.Crud
 
             LocationDto dto = LocationDto.ToDto(location);
 
-            this.context.Locations.Update(dto);
+            LocationDto original = await this.context.FindAsync<LocationDto>(location.Id);
+
+            this.context.Entry(original).CurrentValues.SetValues(dto);
             await this.context.SaveChangesAsync().ConfigureAwait(false);
 
             this.logger.LogTrace(

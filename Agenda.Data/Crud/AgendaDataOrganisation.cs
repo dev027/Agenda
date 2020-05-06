@@ -253,7 +253,9 @@ namespace Agenda.Data.Crud
 
             OrganisationDto dto = OrganisationDto.ToDto(organisation);
 
-            this.context.Organisations.Update(dto);
+            OrganisationDto original = await this.context.FindAsync<OrganisationDto>(organisation.Id);
+
+            this.context.Entry(original).CurrentValues.SetValues(dto);
             await this.context.SaveChangesAsync().ConfigureAwait(false);
 
             this.logger.LogTrace(
