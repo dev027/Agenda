@@ -4,18 +4,17 @@ using Agenda.Migration.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Agenda.Migration.Migrations
 {
-    /// <summary>
-    /// Model snapshot
-    /// </summary>
-    /// <seealso cref="Microsoft.EntityFrameworkCore.Infrastructure.ModelSnapshot" />
     [DbContext(typeof(MigrationContext))]
-    public class MigrationContextModelSnapshot : ModelSnapshot
+    [Migration("20200508162857_AddAuditTables")]
+    partial class AddAuditTables
     {
         /// <inheritdoc/>
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

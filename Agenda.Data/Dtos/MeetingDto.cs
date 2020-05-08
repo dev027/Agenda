@@ -16,7 +16,7 @@ namespace Agenda.Data.Dtos
     /// Organiser DTO.
     /// </summary>
     [Table(nameof(DataContext.Meetings))]
-    public class MeetingDto
+    public class MeetingDto : BaseDto
     {
         #region Constructors
 

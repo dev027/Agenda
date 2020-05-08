@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Agenda.Data.Dtos;
+using Agenda.Domain.DomainObjects.AuditHeaders;
 using Agenda.Domain.DomainObjects.Meetings;
 using Agenda.Utilities.Models.Whos;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +25,7 @@ namespace Agenda.Data.Crud
         /// <inheritdoc/>
         public async Task CreateMeetingAsync(
             IWho who,
+            IAuditHeaderWithAuditDetails auditHeader,
             IMeeting meeting)
         {
             this.logger.LogTrace(

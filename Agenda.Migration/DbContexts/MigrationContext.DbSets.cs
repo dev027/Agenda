@@ -14,6 +14,16 @@ namespace Agenda.Migration.DbContexts
     public partial class MigrationContext
     {
         /// <summary>
+        /// Gets or sets the Audit Details.
+        /// </summary>
+        public DbSet<AuditDetailDto> AuditDetails { get; set; } = null!;
+
+        /// <summary>
+        /// Gets or sets the Audit Headers.
+        /// </summary>
+        public DbSet<AuditHeaderDto> AuditHeaders { get; set; } = null!;
+
+        /// <summary>
         /// Gets or sets the Committees.
         /// </summary>
         public DbSet<CommitteeDto> Committees { get; set; } = null!;

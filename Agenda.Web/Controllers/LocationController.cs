@@ -6,6 +6,7 @@ using System;
 using System.Threading.Tasks;
 using Agenda.Domain.DomainObjects.Locations;
 using Agenda.Domain.DomainObjects.Organisations;
+using Agenda.Domain.ValueObjects.Enums;
 using Agenda.Service;
 using Agenda.Utilities.Models.Whos;
 using Agenda.Web.Models;
@@ -234,7 +235,7 @@ namespace Agenda.Web.Controllers
             ILocation location = model.ToDomain(organisation);
 
             await this.service
-                .CreateLocationAsync(who, location)
+                .CreateLocationAsync(who, AuditEvent.LocationMaintenance, location)
                 .ConfigureAwait(false);
 
             this.logger.LogTrace(

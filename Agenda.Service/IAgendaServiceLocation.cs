@@ -5,6 +5,7 @@
 using System;
 using System.Threading.Tasks;
 using Agenda.Domain.DomainObjects.Locations;
+using Agenda.Domain.ValueObjects.Enums;
 using Agenda.Utilities.Models.Whos;
 
 namespace Agenda.Service
@@ -20,10 +21,12 @@ namespace Agenda.Service
         /// Creates the Location.
         /// </summary>
         /// <param name="who">Who Details.</param>
+        /// <param name="auditEvent">Audit Event.</param>
         /// <param name="location">Location.</param>
         /// <returns>Nothing.</returns>
         Task CreateLocationAsync(
             IWho who,
+            AuditEvent auditEvent,
             ILocation location);
 
         #endregion Create

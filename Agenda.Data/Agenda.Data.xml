@@ -4,6 +4,12 @@
         <name>Agenda.Data</name>
     </assembly>
     <members>
+        <member name="T:Agenda.Data.Attributes.AuditIgnoreAttribute">
+            <summary>
+            Marks a property on a DTO to be excluded from the Audit.
+            </summary>
+            <seealso cref="T:System.Attribute" />
+        </member>
         <member name="T:Agenda.Data.Crud.AgendaData">
             <summary>
             Data access.
@@ -30,9 +36,16 @@
             <param name="dataContext">Data Context.</param>
         </member>
         <member name="M:Agenda.Data.Crud.AgendaData.Dispose">
-            <summary>
-            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Data.Crud.AgendaData.BeginTransaction(Agenda.Domain.ValueObjects.Enums.AuditEvent)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Data.Crud.AgendaData.CommitTransactionAsync(Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeaderWithAuditDetails)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Data.Crud.AgendaData.RollbackTransaction">
+            <inheritdoc/>
         </member>
         <member name="M:Agenda.Data.Crud.AgendaData.Dispose(System.Boolean)">
             <summary>
@@ -48,7 +61,7 @@
             <param name="methodName">Method Name.</param>
             <returns>Tag.</returns>
         </member>
-        <member name="M:Agenda.Data.Crud.AgendaData.CreateCommitteeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Committees.ICommittee)">
+        <member name="M:Agenda.Data.Crud.AgendaData.CreateCommitteeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeaderWithAuditDetails,Agenda.Domain.DomainObjects.Committees.ICommittee)">
             <inheritdoc/>
         </member>
         <member name="M:Agenda.Data.Crud.AgendaData.GetCommitteeByIdAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
@@ -63,7 +76,7 @@
         <member name="M:Agenda.Data.Crud.AgendaData.UpdateCommitteeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Committees.ICommittee)">
             <inheritdoc/>
         </member>
-        <member name="M:Agenda.Data.Crud.AgendaData.CreateLocationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Locations.ILocation)">
+        <member name="M:Agenda.Data.Crud.AgendaData.CreateLocationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeaderWithAuditDetails,Agenda.Domain.DomainObjects.Locations.ILocation)">
             <inheritdoc/>
         </member>
         <member name="M:Agenda.Data.Crud.AgendaData.GetLocationByIdAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
@@ -72,7 +85,7 @@
         <member name="M:Agenda.Data.Crud.AgendaData.UpdateLocationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Locations.ILocation)">
             <inheritdoc/>
         </member>
-        <member name="M:Agenda.Data.Crud.AgendaData.CreateMeetingAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Meetings.IMeeting)">
+        <member name="M:Agenda.Data.Crud.AgendaData.CreateMeetingAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeaderWithAuditDetails,Agenda.Domain.DomainObjects.Meetings.IMeeting)">
             <inheritdoc/>
         </member>
         <member name="M:Agenda.Data.Crud.AgendaData.GetRecentMeetingsMostRecentFirstAsync(Agenda.Utilities.Models.Whos.IWho,System.TimeSpan,System.Int32)">
@@ -84,7 +97,7 @@
         <member name="M:Agenda.Data.Crud.AgendaData.UpdateMeetingAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Meetings.IMeeting)">
             <inheritdoc/>
         </member>
-        <member name="M:Agenda.Data.Crud.AgendaData.CreateOrganisationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
+        <member name="M:Agenda.Data.Crud.AgendaData.CreateOrganisationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeaderWithAuditDetails,Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
             <inheritdoc />
         </member>
         <member name="M:Agenda.Data.Crud.AgendaData.GetAllOrganisationsAsync(Agenda.Utilities.Models.Whos.IWho)">
@@ -113,6 +126,10 @@
         </member>
         <member name="T:Agenda.Data.Crud.IAgendaData">
             <summary>
+            Data Access Layer - Transactions.
+            </summary>
+            <seealso cref="T:System.IDisposable" />
+            <summary>
             Data access - Committee.
             </summary>
             <summary>
@@ -125,11 +142,31 @@
             Data access.
             </summary>
         </member>
-        <member name="M:Agenda.Data.Crud.IAgendaData.CreateCommitteeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Committees.ICommittee)">
+        <member name="M:Agenda.Data.Crud.IAgendaData.BeginTransaction(Agenda.Domain.ValueObjects.Enums.AuditEvent)">
+            <summary>
+            Begins the transaction.
+            </summary>
+            <param name="auditEvent">Audit Event.</param>
+            <returns>Audit Header.</returns>
+        </member>
+        <member name="M:Agenda.Data.Crud.IAgendaData.CommitTransactionAsync(Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeaderWithAuditDetails)">
+            <summary>
+            Commits the transaction.
+            </summary>
+            <param name="auditHeader">Audit Header.</param>
+            <returns>Nothing.</returns>
+        </member>
+        <member name="M:Agenda.Data.Crud.IAgendaData.RollbackTransaction">
+            <summary>
+            Rollbacks the Transaction.
+            </summary>
+        </member>
+        <member name="M:Agenda.Data.Crud.IAgendaData.CreateCommitteeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeaderWithAuditDetails,Agenda.Domain.DomainObjects.Committees.ICommittee)">
             <summary>
             Creates the Committee.
             </summary>
             <param name="who">Who details.</param>
+            <param name="auditHeader">Audit Header.</param>
             <param name="committee">Committee.</param>
             <returns>Nothing.</returns>
         </member>
@@ -164,11 +201,12 @@
             <param name="committee">The committee.</param>
             <returns>Nothing.</returns>
         </member>
-        <member name="M:Agenda.Data.Crud.IAgendaData.CreateLocationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Locations.ILocation)">
+        <member name="M:Agenda.Data.Crud.IAgendaData.CreateLocationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeaderWithAuditDetails,Agenda.Domain.DomainObjects.Locations.ILocation)">
             <summary>
             Creates the Location.
             </summary>
             <param name="who">Who details.</param>
+            <param name="auditHeader">Audit Header.</param>
             <param name="location">Location.</param>
             <returns>Nothing.</returns>
         </member>
@@ -188,11 +226,12 @@
             <param name="location">The Location.</param>
             <returns>Nothing.</returns>
         </member>
-        <member name="M:Agenda.Data.Crud.IAgendaData.CreateMeetingAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Meetings.IMeeting)">
+        <member name="M:Agenda.Data.Crud.IAgendaData.CreateMeetingAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeaderWithAuditDetails,Agenda.Domain.DomainObjects.Meetings.IMeeting)">
             <summary>
             Creates the Meeting.
             </summary>
             <param name="who">Who details.</param>
+            <param name="auditHeader">Audit Header.</param>
             <param name="meeting">Meeting.</param>
             <returns>Nothing.</returns>
         </member>
@@ -221,11 +260,12 @@
             <param name="meeting">Meeting.</param>
             <returns>Nothing.</returns>
         </member>
-        <member name="M:Agenda.Data.Crud.IAgendaData.CreateOrganisationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
+        <member name="M:Agenda.Data.Crud.IAgendaData.CreateOrganisationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeaderWithAuditDetails,Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
             <summary>
             Creates the Organisation.
             </summary>
             <param name="who">Who details.</param>
+            <param name="auditHeader">Audit Header.</param>
             <param name="organisation">Organisation.</param>
             <returns>Nothing.</returns>
         </member>
@@ -322,6 +362,16 @@
             then this method will not be run.
             </remarks>
         </member>
+        <member name="P:Agenda.Data.DbContexts.DataContext.AuditDetails">
+            <summary>
+            Gets or sets the Audit Details.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.DbContexts.DataContext.AuditHeaders">
+            <summary>
+            Gets or sets the Audit Headers.
+            </summary>
+        </member>
         <member name="P:Agenda.Data.DbContexts.DataContext.Committees">
             <summary>
             Gets or sets the Committees.
@@ -340,6 +390,160 @@
         <member name="P:Agenda.Data.DbContexts.DataContext.Organisations">
             <summary>
             Gets or sets the Organisations.
+            </summary>
+        </member>
+        <member name="T:Agenda.Data.Dtos.AuditDetailDto">
+            <summary>
+            Audit Details DTO.
+            </summary>
+        </member>
+        <member name="M:Agenda.Data.Dtos.AuditDetailDto.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Data.Dtos.AuditDetailDto"/> class.
+            </summary>
+        </member>
+        <member name="M:Agenda.Data.Dtos.AuditDetailDto.#ctor(System.Guid,System.Guid,System.String,System.String,System.Guid,System.String,System.String,Agenda.Domain.ValueObjects.Enums.DatabaseAction)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Data.Dtos.AuditDetailDto"/> class.
+            </summary>
+            <param name="id">Audit Detail Id.</param>
+            <param name="auditHeaderId">Audit Header Id.</param>
+            <param name="tableName">Table Name.</param>
+            <param name="columnName">Column Name.</param>
+            <param name="recordId">Record Id.</param>
+            <param name="oldValue">Old Value.</param>
+            <param name="newValue">New Value.</param>
+            <param name="databaseAction">Database Action.</param>
+        </member>
+        <member name="M:Agenda.Data.Dtos.AuditDetailDto.#ctor(System.Guid,System.Guid,System.String,System.String,System.Guid,System.String,System.String,Agenda.Domain.ValueObjects.Enums.DatabaseAction,Agenda.Data.Dtos.AuditHeaderDto)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Data.Dtos.AuditDetailDto"/> class.
+            </summary>
+            <param name="id">Audit Detail Id.</param>
+            <param name="auditHeaderId">Audit Header Id.</param>
+            <param name="tableName">Table Name.</param>
+            <param name="columnName">Column Name.</param>
+            <param name="recordId">Record Id.</param>
+            <param name="oldValue">Old Value.</param>
+            <param name="newValue">New Value.</param>
+            <param name="databaseAction">Database Action.</param>
+            <param name="auditHeader">Audit Header.</param>
+        </member>
+        <member name="P:Agenda.Data.Dtos.AuditDetailDto.Id">
+            <summary>
+            Gets the Audit Detail Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Dtos.AuditDetailDto.AuditHeaderId">
+            <summary>
+            Gets the Audit Header Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Dtos.AuditDetailDto.TableName">
+            <summary>
+            Gets the Table Name.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Dtos.AuditDetailDto.ColumnName">
+            <summary>
+            Gets the Column Name.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Dtos.AuditDetailDto.RecordId">
+            <summary>
+            Gets the Record Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Dtos.AuditDetailDto.OldValue">
+            <summary>
+            Gets the Old Value.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Dtos.AuditDetailDto.NewValue">
+            <summary>
+            Gets the New Value.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Dtos.AuditDetailDto.DatabaseAction">
+            <summary>
+            Gets the Database Action.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Dtos.AuditDetailDto.AuditHeader">
+            <summary>
+            Gets the Audit Header.
+            </summary>
+        </member>
+        <member name="M:Agenda.Data.Dtos.AuditDetailDto.ToDto(Agenda.Domain.DomainObjects.AuditDetails.IAuditDetail)">
+            <summary>
+            Converts domain object to DTO.
+            </summary>
+            <param name="auditDetail">Audit Detail.</param>
+            <returns>Audit Detail DTO.</returns>
+        </member>
+        <member name="T:Agenda.Data.Dtos.AuditHeaderDto">
+            <summary>
+            Audit Header DTO.
+            </summary>
+        </member>
+        <member name="M:Agenda.Data.Dtos.AuditHeaderDto.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Data.Dtos.AuditHeaderDto"/> class.
+            </summary>
+        </member>
+        <member name="M:Agenda.Data.Dtos.AuditHeaderDto.#ctor(System.Guid,Agenda.Domain.ValueObjects.Enums.AuditEvent,System.DateTime)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Data.Dtos.AuditHeaderDto"/> class.
+            </summary>
+            <param name="id">Audit Header Id.</param>
+            <param name="auditEvent">Audit Event.</param>
+            <param name="timeStamp">Time Stamp.</param>
+        </member>
+        <member name="M:Agenda.Data.Dtos.AuditHeaderDto.#ctor(System.Guid,Agenda.Domain.ValueObjects.Enums.AuditEvent,System.DateTime,System.Collections.Generic.IList{Agenda.Data.Dtos.AuditDetailDto})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Data.Dtos.AuditHeaderDto"/> class.
+            </summary>
+            <param name="id">Audit Header Id.</param>
+            <param name="auditEvent">Audit Event.</param>
+            <param name="timeStamp">Time Stamp.</param>
+            <param name="auditDetails">Audit Details.</param>
+        </member>
+        <member name="M:Agenda.Data.Dtos.AuditHeaderDto.#ctor(Agenda.Domain.ValueObjects.Enums.AuditEvent)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Data.Dtos.AuditHeaderDto"/> class.
+            </summary>
+            <param name="auditEvent">Audit Event.</param>
+        </member>
+        <member name="P:Agenda.Data.Dtos.AuditHeaderDto.Id">
+            <summary>
+            Gets Audit Header Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Dtos.AuditHeaderDto.AuditEvent">
+            <summary>
+            Gets the Audit Event.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Dtos.AuditHeaderDto.TimeStamp">
+            <summary>
+            Gets the Time Stamp.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Dtos.AuditHeaderDto.AuditDetails">
+            <summary>
+            Gets the Audit Details.
+            </summary>
+        </member>
+        <member name="M:Agenda.Data.Dtos.AuditHeaderDto.ToDtoWithAuditDetails(Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeaderWithAuditDetails)">
+            <summary>
+            Converts to DTO with AuditDetails.
+            </summary>
+            <param name="auditHeader">Audit Header.</param>
+            <returns>Audit Header DTO with Audit Details.</returns>
+        </member>
+        <member name="T:Agenda.Data.Dtos.BaseDto">
+            <summary>
+            Base class for DTOs.
             </summary>
         </member>
         <member name="T:Agenda.Data.Dtos.CommitteeDto">
@@ -655,6 +859,67 @@
             </summary>
             <returns>Organisation with Locations.</returns>
         </member>
+        <member name="T:Agenda.Data.Extensions.ReflectionExtensions">
+            <summary>
+            Reflection Extension methods.
+            </summary>
+        </member>
+        <member name="M:Agenda.Data.Extensions.ReflectionExtensions.IsCollection(System.Reflection.PropertyInfo)">
+            <summary>
+            Determines whether this instance is a collection.
+            </summary>
+            <param name="instance">The instance.</param>
+            <returns>
+              <c>true</c> if the specified instance is collection; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Agenda.Data.Extensions.ReflectionExtensions.GetAttributes(System.ComponentModel.PropertyDescriptor)">
+            <summary>
+            Gets the attributes.
+            </summary>
+            <param name="instance">The Instance.</param>
+            <returns>Property Attributes.</returns>
+        </member>
+        <member name="T:Agenda.Data.Extensions.ReflectionExtensions.PropertyAttributes">
+            <summary>
+            Class detailing the known property attributes.
+            </summary>
+        </member>
+        <member name="M:Agenda.Data.Extensions.ReflectionExtensions.PropertyAttributes.#ctor(Agenda.Data.Attributes.AuditIgnoreAttribute,System.ComponentModel.DataAnnotations.Schema.ForeignKeyAttribute,System.ComponentModel.DataAnnotations.KeyAttribute,System.ComponentModel.DataAnnotations.Schema.NotMappedAttribute,System.ComponentModel.DataAnnotations.RangeAttribute)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Data.Extensions.ReflectionExtensions.PropertyAttributes"/> class.
+            </summary>
+            <param name="auditIgnore">Audit Ignore attribute.</param>
+            <param name="foreignKey">Foreign Key attribute.</param>
+            <param name="key">Key attribute.</param>
+            <param name="notMapped">Not Mapped attribute.</param>
+            <param name="range">Range attribute.</param>
+        </member>
+        <member name="P:Agenda.Data.Extensions.ReflectionExtensions.PropertyAttributes.AuditIgnore">
+            <summary>
+            Gets the Audit Ignore attribute.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Extensions.ReflectionExtensions.PropertyAttributes.ForeignKey">
+            <summary>
+            Gets the Foreign Key attribute.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Extensions.ReflectionExtensions.PropertyAttributes.Key">
+            <summary>
+            Gets the key attribute.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Extensions.ReflectionExtensions.PropertyAttributes.NotMapped">
+            <summary>
+            Gets the Not Mapped attribute.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Extensions.ReflectionExtensions.PropertyAttributes.Range">
+            <summary>
+            Gets the range attribute.
+            </summary>
+        </member>
         <member name="T:Agenda.Data.Resources.ExceptionResource">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
@@ -696,6 +961,34 @@
             <summary>
               Looks up a localized string similar to {Method} ENTRY by {@Who}.
             </summary>
+        </member>
+        <member name="T:Agenda.Data.Utilities.Audit">
+            <summary>
+            Audit routines.
+            </summary>
+        </member>
+        <member name="M:Agenda.Data.Utilities.Audit.AuditCreate(Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeaderWithAuditDetails,Agenda.Data.Dtos.BaseDto,System.Guid)">
+            <summary>
+            Audits the create.
+            </summary>
+            <param name="auditHeader">Audit Header.</param>
+            <param name="newObject">New value.</param>
+            <param name="recordId">Record Id.</param>
+        </member>
+        <member name="T:Agenda.Data.Utilities.PropertyUtilities">
+            <summary>
+            Property Utilities.
+            </summary>
+        </member>
+        <member name="M:Agenda.Data.Utilities.PropertyUtilities.IsAuditableColumn(System.ComponentModel.PropertyDescriptorCollection,System.Reflection.PropertyInfo)">
+            <summary>
+            Determines whether [is auditable column] [the specified property descriptors].
+            </summary>
+            <param name="propertyDescriptors">Property Descriptors.</param>
+            <param name="propertyInfo">Property Information.</param>
+            <returns>
+              <c>true</c> if [is auditable column] [the specified property descriptors]; otherwise, <c>false</c>.
+            </returns>
         </member>
     </members>
 </doc>

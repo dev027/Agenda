@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Agenda.Domain.DomainObjects.AuditHeaders;
 using Agenda.Domain.DomainObjects.Meetings;
 using Agenda.Utilities.Models.Whos;
 
@@ -21,10 +22,12 @@ namespace Agenda.Data.Crud
         /// Creates the Meeting.
         /// </summary>
         /// <param name="who">Who details.</param>
+        /// <param name="auditHeader">Audit Header.</param>
         /// <param name="meeting">Meeting.</param>
         /// <returns>Nothing.</returns>
         Task CreateMeetingAsync(
             IWho who,
+            IAuditHeaderWithAuditDetails auditHeader,
             IMeeting meeting);
 
         #endregion Create

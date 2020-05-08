@@ -4,7 +4,9 @@
 
 using System;
 using System.Threading.Tasks;
+using Agenda.Domain.DomainObjects.AuditHeaders;
 using Agenda.Domain.DomainObjects.Locations;
+using Agenda.Domain.ValueObjects.Enums;
 using Agenda.Utilities.Models.Whos;
 using Microsoft.Extensions.Logging;
 
@@ -21,6 +23,7 @@ namespace Agenda.Service
         /// <inheritdoc />
         public async Task CreateLocationAsync(
             IWho who,
+            AuditEvent auditEvent,
             ILocation location)
         {
             this.logger.LogTrace(
@@ -29,11 +32,25 @@ namespace Agenda.Service
                 who,
                 location);
 
-            await this.data
-                .CreateLocationAsync(
-                    who: who,
-                    location: location)
-                .ConfigureAwait(false);
+            try
+            {
+                IAuditHeaderWithAuditDetails auditHeader = this.data.BeginTransaction(auditEvent);
+
+                await this.data
+                    .CreateLocationAsync(
+                        who: who,
+                        auditHeader: auditHeader,
+                        location: location)
+                    .ConfigureAwait(false);
+
+                await this.data.CommitTransactionAsync(auditHeader)
+                    .ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                this.data.RollbackTransaction();
+                throw;
+            }
 
             this.logger.LogTrace(
                 "EXIT {Method}(who) {@who}",

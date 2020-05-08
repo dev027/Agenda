@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Agenda.Domain.DomainObjects.Meetings;
+using Agenda.Domain.ValueObjects.Enums;
 using Agenda.Utilities.Models.Whos;
 
 namespace Agenda.Service
@@ -21,10 +22,12 @@ namespace Agenda.Service
         /// Creates the Meeting.
         /// </summary>
         /// <param name="who">Who Details.</param>
+        /// <param name="auditEvent">Audit Event.</param>
         /// <param name="meeting">Meeting.</param>
         /// <returns>Nothing.</returns>
         Task CreateMeetingAsync(
             IWho who,
+            AuditEvent auditEvent,
             IMeeting meeting);
 
         #endregion Create

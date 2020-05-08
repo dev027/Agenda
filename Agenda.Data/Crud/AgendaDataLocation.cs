@@ -5,6 +5,7 @@
 using System;
 using System.Threading.Tasks;
 using Agenda.Data.Dtos;
+using Agenda.Domain.DomainObjects.AuditHeaders;
 using Agenda.Domain.DomainObjects.Locations;
 using Agenda.Utilities.Models.Whos;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,7 @@ namespace Agenda.Data.Crud
         /// <inheritdoc/>
         public async Task CreateLocationAsync(
             IWho who,
+            IAuditHeaderWithAuditDetails auditHeader,
             ILocation location)
         {
             this.logger.LogTrace(

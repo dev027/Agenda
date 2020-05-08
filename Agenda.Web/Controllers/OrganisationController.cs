@@ -5,6 +5,7 @@
 using System;
 using System.Threading.Tasks;
 using Agenda.Domain.DomainObjects.Organisations;
+using Agenda.Domain.ValueObjects.Enums;
 using Agenda.Service;
 using Agenda.Utilities.Models.Whos;
 using Agenda.Web.Models;
@@ -104,7 +105,7 @@ namespace Agenda.Web.Controllers
 
                     return this.ExitRedirectToAction(
                         this.logger,
-                        this.RedirectToAction("Index", "Home"));
+                        this.RedirectToAction("Index", "OrganisationOverview"));
                 }
             }
 
@@ -201,7 +202,7 @@ namespace Agenda.Web.Controllers
             IOrganisation organisation = model.ToDomain();
 
             await this.service
-                .CreateOrganisationAsync(who, organisation)
+                .CreateOrganisationAsync(who, AuditEvent.OrganisationMaintenance, organisation)
                 .ConfigureAwait(false);
 
             this.logger.LogTrace(

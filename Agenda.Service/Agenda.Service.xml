@@ -36,7 +36,7 @@
         <member name="M:Agenda.Service.AgendaService.GetSetupStatusAsync(Agenda.Utilities.Models.Whos.IWho)">
             <inheritdoc/>
         </member>
-        <member name="M:Agenda.Service.AgendaService.CreateCommitteeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Committees.ICommittee)">
+        <member name="M:Agenda.Service.AgendaService.CreateCommitteeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,Agenda.Domain.DomainObjects.Committees.ICommittee)">
             <inheritdoc/>
         </member>
         <member name="M:Agenda.Service.AgendaService.GetCommitteeByIdAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
@@ -48,7 +48,7 @@
         <member name="M:Agenda.Service.AgendaService.UpdateCommitteeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Committees.ICommittee)">
             <inheritdoc/>
         </member>
-        <member name="M:Agenda.Service.AgendaService.CreateLocationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Locations.ILocation)">
+        <member name="M:Agenda.Service.AgendaService.CreateLocationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,Agenda.Domain.DomainObjects.Locations.ILocation)">
             <inheritdoc />
         </member>
         <member name="M:Agenda.Service.AgendaService.GetLocationByIdAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
@@ -57,7 +57,7 @@
         <member name="M:Agenda.Service.AgendaService.UpdateLocationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Locations.ILocation)">
             <inheritdoc/>
         </member>
-        <member name="M:Agenda.Service.AgendaService.CreateMeetingAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Meetings.IMeeting)">
+        <member name="M:Agenda.Service.AgendaService.CreateMeetingAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,Agenda.Domain.DomainObjects.Meetings.IMeeting)">
             <inheritdoc/>
         </member>
         <member name="M:Agenda.Service.AgendaService.GetMeetingByIdAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
@@ -69,7 +69,7 @@
         <member name="M:Agenda.Service.AgendaService.UpdateMeetingAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Meetings.IMeeting)">
             <inheritdoc/>
         </member>
-        <member name="M:Agenda.Service.AgendaService.CreateOrganisationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
+        <member name="M:Agenda.Service.AgendaService.CreateOrganisationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
             <inheritdoc/>
         </member>
         <member name="M:Agenda.Service.AgendaService.GetAllOrganisationsAsync(Agenda.Utilities.Models.Whos.IWho)">
@@ -117,11 +117,12 @@
             <param name="who">Who Details.</param>
             <returns>Setup status.</returns>
         </member>
-        <member name="M:Agenda.Service.IAgendaService.CreateCommitteeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Committees.ICommittee)">
+        <member name="M:Agenda.Service.IAgendaService.CreateCommitteeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,Agenda.Domain.DomainObjects.Committees.ICommittee)">
             <summary>
             Creates the committee.
             </summary>
             <param name="who">Who Details.</param>
+            <param name="auditEvent">Audit Event.</param>
             <param name="committee">Committee.</param>
             <returns>Nothing.</returns>
         </member>
@@ -149,11 +150,12 @@
             <param name="committee">Committee to update.</param>
             <returns>Nothing.</returns>
         </member>
-        <member name="M:Agenda.Service.IAgendaService.CreateLocationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Locations.ILocation)">
+        <member name="M:Agenda.Service.IAgendaService.CreateLocationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,Agenda.Domain.DomainObjects.Locations.ILocation)">
             <summary>
             Creates the Location.
             </summary>
             <param name="who">Who Details.</param>
+            <param name="auditEvent">Audit Event.</param>
             <param name="location">Location.</param>
             <returns>Nothing.</returns>
         </member>
@@ -173,11 +175,12 @@
             <param name="location">Location to update.</param>
             <returns>Nothing.</returns>
         </member>
-        <member name="M:Agenda.Service.IAgendaService.CreateMeetingAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Meetings.IMeeting)">
+        <member name="M:Agenda.Service.IAgendaService.CreateMeetingAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,Agenda.Domain.DomainObjects.Meetings.IMeeting)">
             <summary>
             Creates the Meeting.
             </summary>
             <param name="who">Who Details.</param>
+            <param name="auditEvent">Audit Event.</param>
             <param name="meeting">Meeting.</param>
             <returns>Nothing.</returns>
         </member>
@@ -206,11 +209,12 @@
             <param name="meeting">Meeting.</param>
             <returns>Nothing.</returns>
         </member>
-        <member name="M:Agenda.Service.IAgendaService.CreateOrganisationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
+        <member name="M:Agenda.Service.IAgendaService.CreateOrganisationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
             <summary>
             Creates the organisation.
             </summary>
             <param name="who">Who Details.</param>
+            <param name="auditEvent">Audit Event.</param>
             <param name="organisation">Organisation.</param>
             <returns>Nothing.</returns>
         </member>

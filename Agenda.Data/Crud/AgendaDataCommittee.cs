@@ -5,6 +5,8 @@
 using System;
 using System.Threading.Tasks;
 using Agenda.Data.Dtos;
+using Agenda.Data.Utilities;
+using Agenda.Domain.DomainObjects.AuditHeaders;
 using Agenda.Domain.DomainObjects.Committees;
 using Agenda.Utilities.Models.Whos;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +24,7 @@ namespace Agenda.Data.Crud
         /// <inheritdoc/>
         public async Task CreateCommitteeAsync(
             IWho who,
+            IAuditHeaderWithAuditDetails auditHeader,
             ICommittee committee)
         {
             this.logger.LogTrace(
@@ -34,6 +37,7 @@ namespace Agenda.Data.Crud
 
             this.context.Committees.Add(dto);
             await this.context.SaveChangesAsync().ConfigureAwait(false);
+            Audit.AuditCreate(auditHeader, dto, dto.Id);
 
             this.logger.LogTrace(
                 "EXIT {Method}(who) {@who}",

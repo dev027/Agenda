@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Agenda.Domain.DomainObjects.AuditHeaders;
 using Agenda.Domain.DomainObjects.Organisations;
 using Agenda.Utilities.Models.Whos;
 
@@ -21,10 +22,12 @@ namespace Agenda.Data.Crud
         /// Creates the Organisation.
         /// </summary>
         /// <param name="who">Who details.</param>
+        /// <param name="auditHeader">Audit Header.</param>
         /// <param name="organisation">Organisation.</param>
         /// <returns>Nothing.</returns>
         Task CreateOrganisationAsync(
             IWho who,
+            IAuditHeaderWithAuditDetails auditHeader,
             IOrganisation organisation);
 
         #endregion Create

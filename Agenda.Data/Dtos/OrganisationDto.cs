@@ -4,10 +4,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
 using System.Linq;
+using Agenda.Data.Attributes;
 using Agenda.Data.DbContexts;
 using Agenda.Data.Resources;
 using Agenda.Domain.DomainObjects.Organisations;
@@ -18,7 +20,7 @@ namespace Agenda.Data.Dtos
     /// Organiser DTO.
     /// </summary>
     [Table(nameof(DataContext.Organisations))]
-    public class OrganisationDto
+    public class OrganisationDto : BaseDto
     {
         #region Constructors
 
@@ -55,6 +57,7 @@ namespace Agenda.Data.Dtos
         /// <summary>
         /// Gets the Organisation Id.
         /// </summary>
+        [AuditIgnore]
         public Guid Id { get; private set; }
 
         /// <summary>
@@ -76,6 +79,7 @@ namespace Agenda.Data.Dtos
         /// </summary>
         [Required]
         [MaxLength(DomainMetadata.Name.MaxLength)]
+        [Description("Background Colour")]
         public string BgColour { get; private set; } = null!;
 
         #endregion Properties
@@ -94,7 +98,7 @@ namespace Agenda.Data.Dtos
 
         #endregion Child Properties
 
-        #region Public Properties
+        #region Public Methods
 
         /// <summary>
         /// Converts domain object to DTO.
@@ -176,6 +180,6 @@ namespace Agenda.Data.Dtos
                 locations: this.Locations.Select(l => l.ToDomain()).ToList());
         }
 
-        #endregion Public Properties
+        #endregion Public Methods
     }
 }

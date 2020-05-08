@@ -69,7 +69,9 @@
                         <div class="form-group">
                             @Html.LabelFor(m => m.BgColour)
                             <div class="input-group">
-                                <div class="input-group-prepend">#</div>
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">#</span>
+                                </div>
                                 @Html.TextBoxFor(m => m.BgColour,
                                     Model.Name,
                                     new
@@ -77,12 +79,6 @@
                                         @class = "form-control"
                                     })
                             </div>
-                            @Html.TextBoxFor(m => m.BgColour,
-                                Model.Name,
-                                new
-                                {
-                                    @class = "form-control"
-                                })
                             @Html.ValidationMessageFor(m => m.BgColour, null, new { @class = "text-danger" })
                         </div>
                         <button class="btn btn-primary" type="submit">Add Organisation</button>

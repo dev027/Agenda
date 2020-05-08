@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Agenda.Domain.DomainObjects.Organisations;
+using Agenda.Domain.ValueObjects.Enums;
 using Agenda.Utilities.Models.Whos;
 
 namespace Agenda.Service
@@ -21,10 +22,12 @@ namespace Agenda.Service
         /// Creates the organisation.
         /// </summary>
         /// <param name="who">Who Details.</param>
+        /// <param name="auditEvent">Audit Event.</param>
         /// <param name="organisation">Organisation.</param>
         /// <returns>Nothing.</returns>
         Task CreateOrganisationAsync(
             IWho who,
+            AuditEvent auditEvent,
             IOrganisation organisation);
 
         #endregion Create

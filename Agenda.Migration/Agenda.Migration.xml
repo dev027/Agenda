@@ -32,6 +32,16 @@
             then this method will not be run.
             </remarks>
         </member>
+        <member name="P:Agenda.Migration.DbContexts.MigrationContext.AuditDetails">
+            <summary>
+            Gets or sets the Audit Details.
+            </summary>
+        </member>
+        <member name="P:Agenda.Migration.DbContexts.MigrationContext.AuditHeaders">
+            <summary>
+            Gets or sets the Audit Headers.
+            </summary>
+        </member>
         <member name="P:Agenda.Migration.DbContexts.MigrationContext.Committees">
             <summary>
             Gets or sets the Committees.
@@ -288,9 +298,24 @@
         <member name="M:Agenda.Migration.Migrations.AddBgColourToOrganisation.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc/>
         </member>
+        <member name="T:Agenda.Migration.Migrations.AddAuditTables">
+            <summary>
+            Add Audit Tables.
+            </summary>
+            <seealso cref="T:Microsoft.EntityFrameworkCore.Migrations.Migration" />
+        </member>
+        <member name="M:Agenda.Migration.Migrations.AddAuditTables.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Migration.Migrations.AddAuditTables.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Migration.Migrations.AddAuditTables.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc/>
+        </member>
         <member name="T:Agenda.Migration.Migrations.MigrationContextModelSnapshot">
             <summary>
-            Snapshot.
+            Model snapshot
             </summary>
             <seealso cref="T:Microsoft.EntityFrameworkCore.Infrastructure.ModelSnapshot" />
         </member>

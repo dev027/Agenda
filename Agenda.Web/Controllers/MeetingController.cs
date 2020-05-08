@@ -8,6 +8,7 @@ using Agenda.Domain.DomainObjects.Committees;
 using Agenda.Domain.DomainObjects.Locations;
 using Agenda.Domain.DomainObjects.Meetings;
 using Agenda.Domain.DomainObjects.Organisations;
+using Agenda.Domain.ValueObjects.Enums;
 using Agenda.Service;
 using Agenda.Utilities.Models.Whos;
 using Agenda.Web.Models;
@@ -265,7 +266,7 @@ namespace Agenda.Web.Controllers
                 location: location);
 
             await this.service
-                .CreateMeetingAsync(who, meeting)
+                .CreateMeetingAsync(who, AuditEvent.MeetingMaintenance, meeting)
                 .ConfigureAwait(false);
 
             this.logger.LogTrace(

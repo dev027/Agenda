@@ -5,6 +5,7 @@
 using System;
 using System.Threading.Tasks;
 using Agenda.Domain.DomainObjects.Committees;
+using Agenda.Domain.ValueObjects.Enums;
 using Agenda.Utilities.Models.Whos;
 
 namespace Agenda.Service
@@ -20,10 +21,12 @@ namespace Agenda.Service
         /// Creates the committee.
         /// </summary>
         /// <param name="who">Who Details.</param>
+        /// <param name="auditEvent">Audit Event.</param>
         /// <param name="committee">Committee.</param>
         /// <returns>Nothing.</returns>
         Task CreateCommitteeAsync(
             IWho who,
+            AuditEvent auditEvent,
             ICommittee committee);
 
         #endregion Create

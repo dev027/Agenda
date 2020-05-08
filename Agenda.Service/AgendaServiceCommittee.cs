@@ -4,7 +4,9 @@
 
 using System;
 using System.Threading.Tasks;
+using Agenda.Domain.DomainObjects.AuditHeaders;
 using Agenda.Domain.DomainObjects.Committees;
+using Agenda.Domain.ValueObjects.Enums;
 using Agenda.Utilities.Models.Whos;
 using Microsoft.Extensions.Logging;
 
@@ -21,6 +23,7 @@ namespace Agenda.Service
         /// <inheritdoc/>
         public async Task CreateCommitteeAsync(
             IWho who,
+            AuditEvent auditEvent,
             ICommittee committee)
         {
             this.logger.LogTrace(
@@ -29,10 +32,24 @@ namespace Agenda.Service
                 who,
                 committee);
 
-            await this.data.CreateCommitteeAsync(
-                    who,
-                    committee)
-                .ConfigureAwait(false);
+            try
+            {
+                IAuditHeaderWithAuditDetails auditHeader = this.data.BeginTransaction(auditEvent);
+
+                await this.data.CreateCommitteeAsync(
+                        who: who,
+                        auditHeader: auditHeader,
+                        committee: committee)
+                    .ConfigureAwait(false);
+
+                await this.data.CommitTransactionAsync(auditHeader)
+                    .ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                this.data.RollbackTransaction();
+                throw;
+            }
 
             this.logger.LogTrace(
                 "EXIT {Method}(who) {@who}",

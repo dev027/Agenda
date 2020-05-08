@@ -17,7 +17,7 @@ namespace Agenda.Data.Dtos
     /// Location DTO.
     /// </summary>
     [Table(nameof(DataContext.Locations))]
-    public class LocationDto
+    public class LocationDto : BaseDto
     {
         #region Constructors
 

@@ -3,7 +3,11 @@
 // </copyright>
 
 using System;
+using System.Threading.Tasks;
 using Agenda.Data.DbContexts;
+using Agenda.Data.Dtos;
+using Agenda.Domain.DomainObjects.AuditHeaders;
+using Agenda.Domain.ValueObjects.Enums;
 using Agenda.Utilities.Models.Whos;
 using Microsoft.Extensions.Logging;
 
@@ -28,18 +32,45 @@ namespace Agenda.Data.Crud
         public AgendaData(
             ILogger<AgendaData> logger,
             DataContext dataContext)
-       {
+        {
             this.logger = logger;
             this.context = dataContext;
-       }
+        }
 
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
+        /// <inheritdoc/>
         public void Dispose()
         {
             this.Dispose(true);
             GC.SuppressFinalize(this);
+        }
+
+       /// <inheritdoc/>
+        public IAuditHeaderWithAuditDetails BeginTransaction(AuditEvent auditEvent)
+        {
+            this.context.Database.BeginTransaction();
+
+            return new AuditHeaderWithAuditDetails(auditEvent);
+        }
+
+        /// <inheritdoc/>
+        public async Task CommitTransactionAsync(IAuditHeaderWithAuditDetails? auditHeader)
+        {
+            if (auditHeader != null)
+            {
+                AuditHeaderDto auditHeaderDto =
+                    AuditHeaderDto.ToDtoWithAuditDetails(auditHeader);
+                this.context.AuditHeaders.Add(auditHeaderDto);
+                await this.context.SaveChangesAsync()
+                    .ConfigureAwait(false);
+            }
+
+            this.context.Database.CommitTransaction();
+        }
+
+        /// <inheritdoc/>
+        public void RollbackTransaction()
+        {
+            this.context.Database.RollbackTransaction();
         }
 
         /// <summary>

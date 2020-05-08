@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Agenda.Data.Dtos;
+using Agenda.Data.Utilities;
+using Agenda.Domain.DomainObjects.AuditHeaders;
 using Agenda.Domain.DomainObjects.Organisations;
 using Agenda.Utilities.Models.Whos;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +26,7 @@ namespace Agenda.Data.Crud
         /// <inheritdoc />
         public async Task CreateOrganisationAsync(
             IWho who,
+            IAuditHeaderWithAuditDetails auditHeader,
             IOrganisation organisation)
         {
             this.logger.LogTrace(
@@ -36,6 +39,7 @@ namespace Agenda.Data.Crud
 
             this.context.Organisations.Add(dto);
             await this.context.SaveChangesAsync().ConfigureAwait(false);
+            Audit.AuditCreate(auditHeader, dto, dto.Id);
 
             this.logger.LogTrace(
                 "EXIT {Method}(who) {@who}",

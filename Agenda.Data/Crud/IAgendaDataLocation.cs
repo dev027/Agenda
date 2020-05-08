@@ -4,6 +4,7 @@
 
 using System;
 using System.Threading.Tasks;
+using Agenda.Domain.DomainObjects.AuditHeaders;
 using Agenda.Domain.DomainObjects.Locations;
 using Agenda.Utilities.Models.Whos;
 
@@ -20,10 +21,12 @@ namespace Agenda.Data.Crud
         /// Creates the Location.
         /// </summary>
         /// <param name="who">Who details.</param>
+        /// <param name="auditHeader">Audit Header.</param>
         /// <param name="location">Location.</param>
         /// <returns>Nothing.</returns>
         Task CreateLocationAsync(
             IWho who,
+            IAuditHeaderWithAuditDetails auditHeader,
             ILocation location);
 
         #endregion

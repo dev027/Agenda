@@ -4,6 +4,7 @@
 
 using System;
 using System.Threading.Tasks;
+using Agenda.Domain.DomainObjects.AuditHeaders;
 using Agenda.Domain.DomainObjects.Committees;
 using Agenda.Utilities.Models.Whos;
 
@@ -20,9 +21,13 @@ namespace Agenda.Data.Crud
         /// Creates the Committee.
         /// </summary>
         /// <param name="who">Who details.</param>
+        /// <param name="auditHeader">Audit Header.</param>
         /// <param name="committee">Committee.</param>
         /// <returns>Nothing.</returns>
-        Task CreateCommitteeAsync(IWho who, ICommittee committee);
+        Task CreateCommitteeAsync(
+            IWho who,
+            IAuditHeaderWithAuditDetails auditHeader,
+            ICommittee committee);
 
         #endregion Create
 

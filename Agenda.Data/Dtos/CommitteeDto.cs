@@ -19,7 +19,7 @@ namespace Agenda.Data.Dtos
     /// Committee DTO.
     /// </summary>
     [Table(nameof(DataContext.Committees))]
-    public class CommitteeDto
+    public class CommitteeDto : BaseDto
     {
         #region Constructors
 

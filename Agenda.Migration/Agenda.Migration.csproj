@@ -24,6 +24,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200508162347_AddAuditTable.cs" />
+    <Compile Remove="Migrations\20200508162347_AddAuditTable.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>
 

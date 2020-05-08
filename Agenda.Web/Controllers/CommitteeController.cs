@@ -6,6 +6,7 @@ using System;
 using System.Threading.Tasks;
 using Agenda.Domain.DomainObjects.Committees;
 using Agenda.Domain.DomainObjects.Organisations;
+using Agenda.Domain.ValueObjects.Enums;
 using Agenda.Service;
 using Agenda.Utilities.Models.Whos;
 using Agenda.Web.Models;
@@ -133,7 +134,7 @@ namespace Agenda.Web.Controllers
                         this.logger,
                         this.RedirectToAction(
                             "Index",
-                            "Organisation",
+                            "CommitteeOverview",
                             new { organisationId = model.OrganisationId }));
                 }
             }
@@ -236,7 +237,7 @@ namespace Agenda.Web.Controllers
             ICommittee committee = model.ToDomain(organisation);
 
             await this.service
-                .CreateCommitteeAsync(who, committee)
+                .CreateCommitteeAsync(who, AuditEvent.CommitteeMaintenance, committee)
                 .ConfigureAwait(false);
 
             this.logger.LogTrace(
