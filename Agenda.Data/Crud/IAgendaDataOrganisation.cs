@@ -106,10 +106,12 @@ namespace Agenda.Data.Crud
         /// Updates the Organisation.
         /// </summary>
         /// <param name="who">Who details.</param>
+        /// <param name="auditHeader">Audit Header.</param>
         /// <param name="organisation">Organisation.</param>
         /// <returns>Nothing.</returns>
         Task UpdateOrganisationAsync(
             IWho who,
+            IAuditHeaderWithAuditDetails auditHeader,
             IOrganisation organisation);
 
         #endregion Update

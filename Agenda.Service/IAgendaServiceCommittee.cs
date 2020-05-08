@@ -61,10 +61,12 @@ namespace Agenda.Service
         /// Updates the Committee.
         /// </summary>
         /// <param name="who">Who Details.</param>
+        /// <param name="auditEvent">Audit Event.</param>
         /// <param name="committee">Committee to update.</param>
         /// <returns>Nothing.</returns>
         Task UpdateCommitteeAsync(
             IWho who,
+            AuditEvent auditEvent,
             ICommittee committee);
 
         #endregion Update

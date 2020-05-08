@@ -69,9 +69,13 @@ namespace Agenda.Data.Crud
         /// Updates the Committee.
         /// </summary>
         /// <param name="who">Who details.</param>
+        /// <param name="auditHeader">Audit Header.</param>
         /// <param name="committee">The committee.</param>
         /// <returns>Nothing.</returns>
-        Task UpdateCommitteeAsync(IWho who, ICommittee committee);
+        Task UpdateCommitteeAsync(
+            IWho who,
+            IAuditHeaderWithAuditDetails auditHeader,
+            ICommittee committee);
 
         #endregion Update
     }

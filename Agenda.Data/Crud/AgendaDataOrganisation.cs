@@ -247,6 +247,7 @@ namespace Agenda.Data.Crud
         /// <inheritdoc/>
         public async Task UpdateOrganisationAsync(
             IWho who,
+            IAuditHeaderWithAuditDetails auditHeader,
             IOrganisation organisation)
         {
             this.logger.LogTrace(
@@ -261,6 +262,7 @@ namespace Agenda.Data.Crud
 
             this.context.Entry(original).CurrentValues.SetValues(dto);
             await this.context.SaveChangesAsync().ConfigureAwait(false);
+            Audit.AuditUpdate(auditHeader, dto.Id, original, dto);
 
             this.logger.LogTrace(
                 "EXIT {Method}(who) {@who}",

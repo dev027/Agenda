@@ -309,8 +309,9 @@ namespace Agenda.Web.Controllers
 
             await this.service
                 .UpdateMeetingAsync(
-                    who,
-                    meeting)
+                    who: who,
+                    auditEvent: AuditEvent.MeetingMaintenance,
+                    meeting: meeting)
                 .ConfigureAwait(false);
 
             this.logger.LogTrace(

@@ -272,8 +272,9 @@ namespace Agenda.Web.Controllers
 
             await this.service
                 .UpdateCommitteeAsync(
-                    who,
-                    committee)
+                    who: who,
+                    auditEvent: AuditEvent.CommitteeMaintenance,
+                    committee: committee)
                 .ConfigureAwait(false);
 
             this.logger.LogTrace(

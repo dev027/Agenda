@@ -6,6 +6,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
+using Agenda.Data.Attributes;
 using Agenda.Data.DbContexts;
 using Agenda.Data.Resources;
 using Agenda.Domain.DomainObjects.Meetings;
@@ -81,6 +82,7 @@ namespace Agenda.Data.Dtos
         /// <summary>
         /// Gets the Meeting Id.
         /// </summary>
+        [AuditIgnore]
         public Guid Id { get; private set; }
 
         /// <summary>

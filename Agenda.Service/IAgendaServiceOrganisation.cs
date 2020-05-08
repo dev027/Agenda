@@ -100,10 +100,12 @@ namespace Agenda.Service
         /// Updates the Organisation.
         /// </summary>
         /// <param name="who">Who Details.</param>
+        /// <param name="auditEvent">Audit Event.</param>
         /// <param name="organisation">Organisation to update.</param>
         /// <returns>Nothing.</returns>
         Task UpdateOrganisationAsync(
             IWho who,
+            AuditEvent auditEvent,
             IOrganisation organisation);
 
         #endregion Update

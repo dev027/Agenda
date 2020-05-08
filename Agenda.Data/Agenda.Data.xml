@@ -73,7 +73,7 @@
         <member name="M:Agenda.Data.Crud.AgendaData.HaveCommitteesAsync(Agenda.Utilities.Models.Whos.IWho)">
             <inheritdoc/>
         </member>
-        <member name="M:Agenda.Data.Crud.AgendaData.UpdateCommitteeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Committees.ICommittee)">
+        <member name="M:Agenda.Data.Crud.AgendaData.UpdateCommitteeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeaderWithAuditDetails,Agenda.Domain.DomainObjects.Committees.ICommittee)">
             <inheritdoc/>
         </member>
         <member name="M:Agenda.Data.Crud.AgendaData.CreateLocationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeaderWithAuditDetails,Agenda.Domain.DomainObjects.Locations.ILocation)">
@@ -82,7 +82,7 @@
         <member name="M:Agenda.Data.Crud.AgendaData.GetLocationByIdAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
             <inheritdoc/>
         </member>
-        <member name="M:Agenda.Data.Crud.AgendaData.UpdateLocationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Locations.ILocation)">
+        <member name="M:Agenda.Data.Crud.AgendaData.UpdateLocationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeaderWithAuditDetails,Agenda.Domain.DomainObjects.Locations.ILocation)">
             <inheritdoc/>
         </member>
         <member name="M:Agenda.Data.Crud.AgendaData.CreateMeetingAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeaderWithAuditDetails,Agenda.Domain.DomainObjects.Meetings.IMeeting)">
@@ -94,7 +94,7 @@
         <member name="M:Agenda.Data.Crud.AgendaData.GetMeetingByIdAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
             <inheritdoc />
         </member>
-        <member name="M:Agenda.Data.Crud.AgendaData.UpdateMeetingAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Meetings.IMeeting)">
+        <member name="M:Agenda.Data.Crud.AgendaData.UpdateMeetingAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeaderWithAuditDetails,Agenda.Domain.DomainObjects.Meetings.IMeeting)">
             <inheritdoc/>
         </member>
         <member name="M:Agenda.Data.Crud.AgendaData.CreateOrganisationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeaderWithAuditDetails,Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
@@ -121,7 +121,7 @@
         <member name="M:Agenda.Data.Crud.AgendaData.HaveOrganisationsAsync(Agenda.Utilities.Models.Whos.IWho)">
             <inheritdoc/>
         </member>
-        <member name="M:Agenda.Data.Crud.AgendaData.UpdateOrganisationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
+        <member name="M:Agenda.Data.Crud.AgendaData.UpdateOrganisationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeaderWithAuditDetails,Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
             <inheritdoc/>
         </member>
         <member name="T:Agenda.Data.Crud.IAgendaData">
@@ -193,11 +193,12 @@
             <param name="who">Who details.</param>
             <returns>True if Committees exist.</returns>
         </member>
-        <member name="M:Agenda.Data.Crud.IAgendaData.UpdateCommitteeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Committees.ICommittee)">
+        <member name="M:Agenda.Data.Crud.IAgendaData.UpdateCommitteeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeaderWithAuditDetails,Agenda.Domain.DomainObjects.Committees.ICommittee)">
             <summary>
             Updates the Committee.
             </summary>
             <param name="who">Who details.</param>
+            <param name="auditHeader">Audit Header.</param>
             <param name="committee">The committee.</param>
             <returns>Nothing.</returns>
         </member>
@@ -218,11 +219,12 @@
             <param name="locationId">Location Id.</param>
             <returns>Location.</returns>
         </member>
-        <member name="M:Agenda.Data.Crud.IAgendaData.UpdateLocationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Locations.ILocation)">
+        <member name="M:Agenda.Data.Crud.IAgendaData.UpdateLocationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeaderWithAuditDetails,Agenda.Domain.DomainObjects.Locations.ILocation)">
             <summary>
             Updates the Location.
             </summary>
             <param name="who">Who details.</param>
+            <param name="auditHeader">Audit Header.</param>
             <param name="location">The Location.</param>
             <returns>Nothing.</returns>
         </member>
@@ -252,11 +254,12 @@
             <param name="maxNumberOfMeetings">The maximum number of meetings to return.</param>
             <returns>List of Meetings.</returns>
         </member>
-        <member name="M:Agenda.Data.Crud.IAgendaData.UpdateMeetingAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Meetings.IMeeting)">
+        <member name="M:Agenda.Data.Crud.IAgendaData.UpdateMeetingAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeaderWithAuditDetails,Agenda.Domain.DomainObjects.Meetings.IMeeting)">
             <summary>
             Updates the Meeting.
             </summary>
             <param name="who">Who details.</param>
+            <param name="auditHeader">Audit Header.</param>
             <param name="meeting">Meeting.</param>
             <returns>Nothing.</returns>
         </member>
@@ -323,11 +326,12 @@
             <param name="who">Who details.</param>
             <returns>True if Organisations exist.</returns>
         </member>
-        <member name="M:Agenda.Data.Crud.IAgendaData.UpdateOrganisationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
+        <member name="M:Agenda.Data.Crud.IAgendaData.UpdateOrganisationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeaderWithAuditDetails,Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
             <summary>
             Updates the Organisation.
             </summary>
             <param name="who">Who details.</param>
+            <param name="auditHeader">Audit Header.</param>
             <param name="organisation">Organisation.</param>
             <returns>Nothing.</returns>
         </member>
@@ -974,6 +978,52 @@
             <param name="auditHeader">Audit Header.</param>
             <param name="newObject">New value.</param>
             <param name="recordId">Record Id.</param>
+        </member>
+        <member name="M:Agenda.Data.Utilities.Audit.AuditUpdate(Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeaderWithAuditDetails,System.Guid,Agenda.Data.Dtos.BaseDto,Agenda.Data.Dtos.BaseDto)">
+            <summary>
+            Audits the update.
+            </summary>
+            <param name="auditHeader">Audit Header.</param>
+            <param name="recordId">Record Id.</param>
+            <param name="oldObject">Old Value.</param>
+            <param name="newObject">New Value.</param>
+        </member>
+        <member name="T:Agenda.Data.Utilities.CompareNullable">
+            <summary>
+            Compare routines that handles if one/both of the values are null.
+            </summary>
+        </member>
+        <member name="M:Agenda.Data.Utilities.CompareNullable.AreEqual(System.String,System.String)">
+            <summary>
+            Compares two string values.
+            </summary>
+            <param name="a">1st value.</param>
+            <param name="b">2nd value.</param>
+            <returns>Returns true if the values are equal.</returns>
+        </member>
+        <member name="M:Agenda.Data.Utilities.CompareNullable.AreEqual(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Compares two integer values.
+            </summary>
+            <param name="a">1st value.</param>
+            <param name="b">2nd value.</param>
+            <returns>Returns true if the values are equal.</returns>
+        </member>
+        <member name="M:Agenda.Data.Utilities.CompareNullable.AreEqual(System.Nullable{System.Decimal},System.Nullable{System.Decimal})">
+            <summary>
+            Compares two decimal values.
+            </summary>
+            <param name="a">1st value.</param>
+            <param name="b">2nd value.</param>
+            <returns>Returns true if the values are equal.</returns>
+        </member>
+        <member name="M:Agenda.Data.Utilities.CompareNullable.AreEqual(System.Nullable{System.DateTime},System.Nullable{System.DateTime})">
+            <summary>
+            Compares two datetime values.
+            </summary>
+            <param name="a">1st value.</param>
+            <param name="b">2nd value.</param>
+            <returns>Returns true if the values are equal.</returns>
         </member>
         <member name="T:Agenda.Data.Utilities.PropertyUtilities">
             <summary>

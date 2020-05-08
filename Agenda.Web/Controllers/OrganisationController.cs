@@ -230,7 +230,10 @@ namespace Agenda.Web.Controllers
             IOrganisation organisation = model.ToDomain();
 
             await this.service
-                .UpdateOrganisationAsync(who, organisation)
+                .UpdateOrganisationAsync(
+                    who: who,
+                    auditEvent: AuditEvent.OrganisationMaintenance,
+                    organisation: organisation)
                 .ConfigureAwait(false);
 
             this.logger.LogTrace(

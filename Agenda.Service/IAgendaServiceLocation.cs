@@ -51,10 +51,12 @@ namespace Agenda.Service
         /// Updates the Location.
         /// </summary>
         /// <param name="who">Who Details.</param>
+        /// <param name="auditEvent">Audit Event.</param>
         /// <param name="location">Location to update.</param>
         /// <returns>Nothing.</returns>
         Task UpdateLocationAsync(
             IWho who,
+            AuditEvent auditEvent,
             ILocation location);
 
         #endregion Update

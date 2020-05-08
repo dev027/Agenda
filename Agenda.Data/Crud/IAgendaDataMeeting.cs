@@ -64,10 +64,12 @@ namespace Agenda.Data.Crud
         /// Updates the Meeting.
         /// </summary>
         /// <param name="who">Who details.</param>
+        /// <param name="auditHeader">Audit Header.</param>
         /// <param name="meeting">Meeting.</param>
         /// <returns>Nothing.</returns>
         Task UpdateMeetingAsync(
             IWho who,
+            IAuditHeaderWithAuditDetails auditHeader,
             IMeeting meeting);
 
         #endregion Update

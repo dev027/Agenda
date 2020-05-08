@@ -64,10 +64,12 @@ namespace Agenda.Service
         /// Updates the Meeting.
         /// </summary>
         /// <param name="who">Who Details.</param>
+        /// <param name="auditEvent">Audit Event.</param>
         /// <param name="meeting">Meeting.</param>
         /// <returns>Nothing.</returns>
         Task UpdateMeetingAsync(
             IWho who,
+            AuditEvent auditEvent,
             IMeeting meeting);
 
         #endregion Update

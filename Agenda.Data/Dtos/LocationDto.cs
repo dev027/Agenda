@@ -6,6 +6,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
+using Agenda.Data.Attributes;
 using Agenda.Data.DbContexts;
 using Agenda.Data.Resources;
 using Agenda.Domain.DomainObjects.Locations;
@@ -94,6 +95,7 @@ namespace Agenda.Data.Dtos
         /// <summary>
         /// Gets the Location Id.
         /// </summary>
+        [AuditIgnore]
         public Guid Id { get; private set; }
 
         /// <summary>

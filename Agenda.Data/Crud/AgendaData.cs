@@ -3,6 +3,7 @@
 // </copyright>
 
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Agenda.Data.DbContexts;
 using Agenda.Data.Dtos;
@@ -55,7 +56,7 @@ namespace Agenda.Data.Crud
         /// <inheritdoc/>
         public async Task CommitTransactionAsync(IAuditHeaderWithAuditDetails? auditHeader)
         {
-            if (auditHeader != null)
+            if (auditHeader != null && auditHeader.AuditDetails.Any())
             {
                 AuditHeaderDto auditHeaderDto =
                     AuditHeaderDto.ToDtoWithAuditDetails(auditHeader);

@@ -51,10 +51,12 @@ namespace Agenda.Data.Crud
         /// Updates the Location.
         /// </summary>
         /// <param name="who">Who details.</param>
+        /// <param name="auditHeader">Audit Header.</param>
         /// <param name="location">The Location.</param>
         /// <returns>Nothing.</returns>
         Task UpdateLocationAsync(
             IWho who,
+            IAuditHeaderWithAuditDetails auditHeader,
             ILocation location);
 
         #endregion

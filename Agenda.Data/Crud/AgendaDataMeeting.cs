@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Agenda.Data.Dtos;
+using Agenda.Data.Utilities;
 using Agenda.Domain.DomainObjects.AuditHeaders;
 using Agenda.Domain.DomainObjects.Meetings;
 using Agenda.Utilities.Models.Whos;
@@ -38,6 +39,7 @@ namespace Agenda.Data.Crud
 
             this.context.Meetings.Add(dto);
             await this.context.SaveChangesAsync().ConfigureAwait(false);
+            Audit.AuditCreate(auditHeader, dto, dto.Id);
 
             this.logger.LogTrace(
                 "EXIT {Method}(who) {@who}",
@@ -122,6 +124,7 @@ namespace Agenda.Data.Crud
         /// <inheritdoc/>
         public async Task UpdateMeetingAsync(
             IWho who,
+            IAuditHeaderWithAuditDetails auditHeader,
             IMeeting meeting)
         {
             this.logger.LogTrace(
@@ -136,6 +139,7 @@ namespace Agenda.Data.Crud
 
             this.context.Entry(original).CurrentValues.SetValues(dto);
             await this.context.SaveChangesAsync().ConfigureAwait(false);
+            Audit.AuditUpdate(auditHeader, dto.Id, original, dto);
 
             this.logger.LogTrace(
                 "EXIT {Method}(who) {@who}",

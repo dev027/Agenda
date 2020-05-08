@@ -219,6 +219,7 @@ namespace Agenda.Service
         /// <inheritdoc/>
         public async Task UpdateOrganisationAsync(
             IWho who,
+            AuditEvent auditEvent,
             IOrganisation organisation)
         {
             this.logger.LogTrace(
@@ -227,11 +228,25 @@ namespace Agenda.Service
                 who,
                 organisation);
 
-            await this.data
-                .UpdateOrganisationAsync(
-                    who: who,
-                    organisation: organisation)
-                .ConfigureAwait(false);
+            try
+            {
+                IAuditHeaderWithAuditDetails auditHeader = this.data.BeginTransaction(auditEvent);
+
+                await this.data
+                    .UpdateOrganisationAsync(
+                        who: who,
+                        auditHeader: auditHeader,
+                        organisation: organisation)
+                    .ConfigureAwait(false);
+
+                await this.data.CommitTransactionAsync(auditHeader)
+                    .ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                this.data.RollbackTransaction();
+                throw;
+            }
 
             this.logger.LogTrace(
                 "EXIT {Method}(who) {@who}",

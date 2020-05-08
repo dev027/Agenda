@@ -270,8 +270,9 @@ namespace Agenda.Web.Controllers
 
             await this.service
                 .UpdateLocationAsync(
-                    who,
-                    location)
+                    who: who,
+                    auditEvent: AuditEvent.LocationMaintenance,
+                    location: location)
                 .ConfigureAwait(false);
 
             this.logger.LogTrace(

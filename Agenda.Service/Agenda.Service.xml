@@ -45,7 +45,7 @@
         <member name="M:Agenda.Service.AgendaService.GetCommitteeByIdWithMeetingsAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
             <inheritdoc/>
         </member>
-        <member name="M:Agenda.Service.AgendaService.UpdateCommitteeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Committees.ICommittee)">
+        <member name="M:Agenda.Service.AgendaService.UpdateCommitteeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,Agenda.Domain.DomainObjects.Committees.ICommittee)">
             <inheritdoc/>
         </member>
         <member name="M:Agenda.Service.AgendaService.CreateLocationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,Agenda.Domain.DomainObjects.Locations.ILocation)">
@@ -54,7 +54,7 @@
         <member name="M:Agenda.Service.AgendaService.GetLocationByIdAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
             <inheritdoc/>
         </member>
-        <member name="M:Agenda.Service.AgendaService.UpdateLocationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Locations.ILocation)">
+        <member name="M:Agenda.Service.AgendaService.UpdateLocationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,Agenda.Domain.DomainObjects.Locations.ILocation)">
             <inheritdoc/>
         </member>
         <member name="M:Agenda.Service.AgendaService.CreateMeetingAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,Agenda.Domain.DomainObjects.Meetings.IMeeting)">
@@ -66,7 +66,7 @@
         <member name="M:Agenda.Service.AgendaService.GetRecentMeetingsMostRecentFirstAsync(Agenda.Utilities.Models.Whos.IWho,System.Nullable{System.TimeSpan},System.Nullable{System.Int32})">
             <inheritdoc/>
         </member>
-        <member name="M:Agenda.Service.AgendaService.UpdateMeetingAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Meetings.IMeeting)">
+        <member name="M:Agenda.Service.AgendaService.UpdateMeetingAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,Agenda.Domain.DomainObjects.Meetings.IMeeting)">
             <inheritdoc/>
         </member>
         <member name="M:Agenda.Service.AgendaService.CreateOrganisationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
@@ -90,7 +90,7 @@
         <member name="M:Agenda.Service.AgendaService.GetOrganisationByMeetingIdWithLocationsAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
             <inheritdoc/>
         </member>
-        <member name="M:Agenda.Service.AgendaService.UpdateOrganisationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
+        <member name="M:Agenda.Service.AgendaService.UpdateOrganisationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
             <inheritdoc/>
         </member>
         <member name="T:Agenda.Service.IAgendaService">
@@ -142,11 +142,12 @@
             <param name="committeeId">Committee Id.</param>
             <returns>Committee with Meetings.</returns>
         </member>
-        <member name="M:Agenda.Service.IAgendaService.UpdateCommitteeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Committees.ICommittee)">
+        <member name="M:Agenda.Service.IAgendaService.UpdateCommitteeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,Agenda.Domain.DomainObjects.Committees.ICommittee)">
             <summary>
             Updates the Committee.
             </summary>
             <param name="who">Who Details.</param>
+            <param name="auditEvent">Audit Event.</param>
             <param name="committee">Committee to update.</param>
             <returns>Nothing.</returns>
         </member>
@@ -167,11 +168,12 @@
             <param name="locationId">Location Id.</param>
             <returns>Location.</returns>
         </member>
-        <member name="M:Agenda.Service.IAgendaService.UpdateLocationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Locations.ILocation)">
+        <member name="M:Agenda.Service.IAgendaService.UpdateLocationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,Agenda.Domain.DomainObjects.Locations.ILocation)">
             <summary>
             Updates the Location.
             </summary>
             <param name="who">Who Details.</param>
+            <param name="auditEvent">Audit Event.</param>
             <param name="location">Location to update.</param>
             <returns>Nothing.</returns>
         </member>
@@ -201,11 +203,12 @@
             <param name="maxNumberOfMeetings">The maximum number of meetings.</param>
             <returns>List of recent meetings.</returns>
         </member>
-        <member name="M:Agenda.Service.IAgendaService.UpdateMeetingAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Meetings.IMeeting)">
+        <member name="M:Agenda.Service.IAgendaService.UpdateMeetingAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,Agenda.Domain.DomainObjects.Meetings.IMeeting)">
             <summary>
             Updates the Meeting.
             </summary>
             <param name="who">Who Details.</param>
+            <param name="auditEvent">Audit Event.</param>
             <param name="meeting">Meeting.</param>
             <returns>Nothing.</returns>
         </member>
@@ -265,11 +268,12 @@
             <param name="meetingId">Meeting Id.</param>
             <returns>Organisation with Locations.</returns>
         </member>
-        <member name="M:Agenda.Service.IAgendaService.UpdateOrganisationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
+        <member name="M:Agenda.Service.IAgendaService.UpdateOrganisationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
             <summary>
             Updates the Organisation.
             </summary>
             <param name="who">Who Details.</param>
+            <param name="auditEvent">Audit Event.</param>
             <param name="organisation">Organisation to update.</param>
             <returns>Nothing.</returns>
         </member>

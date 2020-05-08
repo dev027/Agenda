@@ -125,6 +125,7 @@ namespace Agenda.Service
         /// <inheritdoc/>
         public async Task UpdateMeetingAsync(
             IWho who,
+            AuditEvent auditEvent,
             IMeeting meeting)
         {
             this.logger.LogTrace(
@@ -133,11 +134,25 @@ namespace Agenda.Service
                 who,
                 meeting);
 
-            await this.data
-                .UpdateMeetingAsync(
-                    who: who,
-                    meeting: meeting)
-                .ConfigureAwait(false);
+            try
+            {
+                IAuditHeaderWithAuditDetails auditHeader = this.data.BeginTransaction(auditEvent);
+
+                await this.data
+                    .UpdateMeetingAsync(
+                        who: who,
+                        auditHeader: auditHeader,
+                        meeting: meeting)
+                    .ConfigureAwait(false);
+
+                await this.data.CommitTransactionAsync(auditHeader)
+                    .ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                this.data.RollbackTransaction();
+                throw;
+            }
 
             this.logger.LogTrace(
                 "EXIT {Method}(who) {@who}",
