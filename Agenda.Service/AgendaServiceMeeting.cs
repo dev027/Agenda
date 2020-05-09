@@ -35,7 +35,7 @@ namespace Agenda.Service
 
             try
             {
-                IAuditHeaderWithAuditDetails auditHeader = this.data.BeginTransaction(auditEvent);
+                IAuditHeaderWithAuditDetails auditHeader = this.data.BeginTransaction(auditEvent, who);
 
                 await this.data
                     .CreateMeetingAsync(
@@ -136,7 +136,7 @@ namespace Agenda.Service
 
             try
             {
-                IAuditHeaderWithAuditDetails auditHeader = this.data.BeginTransaction(auditEvent);
+                IAuditHeaderWithAuditDetails auditHeader = this.data.BeginTransaction(auditEvent, who);
 
                 await this.data
                     .UpdateMeetingAsync(

@@ -94,12 +94,11 @@ namespace Agenda.Data.Crud
                 location);
 
             LocationDto dto = LocationDto.ToDto(location);
-
             LocationDto original = await this.context.FindAsync<LocationDto>(location.Id);
+            Audit.AuditUpdate(auditHeader, dto.Id, original, dto);
 
             this.context.Entry(original).CurrentValues.SetValues(dto);
             await this.context.SaveChangesAsync().ConfigureAwait(false);
-            Audit.AuditUpdate(auditHeader, dto.Id, original, dto);
 
             this.logger.LogTrace(
                 "EXIT {Method}(who) {@who}",

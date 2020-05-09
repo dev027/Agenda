@@ -5,6 +5,7 @@
 using System.Threading.Tasks;
 using Agenda.Domain.DomainObjects.AuditHeaders;
 using Agenda.Domain.ValueObjects.Enums;
+using Agenda.Utilities.Models.Whos;
 
 namespace Agenda.Data.Crud
 {
@@ -18,8 +19,11 @@ namespace Agenda.Data.Crud
         /// Begins the transaction.
         /// </summary>
         /// <param name="auditEvent">Audit Event.</param>
+        /// <param name="who">Who details.</param>
         /// <returns>Audit Header.</returns>
-        public IAuditHeaderWithAuditDetails BeginTransaction(AuditEvent auditEvent);
+        public IAuditHeaderWithAuditDetails BeginTransaction(
+            AuditEvent auditEvent,
+            IWho who);
 
         /// <summary>
         /// Commits the transaction.

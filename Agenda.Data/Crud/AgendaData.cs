@@ -46,11 +46,19 @@ namespace Agenda.Data.Crud
         }
 
        /// <inheritdoc/>
-        public IAuditHeaderWithAuditDetails BeginTransaction(AuditEvent auditEvent)
+        public IAuditHeaderWithAuditDetails BeginTransaction(AuditEvent auditEvent, IWho who)
         {
+            if (who == null)
+            {
+                throw new ArgumentNullException(nameof(who));
+            }
+
             this.context.Database.BeginTransaction();
 
-            return new AuditHeaderWithAuditDetails(auditEvent);
+            return new AuditHeaderWithAuditDetails(
+                auditEvent: auditEvent,
+                username: who.Username ?? who.ClientIpAddress,
+                correlationId: who.CorrelationId);
         }
 
         /// <inheritdoc/>

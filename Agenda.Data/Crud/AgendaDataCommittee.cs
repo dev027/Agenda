@@ -147,12 +147,11 @@ namespace Agenda.Data.Crud
                 committee);
 
             CommitteeDto dto = CommitteeDto.ToDto(committee);
-
             CommitteeDto original = await this.context.FindAsync<CommitteeDto>(committee.Id);
+            Audit.AuditUpdate(auditHeader, dto.Id, original, dto);
 
             this.context.Entry(original).CurrentValues.SetValues(dto);
             await this.context.SaveChangesAsync().ConfigureAwait(false);
-            Audit.AuditUpdate(auditHeader, dto.Id, original, dto);
 
             this.logger.LogTrace(
                 "EXIT {Method}(who) {@who}",

@@ -26,5 +26,15 @@ namespace Agenda.Domain.DomainObjects.AuditHeaders
         /// Gets the Time Stamp.
         /// </summary>
         DateTime TimeStamp { get; }
+
+        /// <summary>
+        /// Gets the Username.
+        /// </summary>
+        string Username { get; }
+
+        /// <summary>
+        /// Gets the Correlation Id.
+        /// </summary>
+        Guid CorrelationId { get; }
     }
 }

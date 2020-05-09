@@ -4,18 +4,16 @@ using Agenda.Migration.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Agenda.Migration.Migrations
 {
-    /// <summary>
-    /// Migration Snapshot.
-    /// </summary>
-    /// <seealso cref="Microsoft.EntityFrameworkCore.Infrastructure.ModelSnapshot" />
     [DbContext(typeof(MigrationContext))]
-    public class MigrationContextModelSnapshot : ModelSnapshot
+    [Migration("20200509123126_AddUsernameAndCorrelationIdToAuditHeaders")]
+    partial class AddUsernameAndCorrelationIdToAuditHeaders
     {
         /// <inheritdoc/>
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

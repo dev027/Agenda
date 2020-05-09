@@ -130,19 +130,23 @@
             </summary>
             <seealso cref="T:Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeader" />
         </member>
-        <member name="M:Agenda.Domain.DomainObjects.AuditHeaders.AuditHeader.#ctor(System.Guid,Agenda.Domain.ValueObjects.Enums.AuditEvent,System.DateTime)">
+        <member name="M:Agenda.Domain.DomainObjects.AuditHeaders.AuditHeader.#ctor(System.Guid,Agenda.Domain.ValueObjects.Enums.AuditEvent,System.DateTime,System.String,System.Guid)">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Domain.DomainObjects.AuditHeaders.AuditHeader"/> class.
             </summary>
             <param name="id">Audit Header Id.</param>
             <param name="auditEvent">Audit Event.</param>
             <param name="timeStamp">Time Stamp.</param>
+            <param name="username">Username.</param>
+            <param name="correlationId">Correlation Id.</param>
         </member>
-        <member name="M:Agenda.Domain.DomainObjects.AuditHeaders.AuditHeader.#ctor(Agenda.Domain.ValueObjects.Enums.AuditEvent)">
+        <member name="M:Agenda.Domain.DomainObjects.AuditHeaders.AuditHeader.#ctor(Agenda.Domain.ValueObjects.Enums.AuditEvent,System.String,System.Guid)">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Domain.DomainObjects.AuditHeaders.AuditHeader"/> class.
             </summary>
             <param name="auditEvent">Audit Event.</param>
+            <param name="username">Username.</param>
+            <param name="correlationId">Correlation Id.</param>
         </member>
         <member name="P:Agenda.Domain.DomainObjects.AuditHeaders.AuditHeader.Id">
             <summary>
@@ -159,6 +163,16 @@
             Gets the Time Stamp.
             </summary>
         </member>
+        <member name="P:Agenda.Domain.DomainObjects.AuditHeaders.AuditHeader.Username">
+            <summary>
+            Gets the Username.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.AuditHeaders.AuditHeader.CorrelationId">
+            <summary>
+            Gets the Correlation Id.
+            </summary>
+        </member>
         <member name="T:Agenda.Domain.DomainObjects.AuditHeaders.AuditHeaderWithAuditDetails">
             <summary>
             Audit Header with Audit Details.
@@ -166,7 +180,7 @@
             <seealso cref="T:Agenda.Domain.DomainObjects.AuditHeaders.AuditHeader" />
             <seealso cref="T:Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeaderWithAuditDetails" />
         </member>
-        <member name="M:Agenda.Domain.DomainObjects.AuditHeaders.AuditHeaderWithAuditDetails.#ctor(System.Guid,Agenda.Domain.ValueObjects.Enums.AuditEvent,System.DateTime,System.Collections.Generic.IList{Agenda.Domain.DomainObjects.AuditDetails.IAuditDetail})">
+        <member name="M:Agenda.Domain.DomainObjects.AuditHeaders.AuditHeaderWithAuditDetails.#ctor(System.Guid,Agenda.Domain.ValueObjects.Enums.AuditEvent,System.DateTime,System.Collections.Generic.IList{Agenda.Domain.DomainObjects.AuditDetails.IAuditDetail},System.String,System.Guid)">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Domain.DomainObjects.AuditHeaders.AuditHeaderWithAuditDetails"/> class.
             </summary>
@@ -174,16 +188,40 @@
             <param name="auditEvent">Audit Event.</param>
             <param name="timeStamp">Time Stamp.</param>
             <param name="auditDetails">Audit Details.</param>
+            <param name="username">Username.</param>
+            <param name="correlationId">Correlation Id.</param>
         </member>
-        <member name="M:Agenda.Domain.DomainObjects.AuditHeaders.AuditHeaderWithAuditDetails.#ctor(Agenda.Domain.ValueObjects.Enums.AuditEvent)">
+        <member name="M:Agenda.Domain.DomainObjects.AuditHeaders.AuditHeaderWithAuditDetails.#ctor(Agenda.Domain.ValueObjects.Enums.AuditEvent,System.String,System.Guid)">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Domain.DomainObjects.AuditHeaders.AuditHeaderWithAuditDetails"/> class.
             </summary>
             <param name="auditEvent">Audit Event.</param>
+            <param name="username">Username.</param>
+            <param name="correlationId">Correlation Id.</param>
         </member>
         <member name="P:Agenda.Domain.DomainObjects.AuditHeaders.AuditHeaderWithAuditDetails.AuditDetails">
             <summary>
             Gets the Audit Details.
+            </summary>
+        </member>
+        <member name="T:Agenda.Domain.DomainObjects.AuditHeaders.DomainMetadata">
+            <summary>
+            Metadata for the <see cref="T:Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeader"/>.
+            </summary>
+        </member>
+        <member name="T:Agenda.Domain.DomainObjects.AuditHeaders.DomainMetadata.Username">
+            <summary>
+            Metadata for the <see cref="P:Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeader.Username"></see> property.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.AuditHeaders.DomainMetadata.Username.MinLength">
+            <summary>
+            The minimum length.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.AuditHeaders.DomainMetadata.Username.MaxLength">
+            <summary>
+            The maximum length.
             </summary>
         </member>
         <member name="T:Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeader">
@@ -204,6 +242,16 @@
         <member name="P:Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeader.TimeStamp">
             <summary>
             Gets the Time Stamp.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeader.Username">
+            <summary>
+            Gets the Username.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeader.CorrelationId">
+            <summary>
+            Gets the Correlation Id.
             </summary>
         </member>
         <member name="T:Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeaderWithAuditDetails">

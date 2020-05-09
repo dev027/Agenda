@@ -34,7 +34,7 @@ namespace Agenda.Service
 
             try
             {
-                IAuditHeaderWithAuditDetails auditHeader = this.data.BeginTransaction(auditEvent);
+                IAuditHeaderWithAuditDetails auditHeader = this.data.BeginTransaction(auditEvent, who);
 
                 await this.data.CreateCommitteeAsync(
                         who: who,
@@ -132,7 +132,7 @@ namespace Agenda.Service
             try
             {
                 IAuditHeaderWithAuditDetails auditHeader =
-                    this.data.BeginTransaction(auditEvent);
+                    this.data.BeginTransaction(auditEvent, who);
 
                 await this.data
                     .UpdateCommitteeAsync(

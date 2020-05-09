@@ -134,12 +134,11 @@ namespace Agenda.Data.Crud
                 meeting);
 
             MeetingDto dto = MeetingDto.ToDto(meeting);
-
             MeetingDto original = await this.context.FindAsync<MeetingDto>(meeting.Id);
+            Audit.AuditUpdate(auditHeader, dto.Id, original, dto);
 
             this.context.Entry(original).CurrentValues.SetValues(dto);
             await this.context.SaveChangesAsync().ConfigureAwait(false);
-            Audit.AuditUpdate(auditHeader, dto.Id, original, dto);
 
             this.logger.LogTrace(
                 "EXIT {Method}(who) {@who}",

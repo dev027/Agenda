@@ -257,12 +257,11 @@ namespace Agenda.Data.Crud
                 organisation);
 
             OrganisationDto dto = OrganisationDto.ToDto(organisation);
-
             OrganisationDto original = await this.context.FindAsync<OrganisationDto>(organisation.Id);
+            Audit.AuditUpdate(auditHeader, dto.Id, original, dto);
 
             this.context.Entry(original).CurrentValues.SetValues(dto);
             await this.context.SaveChangesAsync().ConfigureAwait(false);
-            Audit.AuditUpdate(auditHeader, dto.Id, original, dto);
 
             this.logger.LogTrace(
                 "EXIT {Method}(who) {@who}",

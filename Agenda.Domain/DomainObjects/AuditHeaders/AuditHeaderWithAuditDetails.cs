@@ -23,12 +23,16 @@ namespace Agenda.Domain.DomainObjects.AuditHeaders
         /// <param name="auditEvent">Audit Event.</param>
         /// <param name="timeStamp">Time Stamp.</param>
         /// <param name="auditDetails">Audit Details.</param>
+        /// <param name="username">Username.</param>
+        /// <param name="correlationId">Correlation Id.</param>
         public AuditHeaderWithAuditDetails(
             Guid id,
             AuditEvent auditEvent,
             DateTime timeStamp,
-            IList<IAuditDetail> auditDetails)
-        : base(id, auditEvent, timeStamp)
+            IList<IAuditDetail> auditDetails,
+            string username,
+            Guid correlationId)
+        : base(id, auditEvent, timeStamp, username, correlationId)
         {
             this.AuditDetails = auditDetails ?? throw new ArgumentNullException(nameof(auditDetails));
         }
@@ -37,9 +41,13 @@ namespace Agenda.Domain.DomainObjects.AuditHeaders
         /// Initializes a new instance of the <see cref="AuditHeaderWithAuditDetails"/> class.
         /// </summary>
         /// <param name="auditEvent">Audit Event.</param>
+        /// <param name="username">Username.</param>
+        /// <param name="correlationId">Correlation Id.</param>
         public AuditHeaderWithAuditDetails(
-            AuditEvent auditEvent)
-        : base(auditEvent)
+            AuditEvent auditEvent,
+            string username,
+            Guid correlationId)
+        : base(auditEvent, username, correlationId)
         {
             this.AuditDetails = new List<IAuditDetail>();
         }

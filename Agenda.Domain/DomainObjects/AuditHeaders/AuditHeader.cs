@@ -19,26 +19,38 @@ namespace Agenda.Domain.DomainObjects.AuditHeaders
         /// <param name="id">Audit Header Id.</param>
         /// <param name="auditEvent">Audit Event.</param>
         /// <param name="timeStamp">Time Stamp.</param>
+        /// <param name="username">Username.</param>
+        /// <param name="correlationId">Correlation Id.</param>
         public AuditHeader(
             Guid id,
             AuditEvent auditEvent,
-            DateTime timeStamp)
+            DateTime timeStamp,
+            string username,
+            Guid correlationId)
         {
             this.Id = id;
             this.AuditEvent = auditEvent;
             this.TimeStamp = timeStamp;
+            this.Username = username;
+            this.CorrelationId = correlationId;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AuditHeader"/> class.
         /// </summary>
         /// <param name="auditEvent">Audit Event.</param>
+        /// <param name="username">Username.</param>
+        /// <param name="correlationId">Correlation Id.</param>
         public AuditHeader(
-            AuditEvent auditEvent)
+            AuditEvent auditEvent,
+            string username,
+            Guid correlationId)
         {
             this.Id = Guid.NewGuid();
             this.AuditEvent = auditEvent;
             this.TimeStamp = DateTime.Now;
+            this.Username = username;
+            this.CorrelationId = correlationId;
         }
 
         /// <summary>
@@ -55,5 +67,15 @@ namespace Agenda.Domain.DomainObjects.AuditHeaders
         /// Gets the Time Stamp.
         /// </summary>
         public DateTime TimeStamp { get; }
+
+        /// <summary>
+        /// Gets the Username.
+        /// </summary>
+        public string Username { get; }
+
+        /// <summary>
+        /// Gets the Correlation Id.
+        /// </summary>
+        public Guid CorrelationId { get; }
     }
 }

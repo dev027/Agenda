@@ -313,9 +313,24 @@
         <member name="M:Agenda.Migration.Migrations.AddAuditTables.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc/>
         </member>
+        <member name="T:Agenda.Migration.Migrations.AddUsernameAndCorrelationIdToAuditHeaders">
+            <summary>
+            Add Username and Correlation Id to Audit Headers.
+            </summary>
+            <seealso cref="T:Microsoft.EntityFrameworkCore.Migrations.Migration" />
+        </member>
+        <member name="M:Agenda.Migration.Migrations.AddUsernameAndCorrelationIdToAuditHeaders.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Migration.Migrations.AddUsernameAndCorrelationIdToAuditHeaders.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Migration.Migrations.AddUsernameAndCorrelationIdToAuditHeaders.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc/>
+        </member>
         <member name="T:Agenda.Migration.Migrations.MigrationContextModelSnapshot">
             <summary>
-            Model snapshot
+            Migration Snapshot.
             </summary>
             <seealso cref="T:Microsoft.EntityFrameworkCore.Infrastructure.ModelSnapshot" />
         </member>
