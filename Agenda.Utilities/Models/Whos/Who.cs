@@ -19,17 +19,23 @@ namespace Agenda.Utilities.Models.Whos
         /// <param name="actionName">Action Name.</param>
         /// <param name="path">Request Path.</param>
         /// <param name="queryString">Request Query String.</param>
+        /// <param name="clientIpAddress">Client IP Address.</param>
+        /// <param name="username">Username.</param>
         public Who(
             string controllerName,
             string actionName,
             string path,
-            string queryString)
+            string queryString,
+            string clientIpAddress,
+            string? username)
         {
             this.CorrelationId = Guid.NewGuid();
             this.ControllerName = controllerName;
             this.ActionName = actionName;
             this.Path = path;
             this.QueryString = queryString;
+            this.ClientIpAddress = clientIpAddress;
+            this.Username = username;
         }
 
         /// <inheritdoc/>
@@ -46,5 +52,11 @@ namespace Agenda.Utilities.Models.Whos
 
         /// <inheritdoc/>
         public string QueryString { get; }
+
+        /// <inheritdoc />
+        public string ClientIpAddress { get; }
+
+        /// <inheritdoc/>
+        public string? Username { get; }
     }
 }

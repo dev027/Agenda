@@ -40,7 +40,9 @@ namespace Agenda.Web.Controllers
                     controllerName: this.controllerName,
                     actionName: "Action",
                     path: "Path",
-                    queryString: "QueryString");
+                    queryString: "QueryString",
+                    clientIpAddress: "127.0.0.1",
+                    username: null);
             }
         }
 
@@ -55,7 +57,9 @@ namespace Agenda.Web.Controllers
                 controllerName: this.controllerName,
                 actionName: actionName,
                 path: this.Request?.Path ?? "No Path",
-                queryString: this.Request?.QueryString.ToString() ?? "No Query String");
+                queryString: this.Request?.QueryString.ToString() ?? "No Query String",
+                clientIpAddress: this.HttpContext.Connection.RemoteIpAddress.ToString(),
+                username: null);
         }
 
         /// <summary>

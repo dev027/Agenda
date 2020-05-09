@@ -105,7 +105,9 @@ namespace Agenda.Data.Crud
                 throw new ArgumentNullException(nameof(who));
             }
 
-            return $"{this.GetType().Name}.{methodName}.{who.CorrelationId}";
+            string username = who.Username ?? who.ClientIpAddress;
+
+            return $"{this.GetType().Name}.{methodName}.{who.CorrelationId}.{username}";
         }
     }
 }

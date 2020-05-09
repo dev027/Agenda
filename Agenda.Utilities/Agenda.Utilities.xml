@@ -90,13 +90,23 @@
             Gets the Request Query String.
             </summary>
         </member>
+        <member name="P:Agenda.Utilities.Models.Whos.IWho.ClientIpAddress">
+            <summary>
+            Gets the Client IP Address.
+            </summary>
+        </member>
+        <member name="P:Agenda.Utilities.Models.Whos.IWho.Username">
+            <summary>
+            Gets the Username.
+            </summary>
+        </member>
         <member name="T:Agenda.Utilities.Models.Whos.Who">
             <summary>
             Who.
             </summary>
             <seealso cref="T:Agenda.Utilities.Models.Whos.IWho" />
         </member>
-        <member name="M:Agenda.Utilities.Models.Whos.Who.#ctor(System.String,System.String,System.String,System.String)">
+        <member name="M:Agenda.Utilities.Models.Whos.Who.#ctor(System.String,System.String,System.String,System.String,System.String,System.String)">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Utilities.Models.Whos.Who"/> class.
             </summary>
@@ -104,6 +114,8 @@
             <param name="actionName">Action Name.</param>
             <param name="path">Request Path.</param>
             <param name="queryString">Request Query String.</param>
+            <param name="clientIpAddress">Client IP Address.</param>
+            <param name="username">Username.</param>
         </member>
         <member name="P:Agenda.Utilities.Models.Whos.Who.CorrelationId">
             <inheritdoc/>
@@ -118,6 +130,12 @@
             <inheritdoc/>
         </member>
         <member name="P:Agenda.Utilities.Models.Whos.Who.QueryString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Agenda.Utilities.Models.Whos.Who.ClientIpAddress">
+            <inheritdoc />
+        </member>
+        <member name="P:Agenda.Utilities.Models.Whos.Who.Username">
             <inheritdoc/>
         </member>
     </members>

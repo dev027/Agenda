@@ -35,5 +35,15 @@ namespace Agenda.Utilities.Models.Whos
         /// Gets the Request Query String.
         /// </summary>
         string QueryString { get; }
+
+        /// <summary>
+        /// Gets the Client IP Address.
+        /// </summary>
+        string ClientIpAddress { get; }
+
+        /// <summary>
+        /// Gets the Username.
+        /// </summary>
+        string? Username { get; }
     }
 }
