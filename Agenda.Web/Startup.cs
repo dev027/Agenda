@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.FeatureManagement;
 using Serilog;
 
 namespace Agenda.Web
@@ -49,6 +50,7 @@ namespace Agenda.Web
             services.AddControllersWithViews()
                 .AddRazorRuntimeCompilation();
             services.AddRazorPages();
+            services.AddFeatureManagement();
         }
 
         /// <summary>

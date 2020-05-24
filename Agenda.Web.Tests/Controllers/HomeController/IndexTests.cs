@@ -13,8 +13,10 @@ using Agenda.Domain.ValueObjects.SetupStatii;
 using Agenda.Service;
 using Agenda.Utilities.Models.Whos;
 using Agenda.Web.Areas.Api.Models.Home;
+using Agenda.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.FeatureManagement;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using MyHomeController = Agenda.Web.Controllers.HomeController;
@@ -42,9 +44,15 @@ namespace Agenda.Web.Tests.Controllers.HomeController
                 haveOrganisations: false,
                 haveCommittees: false);
 
-            Mock<IAgendaService> serviceMock = CreateServiceMock(meetingList, setupStatus);
+            Mock<IAgendaService> agendaServiceMock = CreateAgendaServiceMock(meetingList, setupStatus);
 
-            using MyHomeController controller = CreateHomeController(loggerMock, serviceMock);
+            Mock<IFeatureManager> featureManagerMock = CreateFeatureManagerMock(
+                newReferenceSearch: true);
+
+            using MyHomeController controller = CreateHomeController(
+                loggerMock,
+                agendaServiceMock,
+                featureManagerMock);
 
             // ACT
             IActionResult actionResult = await controller.Index().ConfigureAwait(false);
@@ -59,7 +67,7 @@ namespace Agenda.Web.Tests.Controllers.HomeController
             Assert.IsInstanceOfType(viewResult.Model, typeof(IndexViewModel));
 
             // Verify service level methods called the correct number of times.
-            serviceMock.Verify(
+            agendaServiceMock.Verify(
                 x =>
                     x.GetRecentMeetingsMostRecentFirstAsync(
                         It.IsAny<IWho>(),
@@ -67,7 +75,7 @@ namespace Agenda.Web.Tests.Controllers.HomeController
                         It.IsAny<int?>()),
                 Times.Once());
 
-            serviceMock.Verify(
+            agendaServiceMock.Verify(
                 x =>
                 x.GetSetupStatusAsync(
                     It.IsAny<IWho>()),
@@ -112,11 +120,17 @@ namespace Agenda.Web.Tests.Controllers.HomeController
                     meetingDateTime: DateTime.Today.AddHours(19).AddMinutes(30))
             };
 
-            Mock<IAgendaService> serviceMock = CreateServiceMock(
+            Mock<IAgendaService> agendaServiceMock = CreateAgendaServiceMock(
                 meetingList: meetingList,
                 setupStatus: null);
 
-            using MyHomeController controller = CreateHomeController(loggerMock, serviceMock);
+            Mock<IFeatureManager> featureManagerMocker = CreateFeatureManagerMock(
+                newReferenceSearch: true);
+
+            using MyHomeController controller = CreateHomeController(
+                loggerMock,
+                agendaServiceMock,
+                featureManagerMocker);
 
             // ACT
             IActionResult actionResult = await controller.Index().ConfigureAwait(false);
@@ -131,7 +145,7 @@ namespace Agenda.Web.Tests.Controllers.HomeController
             Assert.IsInstanceOfType(viewResult.Model, typeof(IndexViewModel));
 
             // Verify service level methods called the correct number of times.
-            serviceMock.Verify(
+            agendaServiceMock.Verify(
                 x =>
                     x.GetRecentMeetingsMostRecentFirstAsync(
                         It.IsAny<IWho>(),
@@ -139,7 +153,7 @@ namespace Agenda.Web.Tests.Controllers.HomeController
                         It.IsAny<int?>()),
                 Times.Once());
 
-            serviceMock.Verify(
+            agendaServiceMock.Verify(
                 x =>
                 x.GetSetupStatusAsync(
                     It.IsAny<IWho>()),
@@ -153,7 +167,7 @@ namespace Agenda.Web.Tests.Controllers.HomeController
             return new Mock<ILogger<MyHomeController>>(MockBehavior.Loose);
         }
 
-        private static Mock<IAgendaService> CreateServiceMock(
+        private static Mock<IAgendaService> CreateAgendaServiceMock(
             IList<IMeeting> meetingList,
             ISetupStatus setupStatus)
         {
@@ -173,13 +187,27 @@ namespace Agenda.Web.Tests.Controllers.HomeController
             return serviceMock;
         }
 
+        private static Mock<IFeatureManager> CreateFeatureManagerMock(
+            bool newReferenceSearch)
+        {
+            Mock<IFeatureManager> featureManagerMock = new Mock<IFeatureManager>(MockBehavior.Strict);
+
+            featureManagerMock.Setup(x =>
+                    x.IsEnabledAsync(nameof(FeatureFlag.NewReferenceSearch)))
+                .ReturnsAsync(newReferenceSearch);
+
+            return featureManagerMock;
+        }
+
         private static MyHomeController CreateHomeController(
             Mock<ILogger<MyHomeController>> loggerMock,
-            Mock<IAgendaService> serviceMock)
+            Mock<IAgendaService> agendaServiceMock,
+            Mock<IFeatureManager> featureManagerMock)
         {
             return new MyHomeController(
                 logger: loggerMock.Object,
-                service: serviceMock.Object,
+                service: agendaServiceMock.Object,
+                featureManager: featureManagerMock.Object,
                 isTestMode: true);
         }
 

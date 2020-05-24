@@ -29,13 +29,21 @@
 
 
 <main class="container-fluid x-flex-grow-1 d-flex flex-column">
+    @if (Model.FeatureEnabled)
+    {
+        <h1>Feature Enabled</h1>
+    }
+    else
+    {
+        <h1>Feature Disabled</h1>
+    }
     @if (Model.MeetingCardViewModels.Any())
     {
         <div class="row">
-        @foreach (MeetingCardViewModel model in Model.MeetingCardViewModels)
-        {
-            @await Html.PartialAsync("_MeetingCard", model)
-        }
+            @foreach (MeetingCardViewModel model in Model.MeetingCardViewModels)
+            {
+                @await Html.PartialAsync("_MeetingCard", model)
+            }
         </div>
     }
     else

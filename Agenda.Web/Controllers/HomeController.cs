@@ -10,8 +10,10 @@ using Agenda.Domain.ValueObjects.SetupStatii;
 using Agenda.Service;
 using Agenda.Utilities.Models.Whos;
 using Agenda.Web.Areas.Api.Models.Home;
+using Agenda.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.FeatureManagement;
 
 namespace Agenda.Web.Controllers
 {
@@ -23,21 +25,25 @@ namespace Agenda.Web.Controllers
     {
         private readonly ILogger<HomeController> logger;
         private readonly IAgendaService service;
+        private readonly IFeatureManager featureManager;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HomeController"/> class.
         /// </summary>
         /// <param name="logger">The logger.</param>
         /// <param name="service">The agenda service.</param>
+        /// <param name="featureManager">The feature manager.</param>
         /// <param name="isTestMode">Is Test Mode.</param>
         public HomeController(
             ILogger<HomeController> logger,
             IAgendaService service,
+            IFeatureManager featureManager,
             bool isTestMode = false)
         : base(typeof(HomeController), isTestMode)
         {
             this.logger = logger;
             this.service = service;
+            this.featureManager = featureManager;
         }
 
         /// <summary>
@@ -66,7 +72,11 @@ namespace Agenda.Web.Controllers
                     .GetSetupStatusAsync(who)
                     .ConfigureAwait(false);
 
-            IndexViewModel model = IndexViewModel.Create(meetings, setupStatus);
+            bool featureEnabled = await this.featureManager
+                .IsEnabledAsync(nameof(FeatureFlag.NewReferenceSearch))
+                .ConfigureAwait(false);
+
+            IndexViewModel model = IndexViewModel.Create(meetings, setupStatus, featureEnabled);
 
             return this.ExitView(this.logger, this.View(model));
        }

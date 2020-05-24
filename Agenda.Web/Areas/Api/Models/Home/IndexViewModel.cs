@@ -20,12 +20,15 @@ namespace Agenda.Web.Areas.Api.Models.Home
         /// </summary>
         /// <param name="noRecentMeetingsViewModel">No Recent Meetings view model.</param>
         /// <param name="meetingCardViewModels">Meeting Card view models.</param>
+        /// <param name="featureEnabled">Feature Enabled.</param>
         public IndexViewModel(
             NoRecentMeetingsViewModel noRecentMeetingsViewModel,
-            IList<MeetingCardViewModel> meetingCardViewModels)
+            IList<MeetingCardViewModel> meetingCardViewModels,
+            bool featureEnabled)
         {
             this.NoRecentMeetingsViewModel = noRecentMeetingsViewModel;
             this.MeetingCardViewModels = meetingCardViewModels;
+            this.FeatureEnabled = featureEnabled;
         }
 
         /// <summary>
@@ -39,20 +42,31 @@ namespace Agenda.Web.Areas.Api.Models.Home
         public IList<MeetingCardViewModel> MeetingCardViewModels { get; }
 
         /// <summary>
+        /// Gets a value indicating whether [feature enabled].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [feature enabled]; otherwise, <c>false</c>.
+        /// </value>
+        public bool FeatureEnabled { get; }
+
+        /// <summary>
         /// Creates this instance.
         /// </summary>
         /// <param name="recentMeetings">Recent meetings.</param>
         /// <param name="setupStatus">Setup status.</param>
+        /// <param name="featureEnabled">Is Feature Enabled.</param>
         /// <returns>Index view model.</returns>
         public static IndexViewModel Create(
             IList<IMeeting> recentMeetings,
-            ISetupStatus setupStatus)
+            ISetupStatus setupStatus,
+            bool featureEnabled)
         {
             return new IndexViewModel(
                 noRecentMeetingsViewModel: NoRecentMeetingsViewModel.Create(setupStatus),
                 meetingCardViewModels: recentMeetings
                     .Select(MeetingCardViewModel.Create)
-                    .ToList());
+                    .ToList(),
+                featureEnabled: featureEnabled);
         }
     }
 }

@@ -62,12 +62,13 @@
             View model for <see cref="M:Agenda.Web.Controllers.HomeController.Index"/>.
             </summary>
         </member>
-        <member name="M:Agenda.Web.Areas.Api.Models.Home.IndexViewModel.#ctor(Agenda.Web.Areas.Api.Models.Home.NoRecentMeetingsViewModel,System.Collections.Generic.IList{Agenda.Web.Areas.Api.Models.Home.MeetingCardViewModel})">
+        <member name="M:Agenda.Web.Areas.Api.Models.Home.IndexViewModel.#ctor(Agenda.Web.Areas.Api.Models.Home.NoRecentMeetingsViewModel,System.Collections.Generic.IList{Agenda.Web.Areas.Api.Models.Home.MeetingCardViewModel},System.Boolean)">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Web.Areas.Api.Models.Home.IndexViewModel"/> class.
             </summary>
             <param name="noRecentMeetingsViewModel">No Recent Meetings view model.</param>
             <param name="meetingCardViewModels">Meeting Card view models.</param>
+            <param name="featureEnabled">Feature Enabled.</param>
         </member>
         <member name="P:Agenda.Web.Areas.Api.Models.Home.IndexViewModel.NoRecentMeetingsViewModel">
             <summary>
@@ -79,12 +80,21 @@
             Gets the meeting card view models.
             </summary>
         </member>
-        <member name="M:Agenda.Web.Areas.Api.Models.Home.IndexViewModel.Create(System.Collections.Generic.IList{Agenda.Domain.DomainObjects.Meetings.IMeeting},Agenda.Domain.ValueObjects.SetupStatii.ISetupStatus)">
+        <member name="P:Agenda.Web.Areas.Api.Models.Home.IndexViewModel.FeatureEnabled">
+            <summary>
+            Gets a value indicating whether [feature enabled].
+            </summary>
+            <value>
+              <c>true</c> if [feature enabled]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:Agenda.Web.Areas.Api.Models.Home.IndexViewModel.Create(System.Collections.Generic.IList{Agenda.Domain.DomainObjects.Meetings.IMeeting},Agenda.Domain.ValueObjects.SetupStatii.ISetupStatus,System.Boolean)">
             <summary>
             Creates this instance.
             </summary>
             <param name="recentMeetings">Recent meetings.</param>
             <param name="setupStatus">Setup status.</param>
+            <param name="featureEnabled">Is Feature Enabled.</param>
             <returns>Index view model.</returns>
         </member>
         <member name="T:Agenda.Web.Areas.Api.Models.Home.MeetingCardViewModel">
@@ -373,12 +383,13 @@
             </summary>
             <seealso cref="T:Microsoft.AspNetCore.Mvc.Controller" />
         </member>
-        <member name="M:Agenda.Web.Controllers.HomeController.#ctor(Microsoft.Extensions.Logging.ILogger{Agenda.Web.Controllers.HomeController},Agenda.Service.IAgendaService,System.Boolean)">
+        <member name="M:Agenda.Web.Controllers.HomeController.#ctor(Microsoft.Extensions.Logging.ILogger{Agenda.Web.Controllers.HomeController},Agenda.Service.IAgendaService,Microsoft.FeatureManagement.IFeatureManager,System.Boolean)">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Web.Controllers.HomeController"/> class.
             </summary>
             <param name="logger">The logger.</param>
             <param name="service">The agenda service.</param>
+            <param name="featureManager">The feature manager.</param>
             <param name="isTestMode">Is Test Mode.</param>
         </member>
         <member name="M:Agenda.Web.Controllers.HomeController.Index">
@@ -653,6 +664,16 @@
             <param name="provider">The provider.</param>
             <param name="parameters">The parameters.</param>
             <returns>Instance of Type T.</returns>
+        </member>
+        <member name="T:Agenda.Web.Models.FeatureFlag">
+            <summary>
+            Feature Flags.
+            </summary>
+        </member>
+        <member name="F:Agenda.Web.Models.FeatureFlag.NewReferenceSearch">
+            <summary>
+            New Reference Search
+            </summary>
         </member>
         <member name="T:Agenda.Web.Models.FormState">
             <summary>
