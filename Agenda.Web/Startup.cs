@@ -7,6 +7,7 @@ using Agenda.Data.DbContexts;
 using Agenda.Service;
 using Agenda.Web.Helpers;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -43,9 +44,12 @@ namespace Agenda.Web
             builder.UseSqlServer(connectionString);
             DbContextOptions<DataContext> options = builder.Options;
 
-            services.AddTransient(p => p.ResolveWith<DataContext>(options));
-            services.AddTransient<IAgendaService, AgendaService>();
-            services.AddTransient<IAgendaData, AgendaData>();
+            services.AddScoped(p => p.ResolveWith<DataContext>(options));
+            services.AddScoped<IAgendaService, AgendaService>();
+            services.AddScoped<IAgendaData, AgendaData>();
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<DataContext>();
 
             services.AddControllersWithViews()
                 .AddRazorRuntimeCompilation();
@@ -81,6 +85,9 @@ namespace Agenda.Web
 
             // Add static files to the request pipeline
             app.UseStaticFiles();
+
+            // User authentication
+            app.UseAuthentication();
 
             // Add the endpoint routing matcher middleware to the request pipeline
             app.UseRouting();
