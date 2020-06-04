@@ -2,6 +2,7 @@
 // Copyright (c) Do It Wright. All rights reserved.
 // </copyright>
 
+#nullable enable
 using System;
 using Agenda.Domain.DomainObjects.AuditDetails;
 using Agenda.Domain.ValueObjects.Enums;

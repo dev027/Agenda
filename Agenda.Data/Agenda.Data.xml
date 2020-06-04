@@ -340,7 +340,7 @@
             <summary>
             Database Context.
             </summary>
-            <seealso cref="T:Microsoft.EntityFrameworkCore.DbContext" />
+            <seealso cref="T:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext" />
             <summary>
             Database Context - DB Sets.
             </summary>

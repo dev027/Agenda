@@ -4,6 +4,7 @@
 
 using System;
 using System.Linq;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -12,8 +13,8 @@ namespace Agenda.Data.DbContexts
     /// <summary>
     /// Database Context.
     /// </summary>
-    /// <seealso cref="DbContext" />
-    public partial class DataContext : DbContext
+    /// <seealso cref="IdentityDbContext" />
+    public partial class DataContext : IdentityDbContext
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DataContext"/> class.
