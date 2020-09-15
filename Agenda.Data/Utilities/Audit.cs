@@ -25,7 +25,7 @@ namespace Agenda.Data.Utilities
         /// <param name="newObject">New value.</param>
         /// <param name="recordId">Record Id.</param>
         internal static void AuditCreate(
-            IAuditHeaderWithAuditDetails auditHeader,
+            IAuditHeaderWithAuditDetails? auditHeader,
             BaseDto newObject,
             Guid recordId)
         {
@@ -51,8 +51,8 @@ namespace Agenda.Data.Utilities
                     : propertyInfo.GetGetMethod().Invoke(newObject, null).ToString();
 
                 PropertyDescriptor propertyDescriptor = propertyDescriptors[propertyInfo.Name];
-                ColumnAttribute columnAttribute =
-                    (ColumnAttribute)propertyDescriptor.Attributes[typeof(ColumnAttribute)];
+                ColumnAttribute? columnAttribute =
+                    (ColumnAttribute?)propertyDescriptor.Attributes[typeof(ColumnAttribute)];
                 string columnName = columnAttribute == null
                     ? propertyInfo.Name
                     : columnAttribute.Name;
@@ -76,7 +76,7 @@ namespace Agenda.Data.Utilities
         /// <param name="oldObject">Old Value.</param>
         /// <param name="newObject">New Value.</param>
         internal static void AuditUpdate(
-            IAuditHeaderWithAuditDetails auditHeader,
+            IAuditHeaderWithAuditDetails? auditHeader,
             Guid recordId,
             BaseDto oldObject,
             BaseDto newObject)
@@ -115,8 +115,8 @@ namespace Agenda.Data.Utilities
                 }
 
                 PropertyDescriptor propertyDescriptor = propertyDescriptors[propertyInfo.Name];
-                ColumnAttribute columnAttribute =
-                    (ColumnAttribute)propertyDescriptor.Attributes[typeof(ColumnAttribute)];
+                ColumnAttribute? columnAttribute =
+                    (ColumnAttribute?)propertyDescriptor.Attributes[typeof(ColumnAttribute)];
                 var columnName = columnAttribute == null
                     ? propertyInfo.Name
                     : columnAttribute.Name;

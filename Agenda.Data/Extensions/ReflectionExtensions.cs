@@ -75,11 +75,11 @@ namespace Agenda.Data.Extensions
             /// <param name="notMapped">Not Mapped attribute.</param>
             /// <param name="range">Range attribute.</param>
             public PropertyAttributes(
-                AuditIgnoreAttribute auditIgnore,
-                ForeignKeyAttribute foreignKey,
-                KeyAttribute key,
-                NotMappedAttribute notMapped,
-                RangeAttribute range)
+                AuditIgnoreAttribute? auditIgnore,
+                ForeignKeyAttribute? foreignKey,
+                KeyAttribute? key,
+                NotMappedAttribute? notMapped,
+                RangeAttribute? range)
             {
                 this.AuditIgnore = auditIgnore;
                 this.ForeignKey = foreignKey;
@@ -91,27 +91,27 @@ namespace Agenda.Data.Extensions
             /// <summary>
             /// Gets the Audit Ignore attribute.
             /// </summary>
-            public AuditIgnoreAttribute AuditIgnore { get; }
+            public AuditIgnoreAttribute? AuditIgnore { get; }
 
             /// <summary>
             /// Gets the Foreign Key attribute.
             /// </summary>
-            public ForeignKeyAttribute ForeignKey { get; }
+            public ForeignKeyAttribute? ForeignKey { get; }
 
             /// <summary>
             /// Gets the key attribute.
             /// </summary>
-            public KeyAttribute Key { get; }
+            public KeyAttribute? Key { get; }
 
             /// <summary>
             /// Gets the Not Mapped attribute.
             /// </summary>
-            public NotMappedAttribute NotMapped { get; }
+            public NotMappedAttribute? NotMapped { get; }
 
             /// <summary>
             /// Gets the range attribute.
             /// </summary>
-            public RangeAttribute Range { get; }
+            public RangeAttribute? Range { get; }
         }
     }
 }
