@@ -328,6 +328,21 @@
         <member name="M:Agenda.Migration.Migrations.AddUsernameAndCorrelationIdToAuditHeaders.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc/>
         </member>
+        <member name="T:Agenda.Migration.Migrations.AddIdentity">
+            <summary>
+            Add Identity tables.
+            </summary>
+            <seealso cref="T:Microsoft.EntityFrameworkCore.Migrations.Migration" />
+        </member>
+        <member name="M:Agenda.Migration.Migrations.AddIdentity.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Migration.Migrations.AddIdentity.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Migration.Migrations.AddIdentity.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc/>
+        </member>
         <member name="T:Agenda.Migration.Migrations.MigrationContextModelSnapshot">
             <summary>
             Migration Snapshot.

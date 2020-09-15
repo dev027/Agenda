@@ -1039,6 +1039,45 @@
             </summary>
             <param name="app">Application pipeline.</param>
         </member>
+        <member name="T:Agenda.Web.ViewModels.Account.RegisterViewModel">
+            <summary>
+            Register View Model.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Account.RegisterViewModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Account.RegisterViewModel"/> class.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Account.RegisterViewModel.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Account.RegisterViewModel"/> class.
+            </summary>
+            <param name="email">Email.</param>
+            <param name="password">Password.</param>
+            <param name="confirmPassword">Confirmation Password.</param>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Account.RegisterViewModel.Email">
+            <summary>
+            Gets or sets the email.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Account.RegisterViewModel.Password">
+            <summary>
+            Gets or sets the password.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.Account.RegisterViewModel.ConfirmPassword">
+            <summary>
+            Gets or sets the password confirmation.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.Account.RegisterViewModel.Copy">
+            <summary>
+            Copies this instance.
+            </summary>
+            <returns>Copy.</returns>
+        </member>
         <member name="T:Agenda.Web.ViewModels.CommitteeOverview.CommitteeViewModel">
             <summary>
             Committee view model.
