@@ -23,7 +23,7 @@
             exposed in dbset properties on your derived context. The resulting model may be cached
             and re-used for subsequent instances of your derived context.
             </summary>
-            <param name="modelBuilder">The builder being used to construct the model for this context. Databases (and other extensions) typically
+            <param name="builder">The builder being used to construct the model for this context. Databases (and other extensions) typically
             define extension methods on this object that allow you to configure aspects of the model that are specific
             to a given database.</param>
             <exception cref="T:System.ArgumentNullException">modelBuilder.</exception>
@@ -52,6 +52,11 @@
             Gets or sets the Locations.
             </summary>
         </member>
+        <member name="P:Agenda.Migration.DbContexts.MigrationContext.LocationTypes">
+            <summary>
+            Gets or sets the Location Types.
+            </summary>
+        </member>
         <member name="P:Agenda.Migration.DbContexts.MigrationContext.Meetings">
             <summary>
             Gets or sets the Meetings.
@@ -64,292 +69,17 @@
         </member>
         <member name="T:Agenda.Migration.Migrations.Initial">
             <summary>
-            Initial database creation.
+            Initial.
             </summary>
             <seealso cref="T:Microsoft.EntityFrameworkCore.Migrations.Migration" />
         </member>
         <member name="M:Agenda.Migration.Migrations.Initial.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <summary>
-            <para>
-            Builds the operations that will migrate the database 'up'.
-            </para>
-            <para>
-            That is, builds the operations that will take the database from the state left in by the
-            previous migration so that it is up-to-date with regard to this migration.
-            </para>
-            <para>
-            This method must be overridden in each class the inherits from <see cref="T:Microsoft.EntityFrameworkCore.Migrations.Migration" />.
-            </para>
-            </summary>
-            <param name="migrationBuilder">The <see cref="T:Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder" /> that will build the operations.</param>
+            <inheritdoc />
         </member>
         <member name="M:Agenda.Migration.Migrations.Initial.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <summary>
-            <para>
-            Builds the operations that will migrate the database 'down'.
-            </para>
-            <para>
-            That is, builds the operations that will take the database from the state left in by
-            this migration so that it returns to the state that it was in before this migration was applied.
-            </para>
-            <para>
-            This method must be overridden in each class the inherits from <see cref="T:Microsoft.EntityFrameworkCore.Migrations.Migration" /> if
-            both 'up' and 'down' migrations are to be supported. If it is not overridden, then calling it
-            will throw and it will not be possible to migrate in the 'down' direction.
-            </para>
-            </summary>
-            <param name="migrationBuilder">The <see cref="T:Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder" /> that will build the operations.</param>
+            <inheritdoc />
         </member>
         <member name="M:Agenda.Migration.Migrations.Initial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <summary>
-            Implemented to builds the <see cref="P:Microsoft.EntityFrameworkCore.Migrations.Migration.TargetModel" />.
-            </summary>
-            <param name="modelBuilder">The <see cref="T:Microsoft.EntityFrameworkCore.ModelBuilder" /> to use to build the model.</param>
-        </member>
-        <member name="T:Agenda.Migration.Migrations.AddGroups">
-            <summary>
-            Add table Groups.
-            </summary>
-            <seealso cref="T:Microsoft.EntityFrameworkCore.Migrations.Migration" />
-        </member>
-        <member name="M:Agenda.Migration.Migrations.AddGroups.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <summary>
-            <para>
-            Builds the operations that will migrate the database 'up'.
-            </para>
-            <para>
-            That is, builds the operations that will take the database from the state left in by the
-            previous migration so that it is up-to-date with regard to this migration.
-            </para>
-            <para>
-            This method must be overridden in each class the inherits from <see cref="T:Microsoft.EntityFrameworkCore.Migrations.Migration" />.
-            </para>
-            </summary>
-            <param name="migrationBuilder">The <see cref="T:Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder" /> that will build the operations.</param>
-        </member>
-        <member name="M:Agenda.Migration.Migrations.AddGroups.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <summary>
-            <para>
-            Builds the operations that will migrate the database 'down'.
-            </para>
-            <para>
-            That is, builds the operations that will take the database from the state left in by
-            this migration so that it returns to the state that it was in before this migration was applied.
-            </para>
-            <para>
-            This method must be overridden in each class the inherits from <see cref="T:Microsoft.EntityFrameworkCore.Migrations.Migration" /> if
-            both 'up' and 'down' migrations are to be supported. If it is not overridden, then calling it
-            will throw and it will not be possible to migrate in the 'down' direction.
-            </para>
-            </summary>
-            <param name="migrationBuilder">The <see cref="T:Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder" /> that will build the operations.</param>
-        </member>
-        <member name="M:Agenda.Migration.Migrations.AddGroups.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Agenda.Migration.Migrations.RenameGroupsToCommittees">
-            <summary>
-            Rename Groups to Committees.
-            </summary>
-            <seealso cref="T:Microsoft.EntityFrameworkCore.Migrations.Migration" />
-        </member>
-        <member name="M:Agenda.Migration.Migrations.RenameGroupsToCommittees.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <summary>
-            <para>
-            Builds the operations that will migrate the database 'up'.
-            </para>
-            <para>
-            That is, builds the operations that will take the database from the state left in by the
-            previous migration so that it is up-to-date with regard to this migration.
-            </para>
-            <para>
-            This method must be overridden in each class the inherits from <see cref="N:Agenda.Migration" />.
-            </para>
-            </summary>
-            <param name="migrationBuilder">The <see cref="T:Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder" /> that will build the operations.</param>
-        </member>
-        <member name="M:Agenda.Migration.Migrations.RenameGroupsToCommittees.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <summary>
-            <para>
-            Builds the operations that will migrate the database 'down'.
-            </para>
-            <para>
-            That is, builds the operations that will take the database from the state left in by
-            this migration so that it returns to the state that it was in before this migration was applied.
-            </para>
-            <para>
-            This method must be overridden in each class the inherits from <see cref="N:Agenda.Migration" /> if
-            both 'up' and 'down' migrations are to be supported. If it is not overridden, then calling it
-            will throw and it will not be possible to migrate in the 'down' direction.
-            </para>
-            </summary>
-            <param name="migrationBuilder">The <see cref="T:Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder" /> that will build the operations.</param>
-        </member>
-        <member name="M:Agenda.Migration.Migrations.RenameGroupsToCommittees.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <summary>
-            Implemented to builds the <see cref="P:Microsoft.EntityFrameworkCore.Migrations.Migration.TargetModel" />.
-            </summary>
-            <param name="modelBuilder">The <see cref="T:Microsoft.EntityFrameworkCore.ModelBuilder" /> to use to build the model.</param>
-        </member>
-        <member name="T:Agenda.Migration.Migrations.AddMeetings">
-            <summary>
-            Add table Meetings.
-            </summary>
-            <seealso cref="T:Microsoft.EntityFrameworkCore.Migrations.Migration" />
-        </member>
-        <member name="M:Agenda.Migration.Migrations.AddMeetings.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <summary>
-            <para>
-            Builds the operations that will migrate the database 'up'.
-            </para>
-            <para>
-            That is, builds the operations that will take the database from the state left in by the
-            previous migration so that it is up-to-date with regard to this migration.
-            </para>
-            <para>
-            This method must be overridden in each class the inherits from <see cref="T:Microsoft.EntityFrameworkCore.Migrations.Migration" />.
-            </para>
-            </summary>
-            <param name="migrationBuilder">The <see cref="T:Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder" /> that will build the operations.</param>
-        </member>
-        <member name="M:Agenda.Migration.Migrations.AddMeetings.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <summary>
-            <para>
-            Builds the operations that will migrate the database 'down'.
-            </para>
-            <para>
-            That is, builds the operations that will take the database from the state left in by
-            this migration so that it returns to the state that it was in before this migration was applied.
-            </para>
-            <para>
-            This method must be overridden in each class the inherits from <see cref="T:Microsoft.EntityFrameworkCore.Migrations.Migration" /> if
-            both 'up' and 'down' migrations are to be supported. If it is not overridden, then calling it
-            will throw and it will not be possible to migrate in the 'down' direction.
-            </para>
-            </summary>
-            <param name="migrationBuilder">The <see cref="T:Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder" /> that will build the operations.</param>
-        </member>
-        <member name="M:Agenda.Migration.Migrations.AddMeetings.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <summary>
-            Implemented to builds the <see cref="P:Microsoft.EntityFrameworkCore.Migrations.Migration.TargetModel" />.
-            </summary>
-            <param name="modelBuilder">The <see cref="T:Microsoft.EntityFrameworkCore.ModelBuilder" /> to use to build the model.</param>
-        </member>
-        <member name="T:Agenda.Migration.Migrations.AddMaxLengthToAllStringFields">
-            <summary>
-            Add MaxLength to all string fields.
-            </summary>
-            <seealso cref="T:Microsoft.EntityFrameworkCore.Migrations.Migration" />
-        </member>
-        <member name="M:Agenda.Migration.Migrations.AddMaxLengthToAllStringFields.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Agenda.Migration.Migrations.AddMaxLengthToAllStringFields.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Agenda.Migration.Migrations.AddMaxLengthToAllStringFields.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Agenda.Migration.Migrations.AddLocationTable">
-            <summary>
-            Add Location Table.
-            </summary>
-            <seealso cref="T:Microsoft.EntityFrameworkCore.Migrations.Migration" />
-        </member>
-        <member name="M:Agenda.Migration.Migrations.AddLocationTable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Agenda.Migration.Migrations.AddLocationTable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Agenda.Migration.Migrations.AddLocationTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Agenda.Migration.Migrations.LocationIsParentOfMeeting">
-            <summary>
-            Make the Locations table a parent of the Meetings table.
-            </summary>
-            <seealso cref="T:Microsoft.EntityFrameworkCore.Migrations.Migration" />
-        </member>
-        <member name="M:Agenda.Migration.Migrations.LocationIsParentOfMeeting.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Agenda.Migration.Migrations.LocationIsParentOfMeeting.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Agenda.Migration.Migrations.LocationIsParentOfMeeting.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <summary>
-            Implemented to builds the <see cref="P:Microsoft.EntityFrameworkCore.Migrations.Migration.TargetModel" />.
-            </summary>
-            <param name="modelBuilder">The <see cref="T:Microsoft.EntityFrameworkCore.ModelBuilder" /> to use to build the model.</param>
-        </member>
-        <member name="T:Agenda.Migration.Migrations.AddBgColourToOrganisation">
-            <summary>
-            Add BgColour to Organisations.
-            </summary>
-            <seealso cref="T:Microsoft.EntityFrameworkCore.Migrations.Migration" />
-        </member>
-        <member name="M:Agenda.Migration.Migrations.AddBgColourToOrganisation.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Agenda.Migration.Migrations.AddBgColourToOrganisation.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Agenda.Migration.Migrations.AddBgColourToOrganisation.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Agenda.Migration.Migrations.AddAuditTables">
-            <summary>
-            Add Audit Tables.
-            </summary>
-            <seealso cref="T:Microsoft.EntityFrameworkCore.Migrations.Migration" />
-        </member>
-        <member name="M:Agenda.Migration.Migrations.AddAuditTables.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Agenda.Migration.Migrations.AddAuditTables.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Agenda.Migration.Migrations.AddAuditTables.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Agenda.Migration.Migrations.AddUsernameAndCorrelationIdToAuditHeaders">
-            <summary>
-            Add Username and Correlation Id to Audit Headers.
-            </summary>
-            <seealso cref="T:Microsoft.EntityFrameworkCore.Migrations.Migration" />
-        </member>
-        <member name="M:Agenda.Migration.Migrations.AddUsernameAndCorrelationIdToAuditHeaders.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Agenda.Migration.Migrations.AddUsernameAndCorrelationIdToAuditHeaders.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Agenda.Migration.Migrations.AddUsernameAndCorrelationIdToAuditHeaders.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Agenda.Migration.Migrations.AddIdentity">
-            <summary>
-            Add Identity tables.
-            </summary>
-            <seealso cref="T:Microsoft.EntityFrameworkCore.Migrations.Migration" />
-        </member>
-        <member name="M:Agenda.Migration.Migrations.AddIdentity.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Agenda.Migration.Migrations.AddIdentity.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Agenda.Migration.Migrations.AddIdentity.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Agenda.Migration.Migrations.MigrationContextModelSnapshot">
-            <summary>
-            Migration Snapshot.
-            </summary>
-            <seealso cref="T:Microsoft.EntityFrameworkCore.Infrastructure.ModelSnapshot" />
-        </member>
-        <member name="M:Agenda.Migration.Migrations.MigrationContextModelSnapshot.BuildModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc/>
         </member>
         <member name="T:Agenda.Migration.Program">

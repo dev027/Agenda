@@ -33,6 +33,11 @@ namespace Agenda.Migration.DbContexts
         /// </summary>
         public DbSet<LocationDto> Locations { get; set; } = null!;
 
+       /// <summary>
+        /// Gets or sets the Location Types.
+        /// </summary>
+        public DbSet<LocationDto> LocationTypes { get; set; } = null!;
+
         /// <summary>
         /// Gets or sets the Meetings.
         /// </summary>

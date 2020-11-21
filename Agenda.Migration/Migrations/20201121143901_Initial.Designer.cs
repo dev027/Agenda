@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Agenda.Migration.Migrations
 {
     [DbContext(typeof(MigrationContext))]
-    [Migration("20200525180712_AddIdentity")]
-    partial class AddIdentity
+    [Migration("20201121143901_Initial")]
+    partial class Initial
     {
         /// <inheritdoc/>
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

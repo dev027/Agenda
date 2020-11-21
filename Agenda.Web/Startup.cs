@@ -70,14 +70,14 @@ namespace Agenda.Web
             IApplicationBuilder app)
         {
             // Add exception handler
-            // TODO: Should be Development only.
+            // xTODO: Should be Development only.
             app.UseExceptionHandler("/Error/");
 
             // Add handler for http 4xx and 5xx exception codes.
             app.UseStatusCodePagesWithReExecute("/Error/{0}");
 
             // Temp code to allow pipeline to be interrogated.
-            // TODO: Remove this eventually.
+            // xTODO: Remove this eventually.
             app.Use(async (context, next) =>
             {
                 await next().ConfigureAwait(false);

@@ -1,4 +1,4 @@
-﻿// <copyright file="DomainMetaData.cs" company="Do It Wright">
+﻿// <copyright file="DomainMetadata.cs" company="Do It Wright">
 // Copyright (c) Do It Wright. All rights reserved.
 // </copyright>
 

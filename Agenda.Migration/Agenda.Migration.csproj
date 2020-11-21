@@ -26,6 +26,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20200508162347_AddAuditTable.cs" />
     <Compile Remove="Migrations\20200508162347_AddAuditTable.Designer.cs" />
+    <Compile Remove="Migrations\20201120231230_AddLocationTypes.cs" />
+    <Compile Remove="Migrations\20201120231230_AddLocationTypes.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -53,6 +55,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Agenda.Data\Agenda.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

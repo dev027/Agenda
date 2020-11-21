@@ -100,46 +100,51 @@ namespace Agenda.Web.Controllers
         /// <returns>View.</returns>
         [HttpGet]
         [HttpPost]
-        public async Task<IActionResult> Add(AddViewModel model)
+        public Task<IActionResult> Add(AddViewModel model)
         {
-            IWho who = this.Who(nameof(this.Add));
-
-            this.logger.LogDebug(
-                "ENTRY {ActionName}(who, model) {@who} {@model}",
-                who.ActionName,
-                who,
-                model);
-
             if (model == null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
 
-            if (model.FormState == FormState.Initial)
+            return InternalAsync();
+
+            async Task<IActionResult> InternalAsync()
             {
-                this.ModelState.Clear();
-            }
-            else
-            {
-                if (this.ModelState.IsValid)
+                IWho who = this.Who(nameof(this.Add));
+
+                this.logger.LogDebug(
+                    "ENTRY {ActionName}(who, model) {@who} {@model}",
+                    who.ActionName,
+                    who,
+                    model);
+
+                if (model.FormState == FormState.Initial)
                 {
-                    this.logger.LogDebug(
-                        "{@who} inserting model {@Model}",
-                        who,
-                        model);
-
-                    await this.InsertRecordAsync(who, model).ConfigureAwait(false);
-
-                    return this.ExitRedirectToAction(
-                        this.logger,
-                        this.RedirectToAction(
-                            "Index",
-                            "CommitteeOverview",
-                            new { organisationId = model.OrganisationId }));
+                    this.ModelState.Clear();
                 }
-            }
+                else
+                {
+                    if (this.ModelState.IsValid)
+                    {
+                        this.logger.LogDebug(
+                            "{@who} inserting model {@Model}",
+                            who,
+                            model);
 
-            return this.ExitView(this.logger, this.View(model));
+                        await this.InsertRecordAsync(who, model).ConfigureAwait(false);
+
+                        return this.ExitRedirectToAction(
+                            this.logger,
+                            this.RedirectToAction(
+                                "Index",
+                                "CommitteeOverview",
+                                new { organisationId = model.OrganisationId }));
+                    }
+                }
+
+                return this.ExitView(this.logger, this.View(model));
+            }
         }
 
         /// <summary>
@@ -183,34 +188,39 @@ namespace Agenda.Web.Controllers
         /// <param name="model">Edit view model.</param>
         /// <returns>View.</returns>
         [HttpPost]
-        public async Task<IActionResult> Edit(EditViewModel model)
+        public Task<IActionResult> Edit(EditViewModel model)
         {
-            IWho who = this.Who(nameof(this.Edit));
-
-            this.logger.LogDebug(
-                "ENTRY {Action}(who, model) {@who} {model}",
-                who.ActionName,
-                who,
-                model);
-
             if (model == null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
 
-            if (this.ModelState.IsValid)
+            return InternalAsync();
+
+            async Task<IActionResult> InternalAsync()
             {
-                await this.UpdateRecordAsync(who, model).ConfigureAwait(false);
+                IWho who = this.Who(nameof(this.Edit));
 
-                return this.ExitRedirectToAction(
-                    this.logger,
-                    this.RedirectToAction(
-                        "Index",
-                        "Committee",
-                        new { committeeId = model.CommitteeId }));
+                this.logger.LogDebug(
+                    "ENTRY {Action}(who, model) {@who} {model}",
+                    who.ActionName,
+                    who,
+                    model);
+
+                if (this.ModelState.IsValid)
+                {
+                    await this.UpdateRecordAsync(who, model).ConfigureAwait(false);
+
+                    return this.ExitRedirectToAction(
+                        this.logger,
+                        this.RedirectToAction(
+                            "Index",
+                            "Committee",
+                            new { committeeId = model.CommitteeId }));
+                }
+
+                return this.View(model);
             }
-
-            return this.View(model);
         }
 
         /// <summary>

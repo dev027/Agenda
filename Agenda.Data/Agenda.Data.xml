@@ -692,7 +692,7 @@
         </member>
         <member name="P:Agenda.Data.Dtos.LocationDto.Name">
             <summary>
-            Gets the Committee Name.
+            Gets the Location Name.
             </summary>
         </member>
         <member name="P:Agenda.Data.Dtos.LocationDto.Address">
@@ -732,6 +732,45 @@
             Converts instance to domain object.
             </summary>
             <returns>Location.</returns>
+        </member>
+        <member name="T:Agenda.Data.Dtos.LocationTypeDto">
+            <summary>
+            Location Type DTO.
+            </summary>
+        </member>
+        <member name="M:Agenda.Data.Dtos.LocationTypeDto.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Data.Dtos.LocationTypeDto"/> class.
+            </summary>
+        </member>
+        <member name="M:Agenda.Data.Dtos.LocationTypeDto.#ctor(System.Guid,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Data.Dtos.LocationTypeDto"/> class.
+            </summary>
+            <param name="id">Location Type Id.</param>
+            <param name="code">Location Type Code.</param>
+            <param name="name">The name.</param>
+            <param name="description">The description.</param>
+        </member>
+        <member name="P:Agenda.Data.Dtos.LocationTypeDto.Id">
+            <summary>
+            Gets the Location Type Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Dtos.LocationTypeDto.Code">
+            <summary>
+            Gets the Location Type Code.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Dtos.LocationTypeDto.Name">
+            <summary>
+            Gets the Location Type Name.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Dtos.LocationTypeDto.Description">
+            <summary>
+            Gets the Location Type Description.
+            </summary>
         </member>
         <member name="T:Agenda.Data.Dtos.MeetingDto">
             <summary>

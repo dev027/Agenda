@@ -590,6 +590,81 @@
         <member name="M:Agenda.Domain.DomainObjects.Locations.Location.What3WordsParts">
             <inheritdoc />
         </member>
+        <member name="T:Agenda.Domain.DomainObjects.LocationTypes.DomainMetadata">
+            <summary>
+            Metadata for <see cref="T:Agenda.Domain.DomainObjects.LocationTypes.ILocationType"/>.
+            </summary>
+        </member>
+        <member name="T:Agenda.Domain.DomainObjects.LocationTypes.DomainMetadata.Code">
+            <summary>
+            Metadata for the <see cref="P:Agenda.Domain.DomainObjects.LocationTypes.ILocationType.Code"></see> property.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.LocationTypes.DomainMetadata.Code.MinLength">
+            <summary>
+            The minimum length.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.LocationTypes.DomainMetadata.Code.MaxLength">
+            <summary>
+            The maximum length.
+            </summary>
+        </member>
+        <member name="T:Agenda.Domain.DomainObjects.LocationTypes.DomainMetadata.Name">
+            <summary>
+            Metadata for the <see cref="P:Agenda.Domain.DomainObjects.LocationTypes.ILocationType.Name"></see> property.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.LocationTypes.DomainMetadata.Name.MinLength">
+            <summary>
+            The minimum length.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.LocationTypes.DomainMetadata.Name.MaxLength">
+            <summary>
+            The maximum length.
+            </summary>
+        </member>
+        <member name="T:Agenda.Domain.DomainObjects.LocationTypes.DomainMetadata.Description">
+            <summary>
+            Metadata for the <see cref="P:Agenda.Domain.DomainObjects.LocationTypes.ILocationType.Description"></see> property.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.LocationTypes.DomainMetadata.Description.MinLength">
+            <summary>
+            The minimum length.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.DomainObjects.LocationTypes.DomainMetadata.Description.MaxLength">
+            <summary>
+            The maximum length.
+            </summary>
+        </member>
+        <member name="T:Agenda.Domain.DomainObjects.LocationTypes.ILocationType">
+            <summary>
+            Location Type.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.LocationTypes.ILocationType.Id">
+            <summary>
+            Gets the Location Type Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.LocationTypes.ILocationType.Code">
+            <summary>
+            Gets the Location Type Code.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.LocationTypes.ILocationType.Name">
+            <summary>
+            Gets the Location Type Name.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.LocationTypes.ILocationType.Description">
+            <summary>
+            Gets the Location Type Description.
+            </summary>
+        </member>
         <member name="T:Agenda.Domain.DomainObjects.Meetings.DomainMetadata">
             <summary>
             Metadata for the <see cref="T:Agenda.Domain.DomainObjects.Organisations.IOrganisation"/>.

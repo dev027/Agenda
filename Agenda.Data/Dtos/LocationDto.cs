@@ -105,7 +105,7 @@ namespace Agenda.Data.Dtos
         public Guid OrganisationId { get; private set; }
 
         /// <summary>
-        /// Gets the Committee Name.
+        /// Gets the Location Name.
         /// </summary>
         [Required]
         [MaxLength(DomainMetadata.Name.MaxLength)]

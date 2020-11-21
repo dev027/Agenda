@@ -1,4 +1,4 @@
-﻿// <copyright file="DomainMetaData.cs" company="Do It Wright">
+﻿// <copyright file="DomainMetadata.cs" company="Do It Wright">
 // Copyright (c) Do It Wright. All rights reserved.
 // </copyright>
 
@@ -85,11 +85,19 @@ namespace Agenda.Domain.DomainObjects.Locations
                 /// <summary>
                 /// The minimum length.
                 /// </summary>
+                [SuppressMessage(
+                    "Critical Code Smell",
+                    "S3218:Inner class members should not shadow outer class \"static\" or type members",
+                    Justification = "Stylecop")]
                 public const int MinLength = 1;
 
                 /// <summary>
                 /// The maximum length.
                 /// </summary>
+                [SuppressMessage(
+                    "Critical Code Smell",
+                    "S3218:Inner class members should not shadow outer class \"static\" or type members",
+                    Justification = "Stylecop")]
                 public const int MaxLength = 10;
             }
         }
