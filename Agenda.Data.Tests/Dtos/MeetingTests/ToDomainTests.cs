@@ -4,6 +4,7 @@
 
 using System;
 using Agenda.Data.Dtos;
+using Agenda.Domain.Constants;
 using Agenda.Domain.DomainObjects.Meetings;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -33,15 +34,22 @@ namespace Agenda.Data.Tests.Dtos.MeetingTests
                 name: "TSC",
                 description: "Tournament Sub-Committee",
                 organisation: organisationDto);
+            LocationTypeDto locationTypeDto = new LocationTypeDto(
+                id: Guid.NewGuid(),
+                code: LocationTypeCodes.RealWorld,
+                name: "Real World",
+                description: "Description");
             LocationDto locationDto = new LocationDto(
                 id: Guid.NewGuid(),
                 organisationId: organisationDto.Id,
+                locationTypeId: locationTypeDto.Id,
                 name: "Location",
                 address: "Address",
                 what3Words: "one.two.three",
                 latitude: 50,
                 longitude: -1,
-                organisation: organisationDto);
+                organisation: organisationDto,
+                locationType: locationTypeDto);
             MeetingDto meetingDto = new MeetingDto(
                 Guid.NewGuid(),
                 committeeId: committeeDto.Id,
@@ -82,9 +90,15 @@ namespace Agenda.Data.Tests.Dtos.MeetingTests
                 name: "TSC",
                 description: "Tournament Sub-Committee",
                 organisation: organisationDto);
+            LocationTypeDto locationTypeDto = new LocationTypeDto(
+                id: Guid.NewGuid(),
+                code: LocationTypeCodes.RealWorld,
+                name: "Real World",
+                description: "Description");
             LocationDto locationDto = new LocationDto(
                 id: Guid.NewGuid(),
                 organisationId: organisationDto.Id,
+                locationTypeId: locationTypeDto.Id,
                 name: "Location",
                 address: "Address",
                 what3Words: "one.two.three",
@@ -121,9 +135,15 @@ namespace Agenda.Data.Tests.Dtos.MeetingTests
                 name: "TSC",
                 description: "Tournament Sub-Committee",
                 organisation: organisationDto);
+            LocationTypeDto locationTypeDto = new LocationTypeDto(
+                id: Guid.NewGuid(),
+                code: LocationTypeCodes.RealWorld,
+                name: "Real World",
+                description: "Description");
             LocationDto locationDto = new LocationDto(
                 id: Guid.NewGuid(),
                 organisationId: organisationDto.Id,
+                locationTypeId: locationTypeDto.Id,
                 name: "Location",
                 address: "Address",
                 what3Words: "one.two.three",

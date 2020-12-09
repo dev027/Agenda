@@ -485,6 +485,65 @@
             <param name="organisationId">Organisation Id.</param>
             <returns>View.</returns>
         </member>
+        <member name="T:Agenda.Web.Controllers.LocationTypeController">
+            <summary>
+            SOMETHING.
+            </summary>
+            <seealso cref="T:Microsoft.AspNetCore.Mvc.Controller" />
+        </member>
+        <member name="M:Agenda.Web.Controllers.LocationTypeController.#ctor(Microsoft.Extensions.Logging.ILogger{Agenda.Web.Controllers.LocationTypeController},Agenda.Service.IAgendaService,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.Controllers.LocationTypeController"/> class.
+            </summary>
+            <param name="logger">Logger.</param>
+            <param name="service">Agenda Service.</param>
+            <param name="isTestMode">Is Test Mode.</param>
+        </member>
+        <member name="M:Agenda.Web.Controllers.LocationTypeController.Index(System.Guid)">
+            <summary>
+            Display the specified Location Type.
+            </summary>
+            <param name="locationTypeId">Location Type Id.</param>
+            <returns>View.</returns>
+        </member>
+        <member name="M:Agenda.Web.Controllers.LocationTypeController.Add(Agenda.Web.ViewModels.LocationType.AddViewModel)">
+            <summary>
+            Adds this Location Type.
+            </summary>
+            <param name="model">Add view model.</param>
+            <returns>View.</returns>
+        </member>
+        <member name="M:Agenda.Web.Controllers.LocationTypeController.StartEdit(System.Guid,System.Int32)">
+            <summary>
+            Starts the edit.
+            </summary>
+            <param name="locationTypeId">The Location Type Id.</param>
+            <param name="ajaxMode">AJAX mode(0=No; 1=Yes).</param>
+            <returns>View.</returns>
+        </member>
+        <member name="M:Agenda.Web.Controllers.LocationTypeController.Edit(Agenda.Web.ViewModels.LocationType.EditViewModel)">
+            <summary>
+            Edits the specified location type.
+            </summary>
+            <param name="model">Edit view model.</param>
+            <returns>View.</returns>
+        </member>
+        <member name="M:Agenda.Web.Controllers.LocationTypeController.InsertRecordAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Web.ViewModels.LocationType.AddViewModel)">
+            <summary>
+            Insert Location Type.
+            </summary>
+            <param name="who">Who Details.</param>
+            <param name="model">Add view model.</param>
+            <returns>Nothing.</returns>
+        </member>
+        <member name="M:Agenda.Web.Controllers.LocationTypeController.UpdateRecordAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Web.ViewModels.LocationType.EditViewModel)">
+            <summary>
+            Update Location Type.
+            </summary>
+            <param name="who">Who Details.</param>
+            <param name="model">Edit view model.</param>
+            <returns>Nothing.</returns>
+        </member>
         <member name="T:Agenda.Web.Controllers.MeetingController">
             <summary>
             Meetings.
@@ -1430,6 +1489,173 @@
             <param name="location">Location.</param>
             <returns>Location view model.</returns>
         </member>
+        <member name="T:Agenda.Web.ViewModels.LocationType.AddViewModel">
+            <summary>
+            Add view model.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.LocationType.AddViewModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.LocationType.AddViewModel"/> class.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.LocationType.AddViewModel.#ctor(Agenda.Web.Models.FormState,System.Guid,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.LocationType.AddViewModel"/> class.
+            </summary>
+            <param name="formState">Form State.</param>
+            <param name="locationTypeId">Location Type Id.</param>
+            <param name="code">Location Type Code.</param>
+            <param name="name">Location Type Name.</param>
+            <param name="description">Location Type Description.</param>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.LocationType.AddViewModel.FormState">
+            <summary>
+            Gets or sets the Form State.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.LocationType.AddViewModel.LocationTypeId">
+            <summary>
+            Gets or sets the Location Type Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.LocationType.AddViewModel.Code">
+            <summary>
+            Gets or sets the Location Type Code.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.LocationType.AddViewModel.Name">
+            <summary>
+            Gets or sets the Location Type Name.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.LocationType.AddViewModel.Description">
+            <summary>
+            Gets or sets the Location Type Description.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.LocationType.AddViewModel.Create(Agenda.Domain.DomainObjects.LocationTypes.ILocationType)">
+            <summary>
+            Creates the Add view model.
+            </summary>
+            <param name="locationType">Location Type.</param>
+            <returns>Add view model.</returns>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.LocationType.AddViewModel.ToDomain">
+            <summary>
+            Converts view model to Location Type domain object.
+            </summary>
+            <returns>Committee domain object.</returns>
+        </member>
+        <member name="T:Agenda.Web.ViewModels.LocationType.EditViewModel">
+            <summary>
+            Add view model.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.LocationType.EditViewModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.LocationType.EditViewModel"/> class.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.LocationType.EditViewModel.#ctor(Agenda.Web.Models.FormState,System.Guid,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.LocationType.EditViewModel"/> class.
+            </summary>
+            <param name="formState">Form State.</param>
+            <param name="locationTypeId">Location Type Id.</param>
+            <param name="code">Location Type Code.</param>
+            <param name="name">Location Type Name.</param>
+            <param name="description">Location Type Description.</param>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.LocationType.EditViewModel.FormState">
+            <summary>
+            Gets or sets the Form State.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.LocationType.EditViewModel.LocationTypeId">
+            <summary>
+            Gets or sets the Location Type Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.LocationType.EditViewModel.Code">
+            <summary>
+            Gets or sets the Location Type Code.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.LocationType.EditViewModel.Name">
+            <summary>
+            Gets or sets the Location Type Name.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.LocationType.EditViewModel.Description">
+            <summary>
+            Gets or sets the Location Type Description.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.LocationType.EditViewModel.Create(Agenda.Domain.DomainObjects.LocationTypes.ILocationType)">
+            <summary>
+            Creates the view model.
+            </summary>
+            <param name="locationType">Location Type.</param>
+            <returns>Edit view model.</returns>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.LocationType.EditViewModel.ToDomain">
+            <summary>
+            Converts instance to Location Type domain object.
+            </summary>
+            <returns>Location Type domain object.</returns>
+        </member>
+        <member name="T:Agenda.Web.ViewModels.LocationType.IndexViewModel">
+            <summary>
+            View Location Type view model.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.LocationType.IndexViewModel.#ctor(System.Guid,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.LocationType.IndexViewModel"/> class.
+            </summary>
+            <param name="locationTypeId">Location Type Id.</param>
+            <param name="code">Location Type Code.</param>
+            <param name="name">Location Type Name.</param>
+            <param name="description">Location Type Description.</param>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.LocationType.IndexViewModel.PageTitle">
+            <summary>
+            Gets the Page Title.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.LocationType.IndexViewModel.CardTitle">
+            <summary>
+            Gets the Card Title.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.LocationType.IndexViewModel.LocationTypeId">
+            <summary>
+            Gets the Location Type Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.LocationType.IndexViewModel.Code">
+            <summary>
+            Gets the Location Type Code.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.LocationType.IndexViewModel.Name">
+            <summary>
+            Gets the Location Type Name.
+            </summary>
+        </member>
+        <member name="P:Agenda.Web.ViewModels.LocationType.IndexViewModel.Description">
+            <summary>
+            Gets Location Type Description.
+            </summary>
+        </member>
+        <member name="M:Agenda.Web.ViewModels.LocationType.IndexViewModel.Create(Agenda.Domain.DomainObjects.LocationTypes.ILocationType)">
+            <summary>
+            Creates the Index view model.
+            </summary>
+            <param name="locationType">Location Type.</param>
+            <returns>View model.</returns>
+        </member>
         <member name="T:Agenda.Web.ViewModels.Location.AddViewModel">
             <summary>
             Add view model.
@@ -1512,11 +1738,12 @@
             <param name="organisation">Organisation.</param>
             <returns>Add view model.</returns>
         </member>
-        <member name="M:Agenda.Web.ViewModels.Location.AddViewModel.ToDomain(Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
+        <member name="M:Agenda.Web.ViewModels.Location.AddViewModel.ToDomain(Agenda.Domain.DomainObjects.Organisations.IOrganisation,Agenda.Domain.DomainObjects.LocationTypes.ILocationType)">
             <summary>
             Converts view model to Location domain object.
             </summary>
             <param name="organisation">Organisation.</param>
+            <param name="locationType">Location Type.</param>
             <returns>Location domain object.</returns>
         </member>
         <member name="T:Agenda.Web.ViewModels.Location.EditViewModel">
@@ -1607,11 +1834,12 @@
             <param name="location">Location.</param>
             <returns>Edit view model.</returns>
         </member>
-        <member name="M:Agenda.Web.ViewModels.Location.EditViewModel.ToDomain(Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
+        <member name="M:Agenda.Web.ViewModels.Location.EditViewModel.ToDomain(Agenda.Domain.DomainObjects.Organisations.IOrganisation,Agenda.Domain.DomainObjects.LocationTypes.ILocationType)">
             <summary>
             Converts instance to Location domain object.
             </summary>
             <param name="organisation">Organisation.</param>
+            <param name="locationType">Location Type.</param>
             <returns>Committee domain object.</returns>
         </member>
         <member name="T:Agenda.Web.ViewModels.Location.IndexViewModel">
@@ -1619,7 +1847,7 @@
             Index view model.
             </summary>
         </member>
-        <member name="M:Agenda.Web.ViewModels.Location.IndexViewModel.#ctor(System.Guid,System.Guid,System.String,System.String,System.String,System.String,System.Double,System.Double)">
+        <member name="M:Agenda.Web.ViewModels.Location.IndexViewModel.#ctor(System.Guid,System.Guid,System.String,System.String,System.String,System.String,System.Nullable{System.Double},System.Nullable{System.Double})">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Web.ViewModels.Location.IndexViewModel"/> class.
             </summary>

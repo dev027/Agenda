@@ -29,6 +29,9 @@ namespace Agenda.Data.Tests.DbContexts.DataContextTests
 
             // ACT
             contextWrapper.TestOnModelCreating(modelBuilder);
+
+            // ASSERT
+            Assert.IsTrue(true);
         }
 
         /// <summary>

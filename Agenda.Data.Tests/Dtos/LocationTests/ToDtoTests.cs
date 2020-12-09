@@ -4,7 +4,9 @@
 
 using System;
 using Agenda.Data.Dtos;
+using Agenda.Domain.Constants;
 using Agenda.Domain.DomainObjects.Locations;
+using Agenda.Domain.DomainObjects.LocationTypes;
 using Agenda.Domain.DomainObjects.Organisations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -30,6 +32,11 @@ namespace Agenda.Data.Tests.Dtos.LocationTests
                         code: "CBC",
                         name: "County Bridge Club",
                         bgColour: "000000"),
+                    locationType: new LocationType(
+                        id: Guid.NewGuid(),
+                        code: LocationTypeCodes.RealWorld,
+                        name: "Real World",
+                        description: "Description"),
                     name: "County Bridge Club",
                     address: "St. Oswald's Road, New Parks",
                     what3Words: "voice.crash.fleet",

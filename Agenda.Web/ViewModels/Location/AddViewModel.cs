@@ -4,12 +4,11 @@
 
 using System;
 using System.ComponentModel.DataAnnotations;
-using System.Globalization;
 using Agenda.Domain.DomainObjects.Locations;
+using Agenda.Domain.DomainObjects.LocationTypes;
 using Agenda.Domain.DomainObjects.Organisations;
 using Agenda.Web.Models;
 using Agenda.Web.Models.ValidationAttributes;
-using Agenda.Web.Resources;
 using DomainMetadata = Agenda.Domain.DomainObjects.Locations.DomainMetadata;
 
 namespace Agenda.Web.ViewModels.Location
@@ -185,29 +184,12 @@ namespace Agenda.Web.ViewModels.Location
         /// Converts view model to Location domain object.
         /// </summary>
         /// <param name="organisation">Organisation.</param>
+        /// <param name="locationType">Location Type.</param>
         /// <returns>Location domain object.</returns>
-        public ILocation ToDomain(IOrganisation organisation)
+        public ILocation ToDomain(
+            IOrganisation organisation,
+            ILocationType locationType)
         {
-            if (this.Latitude == null)
-            {
-                throw new InvalidOperationException(
-                    string.Format(
-                        CultureInfo.InvariantCulture,
-                        ExceptionResource.CannotConvertTo___When___IsNull,
-                        nameof(ILocation),
-                        nameof(this.Latitude)));
-            }
-
-            if (this.Longitude == null)
-            {
-                throw new InvalidOperationException(
-                    string.Format(
-                        CultureInfo.InvariantCulture,
-                        ExceptionResource.CannotConvertTo___When___IsNull,
-                        nameof(ILocation),
-                        nameof(this.Longitude)));
-            }
-
             string what3Words = Domain.DomainObjects.Locations.Location.What3WordsJoin(
                 this.What3WordsPart1,
                 this.What3WordsPart2,
@@ -216,11 +198,12 @@ namespace Agenda.Web.ViewModels.Location
             return new Domain.DomainObjects.Locations.Location(
                 id: Guid.NewGuid(),
                 organisation: organisation,
+                locationType: locationType,
                 name: this.Name,
                 address: this.Address,
                 what3Words: what3Words,
-                latitude: this.Latitude.Value,
-                longitude: this.Longitude.Value);
+                latitude: this.Latitude,
+                longitude: this.Longitude);
         }
 
         #endregion

@@ -55,7 +55,7 @@ namespace Agenda.Data.Utilities
                     (ColumnAttribute?)propertyDescriptor.Attributes[typeof(ColumnAttribute)];
                 string columnName = columnAttribute == null
                     ? propertyInfo.Name
-                    : columnAttribute.Name;
+                    : columnAttribute.Name ?? string.Empty;
 
                 IAuditDetail auditDetail = AuditDetail.CreateForCreate(
                     auditHeader: auditHeader,
@@ -117,9 +117,9 @@ namespace Agenda.Data.Utilities
                 PropertyDescriptor propertyDescriptor = propertyDescriptors[propertyInfo.Name];
                 ColumnAttribute? columnAttribute =
                     (ColumnAttribute?)propertyDescriptor.Attributes[typeof(ColumnAttribute)];
-                var columnName = columnAttribute == null
+                string columnName = columnAttribute == null
                     ? propertyInfo.Name
-                    : columnAttribute.Name;
+                    : columnAttribute.Name ?? string.Empty;
 
                 IAuditDetail auditDetail = AuditDetail.CreateForUpdate(
                     auditHeader: auditHeader,

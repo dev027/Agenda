@@ -73,43 +73,48 @@ namespace Agenda.Web.Controllers
         /// <returns>View.</returns>
         [HttpGet]
         [HttpPost]
-        public async Task<IActionResult> Add(AddViewModel model)
+        public Task<IActionResult> Add(AddViewModel model)
         {
-            IWho who = this.Who(nameof(this.Add));
-
-            this.logger.LogDebug(
-                "ENTRY {Action}(who, model) {@who} {@model}",
-                who.ActionName,
-                who,
-                model);
-
             if (model == null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
 
-            if (model.FormState == FormState.Initial)
+            return Internal();
+
+            async Task<IActionResult> Internal()
             {
-                model = new AddViewModel(
-                    formState: FormState.Initial,
-                    code: string.Empty,
-                    name: string.Empty,
-                    bgColour: string.Empty);
-                this.ModelState.Clear();
-            }
-            else
-            {
-                if (this.ModelState.IsValid)
+                IWho who = this.Who(nameof(this.Add));
+
+                this.logger.LogDebug(
+                    "ENTRY {Action}(who, model) {@who} {@model}",
+                    who.ActionName,
+                    who,
+                    model);
+
+                if (model.FormState == FormState.Initial)
                 {
-                    await this.InsertRecordAsync(who, model).ConfigureAwait(false);
-
-                    return this.ExitRedirectToAction(
-                        this.logger,
-                        this.RedirectToAction("Index", "OrganisationOverview"));
+                    model = new AddViewModel(
+                        formState: FormState.Initial,
+                        code: string.Empty,
+                        name: string.Empty,
+                        bgColour: string.Empty);
+                    this.ModelState.Clear();
                 }
-            }
+                else
+                {
+                    if (this.ModelState.IsValid)
+                    {
+                        await this.InsertRecordAsync(who, model).ConfigureAwait(false);
 
-            return this.View(model);
+                        return this.ExitRedirectToAction(
+                            this.logger,
+                            this.RedirectToAction("Index", "OrganisationOverview"));
+                    }
+                }
+
+                return this.View(model);
+            }
         }
 
         /// <summary>
@@ -153,34 +158,39 @@ namespace Agenda.Web.Controllers
         /// <param name="model">Edit view model.</param>
         /// <returns>View.</returns>
         [HttpPost]
-        public async Task<IActionResult> Edit(EditViewModel model)
+        public Task<IActionResult> Edit(EditViewModel model)
         {
-            IWho who = this.Who(nameof(this.Edit));
-
-            this.logger.LogDebug(
-                "ENTRY {Action}(who, model) {@who} {model}",
-                who.ActionName,
-                who,
-                model);
-
             if (model == null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
 
-            if (this.ModelState.IsValid)
+            return Internal();
+
+            async Task<IActionResult> Internal()
             {
-                await this.UpdateRecordAsync(who, model).ConfigureAwait(false);
+                IWho who = this.Who(nameof(this.Edit));
 
-                return this.ExitRedirectToAction(
-                    this.logger,
-                    this.RedirectToAction(
-                        "Index",
-                        "Organisation",
-                        new { organisationId = model.OrganisationId }));
+                this.logger.LogDebug(
+                    "ENTRY {Action}(who, model) {@who} {model}",
+                    who.ActionName,
+                    who,
+                    model);
+
+                if (this.ModelState.IsValid)
+                {
+                    await this.UpdateRecordAsync(who, model).ConfigureAwait(false);
+
+                    return this.ExitRedirectToAction(
+                        this.logger,
+                        this.RedirectToAction(
+                            "Index",
+                            "Organisation",
+                            new { organisationId = model.OrganisationId }));
+                }
+
+                return this.View(model);
             }
-
-            return this.View(model);
         }
 
         /// <summary>

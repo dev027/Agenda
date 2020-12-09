@@ -58,7 +58,7 @@ namespace Agenda.Web.Controllers
                 actionName: actionName,
                 path: this.Request?.Path ?? "No Path",
                 queryString: this.Request?.QueryString.ToString() ?? "No Query String",
-                clientIpAddress: this.HttpContext.Connection.RemoteIpAddress.ToString(),
+                clientIpAddress: this.HttpContext?.Connection.RemoteIpAddress?.ToString() ?? "None",
                 username: null);
         }
 

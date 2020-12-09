@@ -33,8 +33,8 @@ namespace Agenda.Domain.DomainObjects.AuditDetails
             string tableName,
             string columnName,
             Guid recordId,
-            string oldValue,
-            string newValue,
+            string? oldValue,
+            string? newValue,
             DatabaseAction databaseAction)
         {
             this.Id = id;
@@ -64,10 +64,10 @@ namespace Agenda.Domain.DomainObjects.AuditDetails
         public Guid RecordId { get; }
 
         /// <inheritdoc/>
-        public string OldValue { get; }
+        public string? OldValue { get; }
 
         /// <inheritdoc/>
-        public string NewValue { get; }
+        public string? NewValue { get; }
 
         /// <inheritdoc/>
         public DatabaseAction DatabaseAction { get; }

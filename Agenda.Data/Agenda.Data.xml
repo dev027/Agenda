@@ -22,6 +22,9 @@
             CRUD operations for Location.
             </summary>
             <summary>
+            CRUD operations for Location.
+            </summary>
+            <summary>
             CRUD operations for Meetings.
             </summary>
             <summary>
@@ -85,6 +88,15 @@
         <member name="M:Agenda.Data.Crud.AgendaData.UpdateLocationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeaderWithAuditDetails,Agenda.Domain.DomainObjects.Locations.ILocation)">
             <inheritdoc/>
         </member>
+        <member name="M:Agenda.Data.Crud.AgendaData.CreateLocationTypeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeaderWithAuditDetails,Agenda.Domain.DomainObjects.LocationTypes.ILocationType)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Data.Crud.AgendaData.GetLocationTypeByIdAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Data.Crud.AgendaData.UpdateLocationTypeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeaderWithAuditDetails,Agenda.Domain.DomainObjects.LocationTypes.ILocationType)">
+            <inheritdoc/>
+        </member>
         <member name="M:Agenda.Data.Crud.AgendaData.CreateMeetingAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeaderWithAuditDetails,Agenda.Domain.DomainObjects.Meetings.IMeeting)">
             <inheritdoc/>
         </member>
@@ -131,6 +143,9 @@
             <seealso cref="T:System.IDisposable" />
             <summary>
             Data access - Committee.
+            </summary>
+            <summary>
+            Data access.
             </summary>
             <summary>
             Data access.
@@ -227,6 +242,32 @@
             <param name="who">Who details.</param>
             <param name="auditHeader">Audit Header.</param>
             <param name="location">The Location.</param>
+            <returns>Nothing.</returns>
+        </member>
+        <member name="M:Agenda.Data.Crud.IAgendaData.CreateLocationTypeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeaderWithAuditDetails,Agenda.Domain.DomainObjects.LocationTypes.ILocationType)">
+            <summary>
+            Creates the Location Type.
+            </summary>
+            <param name="who">Who details.</param>
+            <param name="auditHeader">Audit Header.</param>
+            <param name="locationType">Location Type.</param>
+            <returns>Nothing.</returns>
+        </member>
+        <member name="M:Agenda.Data.Crud.IAgendaData.GetLocationTypeByIdAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
+            <summary>
+            Gets the Location Type by Id.
+            </summary>
+            <param name="who">Who details.</param>
+            <param name="locationTypeId">Location Type Id.</param>
+            <returns>Location.</returns>
+        </member>
+        <member name="M:Agenda.Data.Crud.IAgendaData.UpdateLocationTypeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeaderWithAuditDetails,Agenda.Domain.DomainObjects.LocationTypes.ILocationType)">
+            <summary>
+            Updates the Location Type.
+            </summary>
+            <param name="who">Who details.</param>
+            <param name="auditHeader">Audit Header.</param>
+            <param name="locationType">The Location Type.</param>
             <returns>Nothing.</returns>
         </member>
         <member name="M:Agenda.Data.Crud.IAgendaData.CreateMeetingAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeaderWithAuditDetails,Agenda.Domain.DomainObjects.Meetings.IMeeting)">
@@ -352,13 +393,25 @@
             </summary>
             <param name="options">DBContext Options.</param>
         </member>
+        <member name="M:Agenda.Data.DbContexts.DataContext.InvokeOnModelCreatingForAllDtos(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Invokes the on model creating for all dtos.
+            </summary>
+            <param name="builder">The builder.</param>
+        </member>
+        <member name="M:Agenda.Data.DbContexts.DataContext.DisableCascadeDelete(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Disables the cascade delete.
+            </summary>
+            <param name="builder">The builder.</param>
+        </member>
         <member name="M:Agenda.Data.DbContexts.DataContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <summary>
             Override this method to further configure the model that was discovered by convention from the entity types
             exposed in dbset properties on your derived context. The resulting model may be cached
             and re-used for subsequent instances of your derived context.
             </summary>
-            <param name="modelBuilder">The builder being used to construct the model for this context. Databases (and other extensions) typically
+            <param name="builder">The builder being used to construct the model for this context. Databases (and other extensions) typically
             define extension methods on this object that allow you to configure aspects of the model that are specific
             to a given database.</param>
             <exception cref="T:System.ArgumentNullException">modelBuilder.</exception>
@@ -385,6 +438,11 @@
         <member name="P:Agenda.Data.DbContexts.DataContext.Locations">
             <summary>
             Gets or sets the Locations.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.DbContexts.DataContext.LocationTypes">
+            <summary>
+            Gets or sets the Locations Types.
             </summary>
         </member>
         <member name="P:Agenda.Data.DbContexts.DataContext.Meetings">
@@ -655,30 +713,33 @@
             Initializes a new instance of the <see cref="T:Agenda.Data.Dtos.LocationDto"/> class.
             </summary>
         </member>
-        <member name="M:Agenda.Data.Dtos.LocationDto.#ctor(System.Guid,System.Guid,System.String,System.String,System.String,System.Double,System.Double)">
+        <member name="M:Agenda.Data.Dtos.LocationDto.#ctor(System.Guid,System.Guid,System.Guid,System.String,System.String,System.String,System.Nullable{System.Double},System.Nullable{System.Double})">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Data.Dtos.LocationDto"/> class.
             </summary>
             <param name="id">Location Id.</param>
             <param name="organisationId">Organisation Id.</param>
+            <param name="locationTypeId">Location Type Id.</param>
             <param name="name">Location Name.</param>
             <param name="address">Address.</param>
             <param name="what3Words">What3Words Address.</param>
             <param name="latitude">Latitude.</param>
             <param name="longitude">Longitude.</param>
         </member>
-        <member name="M:Agenda.Data.Dtos.LocationDto.#ctor(System.Guid,System.Guid,System.String,System.String,System.String,System.Double,System.Double,Agenda.Data.Dtos.OrganisationDto)">
+        <member name="M:Agenda.Data.Dtos.LocationDto.#ctor(System.Guid,System.Guid,System.Guid,System.String,System.String,System.String,System.Double,System.Double,Agenda.Data.Dtos.OrganisationDto,Agenda.Data.Dtos.LocationTypeDto)">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Data.Dtos.LocationDto"/> class.
             </summary>
             <param name="id">Location Id.</param>
             <param name="organisationId">Organisation Id.</param>
+            <param name="locationTypeId">Location Type Id.</param>
             <param name="name">Location Name.</param>
             <param name="address">Address.</param>
             <param name="what3Words">What3Words Address.</param>
             <param name="latitude">Latitude.</param>
             <param name="longitude">Longitude.</param>
             <param name="organisation">Organisation.</param>
+            <param name="locationType">Location Type.</param>
         </member>
         <member name="P:Agenda.Data.Dtos.LocationDto.Id">
             <summary>
@@ -688,6 +749,11 @@
         <member name="P:Agenda.Data.Dtos.LocationDto.OrganisationId">
             <summary>
             Gets the Organisation Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Dtos.LocationDto.LocationTypeId">
+            <summary>
+            Gets the Location Type Id.
             </summary>
         </member>
         <member name="P:Agenda.Data.Dtos.LocationDto.Name">
@@ -718,6 +784,11 @@
         <member name="P:Agenda.Data.Dtos.LocationDto.Organisation">
             <summary>
             Gets the Organisation.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Dtos.LocationDto.LocationType">
+            <summary>
+            Gets the Location Type.
             </summary>
         </member>
         <member name="M:Agenda.Data.Dtos.LocationDto.ToDto(Agenda.Domain.DomainObjects.Locations.ILocation)">
@@ -771,6 +842,24 @@
             <summary>
             Gets the Location Type Description.
             </summary>
+        </member>
+        <member name="P:Agenda.Data.Dtos.LocationTypeDto.Locations">
+            <summary>
+            Gets the locations.
+            </summary>
+        </member>
+        <member name="M:Agenda.Data.Dtos.LocationTypeDto.ToDto(Agenda.Domain.DomainObjects.LocationTypes.ILocationType)">
+            <summary>
+            Converts domain object to DTO.
+            </summary>
+            <param name="locationType">Location Type.</param>
+            <returns>Location Type DTO.</returns>
+        </member>
+        <member name="M:Agenda.Data.Dtos.LocationTypeDto.ToDomain">
+            <summary>
+            Converts instance to domain object.
+            </summary>
+            <returns>Location Type.</returns>
         </member>
         <member name="T:Agenda.Data.Dtos.MeetingDto">
             <summary>

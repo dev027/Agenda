@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using Agenda.Data.Dtos;
 using Agenda.Data.Tests.TestUtilities;
+using Agenda.Domain.Constants;
 using Agenda.Domain.DomainObjects.Locations;
 using Agenda.Domain.DomainObjects.Organisations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -36,17 +37,25 @@ namespace Agenda.Data.Tests.Dtos.OrganisationTests
                 name: paramName,
                 bgColour: paramBgColour);
 
+            LocationTypeDto locationTypeDto = new LocationTypeDto(
+                id: Guid.NewGuid(),
+                code: LocationTypeCodes.RealWorld,
+                name: "Real World",
+                description: "Description");
+
             IList<LocationDto> paramLocations = new List<LocationDto>
             {
                 new LocationDto(
                     id: Guid.NewGuid(),
                     organisationId: organisationDto.Id,
+                    locationTypeId: locationTypeDto.Id,
                     name: "County Bridge Club",
                     address: "St. Oswald's Road, New Parks",
                     what3Words: "voice.crash.fleet",
                     latitude: 52.643583,
                     longitude: -1.181126,
-                    organisation: organisationDto)
+                    organisation: organisationDto,
+                    locationType: locationTypeDto)
             };
 
             organisationDto.SetPrivatePropertyValue(

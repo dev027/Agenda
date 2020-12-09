@@ -28,5 +28,10 @@ namespace Agenda.Domain.ValueObjects.Enums
         /// Meeting Maintenance
         /// </summary>
         MeetingMaintenance = 4,
+
+        /// <summary>
+        /// Location Type Maintenance
+        /// </summary>
+        LocationTypeMaintenance = 5
     }
 }

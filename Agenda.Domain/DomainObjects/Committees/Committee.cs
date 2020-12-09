@@ -26,7 +26,7 @@ namespace Agenda.Domain.DomainObjects.Committees
             string description)
         {
             this.Id = id;
-            this.Organisation = organisation ?? throw new ArgumentNullException(nameof(organisation));
+            this.Organisation = organisation;
             this.Name = !string.IsNullOrEmpty(name) ? name : throw new ArgumentNullException(nameof(name));
             this.Description = !string.IsNullOrEmpty(description) ? description : throw new ArgumentNullException(nameof(description));
         }

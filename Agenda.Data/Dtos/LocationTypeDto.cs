@@ -3,6 +3,7 @@
 // </copyright>
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Agenda.Data.Attributes;
 using Agenda.Domain.DomainObjects.LocationTypes;
@@ -12,7 +13,7 @@ namespace Agenda.Data.Dtos
     /// <summary>
     /// Location Type DTO.
     /// </summary>
-    public class LocationTypeDto
+    public class LocationTypeDto : BaseDto
     {
         #region Constructors
 
@@ -74,5 +75,50 @@ namespace Agenda.Data.Dtos
         public string Description { get; private set; } = null!;
 
         #endregion Properties
+
+        #region Child Properties
+
+        /// <summary>
+        /// Gets the locations.
+        /// </summary>
+        public IList<LocationDto> Locations { get; private set; } = null!;
+
+        #endregion Child Properties
+
+        #region Public Methods
+
+        /// <summary>
+        /// Converts domain object to DTO.
+        /// </summary>
+        /// <param name="locationType">Location Type.</param>
+        /// <returns>Location Type DTO.</returns>
+        public static LocationTypeDto ToDto(ILocationType locationType)
+        {
+            if (locationType == null)
+            {
+                throw new ArgumentNullException(nameof(locationType));
+            }
+
+            return new LocationTypeDto(
+                id: locationType.Id,
+                code: locationType.Code,
+                name: locationType.Name,
+                description: locationType.Description);
+        }
+
+        /// <summary>
+        /// Converts instance to domain object.
+        /// </summary>
+        /// <returns>Location Type.</returns>
+        public ILocationType ToDomain()
+        {
+            return new LocationType(
+                id: this.Id,
+                code: this.Code,
+                name: this.Name,
+                description: this.Description);
+        }
+
+        #endregion Public Methods
     }
 }

@@ -25,6 +25,8 @@ namespace Agenda.Data.Tests.Dtos.OrganisationTests
 
             _ = context.Organisations.Any();
             _ = context.Organisations.FirstOrDefault();
+
+            Assert.IsTrue(true);
         }
     }
 }

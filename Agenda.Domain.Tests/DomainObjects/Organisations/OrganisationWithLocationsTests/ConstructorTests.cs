@@ -4,7 +4,9 @@
 
 using System;
 using System.Collections.Generic;
+using Agenda.Domain.Constants;
 using Agenda.Domain.DomainObjects.Locations;
+using Agenda.Domain.DomainObjects.LocationTypes;
 using Agenda.Domain.DomainObjects.Organisations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -33,11 +35,18 @@ namespace Agenda.Domain.Tests.DomainObjects.Organisations.OrganisationWithLocati
                 name: paramName,
                 bgColour: paramBgColour);
 
+            ILocationType locationType = new LocationType(
+                id: Guid.NewGuid(),
+                code: LocationTypeCodes.RealWorld,
+                name: "Real World",
+                description: "An actual real word location");
+
             IList<ILocation> paramLocations = new List<ILocation>
             {
                 new Location(
                     id: Guid.NewGuid(),
                     organisation: organisation,
+                    locationType: locationType,
                     name: "County Bridge Club",
                     address: "St. Oswald's Road, New Parks",
                     what3Words: "voice.crash.fleet",
@@ -59,28 +68,6 @@ namespace Agenda.Domain.Tests.DomainObjects.Organisations.OrganisationWithLocati
             Assert.AreEqual(paramName, organisationWithLocations.Name);
             Assert.AreEqual(paramBgColour, organisationWithLocations.BgColour);
             Assert.AreSame(paramLocations, organisationWithLocations.Locations);
-        }
-
-        /// <summary>
-        /// Tests the constructor null locations throws exception.
-        /// </summary>
-        [ExpectedException(typeof(ArgumentNullException))]
-        [TestMethod]
-        public void Test_Constructor_Null_Locations_Throws_Exception()
-        {
-            // ARRANGE
-            Guid paramId = Guid.NewGuid();
-            const string paramCode = "CBC";
-            const string paramName = "County Bridge Club";
-            const string paramBgColour = "000000";
-
-            // ACT
-            _ = new OrganisationWithLocations(
-                id: paramId,
-                code: paramCode,
-                name: paramName,
-                bgColour: paramBgColour,
-                locations: null);
         }
     }
 }

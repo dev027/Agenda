@@ -25,6 +25,8 @@ namespace Agenda.Data.Tests.Dtos.LocationTests
 
             _ = context.Locations.Any();
             _ = context.Locations.FirstOrDefault();
+
+            Assert.IsTrue(true);
         }
     }
 }

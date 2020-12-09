@@ -31,7 +31,7 @@ namespace Agenda.Domain.DomainObjects.Organisations
             IList<ICommittee> committees)
             : base(id, code, name, bgColour)
         {
-            this.Committees = committees ?? throw new ArgumentNullException(nameof(committees));
+            this.Committees = committees;
         }
 
         /// <summary>

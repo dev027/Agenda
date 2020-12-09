@@ -2,7 +2,6 @@
 // Copyright (c) Do It Wright. All rights reserved.
 // </copyright>
 
-using System;
 using Agenda.Domain.DomainObjects.Locations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -54,60 +53,6 @@ namespace Agenda.Domain.Tests.DomainObjects.Locations.LocationTests
 
             // ASSERT
             Assert.AreEqual("deputy.grass.chief", what3Words);
-        }
-
-        /// <summary>
-        /// Tests the that when part1 is null it throws an exception.
-        /// </summary>
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void Test_That_When_Part1_Is_Null_Throws_Exception()
-        {
-            // ARRANGE
-            const string paramWhat3WordsPart2 = "grass";
-            const string paramWhat3WordsPart3 = "chief";
-
-            // ACT
-            _ = Location.What3WordsJoin(
-                null,
-                paramWhat3WordsPart2,
-                paramWhat3WordsPart3);
-        }
-
-        /// <summary>
-        /// Tests the that when part2 is null throws exception.
-        /// </summary>
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void Test_That_When_Part2_Is_Null_Throws_Exception()
-        {
-            // ARRANGE
-            const string paramWhat3WordsPart1 = "deputy";
-            const string paramWhat3WordsPart3 = "chief";
-
-            // ACT
-            _ = Location.What3WordsJoin(
-                paramWhat3WordsPart1,
-                null,
-                paramWhat3WordsPart3);
-        }
-
-        /// <summary>
-        /// Tests the that when part3 is null throws exception.
-        /// </summary>
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void Test_That_When_Part3_Is_Null_Throws_Exception()
-        {
-            // ARRANGE
-            const string paramWhat3WordsPart1 = "deputy";
-            const string paramWhat3WordsPart2 = "grass";
-
-            // ACT
-            _ = Location.What3WordsJoin(
-                paramWhat3WordsPart1,
-                paramWhat3WordsPart2,
-                null);
         }
     }
 }

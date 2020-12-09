@@ -46,31 +46,11 @@ namespace Agenda.Domain.Tests.DomainObjects.Committees.CommitteeTests
         }
 
         /// <summary>
-        /// Tests the constructor null organisation throws exception.
+        /// Tests the constructor empty name throws exception.
         /// </summary>
         [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
-        public void Test_Constructor_Null_Organisation_Throws_Exception()
-        {
-            // ARRANGE
-            Guid paramId = Guid.NewGuid();
-            const string paramName = "TSC";
-            const string paramDescription = "Tournament Sub-Committee";
-
-            // ACT
-            _ = new Committee(
-                id: paramId,
-                organisation: null,
-                name: paramName,
-                description: paramDescription);
-        }
-
-        /// <summary>
-        /// Tests the constructor null name throws exception.
-        /// </summary>
-        [ExpectedException(typeof(ArgumentNullException))]
-        [TestMethod]
-        public void Test_Constructor_Null_Name_Throws_Exception()
+        public void Test_Constructor_Empty_Name_Throws_Exception()
         {
             // ARRANGE
             Guid paramId = Guid.NewGuid();
@@ -85,16 +65,16 @@ namespace Agenda.Domain.Tests.DomainObjects.Committees.CommitteeTests
             _ = new Committee(
                 id: paramId,
                 organisation: paramOrganisation,
-                name: null,
+                name: string.Empty,
                 description: paramDescription);
         }
 
         /// <summary>
-        /// Tests the constructor null description throws exception.
+        /// Tests the constructor empty description throws exception.
         /// </summary>
         [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
-        public void Test_Constructor_Null_Description_Throws_Exception()
+        public void Test_Constructor_Empty_Description_Throws_Exception()
         {
             // ARRANGE
             Guid paramId = Guid.NewGuid();
@@ -110,7 +90,7 @@ namespace Agenda.Domain.Tests.DomainObjects.Committees.CommitteeTests
                 id: paramId,
                 organisation: paramOrganisation,
                 name: paramName,
-                description: null);
+                description: string.Empty);
         }
     }
 }

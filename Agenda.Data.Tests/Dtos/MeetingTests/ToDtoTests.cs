@@ -4,8 +4,10 @@
 
 using System;
 using Agenda.Data.Dtos;
+using Agenda.Domain.Constants;
 using Agenda.Domain.DomainObjects.Committees;
 using Agenda.Domain.DomainObjects.Locations;
+using Agenda.Domain.DomainObjects.LocationTypes;
 using Agenda.Domain.DomainObjects.Meetings;
 using Agenda.Domain.DomainObjects.Organisations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -30,9 +32,15 @@ namespace Agenda.Data.Tests.Dtos.MeetingTests
                 code: "CBC",
                 name: "County Bridge Club",
                 bgColour: "000000");
+            ILocationType locationType = new LocationType(
+                id: Guid.NewGuid(),
+                code: LocationTypeCodes.RealWorld,
+                name: "Real World",
+                description: "Description");
             ILocation location = new Location(
                 id: Guid.NewGuid(),
                 organisation: organisation,
+                locationType: locationType,
                 name: "Location",
                 address: "Address",
                 what3Words: "one.two.three",

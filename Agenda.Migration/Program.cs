@@ -14,6 +14,7 @@ namespace Agenda.Migration
         /// </summary>
         public static void Main(/* string[] args */)
         {
+            // This program is never run.
         }
     }
 }

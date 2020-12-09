@@ -3,9 +3,14 @@
 // </copyright>
 
 using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Linq;
+using Agenda.Domain.Constants;
+using Agenda.Domain.DomainObjects.LocationTypes;
 using Agenda.Domain.DomainObjects.Organisations;
+using Agenda.Domain.ValidationAttributes;
 
 namespace Agenda.Domain.DomainObjects.Locations
 {
@@ -13,13 +18,16 @@ namespace Agenda.Domain.DomainObjects.Locations
     /// Location.
     /// </summary>
     /// <seealso cref="ILocation" />
-    public class Location : ILocation
+    public class Location : BaseDomainModel, ILocation
     {
+        #region Constructors
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Location"/> class.
         /// </summary>
         /// <param name="id">Location Id.</param>
         /// <param name="organisation">Organisation.</param>
+        /// <param name="locationType">Location Type.</param>
         /// <param name="name">Location Name.</param>
         /// <param name="address">Address.</param>
         /// <param name="what3Words">What3Words Address.</param>
@@ -28,41 +36,67 @@ namespace Agenda.Domain.DomainObjects.Locations
         public Location(
             Guid id,
             IOrganisation organisation,
+            ILocationType locationType,
             string name,
             string address,
             string what3Words,
-            double latitude,
-            double longitude)
+            double? latitude,
+            double? longitude)
         {
             this.Id = id;
-            this.Organisation = organisation ?? throw new ArgumentNullException(nameof(organisation));
-            this.Name = name ?? throw new ArgumentNullException(nameof(name));
-            this.Address = address ?? throw new ArgumentNullException(nameof(address));
-            this.What3Words = what3Words ?? throw new ArgumentNullException(nameof(what3Words));
+            this.Organisation = organisation;
+            this.LocationType = locationType;
+            this.Name = name;
+            this.Address = address;
+            this.What3Words = what3Words;
             this.Latitude = latitude;
             this.Longitude = longitude;
+
+            Validate(this, this.AdditionalValidation);
         }
 
+        #endregion Constructors
+
+        #region Public Properties
+
         /// <inheritdoc/>
+        [ValidId]
         public Guid Id { get; }
 
         /// <inheritdoc/>
         public IOrganisation Organisation { get; }
 
+        /// <inheritdoc />
+        public ILocationType LocationType { get; }
+
         /// <inheritdoc/>
+        [Required]
+        [StringLength(
+            maximumLength: DomainMetadata.Name.MaxLength,
+            MinimumLength = DomainMetadata.Name.MinLength)]
         public string Name { get; }
 
         /// <inheritdoc/>
+        [StringLength(
+            maximumLength: DomainMetadata.Name.MaxLength,
+            MinimumLength = DomainMetadata.Name.MinLength)]
         public string Address { get; }
 
         /// <inheritdoc/>
-        public string What3Words { get; private set;  }
+        [StringLength(
+            maximumLength: DomainMetadata.What3Words.MaxLength,
+            MinimumLength = DomainMetadata.What3Words.MinLength)]
+        public string What3Words { get; private set; }
 
         /// <inheritdoc/>
-        public double Latitude { get; }
+        public double? Latitude { get; }
 
         /// <inheritdoc/>
-        public double Longitude { get; }
+        public double? Longitude { get; }
+
+        #endregion Public Properties
+
+        #region Public Methods
 
         /// <summary>
         /// Joins the three parts of a What3Words address.
@@ -106,10 +140,10 @@ namespace Agenda.Domain.DomainObjects.Locations
         /// <inheritdoc />
         public string[] What3WordsParts()
         {
-            string[] what3WordsParts = this.What3Words?.Split(
+            string[] what3WordsParts = this.What3Words.Split(
                 DomainMetadata.What3Words.Separator
                     .ToCharArray()
-                    .First()) ?? Array.Empty<string>();
+                    .First());
 
             if (what3WordsParts.Length == 3)
             {
@@ -122,12 +156,90 @@ namespace Agenda.Domain.DomainObjects.Locations
             }
 
             return what3WordsParts
-                .ToList()
+                .AsEnumerable()
                 .Append(string.Empty)
                 .Append(string.Empty)
                 .Append(string.Empty)
                 .Take(3)
                 .ToArray();
         }
+
+        private IEnumerable<ValidationResult> AdditionalValidation()
+        {
+            return this.ValidateWhat3Words()
+                .Concat(this.ValidateLatLong());
+        }
+
+        private IEnumerable<ValidationResult> ValidateWhat3Words()
+        {
+            if (this.LocationType.Code != LocationTypeCodes.RealWorld)
+            {
+                yield break;
+            }
+
+            string[] parts = this.What3WordsParts();
+
+            for (int i = 0; i < 3; i++)
+            {
+                if (parts[i].Length >= DomainMetadata.What3Words.Part.MinLength &&
+                    parts[i].Length <= DomainMetadata.What3Words.Part.MaxLength)
+                {
+                    continue;
+                }
+
+                yield return new ValidationResult(
+                    $"{nameof(this.What3Words)} part {i} " +
+                    "must be between " +
+                    DomainMetadata.What3Words.Part.MinLength +
+                    " and " +
+                    DomainMetadata.What3Words.Part.MaxLength);
+            }
+        }
+
+        private IEnumerable<ValidationResult> ValidateLatLong()
+        {
+            if (this.LocationType.Code != LocationTypeCodes.RealWorld)
+            {
+                yield break;
+            }
+
+            if (this.Latitude == null)
+            {
+                yield return new ValidationResult($"{nameof(this.Latitude)} is required");
+            }
+            else
+            {
+                if (this.Latitude <= DomainMetadata.Latitude.MinValue &&
+                    this.Latitude >= DomainMetadata.Latitude.MaxValue)
+                {
+                    yield return new ValidationResult(
+                        $"{nameof(this.Latitude)} " +
+                        "must be between " +
+                        DomainMetadata.Latitude.MinValue +
+                        " and " +
+                        DomainMetadata.Latitude.MaxValue);
+                }
+            }
+
+            if (this.Longitude == null)
+            {
+                yield return new ValidationResult($"{nameof(this.Longitude)} is required");
+            }
+            else
+            {
+                if (this.Longitude <= DomainMetadata.Longitude.MinValue &&
+                    this.Longitude >= DomainMetadata.Longitude.MaxValue)
+                {
+                    yield return new ValidationResult(
+                        $"{nameof(this.Longitude)} " +
+                        "must be between " +
+                        DomainMetadata.Longitude.MinValue +
+                        " and " +
+                        DomainMetadata.Longitude.MaxValue);
+                }
+            }
+        }
+
+        #endregion Public Methods
     }
 }

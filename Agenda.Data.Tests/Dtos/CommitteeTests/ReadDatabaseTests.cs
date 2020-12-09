@@ -25,6 +25,8 @@ namespace Agenda.Data.Tests.Dtos.CommitteeTests
 
             _ = context.Committees.Any();
             _ = context.Committees.FirstOrDefault();
+
+            Assert.IsTrue(true);
         }
     }
 }

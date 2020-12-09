@@ -3,10 +3,9 @@
 // </copyright>
 
 using System;
-using System.Linq;
+using Agenda.Data.DbContexts;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Agenda.Migration.DbContexts
 {
@@ -58,11 +57,8 @@ namespace Agenda.Migration.DbContexts
 
             base.OnModelCreating(builder);
 
-            foreach (IMutableForeignKey foreignKey in builder.Model.GetEntityTypes()
-                .SelectMany(e => e.GetForeignKeys()))
-            {
-                foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
-            }
+            DataContext.InvokeOnModelCreatingForAllDtos(builder);
+            DataContext.DisableCascadeDelete(builder);
         }
     }
 }

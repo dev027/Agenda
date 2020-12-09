@@ -69,7 +69,7 @@ namespace Agenda.Service
         {
             this.logger.LogTrace(
                 "ENTRY {Method}(who, locationId) {@who} {locationId}",
-                nameof(this.GetCommitteeByIdAsync),
+                nameof(this.GetLocationByIdAsync),
                 who,
                 locationId);
 

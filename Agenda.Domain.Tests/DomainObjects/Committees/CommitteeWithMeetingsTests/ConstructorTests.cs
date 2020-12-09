@@ -4,8 +4,10 @@
 
 using System;
 using System.Collections.Generic;
+using Agenda.Domain.Constants;
 using Agenda.Domain.DomainObjects.Committees;
 using Agenda.Domain.DomainObjects.Locations;
+using Agenda.Domain.DomainObjects.LocationTypes;
 using Agenda.Domain.DomainObjects.Meetings;
 using Agenda.Domain.DomainObjects.Organisations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -40,9 +42,16 @@ namespace Agenda.Domain.Tests.DomainObjects.Committees.CommitteeWithMeetingsTest
                 name: paramName,
                 description: paramDescription);
 
+            ILocationType locationType = new LocationType(
+                id: Guid.NewGuid(),
+                code: LocationTypeCodes.RealWorld,
+                name: "Real World",
+                description: "An actual real word location");
+
             ILocation location = new Location(
                 id: Guid.NewGuid(),
                 organisation: paramOrganisation,
+                locationType: locationType,
                 name: "Location",
                 address: "Address",
                 what3Words: "one.two.three",
@@ -72,32 +81,6 @@ namespace Agenda.Domain.Tests.DomainObjects.Committees.CommitteeWithMeetingsTest
             Assert.AreEqual(paramName, committeeWithMeetings.Name);
             Assert.AreEqual(paramDescription, committeeWithMeetings.Description);
             Assert.AreSame(paramMeetings, committeeWithMeetings.Meetings);
-        }
-
-        /// <summary>
-        /// Tests the constructor meetings throws exception.
-        /// </summary>
-        [ExpectedException(typeof(ArgumentNullException))]
-        [TestMethod]
-        public void Test_Constructor_Null_Organisation_Throws_Exception()
-        {
-            // ARRANGE
-            Guid paramId = Guid.NewGuid();
-            IOrganisation paramOrganisation = new Organisation(
-                id: Guid.NewGuid(),
-                code: "CBC",
-                name: "County Bridge Club",
-                bgColour: "000000");
-            const string paramName = "TSC";
-            const string paramDescription = "Tournament Sub-Committee";
-
-            // ACT
-            _ = new CommitteeWithMeetings(
-                id: paramId,
-                organisation: paramOrganisation,
-                name: paramName,
-                description: paramDescription,
-                meetings: null);
         }
     }
 }

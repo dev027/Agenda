@@ -3,7 +3,9 @@
 // </copyright>
 
 using System;
+using Agenda.Domain.Constants;
 using Agenda.Domain.DomainObjects.Locations;
+using Agenda.Domain.DomainObjects.LocationTypes;
 using Agenda.Domain.DomainObjects.Organisations;
 using Agenda.Domain.Tests.TestUtilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -44,6 +46,11 @@ namespace Agenda.Domain.Tests.DomainObjects.Locations.LocationTests
                     code: "Code",
                     name: "Name",
                     bgColour: "000000"),
+                locationType: new LocationType(
+                    id: Guid.NewGuid(),
+                    code: LocationTypeCodes.RealWorld,
+                    name: "Real World",
+                    description: "An actual real word location"),
                 name: "Location",
                 address: "Address",
                 what3Words: "one.two.three",

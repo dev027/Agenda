@@ -5,6 +5,7 @@
 using System;
 using System.Threading.Tasks;
 using Agenda.Domain.DomainObjects.Locations;
+using Agenda.Domain.DomainObjects.LocationTypes;
 using Agenda.Domain.DomainObjects.Organisations;
 using Agenda.Domain.ValueObjects.Enums;
 using Agenda.Service;
@@ -98,46 +99,51 @@ namespace Agenda.Web.Controllers
         /// </summary>
         /// <param name="model">Add view model.</param>
         /// <returns>View.</returns>
-        public async Task<IActionResult> Add(AddViewModel model)
+        public Task<IActionResult> Add(AddViewModel model)
         {
-            IWho who = this.Who(nameof(this.Add));
-
-            this.logger.LogDebug(
-                "ENTRY {ActionName}(who, model) {@who} {@model}",
-                who.ActionName,
-                who,
-                model);
-
             if (model == null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
 
-            if (model.FormState == FormState.Initial)
+            return Internal();
+
+            async Task<IActionResult> Internal()
             {
-                this.ModelState.Clear();
-            }
-            else
-            {
-                if (this.ModelState.IsValid)
+                IWho who = this.Who(nameof(this.Add));
+
+                this.logger.LogDebug(
+                    "ENTRY {ActionName}(who, model) {@who} {@model}",
+                    who.ActionName,
+                    who,
+                    model);
+
+                if (model.FormState == FormState.Initial)
                 {
-                    this.logger.LogDebug(
-                        "{@who} inserting model {@Model}",
-                        who,
-                        model);
-
-                    await this.InsertRecordAsync(who, model).ConfigureAwait(false);
-
-                    return this.ExitRedirectToAction(
-                        this.logger,
-                        this.RedirectToAction(
-                            "Index",
-                            "LocationOverview",
-                            new { organisationId = model.OrganisationId }));
+                    this.ModelState.Clear();
                 }
-            }
+                else
+                {
+                    if (this.ModelState.IsValid)
+                    {
+                        this.logger.LogDebug(
+                            "{@who} inserting model {@Model}",
+                            who,
+                            model);
 
-            return this.ExitView(this.logger, this.View(model));
+                        await this.InsertRecordAsync(who, model).ConfigureAwait(false);
+
+                        return this.ExitRedirectToAction(
+                            this.logger,
+                            this.RedirectToAction(
+                                "Index",
+                                "LocationOverview",
+                                new { organisationId = model.OrganisationId }));
+                    }
+                }
+
+                return this.ExitView(this.logger, this.View(model));
+            }
         }
 
         /// <summary>
@@ -181,34 +187,39 @@ namespace Agenda.Web.Controllers
         /// <param name="model">Edit view model.</param>
         /// <returns>View.</returns>
         [HttpPost]
-        public async Task<IActionResult> Edit(EditViewModel model)
+        public Task<IActionResult> Edit(EditViewModel model)
         {
-            IWho who = this.Who(nameof(this.Edit));
-
-            this.logger.LogDebug(
-                "ENTRY {Action}(who, model) {@who} {@model}",
-                who.ActionName,
-                who,
-                model);
-
             if (model == null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
 
-            if (this.ModelState.IsValid)
+            return Internal();
+
+            async Task<IActionResult> Internal()
             {
-                await this.UpdateRecordAsync(who, model).ConfigureAwait(false);
+                IWho who = this.Who(nameof(this.Edit));
 
-                return this.ExitRedirectToAction(
-                    this.logger,
-                    this.RedirectToAction(
-                        "Index",
-                        "Location",
-                        new { locationId = model.LocationId }));
+                this.logger.LogDebug(
+                    "ENTRY {Action}(who, model) {@who} {@model}",
+                    who.ActionName,
+                    who,
+                    model);
+
+                if (this.ModelState.IsValid)
+                {
+                    await this.UpdateRecordAsync(who, model).ConfigureAwait(false);
+
+                    return this.ExitRedirectToAction(
+                        this.logger,
+                        this.RedirectToAction(
+                            "Index",
+                            "Location",
+                            new { locationId = model.LocationId }));
+                }
+
+                return this.View(model);
             }
-
-            return this.View(model);
         }
 
         /// <summary>
@@ -231,8 +242,14 @@ namespace Agenda.Web.Controllers
                     who,
                     model.OrganisationId)
                 .ConfigureAwait(false);
+            ILocationType locationType = await this.service.GetLocationTypeByIdAsync(
+                    who,
+                    Guid.NewGuid() /*model.LocationTypeId*/)
+                .ConfigureAwait(false);
 
-            ILocation location = model.ToDomain(organisation);
+            ILocation location = model.ToDomain(
+                organisation,
+                locationType);
 
             await this.service
                 .CreateLocationAsync(who, AuditEvent.LocationMaintenance, location)
@@ -266,7 +283,14 @@ namespace Agenda.Web.Controllers
                     locationId: model.LocationId)
                 .ConfigureAwait(false);
 
-            ILocation location = model.ToDomain(originalLocation.Organisation);
+            ILocationType locationType = await this.service
+                .GetLocationTypeByIdAsync(
+                    who: who,
+                    locationTypeId: Guid.NewGuid() /*model.LocationTypeId*/);
+
+            ILocation location = model.ToDomain(
+                organisation: originalLocation.Organisation,
+                locationType: locationType);
 
             await this.service
                 .UpdateLocationAsync(

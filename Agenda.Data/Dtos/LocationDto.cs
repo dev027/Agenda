@@ -3,6 +3,7 @@
 // </copyright>
 
 #nullable enable
+
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -35,6 +36,7 @@ namespace Agenda.Data.Dtos
         /// </summary>
         /// <param name="id">Location Id.</param>
         /// <param name="organisationId">Organisation Id.</param>
+        /// <param name="locationTypeId">Location Type Id.</param>
         /// <param name="name">Location Name.</param>
         /// <param name="address">Address.</param>
         /// <param name="what3Words">What3Words Address.</param>
@@ -43,14 +45,16 @@ namespace Agenda.Data.Dtos
         public LocationDto(
             Guid id,
             Guid organisationId,
+            Guid locationTypeId,
             string name,
             string address,
             string what3Words,
-            double latitude,
-            double longitude)
+            double? latitude,
+            double? longitude)
         {
             this.Id = id;
             this.OrganisationId = organisationId;
+            this.LocationTypeId = locationTypeId;
             this.Name = name;
             this.Address = address;
             this.What3Words = what3Words;
@@ -63,30 +67,36 @@ namespace Agenda.Data.Dtos
         /// </summary>
         /// <param name="id">Location Id.</param>
         /// <param name="organisationId">Organisation Id.</param>
+        /// <param name="locationTypeId">Location Type Id.</param>
         /// <param name="name">Location Name.</param>
         /// <param name="address">Address.</param>
         /// <param name="what3Words">What3Words Address.</param>
         /// <param name="latitude">Latitude.</param>
         /// <param name="longitude">Longitude.</param>
         /// <param name="organisation">Organisation.</param>
+        /// <param name="locationType">Location Type.</param>
         public LocationDto(
             Guid id,
             Guid organisationId,
+            Guid locationTypeId,
             string name,
             string address,
             string what3Words,
             double latitude,
             double longitude,
-            OrganisationDto organisation)
+            OrganisationDto organisation,
+            LocationTypeDto locationType)
         {
             this.Id = id;
             this.OrganisationId = organisationId;
+            this.LocationTypeId = locationTypeId;
             this.Name = name;
             this.Address = address;
             this.What3Words = what3Words;
             this.Latitude = latitude;
             this.Longitude = longitude;
             this.Organisation = organisation;
+            this.LocationType = locationType;
         }
 
         #endregion Constructors
@@ -103,6 +113,11 @@ namespace Agenda.Data.Dtos
         /// Gets the Organisation Id.
         /// </summary>
         public Guid OrganisationId { get; private set; }
+
+        /// <summary>
+        /// Gets the Location Type Id.
+        /// </summary>
+        public Guid LocationTypeId { get; private set; }
 
         /// <summary>
         /// Gets the Location Name.
@@ -128,16 +143,14 @@ namespace Agenda.Data.Dtos
         /// <summary>
         /// Gets the Latitude.
         /// </summary>
-        [Required]
         [Range(DomainMetadata.Latitude.MinValue, DomainMetadata.Latitude.MaxValue)]
-        public double Latitude { get; private set; }
+        public double? Latitude { get; private set; }
 
         /// <summary>
         /// Gets the Longitude.
         /// </summary>
-        [Required]
         [Range(DomainMetadata.Longitude.MinValue, DomainMetadata.Longitude.MaxValue)]
-        public double Longitude { get; private set; }
+        public double? Longitude { get; private set; }
 
         #endregion Properties
 
@@ -149,9 +162,14 @@ namespace Agenda.Data.Dtos
         [ForeignKey(nameof(OrganisationId))]
         public OrganisationDto? Organisation { get; private set; } = null!;
 
+        /// <summary>
+        /// Gets the Location Type.
+        /// </summary>
+        public LocationTypeDto? LocationType { get; private set; } = null!;
+
         #endregion Parent Properties
 
-        #region Public Properties
+        #region Public Methods
 
         /// <summary>
         /// Converts domain object to DTO.
@@ -168,6 +186,7 @@ namespace Agenda.Data.Dtos
             return new LocationDto(
                 location.Id,
                 location.Organisation.Id,
+                location.LocationType.Id,
                 location.Name,
                 location.Address,
                 location.What3Words,
@@ -191,9 +210,20 @@ namespace Agenda.Data.Dtos
                         nameof(this.Organisation)));
             }
 
+            if (this.LocationType == null)
+            {
+                throw new InvalidOperationException(
+                    string.Format(
+                        CultureInfo.InvariantCulture,
+                        ExceptionResource.CannotConvertTo___If___IsNull,
+                        nameof(ILocation),
+                        nameof(this.LocationType)));
+            }
+
             return new Location(
                 id: this.Id,
                 organisation: this.Organisation.ToDomain(),
+                locationType: this.LocationType.ToDomain(),
                 name: this.Name,
                 address: this.Address,
                 what3Words: this.What3Words,
@@ -201,6 +231,6 @@ namespace Agenda.Data.Dtos
                 longitude: this.Longitude);
         }
 
-        #endregion Public Properties
+        #endregion Public Methods
     }
 }

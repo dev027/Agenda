@@ -57,27 +57,5 @@ namespace Agenda.Domain.Tests.DomainObjects.Organisations.OrganisationWithCommit
             Assert.AreEqual(paramBgColour, organisationWithCommittees.BgColour);
             Assert.AreSame(paramCommittees, organisationWithCommittees.Committees);
         }
-
-        /// <summary>
-        /// Tests the constructor null committees throws exception.
-        /// </summary>
-        [ExpectedException(typeof(ArgumentNullException))]
-        [TestMethod]
-        public void Test_Constructor_Null_Committees_Throws_Exception()
-        {
-            // ARRANGE
-            Guid paramId = Guid.NewGuid();
-            const string paramCode = "CBC";
-            const string paramName = "County Bridge Club";
-            const string paramBgColour = "000000";
-
-            // ACT
-            _ = new OrganisationWithCommittees(
-                id: paramId,
-                code: paramCode,
-                name: paramName,
-                bgColour: paramBgColour,
-                committees: null);
-        }
     }
 }

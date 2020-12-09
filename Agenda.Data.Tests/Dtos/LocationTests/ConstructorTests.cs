@@ -42,6 +42,7 @@ namespace Agenda.Data.Tests.Dtos.LocationTests
             // ARRANGE
             Guid paramId = Guid.NewGuid();
             Guid paramOrganisationId = Guid.NewGuid();
+            Guid paramLocationTypeId = Guid.NewGuid();
             const string paramName = "County Bridge Club";
             const string paramAddress = "St. Oswald's Road, New Parks";
             const string paramWhat3Words = "voice.crash.fleet";
@@ -52,6 +53,7 @@ namespace Agenda.Data.Tests.Dtos.LocationTests
             LocationDto dto = new LocationDto(
                 id: paramId,
                 organisationId: paramOrganisationId,
+                locationTypeId: paramLocationTypeId,
                 name: paramName,
                 address: paramAddress,
                 what3Words: paramWhat3Words,

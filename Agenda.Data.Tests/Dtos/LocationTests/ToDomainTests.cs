@@ -4,6 +4,7 @@
 
 using System;
 using Agenda.Data.Dtos;
+using Agenda.Domain.Constants;
 using Agenda.Domain.DomainObjects.Locations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -27,15 +28,22 @@ namespace Agenda.Data.Tests.Dtos.LocationTests
                 code: "CBC",
                 name: "County Bridge Club",
                 bgColour: "000000");
+            LocationTypeDto locationTypeDto = new LocationTypeDto(
+                id: Guid.NewGuid(),
+                code: LocationTypeCodes.RealWorld,
+                name: "Real World",
+                description: "Description");
             LocationDto locationDto = new LocationDto(
                 id: Guid.NewGuid(),
                 organisationId: organisationDto.Id,
+                locationTypeId: locationTypeDto.Id,
                 name: "County Bridge Club",
                 address: "St. Oswald's Road, New Parks",
                 what3Words: "voice.crash.fleet",
                 latitude: 52.643583,
                 longitude: -1.181126,
-                organisation: organisationDto);
+                organisation: organisationDto,
+                locationType: locationTypeDto);
 
             // ACT
             ILocation location = locationDto.ToDomain();
@@ -60,15 +68,23 @@ namespace Agenda.Data.Tests.Dtos.LocationTests
         public void Test_WithNull_Organisation_Throws_Exception()
         {
             // ARRANGE
+            LocationTypeDto locationTypeDto = new LocationTypeDto(
+                id: Guid.NewGuid(),
+                code: LocationTypeCodes.RealWorld,
+                name: "Real World",
+                description: "Description");
+
             LocationDto locationDto = new LocationDto(
                 id: Guid.NewGuid(),
                 organisationId: Guid.NewGuid(),
+                locationTypeId: locationTypeDto.Id,
                 name: "County Bridge Club",
                 address: "St. Oswald's Road, New Parks",
                 what3Words: "voice.crash.fleet",
                 latitude: 52.643583,
                 longitude: -1.181126,
-                organisation: null!);
+                organisation: null!,
+                locationType: locationTypeDto);
 
             // ACT
             _ = locationDto.ToDomain();

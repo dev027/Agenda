@@ -4,6 +4,21 @@
         <name>Agenda.Domain</name>
     </assembly>
     <members>
+        <member name="T:Agenda.Domain.Constants.LocationTypeCodes">
+            <summary>
+            Location Type Codes.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.Constants.LocationTypeCodes.RealWorld">
+            <summary>
+            Physical.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.Constants.LocationTypeCodes.Zoom">
+            <summary>
+            Zoom.
+            </summary>
+        </member>
         <member name="T:Agenda.Domain.DomainObjects.AuditDetails.AuditDetail">
             <summary>
             Audit Detail.
@@ -265,6 +280,24 @@
             Gets the Audit Details.
             </summary>
         </member>
+        <member name="T:Agenda.Domain.DomainObjects.BaseDomainModel">
+            <summary>
+            Base model for all models in the Domain project.
+            </summary>
+        </member>
+        <member name="T:Agenda.Domain.DomainObjects.BaseDomainModel.AdditionalValidationDelegate">
+            <summary>
+            Delegate for additional validation.
+            </summary>
+            <returns>List of validation results.</returns>
+        </member>
+        <member name="M:Agenda.Domain.DomainObjects.BaseDomainModel.Validate(Agenda.Domain.DomainObjects.BaseDomainModel,Agenda.Domain.DomainObjects.BaseDomainModel.AdditionalValidationDelegate)">
+            <summary>
+            Validates the specified model.
+            </summary>
+            <param name="model">The model.</param>
+            <param name="additionalValidation">Additional Validation method.</param>
+        </member>
         <member name="T:Agenda.Domain.DomainObjects.Committees.Committee">
             <summary>
             Group. Typically a committee, sub-committee or working party.
@@ -506,6 +539,11 @@
             Gets the Organisation.
             </summary>
         </member>
+        <member name="P:Agenda.Domain.DomainObjects.Locations.ILocation.LocationType">
+            <summary>
+            Gets the Location Type.
+            </summary>
+        </member>
         <member name="P:Agenda.Domain.DomainObjects.Locations.ILocation.Name">
             <summary>
             Gets the Location Name.
@@ -545,12 +583,13 @@
             </summary>
             <seealso cref="T:Agenda.Domain.DomainObjects.Locations.ILocation" />
         </member>
-        <member name="M:Agenda.Domain.DomainObjects.Locations.Location.#ctor(System.Guid,Agenda.Domain.DomainObjects.Organisations.IOrganisation,System.String,System.String,System.String,System.Double,System.Double)">
+        <member name="M:Agenda.Domain.DomainObjects.Locations.Location.#ctor(System.Guid,Agenda.Domain.DomainObjects.Organisations.IOrganisation,Agenda.Domain.DomainObjects.LocationTypes.ILocationType,System.String,System.String,System.String,System.Nullable{System.Double},System.Nullable{System.Double})">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Domain.DomainObjects.Locations.Location"/> class.
             </summary>
             <param name="id">Location Id.</param>
             <param name="organisation">Organisation.</param>
+            <param name="locationType">Location Type.</param>
             <param name="name">Location Name.</param>
             <param name="address">Address.</param>
             <param name="what3Words">What3Words Address.</param>
@@ -562,6 +601,9 @@
         </member>
         <member name="P:Agenda.Domain.DomainObjects.Locations.Location.Organisation">
             <inheritdoc/>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.Locations.Location.LocationType">
+            <inheritdoc />
         </member>
         <member name="P:Agenda.Domain.DomainObjects.Locations.Location.Name">
             <inheritdoc/>
@@ -661,6 +703,41 @@
             </summary>
         </member>
         <member name="P:Agenda.Domain.DomainObjects.LocationTypes.ILocationType.Description">
+            <summary>
+            Gets the Location Type Description.
+            </summary>
+        </member>
+        <member name="T:Agenda.Domain.DomainObjects.LocationTypes.LocationType">
+            <summary>
+            Location Type.
+            </summary>
+            <seealso cref="T:Agenda.Domain.DomainObjects.LocationTypes.ILocationType" />
+        </member>
+        <member name="M:Agenda.Domain.DomainObjects.LocationTypes.LocationType.#ctor(System.Guid,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Domain.DomainObjects.LocationTypes.LocationType"/> class.
+            </summary>
+            <param name="id">Location Type Id.</param>
+            <param name="code">Location Type Code.</param>
+            <param name="name">Location Type Name.</param>
+            <param name="description">Location Type Description.</param>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.LocationTypes.LocationType.Id">
+            <summary>
+            Gets the Location Type Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.LocationTypes.LocationType.Code">
+            <summary>
+            Gets the Location Type Code.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.LocationTypes.LocationType.Name">
+            <summary>
+            Gets the Location Type Name.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.LocationTypes.LocationType.Description">
             <summary>
             Gets the Location Type Description.
             </summary>
@@ -879,6 +956,42 @@
             Gets the Committees.
             </summary>
         </member>
+        <member name="T:Agenda.Domain.Exceptions.ValidationResultException">
+            <summary>
+            ValidationException.
+            </summary>
+        </member>
+        <member name="M:Agenda.Domain.Exceptions.ValidationResultException.#ctor(System.ComponentModel.DataAnnotations.ValidationResult)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Domain.Exceptions.ValidationResultException"/> class.
+            </summary>
+            <param name="result">Validation result.</param>
+        </member>
+        <member name="M:Agenda.Domain.Exceptions.ValidationResultException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Domain.Exceptions.ValidationResultException"/> class.
+            </summary>
+        </member>
+        <member name="M:Agenda.Domain.Exceptions.ValidationResultException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Domain.Exceptions.ValidationResultException"/> class.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:Agenda.Domain.Exceptions.ValidationResultException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Domain.Exceptions.ValidationResultException"/> class.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.</param>
+        </member>
+        <member name="M:Agenda.Domain.Exceptions.ValidationResultException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Domain.Exceptions.ValidationResultException"/> class.
+            </summary>
+            <param name="info">Serialization Info.</param>
+            <param name="context">Streaming Context.</param>
+        </member>
         <member name="T:Agenda.Domain.Resources.ExceptionResource">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
@@ -905,6 +1018,18 @@
               Looks up a localized string similar to Cannot have Committees without Organisations..
             </summary>
         </member>
+        <member name="T:Agenda.Domain.ValidationAttributes.ValidIdAttribute">
+            <summary>
+            Validate Id.
+            </summary>
+            <seealso cref="T:System.ComponentModel.DataAnnotations.ValidationAttribute" />
+        </member>
+        <member name="M:Agenda.Domain.ValidationAttributes.ValidIdAttribute.IsValid(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:Agenda.Domain.ValidationAttributes.ValidIdAttribute.FormatErrorMessage(System.String)">
+            <inheritdoc/>
+        </member>
         <member name="T:Agenda.Domain.ValueObjects.Enums.AuditEvent">
             <summary>
             Audit Events.
@@ -928,6 +1053,11 @@
         <member name="F:Agenda.Domain.ValueObjects.Enums.AuditEvent.MeetingMaintenance">
             <summary>
             Meeting Maintenance
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.ValueObjects.Enums.AuditEvent.LocationTypeMaintenance">
+            <summary>
+            Location Type Maintenance
             </summary>
         </member>
         <member name="T:Agenda.Domain.ValueObjects.Enums.DatabaseAction">

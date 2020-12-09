@@ -3,6 +3,7 @@
 // </copyright>
 
 using System;
+using Agenda.Domain.DomainObjects.LocationTypes;
 using Agenda.Domain.DomainObjects.Organisations;
 
 namespace Agenda.Domain.DomainObjects.Locations
@@ -23,6 +24,11 @@ namespace Agenda.Domain.DomainObjects.Locations
         IOrganisation Organisation { get; }
 
         /// <summary>
+        /// Gets the Location Type.
+        /// </summary>
+        ILocationType LocationType { get; }
+
+        /// <summary>
         /// Gets the Location Name.
         /// </summary>
         string Name { get; }
@@ -40,12 +46,12 @@ namespace Agenda.Domain.DomainObjects.Locations
         /// <summary>
         /// Gets the Latitude.
         /// </summary>
-        double Latitude { get; }
+        double? Latitude { get; }
 
         /// <summary>
         /// Gets the Longitude.
         /// </summary>
-        double Longitude { get; }
+        double? Longitude { get; }
 
         /// <summary>
         /// Split the What3Words address into parts.

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using Agenda.Data.Dtos;
 using Agenda.Data.Tests.TestUtilities;
+using Agenda.Domain.Constants;
 using Agenda.Domain.DomainObjects.Committees;
 using Agenda.Domain.DomainObjects.Meetings;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -42,15 +43,23 @@ namespace Agenda.Data.Tests.Dtos.CommitteeTests
                 description: paramDescription,
                 organisation: organisationDto);
 
+            LocationTypeDto locationTypeDto = new LocationTypeDto(
+                id: Guid.NewGuid(),
+                code: LocationTypeCodes.RealWorld,
+                name: "Real World",
+                description: "Description");
+
             LocationDto locationDto = new LocationDto(
                 id: Guid.NewGuid(),
                 organisationId: organisationDto.Id,
+                locationTypeId: locationTypeDto.Id,
                 name: "Location",
                 address: "Address",
                 what3Words: "one.two.three",
                 latitude: 50,
                 longitude: -1,
-                organisation: organisationDto);
+                organisation: organisationDto,
+                locationType: locationTypeDto);
 
             IList<MeetingDto> paramMeetings = new List<MeetingDto>
             {
@@ -144,15 +153,23 @@ namespace Agenda.Data.Tests.Dtos.CommitteeTests
                 name: paramName,
                 description: paramDescription);
 
+            LocationTypeDto locationTypeDto = new LocationTypeDto(
+                id: Guid.NewGuid(),
+                code: LocationTypeCodes.RealWorld,
+                name: "Real World",
+                description: "Description");
+
             LocationDto locationDto = new LocationDto(
                 id: Guid.NewGuid(),
                 organisationId: organisationDto.Id,
+                locationTypeId: locationTypeDto.Id,
                 name: "Location",
                 address: "Address",
                 what3Words: "one.two.three",
                 latitude: 50,
                 longitude: -1,
-                organisation: organisationDto);
+                organisation: organisationDto,
+                locationType: locationTypeDto);
 
             IList<MeetingDto> paramMeetings = new List<MeetingDto>
             {

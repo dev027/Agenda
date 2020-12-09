@@ -3,7 +3,9 @@
 // </copyright>
 
 using System;
+using Agenda.Domain.Constants;
 using Agenda.Domain.DomainObjects.Locations;
+using Agenda.Domain.DomainObjects.LocationTypes;
 using Agenda.Domain.DomainObjects.Organisations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -28,6 +30,12 @@ namespace Agenda.Domain.Tests.DomainObjects.Locations.LocationTests
                 code: "CBC",
                 name: "County Bridge Club",
                 bgColour: "000000");
+            ILocationType paramLocationType = new LocationType(
+                id: Guid.NewGuid(),
+                code: LocationTypeCodes.RealWorld,
+                name: "Real World",
+                description: "An actual real word location");
+
             const string paramName = "County Bridge Club";
             const string paramAddress = "St. Oswald's Road, New Parks";
             const string paramWhat3Words = "voice.crash.fleet";
@@ -38,6 +46,7 @@ namespace Agenda.Domain.Tests.DomainObjects.Locations.LocationTests
             ILocation location = new Location(
                 id: paramId,
                 organisation: paramOrganisation,
+                locationType: paramLocationType,
                 name: paramName,
                 address: paramAddress,
                 what3Words: paramWhat3Words,
@@ -55,37 +64,11 @@ namespace Agenda.Domain.Tests.DomainObjects.Locations.LocationTests
         }
 
         /// <summary>
-        /// Tests the constructor null organisation throws exception.
+        /// Tests the constructor empty What3Words address throws exception.
         /// </summary>
         [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
-        public void Test_Constructor_Null_Organisation_Throws_Exception()
-        {
-            // ARRANGE
-            Guid paramId = Guid.NewGuid();
-            const string paramName = "County Bridge Club";
-            const string paramAddress = "St. Oswald's Road, New Parks";
-            const string paramWhat3Words = "voice.crash.fleet";
-            const double paramLatitude = 52.643583;
-            const double paramLongitude = -1.181126;
-
-            // ACT
-            _ = new Location(
-                id: paramId,
-                organisation: null,
-                name: paramName,
-                address: paramAddress,
-                what3Words: paramWhat3Words,
-                latitude: paramLatitude,
-                longitude: paramLongitude);
-        }
-
-        /// <summary>
-        /// Tests the constructor null name throws exception.
-        /// </summary>
-        [ExpectedException(typeof(ArgumentNullException))]
-        [TestMethod]
-        public void Test_Constructor_Null_Name_Throws_Exception()
+        public void Test_Constructor_Empty_What3Words_Address_Throws_Exception()
         {
             // ARRANGE
             Guid paramId = Guid.NewGuid();
@@ -94,66 +77,11 @@ namespace Agenda.Domain.Tests.DomainObjects.Locations.LocationTests
                 code: "CBC",
                 name: "County Bridge Club",
                 bgColour: "000000");
-            const string paramAddress = "St. Oswald's Road, New Parks";
-            const string paramWhat3Words = "voice.crash.fleet";
-            const double paramLatitude = 52.643583;
-            const double paramLongitude = -1.181126;
-
-            // ACT
-            _ = new Location(
-                id: paramId,
-                organisation: paramOrganisation,
-                name: null,
-                address: paramAddress,
-                what3Words: paramWhat3Words,
-                latitude: paramLatitude,
-                longitude: paramLongitude);
-        }
-
-        /// <summary>
-        /// Tests the constructor null address throws exception.
-        /// </summary>
-        [ExpectedException(typeof(ArgumentNullException))]
-        [TestMethod]
-        public void Test_Constructor_Null_Address_Throws_Exception()
-        {
-            // ARRANGE
-            Guid paramId = Guid.NewGuid();
-            IOrganisation paramOrganisation = new Organisation(
+            ILocationType paramLocationType = new LocationType(
                 id: Guid.NewGuid(),
-                code: "CBC",
-                name: "County Bridge Club",
-                bgColour: "000000");
-            const string paramName = "County Bridge Club";
-            const string paramWhat3Words = "voice.crash.fleet";
-            const double paramLatitude = 52.643583;
-            const double paramLongitude = -1.181126;
-
-            // ACT
-            _ = new Location(
-                id: paramId,
-                organisation: paramOrganisation,
-                name: paramName,
-                address: null,
-                what3Words: paramWhat3Words,
-                latitude: paramLatitude,
-                longitude: paramLongitude);
-        }
-
-        /// <summary>
-        /// Tests the constructor null What3Words address throws exception.
-        /// </summary>
-        [ExpectedException(typeof(ArgumentNullException))]
-        [TestMethod]
-        public void Test_Constructor_Null_What3Words_Address_Throws_Exception()
-        {
-            // ARRANGE
-            Guid paramId = Guid.NewGuid();
-            IOrganisation paramOrganisation = new Organisation(
-                id: Guid.NewGuid(),
-                code: "CBC",
-                name: "County Bridge Club",
-                bgColour: "000000");
+                code: LocationTypeCodes.RealWorld,
+                name: "Real World",
+                description: "An actual real word location");
             const string paramName = "County Bridge Club";
             const string paramAddress = "St. Oswald's Road, New Parks";
             const double paramLatitude = 52.643583;
@@ -163,9 +91,10 @@ namespace Agenda.Domain.Tests.DomainObjects.Locations.LocationTests
             _ = new Location(
                 id: paramId,
                 organisation: paramOrganisation,
+                locationType: paramLocationType,
                 name: paramName,
                 address: paramAddress,
-                what3Words: null,
+                what3Words: string.Empty,
                 latitude: paramLatitude,
                 longitude: paramLongitude);
         }

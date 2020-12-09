@@ -38,12 +38,12 @@ namespace Agenda.Domain.DomainObjects.AuditDetails
         /// <summary>
         /// Gets the Old Value.
         /// </summary>
-        string OldValue { get; }
+        string? OldValue { get; }
 
         /// <summary>
         /// Gets the New Value.
         /// </summary>
-        string NewValue { get; }
+        string? NewValue { get; }
 
         /// <summary>
         /// Gets the Database Action.

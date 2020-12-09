@@ -41,11 +41,11 @@ namespace Agenda.Domain.Tests.DomainObjects.Organisations.OrganisationTests
         }
 
         /// <summary>
-        /// Tests the constructor null code throws exception.
+        /// Tests the constructor empty code throws exception.
         /// </summary>
         [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
-        public void Test_Constructor_Null_Code_Throws_Exception()
+        public void Test_Constructor_Empty_Code_Throws_Exception()
         {
             // ARRANGE
             Guid paramId = Guid.NewGuid();
@@ -55,17 +55,17 @@ namespace Agenda.Domain.Tests.DomainObjects.Organisations.OrganisationTests
             // ACT
             _ = new Organisation(
                 id: paramId,
-                code: null,
+                code: string.Empty,
                 name: paramName,
                 bgColour: paramBgColour);
         }
 
         /// <summary>
-        /// Tests the constructor null name throws exception.
+        /// Tests the constructor empty name throws exception.
         /// </summary>
         [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
-        public void Test_Constructor_Null_Name_Throws_Exception()
+        public void Test_Constructor_Empty_Name_Throws_Exception()
         {
             // ARRANGE
             Guid paramId = Guid.NewGuid();
@@ -76,16 +76,16 @@ namespace Agenda.Domain.Tests.DomainObjects.Organisations.OrganisationTests
             _ = new Organisation(
                 id: paramId,
                 code: paramCode,
-                name: null,
+                name: string.Empty,
                 bgColour: paramBgColour);
         }
 
         /// <summary>
-        /// Tests the constructor null background colour throws exception.
+        /// Tests the constructor empty background colour throws exception.
         /// </summary>
         [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
-        public void Test_Constructor_Null_Background_Colour_Throws_Exception()
+        public void Test_Constructor_Empty_Background_Colour_Throws_Exception()
         {
             // ARRANGE
             Guid paramId = Guid.NewGuid();
@@ -97,7 +97,7 @@ namespace Agenda.Domain.Tests.DomainObjects.Organisations.OrganisationTests
                 id: paramId,
                 code: paramCode,
                 name: paramName,
-                bgColour: null);
+                bgColour: string.Empty);
         }
     }
 }

@@ -31,8 +31,8 @@ namespace Agenda.Web.ViewModels.Location
             string name,
             string address,
             string what3Words,
-            double latitude,
-            double longitude)
+            double? latitude,
+            double? longitude)
         {
             this.LocationId = locationId;
             this.OrganisationId = organisationId;
@@ -90,12 +90,12 @@ namespace Agenda.Web.ViewModels.Location
         /// <summary>
         /// Gets the Latitude.
         /// </summary>
-        public double Latitude { get; }
+        public double? Latitude { get; }
 
         /// <summary>
         /// Gets the Longitude.
         /// </summary>
-        public double Longitude { get; }
+        public double? Longitude { get; }
 
         /// <summary>
         /// Creates Index view model.

@@ -25,6 +25,8 @@ namespace Agenda.Data.Tests.Dtos.MeetingTests
 
             _ = context.Meetings.Any();
             _ = context.Meetings.FirstOrDefault();
+
+            Assert.IsTrue(true);
         }
     }
 }
