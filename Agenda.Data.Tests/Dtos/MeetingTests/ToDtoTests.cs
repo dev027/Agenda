@@ -4,10 +4,7 @@
 
 using System;
 using Agenda.Data.Dtos;
-using Agenda.Domain.Constants;
 using Agenda.Domain.DomainObjects.Committees;
-using Agenda.Domain.DomainObjects.Locations;
-using Agenda.Domain.DomainObjects.LocationTypes;
 using Agenda.Domain.DomainObjects.Meetings;
 using Agenda.Domain.DomainObjects.Organisations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -32,20 +29,6 @@ namespace Agenda.Data.Tests.Dtos.MeetingTests
                 code: "CBC",
                 name: "County Bridge Club",
                 bgColour: "000000");
-            ILocationType locationType = new LocationType(
-                id: Guid.NewGuid(),
-                code: LocationTypeCodes.RealWorld,
-                name: "Real World",
-                description: "Description");
-            ILocation location = new Location(
-                id: Guid.NewGuid(),
-                organisation: organisation,
-                locationType: locationType,
-                name: "Location",
-                address: "Address",
-                what3Words: "one.two.three",
-                latitude: 50,
-                longitude: -1);
             IMeeting meeting = new Meeting(
                 id: Guid.NewGuid(),
                 committee: new Committee(
@@ -53,7 +36,6 @@ namespace Agenda.Data.Tests.Dtos.MeetingTests
                     organisation: organisation,
                     name: "TSC",
                     description: "Tournament Sub-Committee"),
-                location: location,
                 meetingDateTime: new DateTime(2019, 12, 30, 19, 15, 00));
 
             // ACT
@@ -63,7 +45,6 @@ namespace Agenda.Data.Tests.Dtos.MeetingTests
             Assert.AreEqual(meeting.Id, meetingDto.Id);
             Assert.AreEqual(meeting.Committee.Id, meetingDto.CommitteeId);
             Assert.AreEqual(meeting.MeetingDateTime, meetingDto.MeetingDateTime);
-            Assert.AreEqual(meeting.Location.Id, meetingDto.LocationId);
         }
 
         /// <summary>

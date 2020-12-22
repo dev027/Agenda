@@ -1,4 +1,5 @@
-﻿@using Agenda.Web.Models
+﻿
+@using Agenda.Web.Models
 @using Agenda.Web.ViewModels.Organisation
 @model IndexViewModel
 
@@ -29,12 +30,6 @@
                asp-route-organisationId="@Model.OrganisationId">
                 <span class="@Icon.Committee"></span> Committees
             </a>
-            <a class="list-group-item list-group-item-info"
-               asp-controller="LocationOverview"
-               asp-action="Index"
-               asp-route-organisationId="@Model.OrganisationId">
-                <span class="@Icon.Location"></span> Locations
-            </a>
         </div>
     </nav>
 }
@@ -52,12 +47,6 @@
                            asp-route-organisationId="@Model.OrganisationId">
                             <span class="@Icon.Committee"></span>
                         </a>
-                        <a class="list-group-item list-group-item-info py-1 px-2"
-                           asp-controller="LocationOverview"
-                           asp-action="Index"
-                           asp-route-organisationId="@Model.OrganisationId">
-                            <span class="@Icon.Location"></span>
-                        </a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -73,7 +62,7 @@
                         <label>@Html.DisplayNameFor(m => m.BgColour)</label>
                         <div class="input-group">
                             <div class="form-control">#@Model.BgColour</div>
-                            <div class="input-group-append" style="background-color: #@Model.BgColour; width: 3rem;"></div>
+                            <div class="input-group-append" style="background-color: @Model.BgColourWithHash; width: 3rem;"></div>
                         </div>
                     </div>
                     <div class="d-flex flex-row justify-content-between">

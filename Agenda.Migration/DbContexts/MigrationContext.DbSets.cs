@@ -29,16 +29,6 @@ namespace Agenda.Migration.DbContexts
         public DbSet<CommitteeDto> Committees { get; set; } = null!;
 
         /// <summary>
-        /// Gets or sets the Locations.
-        /// </summary>
-        public DbSet<LocationDto> Locations { get; set; } = null!;
-
-       /// <summary>
-        /// Gets or sets the Location Types.
-        /// </summary>
-        public DbSet<LocationDto> LocationTypes { get; set; } = null!;
-
-        /// <summary>
         /// Gets or sets the Meetings.
         /// </summary>
         public DbSet<MeetingDto> Meetings { get; set; } = null!;

@@ -79,6 +79,11 @@ namespace Agenda.Web.ViewModels.Organisation
         public string BgColour { get; }
 
         /// <summary>
+        /// Gets the Background Colour prefixed with a hash.
+        /// </summary>
+        public string BgColourWithHash => $"#{this.BgColour}";
+
+        /// <summary>
         /// Gets the Committee view models.
         /// </summary>
         public IList<CommitteeViewModel> CommitteeViewModels { get; }

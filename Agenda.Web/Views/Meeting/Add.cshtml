@@ -110,18 +110,6 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(m => m.LocationId)
-                            @Html.DropDownListFor(m => m.LocationId,
-                                Model.LocationOptions,
-                                "Please select",
-                                new
-                                {
-                                    @class = "form-control"
-                                })
-
-                            @Html.ValidationMessageFor(m => m.LocationId, null, new { @class = "text-danger" })
-                        </div>
-                        <div class="form-group">
                             @Html.LabelFor(m => m.MeetingDate)
                             @Html.TextBoxFor(m => m.MeetingDate,
                                 Model.MeetingDate,

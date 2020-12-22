@@ -14,14 +14,6 @@
             </summary>
             <seealso cref="T:Agenda.Service.IAgendaService" />
             <summary>
-            Service Layer - Location.
-            </summary>
-            <seealso cref="T:Agenda.Service.IAgendaService" />
-            <summary>
-            Service Layer - Location.
-            </summary>
-            <seealso cref="T:Agenda.Service.IAgendaService" />
-            <summary>
             Service Layer - Meeting.
             </summary>
             <seealso cref="T:Agenda.Service.IAgendaService" />
@@ -52,24 +44,6 @@
         <member name="M:Agenda.Service.AgendaService.UpdateCommitteeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,Agenda.Domain.DomainObjects.Committees.ICommittee)">
             <inheritdoc/>
         </member>
-        <member name="M:Agenda.Service.AgendaService.CreateLocationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,Agenda.Domain.DomainObjects.Locations.ILocation)">
-            <inheritdoc />
-        </member>
-        <member name="M:Agenda.Service.AgendaService.GetLocationByIdAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Agenda.Service.AgendaService.UpdateLocationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,Agenda.Domain.DomainObjects.Locations.ILocation)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Agenda.Service.AgendaService.CreateLocationTypeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,Agenda.Domain.DomainObjects.LocationTypes.ILocationType)">
-            <inheritdoc />
-        </member>
-        <member name="M:Agenda.Service.AgendaService.GetLocationTypeByIdAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Agenda.Service.AgendaService.UpdateLocationTypeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,Agenda.Domain.DomainObjects.LocationTypes.ILocationType)">
-            <inheritdoc/>
-        </member>
         <member name="M:Agenda.Service.AgendaService.CreateMeetingAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,Agenda.Domain.DomainObjects.Meetings.IMeeting)">
             <inheritdoc/>
         </member>
@@ -94,15 +68,6 @@
         <member name="M:Agenda.Service.AgendaService.GetOrganisationByIdWithCommitteesAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
             <inheritdoc/>
         </member>
-        <member name="M:Agenda.Service.AgendaService.GetOrganisationByIdWithLocationsAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Agenda.Service.AgendaService.GetOrganisationByCommitteeIdWithLocationsAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Agenda.Service.AgendaService.GetOrganisationByMeetingIdWithLocationsAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
-            <inheritdoc/>
-        </member>
         <member name="M:Agenda.Service.AgendaService.UpdateOrganisationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
             <inheritdoc/>
         </member>
@@ -112,12 +77,6 @@
             </summary>
             <summary>
             Service Layer - Committee.
-            </summary>
-            <summary>
-            Service Layer - Location.
-            </summary>
-            <summary>
-            Service Layer - Location Type.
             </summary>
             <summary>
             Service Layer - Meeting.
@@ -165,58 +124,6 @@
             <param name="who">Who Details.</param>
             <param name="auditEvent">Audit Event.</param>
             <param name="committee">Committee to update.</param>
-            <returns>Nothing.</returns>
-        </member>
-        <member name="M:Agenda.Service.IAgendaService.CreateLocationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,Agenda.Domain.DomainObjects.Locations.ILocation)">
-            <summary>
-            Creates the Location.
-            </summary>
-            <param name="who">Who Details.</param>
-            <param name="auditEvent">Audit Event.</param>
-            <param name="location">Location.</param>
-            <returns>Nothing.</returns>
-        </member>
-        <member name="M:Agenda.Service.IAgendaService.GetLocationByIdAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
-            <summary>
-            Gets the Location by Id.
-            </summary>
-            <param name="who">Who Details.</param>
-            <param name="locationId">Location Id.</param>
-            <returns>Location.</returns>
-        </member>
-        <member name="M:Agenda.Service.IAgendaService.UpdateLocationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,Agenda.Domain.DomainObjects.Locations.ILocation)">
-            <summary>
-            Updates the Location.
-            </summary>
-            <param name="who">Who Details.</param>
-            <param name="auditEvent">Audit Event.</param>
-            <param name="location">Location to update.</param>
-            <returns>Nothing.</returns>
-        </member>
-        <member name="M:Agenda.Service.IAgendaService.CreateLocationTypeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,Agenda.Domain.DomainObjects.LocationTypes.ILocationType)">
-            <summary>
-            Creates the Location Type.
-            </summary>
-            <param name="who">Who Details.</param>
-            <param name="auditEvent">Audit Event.</param>
-            <param name="locationType">Location Type.</param>
-            <returns>Nothing.</returns>
-        </member>
-        <member name="M:Agenda.Service.IAgendaService.GetLocationTypeByIdAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
-            <summary>
-            Gets the Location Type by Id.
-            </summary>
-            <param name="who">Who Details.</param>
-            <param name="locationTypeId">Location Type Id.</param>
-            <returns>Location.</returns>
-        </member>
-        <member name="M:Agenda.Service.IAgendaService.UpdateLocationTypeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,Agenda.Domain.DomainObjects.LocationTypes.ILocationType)">
-            <summary>
-            Updates the Location Type.
-            </summary>
-            <param name="who">Who Details.</param>
-            <param name="auditEvent">Audit Event.</param>
-            <param name="locationType">Location Type to update.</param>
             <returns>Nothing.</returns>
         </member>
         <member name="M:Agenda.Service.IAgendaService.CreateMeetingAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,Agenda.Domain.DomainObjects.Meetings.IMeeting)">
@@ -285,30 +192,6 @@
             <param name="who">Who Details.</param>
             <param name="organisationId">Organisation Id.</param>
             <returns>Organisation.</returns>
-        </member>
-        <member name="M:Agenda.Service.IAgendaService.GetOrganisationByIdWithLocationsAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
-            <summary>
-            Gets the Organisation by Id with its Locations.
-            </summary>
-            <param name="who">Who Details.</param>
-            <param name="organisationId">Organisation Id.</param>
-            <returns>Organisation.</returns>
-        </member>
-        <member name="M:Agenda.Service.IAgendaService.GetOrganisationByCommitteeIdWithLocationsAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
-            <summary>
-            Gets the Organisation by Committee Id with Locations.
-            </summary>
-            <param name="who">Who Details.</param>
-            <param name="committeeId">Committee Id.</param>
-            <returns>Organisation with Locations.</returns>
-        </member>
-        <member name="M:Agenda.Service.IAgendaService.GetOrganisationByMeetingIdWithLocationsAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
-            <summary>
-            Gets the Organisation by Meeting Id with Locations.
-            </summary>
-            <param name="who">Who Details.</param>
-            <param name="meetingId">Meeting Id.</param>
-            <returns>Organisation with Locations.</returns>
         </member>
         <member name="M:Agenda.Service.IAgendaService.UpdateOrganisationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
             <summary>

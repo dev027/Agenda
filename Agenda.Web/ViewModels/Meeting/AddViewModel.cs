@@ -3,11 +3,9 @@
 // </copyright>
 
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using Agenda.Domain.DomainObjects.Committees;
-using Agenda.Domain.DomainObjects.Locations;
 using Agenda.Domain.DomainObjects.Meetings;
 using Agenda.Web.Models;
 using Agenda.Web.Models.ValidationAttributes;
@@ -37,7 +35,6 @@ namespace Agenda.Web.ViewModels.Meeting
         /// <param name="organisationId">Organisation Id.</param>
         /// <param name="organisationName">Organisation Name.</param>
         /// <param name="committeeName">Committee Name.</param>
-        /// <param name="locationId">Location Id.</param>
         /// <param name="meetingDate">Meeting Date.</param>
         /// <param name="meetingTime">Meeting Time.</param>
         public AddViewModel(
@@ -46,7 +43,6 @@ namespace Agenda.Web.ViewModels.Meeting
             Guid organisationId,
             string organisationName,
             string committeeName,
-            Guid locationId,
             string meetingDate,
             string meetingTime)
         {
@@ -55,7 +51,6 @@ namespace Agenda.Web.ViewModels.Meeting
             this.OrganisationId = organisationId;
             this.OrganisationName = organisationName;
             this.CommitteeName = committeeName;
-            this.LocationId = locationId;
             this.MeetingDate = meetingDate;
             this.MeetingTime = meetingTime;
         }
@@ -75,7 +70,7 @@ namespace Agenda.Web.ViewModels.Meeting
         public Guid CommitteeId { get; set; }
 
         /// <summary>
-        /// Gets or sets the Organsiation Id.
+        /// Gets or sets the Organisation Id.
         /// </summary>
         public Guid OrganisationId { get; set; }
 
@@ -90,13 +85,6 @@ namespace Agenda.Web.ViewModels.Meeting
         /// </summary>
         [Display(Name = "Committee")]
         public string CommitteeName { get; set; }
-
-        /// <summary>
-        /// Gets or sets the Meeting Location.
-        /// </summary>
-        [Display(Name = "Location")]
-        [MyRequired]
-        public Guid LocationId { get; set; }
 
         /// <summary>
         /// Gets or sets the Meeting Date.
@@ -142,34 +130,17 @@ namespace Agenda.Web.ViewModels.Meeting
                 organisationId: committee.Organisation.Id,
                 organisationName: committee.Organisation.Name,
                 committeeName: committee.Name,
-                locationId: Guid.Empty,
                 meetingDate: string.Empty,
                 meetingTime: string.Empty);
-        }
-
-        /// <summary>
-        /// Refreshes the dropdown lists.
-        /// </summary>
-        /// <param name="locations">Locations.</param>
-        public void RefreshDropdowns(IList<ILocation> locations)
-        {
-            if (locations == null)
-            {
-                throw new ArgumentNullException(nameof(locations));
-            }
-
-            this.LocationOptions = LocationDropdownOptions(locations);
         }
 
         /// <summary>
         /// Converts view model to Meeting domain object.
         /// </summary>
         /// <param name="committee">Committee.</param>
-        /// <param name="location">Location.</param>
         /// <returns>Meeting domain object.</returns>
         public IMeeting ToDomain(
-            ICommittee committee,
-            ILocation location)
+            ICommittee committee)
         {
             CultureInfo cultureInfo = new CultureInfo("en-GB");
             DateTime meetingDateTime = DateTime.Parse(this.MeetingDate, cultureInfo);
@@ -180,20 +151,9 @@ namespace Agenda.Web.ViewModels.Meeting
             return new Domain.DomainObjects.Meetings.Meeting(
                 id: Guid.NewGuid(),
                 committee: committee,
-                location: location,
                 meetingDateTime: meetingDateTime);
         }
 
         #endregion Public Methods
-
-        #region Private Methods
-
-        private static SelectList LocationDropdownOptions(IList<ILocation> locations)
-        {
-            return new SelectList(
-                locations, nameof(ILocation.Id), nameof(ILocation.Name));
-        }
-
-        #endregion private Methods
     }
 }

@@ -116,24 +116,6 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(m => m.LocationId)
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="btn btn-secondary">
-                                        <i class="@Icon.Location"></i>
-                                    </span>
-                                </div>
-                                @Html.DropDownListFor(m => m.LocationId,
-                                    Model.LocationOptions,
-                                    "Please select",
-                                    new
-                                    {
-                                        @class = "form-control"
-                                    })
-                            </div>
-                            @Html.ValidationMessageFor(m => m.LocationId, null, new { @class = "text-danger" })
-                        </div>
-                        <div class="form-group">
                             @Html.LabelFor(m => m.MeetingDate)
                             @Html.TextBoxFor(m => m.MeetingDate,
                                 Model.MeetingDate,

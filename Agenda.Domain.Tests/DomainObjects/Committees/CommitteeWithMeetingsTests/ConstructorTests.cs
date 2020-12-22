@@ -4,10 +4,7 @@
 
 using System;
 using System.Collections.Generic;
-using Agenda.Domain.Constants;
 using Agenda.Domain.DomainObjects.Committees;
-using Agenda.Domain.DomainObjects.Locations;
-using Agenda.Domain.DomainObjects.LocationTypes;
 using Agenda.Domain.DomainObjects.Meetings;
 using Agenda.Domain.DomainObjects.Organisations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -42,28 +39,11 @@ namespace Agenda.Domain.Tests.DomainObjects.Committees.CommitteeWithMeetingsTest
                 name: paramName,
                 description: paramDescription);
 
-            ILocationType locationType = new LocationType(
-                id: Guid.NewGuid(),
-                code: LocationTypeCodes.RealWorld,
-                name: "Real World",
-                description: "An actual real word location");
-
-            ILocation location = new Location(
-                id: Guid.NewGuid(),
-                organisation: paramOrganisation,
-                locationType: locationType,
-                name: "Location",
-                address: "Address",
-                what3Words: "one.two.three",
-                latitude: 50,
-                longitude: -1);
-
             IList<IMeeting> paramMeetings = new List<IMeeting>
             {
                 new Meeting(
                     id: Guid.NewGuid(),
                     committee: committee,
-                    location: location,
                     meetingDateTime: DateTime.Now)
             };
 

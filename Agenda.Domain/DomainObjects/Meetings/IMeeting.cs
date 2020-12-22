@@ -4,7 +4,6 @@
 
 using System;
 using Agenda.Domain.DomainObjects.Committees;
-using Agenda.Domain.DomainObjects.Locations;
 
 namespace Agenda.Domain.DomainObjects.Meetings
 {
@@ -22,11 +21,6 @@ namespace Agenda.Domain.DomainObjects.Meetings
         /// Gets the committee.
         /// </summary>
         ICommittee Committee { get; }
-
-        /// <summary>
-        /// Gets the Location.
-        /// </summary>
-        ILocation Location { get; }
 
         /// <summary>
         /// Gets the Meeting date and time.

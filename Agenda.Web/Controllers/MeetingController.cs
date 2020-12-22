@@ -5,9 +5,7 @@
 using System;
 using System.Threading.Tasks;
 using Agenda.Domain.DomainObjects.Committees;
-using Agenda.Domain.DomainObjects.Locations;
 using Agenda.Domain.DomainObjects.Meetings;
-using Agenda.Domain.DomainObjects.Organisations;
 using Agenda.Domain.ValueObjects.Enums;
 using Agenda.Service;
 using Agenda.Utilities.Models.Whos;
@@ -143,12 +141,6 @@ namespace Agenda.Web.Controllers
                     }
                 }
 
-                IOrganisationWithLocations organisation = await this.service
-                    .GetOrganisationByCommitteeIdWithLocationsAsync(who, model.CommitteeId)
-                    .ConfigureAwait(false);
-
-                model.RefreshDropdowns(organisation.Locations);
-
                 return this.ExitView(this.logger, this.View(model));
             }
         }
@@ -177,14 +169,6 @@ namespace Agenda.Web.Controllers
                 .ConfigureAwait(false);
 
             EditViewModel model = EditViewModel.Create(meeting);
-
-            IOrganisationWithLocations organisation = await this.service
-                .GetOrganisationByMeetingIdWithLocationsAsync(
-                    who: who,
-                    meetingId: model.MeetingId)
-                .ConfigureAwait(false);
-
-            model.RefreshDropdowns(organisation.Locations);
 
             switch (ajaxMode)
             {
@@ -233,14 +217,6 @@ namespace Agenda.Web.Controllers
                             new { meetingId = model.MeetingId }));
                 }
 
-                IOrganisationWithLocations organisation = await this.service
-                    .GetOrganisationByMeetingIdWithLocationsAsync(
-                        who: who,
-                        meetingId: model.MeetingId)
-                    .ConfigureAwait(false);
-
-                model.RefreshDropdowns(organisation.Locations);
-
                 return this.View(model);
             }
         }
@@ -266,14 +242,8 @@ namespace Agenda.Web.Controllers
                     committeeId: model.CommitteeId)
                 .ConfigureAwait(false);
 
-            ILocation location = await this.service.GetLocationByIdAsync(
-                    who: who,
-                    locationId: model.LocationId)
-                .ConfigureAwait(false);
-
             IMeeting meeting = model.ToDomain(
-                committee: committee,
-                location: location);
+                committee: committee);
 
             await this.service
                 .CreateMeetingAsync(who, AuditEvent.MeetingMaintenance, meeting)
@@ -307,15 +277,8 @@ namespace Agenda.Web.Controllers
                     meetingId: model.MeetingId)
                 .ConfigureAwait(false);
 
-            ILocation location = await this.service
-                .GetLocationByIdAsync(
-                    who: who,
-                    locationId: model.LocationId)
-                .ConfigureAwait(false);
-
             IMeeting meeting = model.ToDomain(
-                committee: originalMeeting.Committee,
-                location: location);
+                committee: originalMeeting.Committee);
 
             await this.service
                 .UpdateMeetingAsync(

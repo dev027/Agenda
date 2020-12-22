@@ -5,10 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Agenda.Domain.Constants;
 using Agenda.Domain.DomainObjects.Committees;
-using Agenda.Domain.DomainObjects.Locations;
-using Agenda.Domain.DomainObjects.LocationTypes;
 using Agenda.Domain.DomainObjects.Meetings;
 using Agenda.Domain.DomainObjects.Organisations;
 using Agenda.Domain.ValueObjects.SetupStatii;
@@ -100,22 +97,6 @@ namespace Agenda.Web.Tests.Controllers.HomeController
                 name: "Bradgate Bridge Club",
                 bgColour: "000000");
 
-            ILocationType locationType = new LocationType(
-                id: Guid.NewGuid(),
-                code: LocationTypeCodes.RealWorld,
-                name: "Real World",
-                description: "Description");
-
-            ILocation location = new Location(
-                id: Guid.NewGuid(),
-                organisation: organisation,
-                locationType: locationType,
-                name: "Location",
-                address: "Address",
-                what3Words: "one.two.three",
-                latitude: 50,
-                longitude: -1);
-
             IList<IMeeting> meetingList = new List<IMeeting>
             {
                 new Meeting(
@@ -125,7 +106,6 @@ namespace Agenda.Web.Tests.Controllers.HomeController
                         organisation: organisation,
                         name: "Executive",
                         description: "Executive Committee"),
-                    location: location,
                     meetingDateTime: DateTime.Today.AddHours(19).AddMinutes(30))
             };
 

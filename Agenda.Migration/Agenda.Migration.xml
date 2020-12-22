@@ -47,16 +47,6 @@
             Gets or sets the Committees.
             </summary>
         </member>
-        <member name="P:Agenda.Migration.DbContexts.MigrationContext.Locations">
-            <summary>
-            Gets or sets the Locations.
-            </summary>
-        </member>
-        <member name="P:Agenda.Migration.DbContexts.MigrationContext.LocationTypes">
-            <summary>
-            Gets or sets the Location Types.
-            </summary>
-        </member>
         <member name="P:Agenda.Migration.DbContexts.MigrationContext.Meetings">
             <summary>
             Gets or sets the Meetings.
@@ -68,10 +58,7 @@
             </summary>
         </member>
         <member name="T:Agenda.Migration.Migrations.Initial">
-            <summary>
-            Initial.
-            </summary>
-            <seealso cref="T:Microsoft.EntityFrameworkCore.Migrations.Migration" />
+            <inheritdoc />
         </member>
         <member name="M:Agenda.Migration.Migrations.Initial.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />

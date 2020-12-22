@@ -4,21 +4,6 @@
         <name>Agenda.Domain</name>
     </assembly>
     <members>
-        <member name="T:Agenda.Domain.Constants.LocationTypeCodes">
-            <summary>
-            Location Type Codes.
-            </summary>
-        </member>
-        <member name="F:Agenda.Domain.Constants.LocationTypeCodes.RealWorld">
-            <summary>
-            Physical.
-            </summary>
-        </member>
-        <member name="F:Agenda.Domain.Constants.LocationTypeCodes.Zoom">
-            <summary>
-            Zoom.
-            </summary>
-        </member>
         <member name="T:Agenda.Domain.DomainObjects.AuditDetails.AuditDetail">
             <summary>
             Audit Detail.
@@ -414,342 +399,9 @@
             Gets Meetings.
             </summary>
         </member>
-        <member name="T:Agenda.Domain.DomainObjects.Locations.DomainMetadata">
-            <summary>
-            Metadata for the <see cref="T:Agenda.Domain.DomainObjects.Locations.ILocation"/>.
-            </summary>
-        </member>
-        <member name="T:Agenda.Domain.DomainObjects.Locations.DomainMetadata.Name">
-            <summary>
-            Metadata for the <see cref="P:Agenda.Domain.DomainObjects.Locations.ILocation.Name"></see> property.
-            </summary>
-        </member>
-        <member name="F:Agenda.Domain.DomainObjects.Locations.DomainMetadata.Name.MinLength">
-            <summary>
-            The minimum length.
-            </summary>
-        </member>
-        <member name="F:Agenda.Domain.DomainObjects.Locations.DomainMetadata.Name.MaxLength">
-            <summary>
-            The maximum length.
-            </summary>
-        </member>
-        <member name="T:Agenda.Domain.DomainObjects.Locations.DomainMetadata.Address">
-            <summary>
-            Metadata for the <see cref="P:Agenda.Domain.DomainObjects.Locations.ILocation.Address"></see> property.
-            </summary>
-        </member>
-        <member name="F:Agenda.Domain.DomainObjects.Locations.DomainMetadata.Address.MinLength">
-            <summary>
-            The minimum length.
-            </summary>
-        </member>
-        <member name="F:Agenda.Domain.DomainObjects.Locations.DomainMetadata.Address.MaxLength">
-            <summary>
-            The maximum length.
-            </summary>
-        </member>
-        <member name="T:Agenda.Domain.DomainObjects.Locations.DomainMetadata.What3Words">
-            <summary>
-            Metadata for the <see cref="P:Agenda.Domain.DomainObjects.Locations.ILocation.What3Words"></see> property.
-            </summary>
-        </member>
-        <member name="F:Agenda.Domain.DomainObjects.Locations.DomainMetadata.What3Words.MinLength">
-            <summary>
-            The minimum length.
-            </summary>
-        </member>
-        <member name="F:Agenda.Domain.DomainObjects.Locations.DomainMetadata.What3Words.MaxLength">
-            <summary>
-            The maximum length.
-            </summary>
-        </member>
-        <member name="F:Agenda.Domain.DomainObjects.Locations.DomainMetadata.What3Words.Prefix">
-            <summary>
-            The Prefix for W3W addresses.
-            </summary>
-        </member>
-        <member name="F:Agenda.Domain.DomainObjects.Locations.DomainMetadata.What3Words.Separator">
-            <summary>
-            The separator for W3W addresses.
-            </summary>
-        </member>
-        <member name="F:Agenda.Domain.DomainObjects.Locations.DomainMetadata.What3Words.PartRegEx">
-            <summary>
-            The W3W part RegEx.
-            </summary>
-        </member>
-        <member name="T:Agenda.Domain.DomainObjects.Locations.DomainMetadata.What3Words.Part">
-            <summary>
-            The Part of the W3W address, of which there are three.
-            </summary>
-        </member>
-        <member name="F:Agenda.Domain.DomainObjects.Locations.DomainMetadata.What3Words.Part.MinLength">
-            <summary>
-            The minimum length.
-            </summary>
-        </member>
-        <member name="F:Agenda.Domain.DomainObjects.Locations.DomainMetadata.What3Words.Part.MaxLength">
-            <summary>
-            The maximum length.
-            </summary>
-        </member>
-        <member name="T:Agenda.Domain.DomainObjects.Locations.DomainMetadata.Latitude">
-            <summary>
-            Latitude.
-            </summary>
-        </member>
-        <member name="F:Agenda.Domain.DomainObjects.Locations.DomainMetadata.Latitude.MinValue">
-            <summary>
-            The minimum value.
-            </summary>
-        </member>
-        <member name="F:Agenda.Domain.DomainObjects.Locations.DomainMetadata.Latitude.MaxValue">
-            <summary>
-            The maximum value.
-            </summary>
-        </member>
-        <member name="T:Agenda.Domain.DomainObjects.Locations.DomainMetadata.Longitude">
-            <summary>
-            Longitude.
-            </summary>
-        </member>
-        <member name="F:Agenda.Domain.DomainObjects.Locations.DomainMetadata.Longitude.MinValue">
-            <summary>
-            The minimum value.
-            </summary>
-        </member>
-        <member name="F:Agenda.Domain.DomainObjects.Locations.DomainMetadata.Longitude.MaxValue">
-            <summary>
-            The maximum value.
-            </summary>
-        </member>
-        <member name="T:Agenda.Domain.DomainObjects.Locations.ILocation">
-            <summary>
-            Organisation.
-            </summary>
-        </member>
-        <member name="P:Agenda.Domain.DomainObjects.Locations.ILocation.Id">
-            <summary>
-            Gets the Location Id.
-            </summary>
-        </member>
-        <member name="P:Agenda.Domain.DomainObjects.Locations.ILocation.Organisation">
-            <summary>
-            Gets the Organisation.
-            </summary>
-        </member>
-        <member name="P:Agenda.Domain.DomainObjects.Locations.ILocation.LocationType">
-            <summary>
-            Gets the Location Type.
-            </summary>
-        </member>
-        <member name="P:Agenda.Domain.DomainObjects.Locations.ILocation.Name">
-            <summary>
-            Gets the Location Name.
-            </summary>
-        </member>
-        <member name="P:Agenda.Domain.DomainObjects.Locations.ILocation.Address">
-            <summary>
-            Gets the Address.
-            </summary>
-        </member>
-        <member name="P:Agenda.Domain.DomainObjects.Locations.ILocation.What3Words">
-            <summary>
-            Gets the What3Word address.
-            </summary>
-        </member>
-        <member name="P:Agenda.Domain.DomainObjects.Locations.ILocation.Latitude">
-            <summary>
-            Gets the Latitude.
-            </summary>
-        </member>
-        <member name="P:Agenda.Domain.DomainObjects.Locations.ILocation.Longitude">
-            <summary>
-            Gets the Longitude.
-            </summary>
-        </member>
-        <member name="M:Agenda.Domain.DomainObjects.Locations.ILocation.What3WordsParts">
-            <summary>
-            Split the What3Words address into parts.
-            </summary>
-            <returns>
-            What3Word Address Parts.
-            </returns>
-        </member>
-        <member name="T:Agenda.Domain.DomainObjects.Locations.Location">
-            <summary>
-            Location.
-            </summary>
-            <seealso cref="T:Agenda.Domain.DomainObjects.Locations.ILocation" />
-        </member>
-        <member name="M:Agenda.Domain.DomainObjects.Locations.Location.#ctor(System.Guid,Agenda.Domain.DomainObjects.Organisations.IOrganisation,Agenda.Domain.DomainObjects.LocationTypes.ILocationType,System.String,System.String,System.String,System.Nullable{System.Double},System.Nullable{System.Double})">
-            <summary>
-            Initializes a new instance of the <see cref="T:Agenda.Domain.DomainObjects.Locations.Location"/> class.
-            </summary>
-            <param name="id">Location Id.</param>
-            <param name="organisation">Organisation.</param>
-            <param name="locationType">Location Type.</param>
-            <param name="name">Location Name.</param>
-            <param name="address">Address.</param>
-            <param name="what3Words">What3Words Address.</param>
-            <param name="latitude">Latitude.</param>
-            <param name="longitude">Longitude.</param>
-        </member>
-        <member name="P:Agenda.Domain.DomainObjects.Locations.Location.Id">
-            <inheritdoc/>
-        </member>
-        <member name="P:Agenda.Domain.DomainObjects.Locations.Location.Organisation">
-            <inheritdoc/>
-        </member>
-        <member name="P:Agenda.Domain.DomainObjects.Locations.Location.LocationType">
-            <inheritdoc />
-        </member>
-        <member name="P:Agenda.Domain.DomainObjects.Locations.Location.Name">
-            <inheritdoc/>
-        </member>
-        <member name="P:Agenda.Domain.DomainObjects.Locations.Location.Address">
-            <inheritdoc/>
-        </member>
-        <member name="P:Agenda.Domain.DomainObjects.Locations.Location.What3Words">
-            <inheritdoc/>
-        </member>
-        <member name="P:Agenda.Domain.DomainObjects.Locations.Location.Latitude">
-            <inheritdoc/>
-        </member>
-        <member name="P:Agenda.Domain.DomainObjects.Locations.Location.Longitude">
-            <inheritdoc/>
-        </member>
-        <member name="M:Agenda.Domain.DomainObjects.Locations.Location.What3WordsJoin(System.String,System.String,System.String)">
-            <summary>
-            Joins the three parts of a What3Words address.
-            </summary>
-            <param name="what3WordsPart1">What3Words Address Part 1.</param>
-            <param name="what3WordsPart2">What3Words Address Part 2.</param>
-            <param name="what3WordsPart3">What3Words Address Part 3.</param>
-            <returns>What3Words address.</returns>
-        </member>
-        <member name="M:Agenda.Domain.DomainObjects.Locations.Location.What3WordsParts">
-            <inheritdoc />
-        </member>
-        <member name="T:Agenda.Domain.DomainObjects.LocationTypes.DomainMetadata">
-            <summary>
-            Metadata for <see cref="T:Agenda.Domain.DomainObjects.LocationTypes.ILocationType"/>.
-            </summary>
-        </member>
-        <member name="T:Agenda.Domain.DomainObjects.LocationTypes.DomainMetadata.Code">
-            <summary>
-            Metadata for the <see cref="P:Agenda.Domain.DomainObjects.LocationTypes.ILocationType.Code"></see> property.
-            </summary>
-        </member>
-        <member name="F:Agenda.Domain.DomainObjects.LocationTypes.DomainMetadata.Code.MinLength">
-            <summary>
-            The minimum length.
-            </summary>
-        </member>
-        <member name="F:Agenda.Domain.DomainObjects.LocationTypes.DomainMetadata.Code.MaxLength">
-            <summary>
-            The maximum length.
-            </summary>
-        </member>
-        <member name="T:Agenda.Domain.DomainObjects.LocationTypes.DomainMetadata.Name">
-            <summary>
-            Metadata for the <see cref="P:Agenda.Domain.DomainObjects.LocationTypes.ILocationType.Name"></see> property.
-            </summary>
-        </member>
-        <member name="F:Agenda.Domain.DomainObjects.LocationTypes.DomainMetadata.Name.MinLength">
-            <summary>
-            The minimum length.
-            </summary>
-        </member>
-        <member name="F:Agenda.Domain.DomainObjects.LocationTypes.DomainMetadata.Name.MaxLength">
-            <summary>
-            The maximum length.
-            </summary>
-        </member>
-        <member name="T:Agenda.Domain.DomainObjects.LocationTypes.DomainMetadata.Description">
-            <summary>
-            Metadata for the <see cref="P:Agenda.Domain.DomainObjects.LocationTypes.ILocationType.Description"></see> property.
-            </summary>
-        </member>
-        <member name="F:Agenda.Domain.DomainObjects.LocationTypes.DomainMetadata.Description.MinLength">
-            <summary>
-            The minimum length.
-            </summary>
-        </member>
-        <member name="F:Agenda.Domain.DomainObjects.LocationTypes.DomainMetadata.Description.MaxLength">
-            <summary>
-            The maximum length.
-            </summary>
-        </member>
-        <member name="T:Agenda.Domain.DomainObjects.LocationTypes.ILocationType">
-            <summary>
-            Location Type.
-            </summary>
-        </member>
-        <member name="P:Agenda.Domain.DomainObjects.LocationTypes.ILocationType.Id">
-            <summary>
-            Gets the Location Type Id.
-            </summary>
-        </member>
-        <member name="P:Agenda.Domain.DomainObjects.LocationTypes.ILocationType.Code">
-            <summary>
-            Gets the Location Type Code.
-            </summary>
-        </member>
-        <member name="P:Agenda.Domain.DomainObjects.LocationTypes.ILocationType.Name">
-            <summary>
-            Gets the Location Type Name.
-            </summary>
-        </member>
-        <member name="P:Agenda.Domain.DomainObjects.LocationTypes.ILocationType.Description">
-            <summary>
-            Gets the Location Type Description.
-            </summary>
-        </member>
-        <member name="T:Agenda.Domain.DomainObjects.LocationTypes.LocationType">
-            <summary>
-            Location Type.
-            </summary>
-            <seealso cref="T:Agenda.Domain.DomainObjects.LocationTypes.ILocationType" />
-        </member>
-        <member name="M:Agenda.Domain.DomainObjects.LocationTypes.LocationType.#ctor(System.Guid,System.String,System.String,System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Agenda.Domain.DomainObjects.LocationTypes.LocationType"/> class.
-            </summary>
-            <param name="id">Location Type Id.</param>
-            <param name="code">Location Type Code.</param>
-            <param name="name">Location Type Name.</param>
-            <param name="description">Location Type Description.</param>
-        </member>
-        <member name="P:Agenda.Domain.DomainObjects.LocationTypes.LocationType.Id">
-            <summary>
-            Gets the Location Type Id.
-            </summary>
-        </member>
-        <member name="P:Agenda.Domain.DomainObjects.LocationTypes.LocationType.Code">
-            <summary>
-            Gets the Location Type Code.
-            </summary>
-        </member>
-        <member name="P:Agenda.Domain.DomainObjects.LocationTypes.LocationType.Name">
-            <summary>
-            Gets the Location Type Name.
-            </summary>
-        </member>
-        <member name="P:Agenda.Domain.DomainObjects.LocationTypes.LocationType.Description">
-            <summary>
-            Gets the Location Type Description.
-            </summary>
-        </member>
         <member name="T:Agenda.Domain.DomainObjects.Meetings.DomainMetadata">
             <summary>
-            Metadata for the <see cref="T:Agenda.Domain.DomainObjects.Organisations.IOrganisation"/>.
-            </summary>
-        </member>
-        <member name="T:Agenda.Domain.DomainObjects.Meetings.DomainMetadata.Location">
-            <summary>
-            Metadata for the <see cref="P:Agenda.Domain.DomainObjects.Meetings.IMeeting.Location"></see> property.
+            Metadata for the <see cref="T:Agenda.Domain.DomainObjects.Meetings.IMeeting"/>.
             </summary>
         </member>
         <member name="T:Agenda.Domain.DomainObjects.Meetings.IMeeting">
@@ -767,11 +419,6 @@
             Gets the committee.
             </summary>
         </member>
-        <member name="P:Agenda.Domain.DomainObjects.Meetings.IMeeting.Location">
-            <summary>
-            Gets the Location.
-            </summary>
-        </member>
         <member name="P:Agenda.Domain.DomainObjects.Meetings.IMeeting.MeetingDateTime">
             <summary>
             Gets the Meeting date and time.
@@ -783,22 +430,18 @@
             </summary>
             <seealso cref="T:Agenda.Domain.DomainObjects.Meetings.IMeeting" />
         </member>
-        <member name="M:Agenda.Domain.DomainObjects.Meetings.Meeting.#ctor(System.Guid,Agenda.Domain.DomainObjects.Committees.ICommittee,Agenda.Domain.DomainObjects.Locations.ILocation,System.DateTime)">
+        <member name="M:Agenda.Domain.DomainObjects.Meetings.Meeting.#ctor(System.Guid,Agenda.Domain.DomainObjects.Committees.ICommittee,System.DateTime)">
             <summary>
             Initializes a new instance of the <see cref="T:Agenda.Domain.DomainObjects.Meetings.Meeting"/> class.
             </summary>
             <param name="id">Meeting Id.</param>
             <param name="committee">Committee.</param>
-            <param name="location">Location.</param>
             <param name="meetingDateTime">Date and Time of Meeting.</param>
         </member>
         <member name="P:Agenda.Domain.DomainObjects.Meetings.Meeting.Id">
             <inheritdoc/>
         </member>
         <member name="P:Agenda.Domain.DomainObjects.Meetings.Meeting.Committee">
-            <inheritdoc/>
-        </member>
-        <member name="P:Agenda.Domain.DomainObjects.Meetings.Meeting.Location">
             <inheritdoc/>
         </member>
         <member name="P:Agenda.Domain.DomainObjects.Meetings.Meeting.MeetingDateTime">
@@ -875,17 +518,6 @@
             Gets the Committees.
             </summary>
         </member>
-        <member name="T:Agenda.Domain.DomainObjects.Organisations.IOrganisationWithLocations">
-            <summary>
-            Organisation with Locations.
-            </summary>
-            <seealso cref="T:Agenda.Domain.DomainObjects.Organisations.IOrganisation" />
-        </member>
-        <member name="P:Agenda.Domain.DomainObjects.Organisations.IOrganisationWithLocations.Locations">
-            <summary>
-            Gets the Locations.
-            </summary>
-        </member>
         <member name="T:Agenda.Domain.DomainObjects.Organisations.Organisation">
             <summary>
             Organisation.
@@ -930,28 +562,6 @@
             <param name="committees">Committees.</param>
         </member>
         <member name="P:Agenda.Domain.DomainObjects.Organisations.OrganisationWithCommittees.Committees">
-            <summary>
-            Gets the Committees.
-            </summary>
-        </member>
-        <member name="T:Agenda.Domain.DomainObjects.Organisations.OrganisationWithLocations">
-            <summary>
-            Organisation with Committees.
-            </summary>
-            <seealso cref="T:Agenda.Domain.DomainObjects.Organisations.Organisation" />
-            <seealso cref="T:Agenda.Domain.DomainObjects.Organisations.IOrganisationWithLocations" />
-        </member>
-        <member name="M:Agenda.Domain.DomainObjects.Organisations.OrganisationWithLocations.#ctor(System.Guid,System.String,System.String,System.String,System.Collections.Generic.IList{Agenda.Domain.DomainObjects.Locations.ILocation})">
-            <summary>
-            Initializes a new instance of the <see cref="T:Agenda.Domain.DomainObjects.Organisations.OrganisationWithLocations"/> class.
-            </summary>
-            <param name="id">Organisation Id.</param>
-            <param name="code">Organisation Code.</param>
-            <param name="name">Organisation Name.</param>
-            <param name="bgColour">Background Colour.</param>
-            <param name="locations">Locations.</param>
-        </member>
-        <member name="P:Agenda.Domain.DomainObjects.Organisations.OrganisationWithLocations.Locations">
             <summary>
             Gets the Committees.
             </summary>

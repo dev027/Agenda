@@ -19,17 +19,14 @@ namespace Agenda.Web.ViewModels.MeetingOverview
         /// Initializes a new instance of the <see cref="MeetingViewModel"/> class.
         /// </summary>
         /// <param name="meetingId">Meeting Id.</param>
-        /// <param name="location">Location.</param>
         /// <param name="meetingDate">Meeting Date.</param>
         /// <param name="meetingTime">Meeting Time.</param>
         public MeetingViewModel(
             Guid meetingId,
-            string location,
             string meetingDate,
             string meetingTime)
         {
             this.MeetingId = meetingId;
-            this.Location = location;
             this.MeetingDate = meetingDate;
             this.MeetingTime = meetingTime;
         }
@@ -44,12 +41,6 @@ namespace Agenda.Web.ViewModels.MeetingOverview
         /// Gets the Meeting Id.
         /// </summary>
         public Guid MeetingId { get; }
-
-        /// <summary>
-        /// Gets the Location.
-        /// </summary>
-        [DisplayName("Location")]
-        public string Location { get; }
 
         /// <summary>
         /// Gets the Meeting Date.
@@ -83,7 +74,6 @@ namespace Agenda.Web.ViewModels.MeetingOverview
 
             return new MeetingViewModel(
                 meetingId: meeting.Id,
-                location: meeting.Location.Name,
                 meetingDate: date,
                 meetingTime: time);
         }

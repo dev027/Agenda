@@ -56,7 +56,7 @@ namespace Agenda.Data.Crud
         {
             this.logger.LogTrace(
                 "ENTRY {Method}(who) {@who}",
-                nameof(this.GetOrganisationByIdAsync),
+                nameof(this.GetAllOrganisationsAsync),
                 who);
 
             IList<OrganisationDto> dtos = await this.context.Organisations
@@ -70,7 +70,7 @@ namespace Agenda.Data.Crud
 
             this.logger.LogTrace(
                 "EXIT {Method}(who, organisations) {@who} {@organisations}",
-                nameof(this.GetOrganisationByIdAsync),
+                nameof(this.GetAllOrganisationsAsync),
                 who,
                 organisations);
 
@@ -130,92 +130,6 @@ namespace Agenda.Data.Crud
                 organisationWithCommittees);
 
             return organisationWithCommittees;
-        }
-
-        /// <inheritdoc/>
-        public async Task<IOrganisationWithLocations> GetOrganisationByIdWithLocationsAsync(
-            IWho who,
-            Guid organisationId)
-        {
-            this.logger.LogTrace(
-                "ENTRY {Method}(who, organisationId) {@who} {organisationId}",
-                nameof(this.GetOrganisationByIdWithLocationsAsync),
-                who,
-                organisationId);
-
-            IOrganisationWithLocations organisationWithLocations = (await this.context.Organisations
-                    .AsNoTracking()
-                    .TagWith(this.Tag(who, nameof(this.GetOrganisationByIdWithLocationsAsync)))
-                    .Include(o => o.Locations)
-                    .FirstOrDefaultAsync(o => o.Id == organisationId)
-                    .ConfigureAwait(false))
-                .ToDomainWithLocations();
-
-            this.logger.LogTrace(
-                "EXIT {Method}(who, organisationWithLocations) {@who} {@organisationWithLocations}",
-                nameof(this.GetOrganisationByIdWithLocationsAsync),
-                who,
-                organisationWithLocations);
-
-            return organisationWithLocations;
-        }
-
-        /// <inheritdoc/>
-        public async Task<IOrganisationWithLocations> GetOrganisationByCommitteeIdWithLocationsAsync(
-            IWho who,
-            Guid committeeId)
-        {
-            this.logger.LogTrace(
-                "ENTRY {Method}(who, committeeId) {@who} {committeeId}",
-                nameof(this.GetOrganisationByCommitteeIdWithLocationsAsync),
-                who,
-                committeeId);
-
-            IOrganisationWithLocations organisationWithLocations = (await this.context.Organisations
-                    .AsNoTracking()
-                    .TagWith(this.Tag(who, nameof(this.GetOrganisationByCommitteeIdWithLocationsAsync)))
-                    .Include(o => o.Locations)
-                    .FirstOrDefaultAsync(o => o.Committees.Any(c => c.Id == committeeId))
-                    .ConfigureAwait(false))
-                .ToDomainWithLocations();
-
-            this.logger.LogTrace(
-                "EXIT {Method}(who, organisationWithLocations) {@who} {@organisationWithLocations}",
-                nameof(this.GetOrganisationByCommitteeIdWithLocationsAsync),
-                who,
-                organisationWithLocations);
-
-            return organisationWithLocations;
-        }
-
-        /// <inheritdoc/>
-        public async Task<IOrganisationWithLocations> GetOrganisationByMeetingIdWithLocationsAsync(
-            IWho who,
-            Guid meetingId)
-        {
-            this.logger.LogTrace(
-                "ENTRY {Method}(who, meetingId) {@who} {meetingId}",
-                nameof(this.GetOrganisationByMeetingIdWithLocationsAsync),
-                who,
-                meetingId);
-
-            IOrganisationWithLocations organisationWithLocations = (await this.context.Organisations
-                    .AsNoTracking()
-                    .TagWith(this.Tag(who, nameof(this.GetOrganisationByMeetingIdWithLocationsAsync)))
-                    .Include(o => o.Locations)
-                    .FirstOrDefaultAsync(o =>
-                        o.Committees.Any(c => c.Meetings.Any(m =>
-                            m.Id == meetingId)))
-                    .ConfigureAwait(false))
-                .ToDomainWithLocations();
-
-            this.logger.LogTrace(
-                "EXIT {Method}(who, organisationWithLocations) {@who} {@organisationWithLocations}",
-                nameof(this.GetOrganisationByMeetingIdWithLocationsAsync),
-                who,
-                organisationWithLocations);
-
-            return organisationWithLocations;
         }
 
         /// <inheritdoc/>

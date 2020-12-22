@@ -35,17 +35,14 @@ namespace Agenda.Data.Dtos
         /// </summary>
         /// <param name="id">Meeting Id.</param>
         /// <param name="committeeId">Committee Id.</param>
-        /// <param name="locationId">Location.</param>
         /// <param name="meetingDateTime">Date and Time of the Meeting.</param>
         public MeetingDto(
             Guid id,
             Guid committeeId,
-            Guid locationId,
             DateTime meetingDateTime)
         {
             this.Id = id;
             this.CommitteeId = committeeId;
-            this.LocationId = locationId;
             this.MeetingDateTime = meetingDateTime;
 
             this.Committee = null!;
@@ -56,24 +53,18 @@ namespace Agenda.Data.Dtos
         /// </summary>
         /// <param name="id">Meeting Id.</param>
         /// <param name="committeeId">Committee Id.</param>
-        /// <param name="locationId">Location Id.</param>
         /// <param name="meetingDateTime">Date and Time of the Meeting.</param>
         /// <param name="committee">Committee.</param>
-        /// <param name="location">Location.</param>
         public MeetingDto(
             Guid id,
             Guid committeeId,
-            Guid locationId,
             DateTime meetingDateTime,
-            CommitteeDto committee,
-            LocationDto location)
+            CommitteeDto committee)
         {
             this.Id = id;
             this.CommitteeId = committeeId;
             this.MeetingDateTime = meetingDateTime;
-            this.LocationId = locationId;
             this.Committee = committee;
-            this.Location = location;
         }
 
         #endregion Constructors
@@ -97,12 +88,6 @@ namespace Agenda.Data.Dtos
         [Required]
         public DateTime MeetingDateTime { get; private set; }
 
-        /// <summary>
-        /// Gets the Location.
-        /// </summary>
-        [Required]
-        public Guid LocationId { get; private set; }
-
         #endregion Properties
 
         #region Parent Properties
@@ -112,12 +97,6 @@ namespace Agenda.Data.Dtos
         /// </summary>
         [ForeignKey(nameof(CommitteeId))]
         public CommitteeDto? Committee { get; private set; } = null!;
-
-        /// <summary>
-        /// Gets the Location.
-        /// </summary>
-        [ForeignKey(nameof(LocationId))]
-        public LocationDto? Location { get; private set; } = null!;
 
         #endregion Parent Properties
 
@@ -138,7 +117,6 @@ namespace Agenda.Data.Dtos
             return new MeetingDto(
                 id: meeting.Id,
                 committeeId: meeting.Committee.Id,
-                locationId: meeting.Location.Id,
                 meetingDateTime: meeting.MeetingDateTime);
         }
 
@@ -158,20 +136,9 @@ namespace Agenda.Data.Dtos
                         nameof(this.Committee)));
             }
 
-            if (this.Location == null)
-            {
-                throw new InvalidOperationException(
-                    string.Format(
-                        CultureInfo.InvariantCulture,
-                        ExceptionResource.CannotConvertTo___If___IsNull,
-                        nameof(IMeeting),
-                        nameof(this.Location)));
-            }
-
             return new Meeting(
                 id: this.Id,
                 committee: this.Committee.ToDomain(),
-                location: this.Location.ToDomain(),
                 meetingDateTime: this.MeetingDateTime);
         }
 

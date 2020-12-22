@@ -91,11 +91,6 @@ namespace Agenda.Data.Dtos
         /// </summary>
         public IList<CommitteeDto> Committees { get; private set; } = null!;
 
-        /// <summary>
-        /// Gets the Locations.
-        /// </summary>
-        public IList<LocationDto> Locations { get; private set; } = null!;
-
         #endregion Child Properties
 
         #region Public Methods
@@ -154,30 +149,6 @@ namespace Agenda.Data.Dtos
                 name: this.Name,
                 bgColour: this.BgColour,
                 committees: this.Committees.Select(c => c.ToDomain()).ToList());
-        }
-
-        /// <summary>
-        /// Converts to domain object with locations.
-        /// </summary>
-        /// <returns>Organisation with Locations.</returns>
-        public IOrganisationWithLocations ToDomainWithLocations()
-        {
-            if (this.Locations == null)
-            {
-                throw new InvalidOperationException(
-                    string.Format(
-                        CultureInfo.InvariantCulture,
-                        ExceptionResource.CannotConvertTo___If___IsNull,
-                        nameof(IOrganisationWithCommittees),
-                        nameof(this.Locations)));
-            }
-
-            return new OrganisationWithLocations(
-                id: this.Id,
-                code: this.Code,
-                name: this.Name,
-                bgColour: this.BgColour,
-                locations: this.Locations.Select(l => l.ToDomain()).ToList());
         }
 
         #endregion Public Methods
