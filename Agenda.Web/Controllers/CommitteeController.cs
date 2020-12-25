@@ -8,6 +8,7 @@ using Agenda.Domain.DomainObjects.Committees;
 using Agenda.Domain.DomainObjects.Organisations;
 using Agenda.Domain.ValueObjects.Enums;
 using Agenda.Service;
+using Agenda.Utilities.Logging;
 using Agenda.Utilities.Models.Whos;
 using Agenda.Web.Models;
 using Agenda.Web.ViewModels.Committee;
@@ -48,13 +49,11 @@ namespace Agenda.Web.Controllers
         /// <returns>View.</returns>
         public async Task<IActionResult> Index(Guid committeeId)
         {
-            IWho who = this.Who(nameof(this.Index));
+            IWho who = this.Who();
 
-            this.logger.LogDebug(
-                "ENTRY {ActionName}(who, committeeId) {@who} {committeeId}",
-                who.ActionName,
+            this.logger.ReportEntry(
                 who,
-                committeeId);
+                new { CommitteeId = committeeId });
 
             ICommitteeWithMeetings committee = await this.service
                 .GetCommitteeByIdWithMeetingsAsync(
@@ -64,7 +63,15 @@ namespace Agenda.Web.Controllers
 
             IndexViewModel model = IndexViewModel.Create(committee);
 
-            return this.ExitView(this.logger, this.View(model));
+            ViewResult view = this.View(model);
+
+            this.logger.ReportExitView(
+                who,
+                view.ViewName,
+                view.Model,
+                view.StatusCode);
+
+            return view;
         }
 
         /// <summary>
@@ -74,13 +81,11 @@ namespace Agenda.Web.Controllers
         /// <returns>Redirect To Action.</returns>
         public async Task<IActionResult> StartAdd(Guid organisationId)
         {
-            IWho who = this.Who(nameof(this.StartAdd));
+            IWho who = this.Who();
 
-            this.logger.LogDebug(
-                "ENTRY {ActionName}(who, organisationId) {@who} {organisationId}",
-                who.ActionName,
+            this.logger.ReportEntry(
                 who,
-                organisationId);
+                new { OrganisationId = organisationId });
 
             IOrganisation organisation = await this.service
                 .GetOrganisationByIdAsync(who, organisationId)
@@ -88,9 +93,15 @@ namespace Agenda.Web.Controllers
 
             AddViewModel model = AddViewModel.Create(organisation);
 
-            return this.ExitRedirectToAction(
-                this.logger,
-                this.RedirectToAction("Add", model));
+            RedirectToActionResult redirect = this.RedirectToAction("Add", model);
+
+            this.logger.ReportExitRedirectToAction(
+                who,
+                redirect.ControllerName,
+                redirect.ActionName,
+                redirect.RouteValues);
+
+            return redirect;
         }
 
         /// <summary>
@@ -111,13 +122,11 @@ namespace Agenda.Web.Controllers
 
             async Task<IActionResult> InternalAsync()
             {
-                IWho who = this.Who(nameof(this.Add));
+                IWho who = this.Who();
 
-                this.logger.LogDebug(
-                    "ENTRY {ActionName}(who, model) {@who} {@model}",
-                    who.ActionName,
+                this.logger.ReportEntry(
                     who,
-                    model);
+                    new { Model = model });
 
                 if (model.FormState == FormState.Initial)
                 {
@@ -127,23 +136,37 @@ namespace Agenda.Web.Controllers
                 {
                     if (this.ModelState.IsValid)
                     {
-                        this.logger.LogDebug(
-                            "{@who} inserting model {@Model}",
+                        this.logger.Debug(
                             who,
-                            model);
+                            "Inserting record",
+                            new { Model = model });
 
                         await this.InsertRecordAsync(who, model).ConfigureAwait(false);
 
-                        return this.ExitRedirectToAction(
-                            this.logger,
-                            this.RedirectToAction(
-                                "Index",
-                                "CommitteeOverview",
-                                new { organisationId = model.OrganisationId }));
+                        RedirectToActionResult redirect = this.RedirectToAction(
+                            "Index",
+                            "CommitteeOverview",
+                            new { organisationId = model.OrganisationId });
+
+                        this.logger.ReportExitRedirectToAction(
+                            who,
+                            redirect.ControllerName,
+                            redirect.ActionName,
+                            redirect.RouteValues);
+
+                        return redirect;
                     }
                 }
 
-                return this.ExitView(this.logger, this.View(model));
+                ViewResult view = this.View(model);
+
+                this.logger.ReportExitView(
+                    who,
+                    view.ViewName,
+                    view.Model,
+                    view.StatusCode);
+
+                return view;
             }
         }
 
@@ -157,14 +180,15 @@ namespace Agenda.Web.Controllers
             Guid committeeId,
             int ajaxMode)
         {
-            IWho who = this.Who(nameof(this.StartEdit));
+            IWho who = this.Who();
 
-            this.logger.LogDebug(
-                "ENTRY {Action}(who, committeeId, ajaxMode) {@who} {committeeId} {ajaxMode}",
-                who.ActionName,
+            this.logger.ReportEntry(
                 who,
-                committeeId,
-                ajaxMode);
+                new
+                {
+                    CommitteeId = committeeId,
+                    AjaxMode = ajaxMode
+                });
 
             ICommittee committee = await this.service
                 .GetCommitteeByIdAsync(who, committeeId)
@@ -175,7 +199,15 @@ namespace Agenda.Web.Controllers
             switch (ajaxMode)
             {
                 case 0:
-                    return this.ExitView(this.logger, this.View("Edit", model));
+                    ViewResult view = this.View("Edit", model);
+
+                    this.logger.ReportExitView(
+                        who,
+                        view.ViewName,
+                        view.Model,
+                        view.StatusCode);
+
+                    return view;
 
                 default:
                     throw new NotImplementedException($"AjaxMode {ajaxMode} not implemented yet.");
@@ -199,27 +231,39 @@ namespace Agenda.Web.Controllers
 
             async Task<IActionResult> InternalAsync()
             {
-                IWho who = this.Who(nameof(this.Edit));
+                IWho who = this.Who();
 
-                this.logger.LogDebug(
-                    "ENTRY {Action}(who, model) {@who} {model}",
-                    who.ActionName,
+                this.logger.ReportEntry(
                     who,
-                    model);
+                    new { Model = model });
 
                 if (this.ModelState.IsValid)
                 {
                     await this.UpdateRecordAsync(who, model).ConfigureAwait(false);
 
-                    return this.ExitRedirectToAction(
-                        this.logger,
-                        this.RedirectToAction(
-                            "Index",
-                            "Committee",
-                            new { committeeId = model.CommitteeId }));
+                    RedirectToActionResult redirect = this.RedirectToAction(
+                        "Index",
+                        "Committee",
+                        new { committeeId = model.CommitteeId });
+
+                    this.logger.ReportExitRedirectToAction(
+                        who,
+                        redirect.ControllerName,
+                        redirect.ActionName,
+                        redirect.RouteValues);
+
+                    return redirect;
                 }
 
-                return this.View(model);
+                ViewResult view = this.View(model);
+
+                this.logger.ReportExitView(
+                    who,
+                    view.ViewName,
+                    view.Model,
+                    view.StatusCode);
+
+                return view;
             }
         }
 
@@ -233,11 +277,9 @@ namespace Agenda.Web.Controllers
             IWho who,
             AddViewModel model)
         {
-            this.logger.LogTrace(
-                "ENTRY {Method}(who, model) {@who} {@model}",
-                nameof(this.InsertRecordAsync),
+            this.logger.ReportEntry(
                 who,
-                model);
+                new { Model = model });
 
             IOrganisation organisation = await this.service.GetOrganisationByIdAsync(
                     who,
@@ -250,10 +292,7 @@ namespace Agenda.Web.Controllers
                 .CreateCommitteeAsync(who, AuditEvent.CommitteeMaintenance, committee)
                 .ConfigureAwait(false);
 
-            this.logger.LogTrace(
-                "EXIT {Method}(who) {@who}",
-                nameof(this.InsertRecordAsync),
-                who);
+            this.logger.ReportExit(who);
         }
 
         /// <summary>
@@ -266,11 +305,9 @@ namespace Agenda.Web.Controllers
             IWho who,
             EditViewModel model)
         {
-            this.logger.LogTrace(
-                "ENTRY {Method}(who, model) {@who} {model}",
-                nameof(this.UpdateRecordAsync),
+            this.logger.ReportEntry(
                 who,
-                model);
+                new { Model = model });
 
             ICommittee originalCommittee = await this.service
                 .GetCommitteeByIdAsync(
@@ -287,10 +324,7 @@ namespace Agenda.Web.Controllers
                     committee: committee)
                 .ConfigureAwait(false);
 
-            this.logger.LogTrace(
-                "EXIT {Method}(who) {@who}",
-                nameof(this.UpdateRecordAsync),
-                who);
+            this.logger.ReportExit(who);
         }
     }
 }

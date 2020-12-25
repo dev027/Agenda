@@ -6,7 +6,8 @@
 {
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><span class="@Icon.Organisation"></span>
+            <li class="breadcrumb-item">
+                <span class="@Icon.Organisation"></span>
                 <a asp-controller="OrganisationOverview"
                    asp-action="Index">Organisations</a>
             </li>
@@ -15,7 +16,8 @@
                    asp-action="Index"
                    asp-route-organisationId="@Model.OrganisationId">@Model.OrganisationName</a>
             </li>
-            <li class="breadcrumb-item"><span class="@Icon.Committee"></span>
+            <li class="breadcrumb-item">
+                <span class="@Icon.Committee"></span>
                 <a asp-controller="CommitteeOverview"
                    asp-action="Index"
                    asp-route-organisationId="@Model.OrganisationId">Committees</a>
@@ -25,7 +27,8 @@
                    asp-action="Index"
                    asp-route-committeeId="@Model.CommitteeId">@Model.CommitteeName</a>
             </li>
-            <li class="breadcrumb-item"><span class="@Icon.Meeting"></span>
+            <li class="breadcrumb-item">
+                <span class="@Icon.Meeting"></span>
                 <a asp-controller="MeetingOverview"
                    asp-action="Index"
                    asp-route-committeeId="@Model.CommitteeId">Meetings</a>
@@ -43,7 +46,6 @@
         </div>
     </nav>
 }
-
 
 <main class="container-fluid flex-grow-1">
     <div class="row justify-content-center">
@@ -89,11 +91,18 @@
                             <div class="form-control">@Model.MeetingTime</div>
                         </div>
                     </div>
-                    <a asp-controller="Meeting"
-                       asp-action="StartEdit"
-                       asp-route-meetingId="@Model.MeetingId"
-                       asp-route-ajaxMode="0"
-                       class="btn btn-primary"><span class="@Icon.Edit"></span> Edit</a>
+                    <div class="d-flex flex-row justify-content-between">
+                        <a asp-controller="Meeting"
+                           asp-action="StartEdit"
+                           asp-route-meetingId="@Model.MeetingId"
+                           asp-route-ajaxMode="0"
+                           class="btn btn-primary"><span class="@Icon.Edit"></span> Edit</a>
+                        <a asp-controller="Agenda"
+                           asp-action="Index"
+                           asp-route-meetingId="@Model.MeetingId"
+                           asp-route-ajaxMode="0"
+                           class="btn btn-primary"><span class="@Icon.Edit"></span> Agenda</a>
+                    </div>
                 </div>
             </div>
         </div>

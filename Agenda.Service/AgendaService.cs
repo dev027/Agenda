@@ -5,6 +5,7 @@
 using System.Threading.Tasks;
 using Agenda.Data.Crud;
 using Agenda.Domain.ValueObjects.SetupStatii;
+using Agenda.Utilities.Logging;
 using Agenda.Utilities.Models.Whos;
 using Microsoft.Extensions.Logging;
 
@@ -45,10 +46,7 @@ namespace Agenda.Service
         /// <inheritdoc/>
         public async Task<ISetupStatus> GetSetupStatusAsync(IWho who)
         {
-            this.logger.LogTrace(
-                "ENTRY {Method}(who) {@who}",
-                nameof(this.GetSetupStatusAsync),
-                who);
+            this.logger.ReportEntry(who);
 
             bool haveOrganisations = await this.data
                 .HaveOrganisationsAsync(who)
@@ -72,11 +70,9 @@ namespace Agenda.Service
                     haveCommittees: haveCommittees);
             }
 
-            this.logger.LogTrace(
-                "EXIT {Method}(who, setupStatus) {@who} {@setupStatus}",
-                nameof(this.GetSetupStatusAsync),
+            this.logger.ReportExit(
                 who,
-                setupStatus);
+                new { SetupStatus = setupStatus });
 
             return setupStatus;
         }

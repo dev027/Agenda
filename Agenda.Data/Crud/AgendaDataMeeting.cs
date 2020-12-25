@@ -10,6 +10,7 @@ using Agenda.Data.Dtos;
 using Agenda.Data.Utilities;
 using Agenda.Domain.DomainObjects.AuditHeaders;
 using Agenda.Domain.DomainObjects.Meetings;
+using Agenda.Utilities.Logging;
 using Agenda.Utilities.Models.Whos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -29,11 +30,9 @@ namespace Agenda.Data.Crud
             IAuditHeaderWithAuditDetails auditHeader,
             IMeeting meeting)
         {
-            this.logger.LogTrace(
-                "ENTRY {Method}(who, meeting) {@who} {@meeting}",
-                nameof(this.CreateMeetingAsync),
+            this.logger.ReportEntry(
                 who,
-                meeting);
+                new { Meeting = meeting });
 
             MeetingDto dto = MeetingDto.ToDto(meeting);
 
@@ -41,10 +40,7 @@ namespace Agenda.Data.Crud
             await this.context.SaveChangesAsync().ConfigureAwait(false);
             Audit.AuditCreate(auditHeader, dto, dto.Id);
 
-            this.logger.LogTrace(
-                "EXIT {Method}(who) {@who}",
-                nameof(this.CreateMeetingAsync),
-                who);
+            this.logger.ReportExit(who);
         }
 
         #endregion Create
@@ -57,12 +53,13 @@ namespace Agenda.Data.Crud
             TimeSpan timeSpan,
             int maxNumberOfMeetings)
         {
-            this.logger.LogTrace(
-                "ENTRY {Method}(who, timeSpan, maxNumberOfMeetings) {@who} {timeSpan} {maxNumberOfMeetings}",
-                nameof(this.GetRecentMeetingsMostRecentFirstAsync),
+            this.logger.ReportEntry(
                 who,
-                timeSpan,
-                maxNumberOfMeetings);
+                new
+                {
+                    TimeSpan = timeSpan,
+                    MaxNumberOfMeetings = maxNumberOfMeetings
+                });
 
             DateTime earliestDate = DateTime.Now.Subtract(timeSpan);
             IList<MeetingDto> meetingDtos = await this.context.Meetings
@@ -77,23 +74,21 @@ namespace Agenda.Data.Crud
 
             IList<IMeeting> meetings = meetingDtos.Select(m => m.ToDomain()).ToList();
 
-            this.logger.LogTrace(
-                "EXIT {Method}(who, meetings) {@who} {@meetings}",
-                nameof(this.GetRecentMeetingsMostRecentFirstAsync),
+            this.logger.ReportExit(
                 who,
-                meetings);
+                new { Meetings = meetings });
 
             return meetings;
         }
 
         /// <inheritdoc />
-        public async Task<IMeeting> GetMeetingByIdAsync(IWho who, Guid meetingId)
+        public async Task<IMeeting> GetMeetingByIdAsync(
+            IWho who,
+            Guid meetingId)
         {
-            this.logger.LogTrace(
-                "ENTRY {Method}(who, meetingId) {@who} {meetingId}",
-                nameof(this.GetMeetingByIdAsync),
+            this.logger.ReportEntry(
                 who,
-                meetingId);
+                new { MeetingId = meetingId });
 
             IMeeting meeting = (await this.context.Meetings
                     .AsNoTracking()
@@ -104,11 +99,9 @@ namespace Agenda.Data.Crud
                     .ConfigureAwait(false))
                 .ToDomain();
 
-            this.logger.LogTrace(
-                "EXIT {Method}(who, meeting) {@who} {@meeting}",
-                nameof(this.GetMeetingByIdAsync),
+            this.logger.ReportExit(
                 who,
-                meeting);
+                new { Meeting = meeting });
 
             return meeting;
         }
@@ -123,11 +116,9 @@ namespace Agenda.Data.Crud
             IAuditHeaderWithAuditDetails auditHeader,
             IMeeting meeting)
         {
-            this.logger.LogTrace(
-                "ENTRY {Method}(who, meeting) {@who} {@meeting}",
-                nameof(this.UpdateMeetingAsync),
+            this.logger.ReportEntry(
                 who,
-                meeting);
+                new { Meeting = meeting });
 
             MeetingDto dto = MeetingDto.ToDto(meeting);
             MeetingDto original = await this.context.FindAsync<MeetingDto>(meeting.Id);
@@ -136,10 +127,7 @@ namespace Agenda.Data.Crud
             this.context.Entry(original).CurrentValues.SetValues(dto);
             await this.context.SaveChangesAsync().ConfigureAwait(false);
 
-            this.logger.LogTrace(
-                "EXIT {Method}(who) {@who}",
-                nameof(this.UpdateMeetingAsync),
-                who);
+            this.logger.ReportExit(who);
         }
 
         #endregion Update

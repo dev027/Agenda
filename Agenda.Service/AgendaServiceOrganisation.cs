@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Agenda.Domain.DomainObjects.AuditHeaders;
 using Agenda.Domain.DomainObjects.Organisations;
 using Agenda.Domain.ValueObjects.Enums;
+using Agenda.Utilities.Logging;
 using Agenda.Utilities.Models.Whos;
 using Microsoft.Extensions.Logging;
 
@@ -27,11 +28,9 @@ namespace Agenda.Service
             AuditEvent auditEvent,
             IOrganisation organisation)
         {
-            this.logger.LogTrace(
-                "ENTRY {Method}(who, organisation) {@who} {@organisation}",
-                nameof(this.CreateOrganisationAsync),
+            this.logger.ReportEntry(
                 who,
-                organisation);
+                new { Organisation = organisation });
 
             try
             {
@@ -53,10 +52,7 @@ namespace Agenda.Service
                 throw;
             }
 
-            this.logger.LogTrace(
-                "EXIT {Method}(who) {@who}",
-                nameof(this.CreateOrganisationAsync),
-                who);
+            this.logger.ReportExit(who);
         }
 
         #endregion Create
@@ -64,22 +60,18 @@ namespace Agenda.Service
         #region Read
 
         /// <inheritdoc/>
-        public async Task<IList<IOrganisation>> GetAllOrganisationsAsync(IWho who)
+        public async Task<IList<IOrganisation>> GetAllOrganisationsAsync(
+            IWho who)
         {
-            this.logger.LogTrace(
-                "ENTRY {Method}(who) {@who}",
-                nameof(this.GetAllOrganisationsAsync),
-                who);
+            this.logger.ReportEntry(who);
 
             IList<IOrganisation> organisations = await this.data
                 .GetAllOrganisationsAsync(who)
                 .ConfigureAwait(false);
 
-            this.logger.LogTrace(
-                "EXIT {Method}(who, organisations) {@who} {@organisations}",
-                nameof(this.GetAllOrganisationsAsync),
+            this.logger.ReportExit(
                 who,
-                organisations);
+                new { Organisations = organisations });
 
             return organisations;
         }
@@ -89,11 +81,9 @@ namespace Agenda.Service
             IWho who,
             Guid organisationId)
         {
-            this.logger.LogTrace(
-                "ENTRY {Method}(who, organisationId) {@who} {organisationId}",
-                nameof(this.GetOrganisationByIdAsync),
+            this.logger.ReportEntry(
                 who,
-                organisationId);
+                new { OrganisationId = organisationId });
 
             IOrganisation organisation = await this.data
                 .GetOrganisationByIdAsync(
@@ -101,11 +91,9 @@ namespace Agenda.Service
                     organisationId: organisationId)
                 .ConfigureAwait(false);
 
-            this.logger.LogTrace(
-                "EXIT {Method}(who, organisation) {@who} {@organisation}",
-                nameof(this.GetOrganisationByIdAsync),
+            this.logger.ReportExit(
                 who,
-                organisation);
+                new { Organisation = organisation });
 
             return organisation;
         }
@@ -115,11 +103,9 @@ namespace Agenda.Service
             IWho who,
             Guid organisationId)
         {
-            this.logger.LogTrace(
-                "ENTRY {Method}(who, organisationId) {@who} {organisationId}",
-                nameof(this.GetOrganisationByIdWithCommitteesAsync),
+            this.logger.ReportEntry(
                 who,
-                organisationId);
+                new { OrganisationId = organisationId });
 
             IOrganisationWithCommittees organisationWithCommittees = await this.data
                 .GetOrganisationByIdWithCommitteesAsync(
@@ -127,11 +113,9 @@ namespace Agenda.Service
                     organisationId: organisationId)
                 .ConfigureAwait(false);
 
-            this.logger.LogTrace(
-                "EXIT {Method}(who, organisationWithCommittees) {@who} {@organisationWithCommittees}",
-                nameof(this.GetOrganisationByIdWithCommitteesAsync),
+            this.logger.ReportExit(
                 who,
-                organisationWithCommittees);
+                new { OrganisationWithCommittees = organisationWithCommittees });
 
             return organisationWithCommittees;
         }
@@ -146,11 +130,9 @@ namespace Agenda.Service
             AuditEvent auditEvent,
             IOrganisation organisation)
         {
-            this.logger.LogTrace(
-                "ENTRY {Method}(who, organisation) {@who} {@organisation}",
-                nameof(this.UpdateOrganisationAsync),
+            this.logger.ReportEntry(
                 who,
-                organisation);
+                new { Organisation = organisation });
 
             try
             {
@@ -172,10 +154,7 @@ namespace Agenda.Service
                 throw;
             }
 
-            this.logger.LogTrace(
-                "EXIT {Method}(who) {@who}",
-                nameof(this.UpdateOrganisationAsync),
-                who);
+            this.logger.ReportExit(who);
         }
 
         #endregion Update

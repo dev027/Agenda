@@ -10,9 +10,9 @@ using Agenda.Data.Dtos;
 using Agenda.Data.Utilities;
 using Agenda.Domain.DomainObjects.AuditHeaders;
 using Agenda.Domain.DomainObjects.Organisations;
+using Agenda.Utilities.Logging;
 using Agenda.Utilities.Models.Whos;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 
 namespace Agenda.Data.Crud
 {
@@ -29,11 +29,9 @@ namespace Agenda.Data.Crud
             IAuditHeaderWithAuditDetails auditHeader,
             IOrganisation organisation)
         {
-            this.logger.LogTrace(
-                "ENTRY {Method}(who, organisation) {@who} {@organisation}",
-                nameof(this.CreateOrganisationAsync),
+            this.logger.ReportEntry(
                 who,
-                organisation);
+                new { Organisation = organisation });
 
             OrganisationDto dto = OrganisationDto.ToDto(organisation);
 
@@ -41,10 +39,7 @@ namespace Agenda.Data.Crud
             await this.context.SaveChangesAsync().ConfigureAwait(false);
             Audit.AuditCreate(auditHeader, dto, dto.Id);
 
-            this.logger.LogTrace(
-                "EXIT {Method}(who) {@who}",
-                nameof(this.CreateOrganisationAsync),
-                who);
+            this.logger.ReportExit(who);
         }
 
         #endregion Create
@@ -54,10 +49,7 @@ namespace Agenda.Data.Crud
         /// <inheritdoc />
         public async Task<IList<IOrganisation>> GetAllOrganisationsAsync(IWho who)
         {
-            this.logger.LogTrace(
-                "ENTRY {Method}(who) {@who}",
-                nameof(this.GetAllOrganisationsAsync),
-                who);
+            this.logger.ReportEntry(who);
 
             IList<OrganisationDto> dtos = await this.context.Organisations
                 .AsNoTracking()
@@ -68,11 +60,9 @@ namespace Agenda.Data.Crud
             IList<IOrganisation> organisations = dtos.Select(o => o.ToDomain())
                 .ToList();
 
-            this.logger.LogTrace(
-                "EXIT {Method}(who, organisations) {@who} {@organisations}",
-                nameof(this.GetAllOrganisationsAsync),
+            this.logger.ReportExit(
                 who,
-                organisations);
+                new { Organisations = organisations });
 
             return organisations;
         }
@@ -82,11 +72,9 @@ namespace Agenda.Data.Crud
             IWho who,
             Guid organisationId)
         {
-            this.logger.LogTrace(
-                "ENTRY {Method}(who, organisationId) {@who} {organisationId}",
-                nameof(this.GetOrganisationByIdAsync),
+            this.logger.ReportEntry(
                 who,
-                organisationId);
+                new { OrganisationId = organisationId });
 
             IOrganisation organisation = (await this.context.Organisations
                     .AsNoTracking()
@@ -95,11 +83,9 @@ namespace Agenda.Data.Crud
                     .ConfigureAwait(false))
                 .ToDomain();
 
-            this.logger.LogTrace(
-                "EXIT {Method}(who, organisation) {@who} {@organisation}",
-                nameof(this.GetOrganisationByIdAsync),
+            this.logger.ReportExit(
                 who,
-                organisation);
+                new { Organisation = organisation });
 
             return organisation;
         }
@@ -109,11 +95,9 @@ namespace Agenda.Data.Crud
             IWho who,
             Guid organisationId)
         {
-            this.logger.LogTrace(
-                "ENTRY {Method}(who, organisationId) {@who} {organisationId}",
-                nameof(this.GetOrganisationByIdAsync),
+            this.logger.ReportEntry(
                 who,
-                organisationId);
+                new { OrganisationId = organisationId });
 
             IOrganisationWithCommittees organisationWithCommittees = (await this.context.Organisations
                     .AsNoTracking()
@@ -123,11 +107,12 @@ namespace Agenda.Data.Crud
                     .ConfigureAwait(false))
                 .ToDomainWithCommittees();
 
-            this.logger.LogTrace(
-                "EXIT {Method}(who, organisationWithCommittees) {@who} {@organisationWithCommittees}",
-                nameof(this.GetOrganisationByIdAsync),
+            this.logger.ReportExit(
                 who,
-                organisationWithCommittees);
+                new
+                {
+                    OrganisationWithCommittees = organisationWithCommittees
+                });
 
             return organisationWithCommittees;
         }
@@ -135,21 +120,16 @@ namespace Agenda.Data.Crud
         /// <inheritdoc/>
         public async Task<bool> HaveOrganisationsAsync(IWho who)
         {
-            this.logger.LogTrace(
-                "ENTRY {Method}(who) {@who}",
-                nameof(this.HaveOrganisationsAsync),
-                who);
+            this.logger.ReportEntry(who);
 
             bool haveOrganisations = await this.context.Organisations
                 .TagWith(this.Tag(who, nameof(this.HaveOrganisationsAsync)))
                 .AnyAsync()
                 .ConfigureAwait(false);
 
-            this.logger.LogTrace(
-                "EXIT {Method}(who, haveOrganisations) {@who} {haveOrganisations}",
-                nameof(this.HaveOrganisationsAsync),
+            this.logger.ReportExit(
                 who,
-                haveOrganisations);
+                new { HaveOrganisations = haveOrganisations });
 
             return haveOrganisations;
         }
@@ -164,11 +144,9 @@ namespace Agenda.Data.Crud
             IAuditHeaderWithAuditDetails auditHeader,
             IOrganisation organisation)
         {
-            this.logger.LogTrace(
-                "ENTRY {Method}(who, organisation) {@who} {@organisation}",
-                nameof(this.UpdateOrganisationAsync),
+            this.logger.ReportEntry(
                 who,
-                organisation);
+                new { Organisation = organisation });
 
             OrganisationDto dto = OrganisationDto.ToDto(organisation);
             OrganisationDto original = await this.context.FindAsync<OrganisationDto>(organisation.Id);
@@ -177,10 +155,7 @@ namespace Agenda.Data.Crud
             this.context.Entry(original).CurrentValues.SetValues(dto);
             await this.context.SaveChangesAsync().ConfigureAwait(false);
 
-            this.logger.LogTrace(
-                "EXIT {Method}(who) {@who}",
-                nameof(this.UpdateOrganisationAsync),
-                who);
+            this.logger.ReportExit(who);
         }
 
         #endregion Update

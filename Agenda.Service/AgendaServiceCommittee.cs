@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Agenda.Domain.DomainObjects.AuditHeaders;
 using Agenda.Domain.DomainObjects.Committees;
 using Agenda.Domain.ValueObjects.Enums;
+using Agenda.Utilities.Logging;
 using Agenda.Utilities.Models.Whos;
 using Microsoft.Extensions.Logging;
 
@@ -26,11 +27,9 @@ namespace Agenda.Service
             AuditEvent auditEvent,
             ICommittee committee)
         {
-            this.logger.LogTrace(
-                "ENTRY {Method}(who, committee) {@who} {@committee}",
-                nameof(this.CreateCommitteeAsync),
+            this.logger.ReportEntry(
                 who,
-                committee);
+                new { Committee = committee });
 
             try
             {
@@ -51,10 +50,7 @@ namespace Agenda.Service
                 throw;
             }
 
-            this.logger.LogTrace(
-                "EXIT {Method}(who) {@who}",
-                nameof(this.CreateCommitteeAsync),
-                who);
+            this.logger.ReportExit(who);
         }
 
         #endregion Create
@@ -66,11 +62,9 @@ namespace Agenda.Service
             IWho who,
             Guid committeeId)
         {
-            this.logger.LogTrace(
-                "ENTRY {Method}(who, committeeId) {@who} {committeeId}",
-                nameof(this.GetCommitteeByIdAsync),
+            this.logger.ReportEntry(
                 who,
-                committeeId);
+                new { CommitteeId = committeeId });
 
             ICommittee committee = await this.data
                 .GetCommitteeByIdAsync(
@@ -78,11 +72,9 @@ namespace Agenda.Service
                     committeeId: committeeId)
                 .ConfigureAwait(false);
 
-            this.logger.LogTrace(
-                "EXIT {Method}(who, committee) {@who} {@committee}",
-                nameof(this.GetCommitteeByIdAsync),
+            this.logger.ReportExit(
                 who,
-                committee);
+                new { Committee = committee });
 
             return committee;
         }
@@ -92,11 +84,9 @@ namespace Agenda.Service
             IWho who,
             Guid committeeId)
         {
-            this.logger.LogTrace(
-                "ENTRY {Method}(who, committeeId) {@who} {committeeId}",
-                nameof(this.GetCommitteeByIdWithMeetingsAsync),
+            this.logger.ReportEntry(
                 who,
-                committeeId);
+                new { CommitteeId = committeeId });
 
             ICommitteeWithMeetings committeeWithMeetings = await this.data
                 .GetCommitteeByIdWithMeetingsAsync(
@@ -104,11 +94,9 @@ namespace Agenda.Service
                     committeeId: committeeId)
                 .ConfigureAwait(false);
 
-            this.logger.LogTrace(
-                "EXIT {Method}(who, committeeWithMeetings) {@who} {@committeeWithMeetings}",
-                nameof(this.GetCommitteeByIdWithMeetingsAsync),
+            this.logger.ReportExit(
                 who,
-                committeeWithMeetings);
+                new { CommitteeWithMeetings = committeeWithMeetings });
 
             return committeeWithMeetings;
         }
@@ -123,11 +111,9 @@ namespace Agenda.Service
             AuditEvent auditEvent,
             ICommittee committee)
         {
-            this.logger.LogTrace(
-                "ENTRY {Method}(who, committee) {@who} {@committee}",
-                nameof(this.UpdateCommitteeAsync),
+            this.logger.ReportEntry(
                 who,
-                committee);
+                new { Committee = committee });
 
             try
             {
@@ -150,10 +136,7 @@ namespace Agenda.Service
                 throw;
             }
 
-            this.logger.LogTrace(
-                "EXIT {Method}(who) {@who}",
-                nameof(this.UpdateCommitteeAsync),
-                who);
+            this.logger.ReportExit(who);
         }
 
         #endregion Update

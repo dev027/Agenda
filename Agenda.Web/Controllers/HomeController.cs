@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Agenda.Domain.DomainObjects.Meetings;
 using Agenda.Domain.ValueObjects.SetupStatii;
 using Agenda.Service;
+using Agenda.Utilities.Logging;
 using Agenda.Utilities.Models.Whos;
 using Agenda.Web.Areas.Api.Models.Home;
 using Agenda.Web.Models;
@@ -55,12 +56,9 @@ namespace Agenda.Web.Controllers
         [HttpGet("/[controller]/index")]
         public async Task<IActionResult> Index()
         {
-            IWho who = this.Who(nameof(this.Index));
+            IWho who = this.Who();
 
-            this.logger.LogDebug(
-                "ENTRY {Action}(who) {@who}",
-                who.ActionName,
-                who);
+            this.logger.ReportEntry(who);
 
             IList<IMeeting> meetings = await this.service
                 .GetRecentMeetingsMostRecentFirstAsync(who)
@@ -78,7 +76,15 @@ namespace Agenda.Web.Controllers
 
             IndexViewModel model = IndexViewModel.Create(meetings, setupStatus, featureEnabled);
 
-            return this.ExitView(this.logger, this.View(model));
-       }
+            ViewResult view = this.View(model);
+
+            this.logger.ReportExitView(
+                who,
+                view.ViewName,
+                view.Model,
+                view.StatusCode);
+
+            return view;
+        }
     }
 }

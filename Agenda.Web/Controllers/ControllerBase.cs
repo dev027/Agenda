@@ -3,9 +3,9 @@
 // </copyright>
 
 using System;
+using System.Runtime.CompilerServices;
 using Agenda.Utilities.Models.Whos;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace Agenda.Web.Controllers
 {
@@ -51,7 +51,8 @@ namespace Agenda.Web.Controllers
         /// </summary>
         /// <param name="actionName">Action Name.</param>
         /// <returns> Who details. </returns>
-        protected IWho Who(string actionName)
+        protected IWho Who(
+            [CallerMemberName] string actionName = "Unknown")
         {
             return this.who ??= new Who(
                 controllerName: this.controllerName,
@@ -60,61 +61,6 @@ namespace Agenda.Web.Controllers
                 queryString: this.Request?.QueryString.ToString() ?? "No Query String",
                 clientIpAddress: this.HttpContext?.Connection.RemoteIpAddress?.ToString() ?? "None",
                 username: null);
-        }
-
-        /// <summary>
-        /// Log exit from a controller action when redirecting to a different action.
-        /// </summary>
-        /// <param name="logger">The logger.</param>
-        /// <param name="redirectToAction">The redirect to action.</param>
-        /// <returns>Redirect To Action result.</returns>
-        protected RedirectToActionResult ExitRedirectToAction(
-                    ILogger logger,
-                    RedirectToActionResult redirectToAction)
-        {
-            if (redirectToAction == null)
-            {
-                throw new ArgumentNullException(nameof(redirectToAction));
-            }
-
-            logger.LogDebug(
-                "EXIT {ActionName}: " +
-                "Redirect to {RedirectControllerName}/{RedirectActionName}, " +
-                "RouteValue {RouteValue} by {@who}",
-                this.who.ActionName,
-                redirectToAction.ControllerName ?? this.who.ControllerName,
-                redirectToAction.ActionName,
-                redirectToAction.RouteValues,
-                this.who);
-
-            return redirectToAction;
-        }
-
-        /// <summary>
-        /// Log exit from a controller action when returning a view.
-        /// </summary>
-        /// <param name="logger">The logger.</param>
-        /// <param name="view">The view.</param>
-        /// <returns>View result.</returns>
-        protected ViewResult ExitView(
-                    ILogger logger,
-                    ViewResult view)
-        {
-            if (view == null)
-            {
-                throw new ArgumentNullException(nameof(view));
-            }
-
-            logger.LogDebug(
-                "EXIT {ActionName}: " +
-                "View {ViewName}, Model: {@Model}, Status: {StatusCode} by {@who}",
-                this.who.ActionName,
-                view.ViewName ?? this.who.ActionName,
-                view.Model,
-                view.StatusCode,
-                this.who);
-
-            return view;
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Agenda.Domain.DomainObjects.AuditHeaders;
 using Agenda.Domain.DomainObjects.Meetings;
 using Agenda.Domain.ValueObjects.Enums;
+using Agenda.Utilities.Logging;
 using Agenda.Utilities.Models.Whos;
 using Microsoft.Extensions.Logging;
 
@@ -27,11 +28,9 @@ namespace Agenda.Service
             AuditEvent auditEvent,
             IMeeting meeting)
         {
-            this.logger.LogTrace(
-                "ENTRY {Method}(who, meeting) {@who} {@meeting}",
-                nameof(this.CreateMeetingAsync),
+            this.logger.ReportEntry(
                 who,
-                meeting);
+                new { Meeting = meeting });
 
             try
             {
@@ -53,10 +52,7 @@ namespace Agenda.Service
                 throw;
             }
 
-            this.logger.LogTrace(
-                "EXIT {Method}(who) {@who}",
-                nameof(this.CreateMeetingAsync),
-                who);
+            this.logger.ReportExit(who);
         }
 
         #endregion Create
@@ -68,11 +64,9 @@ namespace Agenda.Service
             IWho who,
             Guid meetingId)
         {
-            this.logger.LogTrace(
-                "ENTRY {Method}(who, meetingId) {@who} {meetingId}",
-                nameof(this.GetMeetingByIdAsync),
+            this.logger.ReportEntry(
                 who,
-                meetingId);
+                new { MeetingId = meetingId });
 
             IMeeting meeting = await this.data
                 .GetMeetingByIdAsync(
@@ -80,11 +74,9 @@ namespace Agenda.Service
                     meetingId: meetingId)
                 .ConfigureAwait(false);
 
-            this.logger.LogTrace(
-                "EXIT {Method}(who, meeting) {@who} {@meeting}",
-                nameof(this.GetMeetingByIdAsync),
+            this.logger.ReportExit(
                 who,
-                meeting);
+                new { Meeting = meeting });
 
             return meeting;
         }
@@ -95,12 +87,13 @@ namespace Agenda.Service
             TimeSpan? timeSpan = null,
             int? maxNumberOfMeetings = null)
         {
-            this.logger.LogTrace(
-                "ENTRY {Method}(who, timeSpan, maxNumberOfMeetings) {@who} {timeSpan} {maxNumberOfMeetings}",
-                nameof(this.GetRecentMeetingsMostRecentFirstAsync),
+            this.logger.ReportEntry(
                 who,
-                timeSpan,
-                maxNumberOfMeetings);
+                new
+                {
+                    TimeSpan = timeSpan,
+                    MaxNumberOfMeeeting = maxNumberOfMeetings
+                });
 
             IList<IMeeting> meetings = await this.data
                 .GetRecentMeetingsMostRecentFirstAsync(
@@ -109,11 +102,9 @@ namespace Agenda.Service
                     maxNumberOfMeetings: maxNumberOfMeetings ?? 20)
                 .ConfigureAwait(false);
 
-            this.logger.LogTrace(
-                "EXIT {Method}(who, meetings) {@who} {@meetings}",
-                nameof(this.GetRecentMeetingsMostRecentFirstAsync),
+            this.logger.ReportExit(
                 who,
-                meetings);
+                new { Meetings = meetings });
 
             return meetings;
         }
@@ -128,11 +119,9 @@ namespace Agenda.Service
             AuditEvent auditEvent,
             IMeeting meeting)
         {
-            this.logger.LogTrace(
-                "ENTRY {Method}(who, meeting) {@who} {@organisation}",
-                nameof(this.UpdateMeetingAsync),
+            this.logger.ReportEntry(
                 who,
-                meeting);
+                new { Meeting = meeting });
 
             try
             {
@@ -154,10 +143,7 @@ namespace Agenda.Service
                 throw;
             }
 
-            this.logger.LogTrace(
-                "EXIT {Method}(who) {@who}",
-                nameof(this.UpdateMeetingAsync),
-                who);
+            this.logger.ReportExit(who);
         }
 
         #endregion Update

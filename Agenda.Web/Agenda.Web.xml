@@ -228,6 +228,26 @@
             The name.
             </value>
         </member>
+        <member name="T:Agenda.Web.Controllers.AgendaController">
+            <summary>
+            Agenda Controller.
+            </summary>
+            <seealso cref="T:Agenda.Web.Controllers.ControllerBase" />
+        </member>
+        <member name="M:Agenda.Web.Controllers.AgendaController.#ctor(Microsoft.Extensions.Logging.ILogger{Agenda.Web.Controllers.AgendaController},Agenda.Service.IAgendaService,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Web.Controllers.AgendaController"/> class.
+            </summary>
+            <param name="logger">Logger.</param>
+            <param name="service">Agenda Service.</param>
+            <param name="isTestMode">Is Test Mode.</param>
+        </member>
+        <member name="M:Agenda.Web.Controllers.AgendaController.Index">
+            <summary>
+            SOMETHING.
+            </summary>
+            <returns>Action  Result.</returns>
+        </member>
         <member name="T:Agenda.Web.Controllers.CommitteeController">
             <summary>
             Committee Controller.
@@ -334,22 +354,6 @@
             </summary>
             <param name="actionName">Action Name.</param>
             <returns> Who details. </returns>
-        </member>
-        <member name="M:Agenda.Web.Controllers.ControllerBase.ExitRedirectToAction(Microsoft.Extensions.Logging.ILogger,Microsoft.AspNetCore.Mvc.RedirectToActionResult)">
-            <summary>
-            Log exit from a controller action when redirecting to a different action.
-            </summary>
-            <param name="logger">The logger.</param>
-            <param name="redirectToAction">The redirect to action.</param>
-            <returns>Redirect To Action result.</returns>
-        </member>
-        <member name="M:Agenda.Web.Controllers.ControllerBase.ExitView(Microsoft.Extensions.Logging.ILogger,Microsoft.AspNetCore.Mvc.ViewResult)">
-            <summary>
-            Log exit from a controller action when returning a view.
-            </summary>
-            <param name="logger">The logger.</param>
-            <param name="view">The view.</param>
-            <returns>View result.</returns>
         </member>
         <member name="T:Agenda.Web.Controllers.ErrorController">
             <summary>

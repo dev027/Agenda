@@ -4,6 +4,179 @@
         <name>Agenda.Utilities</name>
     </assembly>
     <members>
+        <member name="T:Agenda.Utilities.Logging.ClassMethod">
+            <summary>
+            Object containing ClassName, MethodName and LineNumber.
+            </summary>
+        </member>
+        <member name="M:Agenda.Utilities.Logging.ClassMethod.#ctor(System.String,System.String,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Utilities.Logging.ClassMethod"/> class.
+            </summary>
+            <param name="className">ClassName.</param>
+            <param name="methodName">MethodName.</param>
+            <param name="lineNumber">Line Number.</param>
+        </member>
+        <member name="P:Agenda.Utilities.Logging.ClassMethod.ClassName">
+            <summary>
+            Gets the ClassName.
+            </summary>
+        </member>
+        <member name="P:Agenda.Utilities.Logging.ClassMethod.MethodName">
+            <summary>
+            Gets the MethodName.
+            </summary>
+        </member>
+        <member name="P:Agenda.Utilities.Logging.ClassMethod.LineNumber">
+            <summary>
+            Gets the Line Number.
+            </summary>
+        </member>
+        <member name="T:Agenda.Utilities.Logging.LoggerExtensions">
+            <summary>
+            Logger Extensions.
+            </summary>
+        </member>
+        <member name="M:Agenda.Utilities.Logging.LoggerExtensions.ReportEntry(Microsoft.Extensions.Logging.ILogger,Agenda.Utilities.Models.Whos.IWho,System.Object,System.String,System.String,System.Int32)">
+            <summary>
+            Reports the entry into a method.
+            </summary>
+            <param name="logger">Logger.</param>
+            <param name="who">Who details.</param>
+            <param name="arguments">Arguments to the method.</param>
+            <param name="className">Name of the class.</param>
+            <param name="methodName">Name of the method.</param>
+            <param name="lineNumber">The line number.</param>
+        </member>
+        <member name="M:Agenda.Utilities.Logging.LoggerExtensions.ReportExit(Microsoft.Extensions.Logging.ILogger,Agenda.Utilities.Models.Whos.IWho,System.Object,System.String,System.String,System.Int32)">
+            <summary>
+            Reports the entry into a method.
+            </summary>
+            <param name="logger">Logger.</param>
+            <param name="who">Who details.</param>
+            <param name="returnArgs">Return arguments from the method.</param>
+            <param name="className">Name of the class.</param>
+            <param name="methodName">Name of the method.</param>
+            <param name="lineNumber">The line number.</param>
+        </member>
+        <member name="M:Agenda.Utilities.Logging.LoggerExtensions.ReportExitView(Microsoft.Extensions.Logging.ILogger,Agenda.Utilities.Models.Whos.IWho,System.String,System.Object,System.Nullable{System.Int32},System.String,System.String,System.Int32)">
+            <summary>
+            Reports the entry into a method.
+            </summary>
+            <param name="logger">Logger.</param>
+            <param name="who">Who details.</param>
+            <param name="viewName">Name of the View.</param>
+            <param name="model">View Model.</param>
+            <param name="statusCode">Status Code.</param>
+            <param name="className">Name of the class.</param>
+            <param name="methodName">Name of the method.</param>
+            <param name="lineNumber">The line number.</param>
+        </member>
+        <member name="M:Agenda.Utilities.Logging.LoggerExtensions.ReportExitRedirectToAction(Microsoft.Extensions.Logging.ILogger,Agenda.Utilities.Models.Whos.IWho,System.String,System.String,System.Object,System.String,System.String,System.Int32)">
+            <summary>
+            Reports the entry into a method.
+            </summary>
+            <param name="logger">Logger.</param>
+            <param name="who">Who details.</param>
+            <param name="controllerName">Name of the Controller.</param>
+            <param name="actionName">Name of the Action.</param>
+            <param name="model">View Model.</param>
+            <param name="className">Name of the class.</param>
+            <param name="methodName">Name of the method.</param>
+            <param name="lineNumber">The line number.</param>
+        </member>
+        <member name="M:Agenda.Utilities.Logging.LoggerExtensions.Debug(Microsoft.Extensions.Logging.ILogger,Agenda.Utilities.Models.Whos.IWho,System.String,System.Object,System.String,System.String,System.Int32)">
+            <summary>
+            Log a debug message.
+            </summary>
+            <param name="logger">Logger.</param>
+            <param name="who">Who details.</param>
+            <param name="message">Debug message.</param>
+            <param name="data">Relevant data.</param>
+            <param name="className">Name of the class.</param>
+            <param name="methodName">Name of the method.</param>
+            <param name="lineNumber">The line number.</param>
+        </member>
+        <member name="M:Agenda.Utilities.Logging.LoggerExtensions.Warning(Microsoft.Extensions.Logging.ILogger,Agenda.Utilities.Models.Whos.IWho,System.String,System.Object,System.String,System.String,System.Int32)">
+            <summary>
+            Log a warning message.
+            </summary>
+            <param name="logger">Logger.</param>
+            <param name="who">Who details.</param>
+            <param name="message">Warning message.</param>
+            <param name="data">Relevant data.</param>
+            <param name="className">Name of the class.</param>
+            <param name="methodName">Name of the method.</param>
+            <param name="lineNumber">The line number.</param>
+        </member>
+        <member name="M:Agenda.Utilities.Logging.LoggerExtensions.Error(Microsoft.Extensions.Logging.ILogger,Agenda.Utilities.Models.Whos.IWho,System.String,System.Object,System.String,System.String,System.Int32)">
+            <summary>
+            Log an error message.
+            </summary>
+            <param name="logger">Logger.</param>
+            <param name="who">Who details.</param>
+            <param name="message">Error message.</param>
+            <param name="data">Relevant data.</param>
+            <param name="className">Name of the class.</param>
+            <param name="methodName">Name of the method.</param>
+            <param name="lineNumber">The line number.</param>
+        </member>
+        <member name="T:Agenda.Utilities.Logging.ResourceMessageTemplates">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Agenda.Utilities.Logging.ResourceMessageTemplates.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Agenda.Utilities.Logging.ResourceMessageTemplates.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Agenda.Utilities.Logging.ResourceMessageTemplates.Debug">
+            <summary>
+              Looks up a localized string similar to Message {Message}, Data {@Data}, {@Who}, {@ClassMethod}.
+            </summary>
+        </member>
+        <member name="P:Agenda.Utilities.Logging.ResourceMessageTemplates.Error">
+            <summary>
+              Looks up a localized string similar to Message {Message}, Data {@Data}, {@Who}, {@ClassMethod}.
+            </summary>
+        </member>
+        <member name="P:Agenda.Utilities.Logging.ResourceMessageTemplates.Info">
+            <summary>
+              Looks up a localized string similar to Message {Message}, Data {@Data}, {@Who}, {@ClassMethod}.
+            </summary>
+        </member>
+        <member name="P:Agenda.Utilities.Logging.ResourceMessageTemplates.ReportEntry">
+            <summary>
+              Looks up a localized string similar to Message {Message}, Args {@Arguments}, {@Who}, {@ClassMethod}.
+            </summary>
+        </member>
+        <member name="P:Agenda.Utilities.Logging.ResourceMessageTemplates.ReportExit">
+            <summary>
+              Looks up a localized string similar to Message {Message}, Return {@Return}, {@Who}, {@ClassMethod}.
+            </summary>
+        </member>
+        <member name="P:Agenda.Utilities.Logging.ResourceMessageTemplates.ReportExitRedirectToAction">
+            <summary>
+              Looks up a localized string similar to Message {Message}, Redirect to {RedirectControllerName}/{RedirectActionName}, ViewModel {@ViewModel}, {@Who}, {@ClassMethod}.
+            </summary>
+        </member>
+        <member name="P:Agenda.Utilities.Logging.ResourceMessageTemplates.ReportExitView">
+            <summary>
+              Looks up a localized string similar to Message {Message}, ViewName {ViewName}, ViewModel {@ViewModel}, StatusCode {StatusCode}, {@Who}, {@ClassMethod}.
+            </summary>
+        </member>
+        <member name="P:Agenda.Utilities.Logging.ResourceMessageTemplates.Warning">
+            <summary>
+              Looks up a localized string similar to Message {Message}, Data {@Data}, {@Who}, {@ClassMethod}.
+            </summary>
+        </member>
         <member name="T:Agenda.Utilities.Models.Whos.IWho">
             <summary>
             Details of Who made the request.

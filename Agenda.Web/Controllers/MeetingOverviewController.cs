@@ -6,6 +6,7 @@ using System;
 using System.Threading.Tasks;
 using Agenda.Domain.DomainObjects.Committees;
 using Agenda.Service;
+using Agenda.Utilities.Logging;
 using Agenda.Utilities.Models.Whos;
 using Agenda.Web.ViewModels.MeetingOverview;
 using Microsoft.AspNetCore.Mvc;
@@ -45,13 +46,11 @@ namespace Agenda.Web.Controllers
         /// <returns>View.</returns>
         public async Task<IActionResult> Index(Guid committeeId)
         {
-            IWho who = this.Who(nameof(this.Index));
+            IWho who = this.Who();
 
-            this.logger.LogDebug(
-                "ENTRY {ActionName}(who, committeeId) {@who} {committeeId}",
-                who.ActionName,
+            this.logger.ReportEntry(
                 who,
-                committeeId);
+                new { CommitteeId = committeeId });
 
             ICommitteeWithMeetings committee = await this.service
                 .GetCommitteeByIdWithMeetingsAsync(
@@ -61,7 +60,15 @@ namespace Agenda.Web.Controllers
 
             IndexViewModel model = IndexViewModel.Create(committee);
 
-            return this.ExitView(this.logger, this.View(model));
+            ViewResult view = this.View(model);
+
+            this.logger.ReportExitView(
+                who,
+                view.ViewName,
+                view.Model,
+                view.StatusCode);
+
+            return view;
         }
     }
 }

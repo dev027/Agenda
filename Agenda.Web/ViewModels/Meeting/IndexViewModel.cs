@@ -107,7 +107,9 @@ namespace Agenda.Web.ViewModels.Meeting
             }
 
             CultureInfo cultureInfo = CultureInfo.GetCultureInfo("en-GB");
-            string date = meeting.MeetingDateTime.ToLongDateString();
+            string date =
+                meeting.MeetingDateTime.ToString("ddd") + " " +
+                meeting.MeetingDateTime.ToLongDateString();
             string time = meeting.MeetingDateTime.ToString("h:mm tt", cultureInfo);
 
             return new IndexViewModel(
