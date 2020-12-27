@@ -55,7 +55,7 @@ namespace Agenda.Data.Crud
 
             ICommittee committee = (await this.context.Committees
                     .AsNoTracking()
-                    .TagWith(this.Tag(who, nameof(this.GetCommitteeByIdAsync)))
+                    .TagWith(this.Tag(who))
                     .Include(c => c.Organisation)
                     .FirstOrDefaultAsync(c => c.Id == committeeId)
                     .ConfigureAwait(false))
@@ -79,7 +79,7 @@ namespace Agenda.Data.Crud
 
             ICommitteeWithMeetings committeeWithMeetings = (await this.context.Committees
                     .AsNoTracking()
-                    .TagWith(this.Tag(who, nameof(this.GetCommitteeByIdWithMeetingsAsync)))
+                    .TagWith(this.Tag(who))
                     .Include(c => c.Organisation)
                     .Include(c => c.Meetings)
                     .FirstOrDefaultAsync(c => c.Id == committeeId)
@@ -99,7 +99,7 @@ namespace Agenda.Data.Crud
             this.logger.ReportEntry(who);
 
             bool haveCommittees = await this.context.Committees
-                .TagWith(this.Tag(who, nameof(this.HaveCommitteesAsync)))
+                .TagWith(this.Tag(who))
                 .AnyAsync()
                 .ConfigureAwait(false);
 

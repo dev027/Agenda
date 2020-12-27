@@ -37,7 +37,7 @@ namespace Agenda.Web.Controllers
         /// <summary>
         /// SOMETHING.
         /// </summary>
-        /// <returns>Action  Result.</returns>
+        /// <returns>Action Result.</returns>
         public IActionResult Index()
         {
             throw new NoNullAllowedException();

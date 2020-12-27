@@ -6,6 +6,7 @@ using System;
 using Agenda.Data.DbContexts;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Thinktecture;
 
 namespace Agenda.Migration.DbContexts
 {

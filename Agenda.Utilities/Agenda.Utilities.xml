@@ -4,6 +4,75 @@
         <name>Agenda.Utilities</name>
     </assembly>
     <members>
+        <member name="T:Agenda.Utilities.ExtensionMethods.Integer.NumberingType">
+            <summary>
+            Numbering Type.
+            </summary>
+        </member>
+        <member name="F:Agenda.Utilities.ExtensionMethods.Integer.NumberingType.None">
+            <summary>
+            None
+            </summary>
+        </member>
+        <member name="F:Agenda.Utilities.ExtensionMethods.Integer.NumberingType.Number">
+            <summary>
+            Number
+            </summary>
+            <example>1, 2, 3, ...</example>
+        </member>
+        <member name="F:Agenda.Utilities.ExtensionMethods.Integer.NumberingType.LetterLower">
+            <summary>
+            Letter Lowercase
+            </summary>
+            <example>a, b, c, ...</example>
+        </member>
+        <member name="F:Agenda.Utilities.ExtensionMethods.Integer.NumberingType.LetterUpper">
+            <summary>
+            Letter Uppercase
+            </summary>
+            <example>A, B, C, ...</example>
+        </member>
+        <member name="F:Agenda.Utilities.ExtensionMethods.Integer.NumberingType.RomanLower">
+            <summary>
+            Roman Numerals Lowercase
+            </summary>
+            <example>i, ii, iii, iv, ...</example>
+        </member>
+        <member name="F:Agenda.Utilities.ExtensionMethods.Integer.NumberingType.RomanUpper">
+            <summary>
+            Roman Numerals Uppercase
+            </summary>
+            <example>I, II, III, IV, ...</example>
+        </member>
+        <member name="T:Agenda.Utilities.ExtensionMethods.Integer.IntegerExtensionMethods">
+            <summary>
+            Integer Extension Methods.
+            </summary>
+        </member>
+        <member name="M:Agenda.Utilities.ExtensionMethods.Integer.IntegerExtensionMethods.ToNumberingType(System.Int32,Agenda.Utilities.ExtensionMethods.Integer.NumberingType,System.String,System.String)">
+            <summary>
+            Converts to number to the specified numbering type.
+            </summary>
+            <param name="number">The number.</param>
+            <param name="numberingType">Numbering Type required.</param>
+            <param name="suffix">Optional suffix. Default is ". ".</param>
+            <param name="prefix">Optional prefix. Default is "".</param>
+            <returns>String version of the  number in the correct numbering type.</returns>
+        </member>
+        <member name="M:Agenda.Utilities.ExtensionMethods.Integer.IntegerExtensionMethods.ToLetterLower(System.Int32)">
+            <summary>
+            Converts number to letter lowercase.
+            </summary>
+            <param name="number">The number.</param>
+            <returns>Letter as lower case.</returns>
+        </member>
+        <member name="M:Agenda.Utilities.ExtensionMethods.Integer.IntegerExtensionMethods.ToRomanLower(System.Int32)">
+            <summary>
+            Converts number to lowercase Roman numerals.
+            </summary>
+            <param name="number">The number.</param>
+            <returns>The number as lowercase roman numerals.</returns>
+        </member>
         <member name="T:Agenda.Utilities.Logging.ClassMethod">
             <summary>
             Object containing ClassName, MethodName and LineNumber.

@@ -33,6 +33,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+    <PackageReference Include="Thinktecture.EntityFrameworkCore.Relational" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -60,5 +61,10 @@
 
   <ItemGroup>
     <Folder Include="Constants\" />
+    <Folder Include="DomainObjects\AgendaItems\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Agenda.Utilities\Agenda.Utilities.csproj" />
   </ItemGroup>
 </Project>

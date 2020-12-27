@@ -53,7 +53,7 @@ namespace Agenda.Data.Crud
 
             IList<OrganisationDto> dtos = await this.context.Organisations
                 .AsNoTracking()
-                .TagWith(this.Tag(who, nameof(this.GetAllOrganisationsAsync)))
+                .TagWith(this.Tag(who))
                 .ToListAsync()
                 .ConfigureAwait(false);
 
@@ -78,7 +78,7 @@ namespace Agenda.Data.Crud
 
             IOrganisation organisation = (await this.context.Organisations
                     .AsNoTracking()
-                    .TagWith(this.Tag(who, nameof(this.GetOrganisationByIdAsync)))
+                    .TagWith(this.Tag(who))
                     .FirstOrDefaultAsync(o => o.Id == organisationId)
                     .ConfigureAwait(false))
                 .ToDomain();
@@ -101,7 +101,7 @@ namespace Agenda.Data.Crud
 
             IOrganisationWithCommittees organisationWithCommittees = (await this.context.Organisations
                     .AsNoTracking()
-                    .TagWith(this.Tag(who, nameof(this.GetOrganisationByIdWithCommitteesAsync)))
+                    .TagWith(this.Tag(who))
                     .Include(o => o.Committees)
                     .FirstOrDefaultAsync(o => o.Id == organisationId)
                     .ConfigureAwait(false))
@@ -123,7 +123,7 @@ namespace Agenda.Data.Crud
             this.logger.ReportEntry(who);
 
             bool haveOrganisations = await this.context.Organisations
-                .TagWith(this.Tag(who, nameof(this.HaveOrganisationsAsync)))
+                .TagWith(this.Tag(who))
                 .AnyAsync()
                 .ConfigureAwait(false);
 

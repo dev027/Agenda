@@ -32,6 +32,11 @@
             then this method will not be run.
             </remarks>
         </member>
+        <member name="P:Agenda.Migration.DbContexts.MigrationContext.AgendaItems">
+            <summary>
+            Gets or sets the Agenda Items.
+            </summary>
+        </member>
         <member name="P:Agenda.Migration.DbContexts.MigrationContext.AuditDetails">
             <summary>
             Gets or sets the Audit Details.
@@ -67,6 +72,30 @@
             <inheritdoc />
         </member>
         <member name="M:Agenda.Migration.Migrations.Initial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Agenda.Migration.Migrations.AddAgendaItems">
+            <inheritdoc />
+        </member>
+        <member name="M:Agenda.Migration.Migrations.AddAgendaItems.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Migration.Migrations.AddAgendaItems.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Migration.Migrations.AddAgendaItems.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Agenda.Migration.Migrations.AgendaItemEnumChanges">
+            <inheritdoc />
+        </member>
+        <member name="M:Agenda.Migration.Migrations.AgendaItemEnumChanges.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Migration.Migrations.AgendaItemEnumChanges.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Migration.Migrations.AgendaItemEnumChanges.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc/>
         </member>
         <member name="T:Agenda.Migration.Program">

@@ -64,7 +64,7 @@ namespace Agenda.Data.Crud
             DateTime earliestDate = DateTime.Now.Subtract(timeSpan);
             IList<MeetingDto> meetingDtos = await this.context.Meetings
                 .AsNoTracking()
-                .TagWith(this.Tag(who, nameof(this.GetRecentMeetingsMostRecentFirstAsync)))
+                .TagWith(this.Tag(who))
                 .Take(maxNumberOfMeetings)
                 .Include(m => m.Committee)
                 .ThenInclude(c => c!.Organisation)
@@ -92,7 +92,7 @@ namespace Agenda.Data.Crud
 
             IMeeting meeting = (await this.context.Meetings
                     .AsNoTracking()
-                    .TagWith(this.Tag(who, nameof(this.GetMeetingByIdAsync)))
+                    .TagWith(this.Tag(who))
                     .Include(m => m.Committee)
                     .ThenInclude(c => c!.Organisation)
                     .FirstOrDefaultAsync(m => m.Id == meetingId)

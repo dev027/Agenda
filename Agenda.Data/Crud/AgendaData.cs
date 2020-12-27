@@ -5,6 +5,7 @@
 #nullable enable
 using System;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Agenda.Data.DbContexts;
 using Agenda.Data.Dtos;
@@ -107,7 +108,9 @@ namespace Agenda.Data.Crud
         /// <param name="who">Who details.</param>
         /// <param name="methodName">Method Name.</param>
         /// <returns>Tag.</returns>
-        private string Tag(IWho who, string methodName)
+        private string Tag(
+            IWho who,
+            [CallerMemberName] string methodName = "Unknown")
         {
             if (who == null)
             {

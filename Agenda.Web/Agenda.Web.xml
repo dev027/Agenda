@@ -246,7 +246,7 @@
             <summary>
             SOMETHING.
             </summary>
-            <returns>Action  Result.</returns>
+            <returns>Action Result.</returns>
         </member>
         <member name="T:Agenda.Web.Controllers.CommitteeController">
             <summary>

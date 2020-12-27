@@ -14,6 +14,11 @@ namespace Agenda.Data.DbContexts
     public partial class DataContext
     {
         /// <summary>
+        /// Gets or sets the Agenda Items.
+        /// </summary>
+        public DbSet<AgendaItemDto> AgendaItems { get; set; } = null!;
+
+        /// <summary>
         /// Gets or sets the Audit Details.
         /// </summary>
         public DbSet<AuditDetailDto> AuditDetails { get; set; } = null!;

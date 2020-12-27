@@ -4,6 +4,120 @@
         <name>Agenda.Domain</name>
     </assembly>
     <members>
+        <member name="T:Agenda.Domain.DomainObjects.AgendaItems.AgendaItem">
+            <summary>
+            Agenda Item.
+            </summary>
+            <seealso cref="T:Agenda.Domain.DomainObjects.AgendaItems.IAgendaItem" />
+        </member>
+        <member name="M:Agenda.Domain.DomainObjects.AgendaItems.AgendaItem.#ctor(System.Guid,System.Guid,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid},Agenda.Domain.ValueObjects.Enums.AgendaItemType,Agenda.Utilities.ExtensionMethods.Integer.NumberingType)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Domain.DomainObjects.AgendaItems.AgendaItem"/> class.
+            </summary>
+            <param name="id">Agenda Item Id.</param>
+            <param name="meetingId">Meeting Item Id.</param>
+            <param name="parentId">Parent Agenda Item Id.</param>
+            <param name="text">The text.</param>
+            <param name="elderSiblingId">Elder Sibling Agenda Item Id.</param>
+            <param name="agendaItemType">Agenda Item type.</param>
+            <param name="childNumberingType">Child Agenda Item Numbering Type.</param>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.AgendaItems.AgendaItem.Id">
+            <inheritdoc/>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.AgendaItems.AgendaItem.MeetingId">
+            <inheritdoc/>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.AgendaItems.AgendaItem.ParentId">
+            <inheritdoc/>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.AgendaItems.AgendaItem.Text">
+            <inheritdoc/>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.AgendaItems.AgendaItem.ElderSiblingId">
+            <inheritdoc/>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.AgendaItems.AgendaItem.AgendaItemType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.AgendaItems.AgendaItem.ChildNumberingType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.AgendaItems.AgendaItem.ChildAgendaItems">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Domain.DomainObjects.AgendaItems.AgendaItem.BuildAgenda(System.Collections.Generic.IList{Agenda.Domain.DomainObjects.AgendaItems.IAgendaItem})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Domain.DomainObjects.AgendaItems.AgendaItem.AddChild(Agenda.Domain.DomainObjects.AgendaItems.IAgendaItem)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Domain.DomainObjects.AgendaItems.AgendaItem.SortChildAgendaItems">
+            <inheritdoc/>
+        </member>
+        <member name="T:Agenda.Domain.DomainObjects.AgendaItems.IAgendaItem">
+            <summary>
+            Agenda Item.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.AgendaItems.IAgendaItem.Id">
+            <summary>
+            Gets the Agenda Item Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.AgendaItems.IAgendaItem.MeetingId">
+            <summary>
+            Gets the Meeting Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.AgendaItems.IAgendaItem.ParentId">
+            <summary>
+            Gets the Parent Agenda Item Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.AgendaItems.IAgendaItem.Text">
+            <summary>
+            Gets the Text.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.AgendaItems.IAgendaItem.ElderSiblingId">
+            <summary>
+            Gets the Elder Sibling Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.AgendaItems.IAgendaItem.AgendaItemType">
+            <summary>
+            Gets the Agenda Item Type.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.AgendaItems.IAgendaItem.ChildNumberingType">
+            <summary>
+            Gets the Child Numbering Type.
+            </summary>
+        </member>
+        <member name="P:Agenda.Domain.DomainObjects.AgendaItems.IAgendaItem.ChildAgendaItems">
+            <summary>
+            Gets the Child Agenda Items.
+            </summary>
+        </member>
+        <member name="M:Agenda.Domain.DomainObjects.AgendaItems.IAgendaItem.BuildAgenda(System.Collections.Generic.IList{Agenda.Domain.DomainObjects.AgendaItems.IAgendaItem})">
+            <summary>
+            Builds the agenda from a list of Agenda items.
+            </summary>
+            <param name="agendaItems">The agenda items.</param>
+            <returns>Root agenda item.</returns>
+        </member>
+        <member name="M:Agenda.Domain.DomainObjects.AgendaItems.IAgendaItem.AddChild(Agenda.Domain.DomainObjects.AgendaItems.IAgendaItem)">
+            <summary>
+            Adds the child agenda item.
+            </summary>
+            <param name="child">The child agenda item.</param>
+        </member>
+        <member name="M:Agenda.Domain.DomainObjects.AgendaItems.IAgendaItem.SortChildAgendaItems">
+            <summary>
+            Sorts the child agenda items.
+            </summary>
+        </member>
         <member name="T:Agenda.Domain.DomainObjects.AuditDetails.AuditDetail">
             <summary>
             Audit Detail.
@@ -639,6 +753,31 @@
         </member>
         <member name="M:Agenda.Domain.ValidationAttributes.ValidIdAttribute.FormatErrorMessage(System.String)">
             <inheritdoc/>
+        </member>
+        <member name="T:Agenda.Domain.ValueObjects.Enums.AgendaItemType">
+            <summary>
+            Agenda Item Types.
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.ValueObjects.Enums.AgendaItemType.Normal">
+            <summary>
+            Normal
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.ValueObjects.Enums.AgendaItemType.Root">
+            <summary>
+            Root
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.ValueObjects.Enums.AgendaItemType.Apologies">
+            <summary>
+            Apologies
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.ValueObjects.Enums.AgendaItemType.NextMeetingDate">
+            <summary>
+            Next Meeting Date
+            </summary>
         </member>
         <member name="T:Agenda.Domain.ValueObjects.Enums.AuditEvent">
             <summary>

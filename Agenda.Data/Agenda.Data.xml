@@ -16,6 +16,9 @@
             </summary>
             <seealso cref="T:Agenda.Data.Crud.IAgendaData"/>
             <summary>
+            CRUD operations for Agenda Item.
+            </summary>
+            <summary>
             CRUD operations for Committees.
             </summary>
             <summary>
@@ -57,6 +60,18 @@
             <param name="who">Who details.</param>
             <param name="methodName">Method Name.</param>
             <returns>Tag.</returns>
+        </member>
+        <member name="M:Agenda.Data.Crud.AgendaData.CreateAgendaItemRecursivelyAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeaderWithAuditDetails,Agenda.Domain.DomainObjects.AgendaItems.IAgendaItem)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Data.Crud.AgendaData.GetAgendaItemByIdAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Data.Crud.AgendaData.GetAgendaItemsByMeetingIdAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Data.Crud.AgendaData.UpdateAgendaItemAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeaderWithAuditDetails,Agenda.Domain.DomainObjects.AgendaItems.IAgendaItem)">
+            <inheritdoc/>
         </member>
         <member name="M:Agenda.Data.Crud.AgendaData.CreateCommitteeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeaderWithAuditDetails,Agenda.Domain.DomainObjects.Committees.ICommittee)">
             <inheritdoc/>
@@ -109,6 +124,9 @@
             </summary>
             <seealso cref="T:System.IDisposable" />
             <summary>
+            Data access - Agenda Item.
+            </summary>
+            <summary>
             Data access - Committee.
             </summary>
             <summary>
@@ -137,6 +155,40 @@
             <summary>
             Rollbacks the Transaction.
             </summary>
+        </member>
+        <member name="M:Agenda.Data.Crud.IAgendaData.CreateAgendaItemRecursivelyAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeaderWithAuditDetails,Agenda.Domain.DomainObjects.AgendaItems.IAgendaItem)">
+            <summary>
+            Creates the Agenda Item.
+            </summary>
+            <param name="who">Who details.</param>
+            <param name="auditHeader">Audit Header.</param>
+            <param name="agendaItem">Agenda Item.</param>
+            <returns>Nothing.</returns>
+        </member>
+        <member name="M:Agenda.Data.Crud.IAgendaData.GetAgendaItemByIdAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
+            <summary>
+            Gets the Agenda Item by Id.
+            </summary>
+            <param name="who">Who details.</param>
+            <param name="agendaItemId">Agenda Item Id.</param>
+            <returns>Agenda Item (Null=Not Found).</returns>
+        </member>
+        <member name="M:Agenda.Data.Crud.IAgendaData.GetAgendaItemsByMeetingIdAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
+            <summary>
+            Gets the Agenda Items for a Meeting Id.
+            </summary>
+            <param name="who">Who details.</param>
+            <param name="meetingId">Meeting Id.</param>
+            <returns>Agenda Items.</returns>
+        </member>
+        <member name="M:Agenda.Data.Crud.IAgendaData.UpdateAgendaItemAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeaderWithAuditDetails,Agenda.Domain.DomainObjects.AgendaItems.IAgendaItem)">
+            <summary>
+            Updates the Agenda Item.
+            </summary>
+            <param name="who">Who details.</param>
+            <param name="auditHeader">Audit Header.</param>
+            <param name="agendaItem">Agenda Item.</param>
+            <returns>Nothing.</returns>
         </member>
         <member name="M:Agenda.Data.Crud.IAgendaData.CreateCommitteeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.DomainObjects.AuditHeaders.IAuditHeaderWithAuditDetails,Agenda.Domain.DomainObjects.Committees.ICommittee)">
             <summary>
@@ -305,6 +357,11 @@
             then this method will not be run.
             </remarks>
         </member>
+        <member name="P:Agenda.Data.DbContexts.DataContext.AgendaItems">
+            <summary>
+            Gets or sets the Agenda Items.
+            </summary>
+        </member>
         <member name="P:Agenda.Data.DbContexts.DataContext.AuditDetails">
             <summary>
             Gets or sets the Audit Details.
@@ -329,6 +386,82 @@
             <summary>
             Gets or sets the Organisations.
             </summary>
+        </member>
+        <member name="T:Agenda.Data.Dtos.AgendaItemDto">
+            <summary>
+            Agenda Item DTO.
+            </summary>
+        </member>
+        <member name="M:Agenda.Data.Dtos.AgendaItemDto.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Data.Dtos.AgendaItemDto"/> class.
+            </summary>
+        </member>
+        <member name="M:Agenda.Data.Dtos.AgendaItemDto.#ctor(System.Guid,System.Guid,System.Nullable{System.Guid},System.Nullable{System.Guid},System.String,Agenda.Domain.ValueObjects.Enums.AgendaItemType,Agenda.Utilities.ExtensionMethods.Integer.NumberingType)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Agenda.Data.Dtos.AgendaItemDto"/> class.
+            </summary>
+            <param name="id">Agenda Item Id.</param>
+            <param name="meetingId">Meeting Id.</param>
+            <param name="parentId">Parent Agenda Item Id.</param>
+            <param name="elderSiblingId">Elder Sibling Agenda Item Id.</param>
+            <param name="text">Text.</param>
+            <param name="agendaItemType">Agenda Item Type.</param>
+            <param name="childNumberingType">Child Numbering Type.</param>
+        </member>
+        <member name="P:Agenda.Data.Dtos.AgendaItemDto.Id">
+            <summary>
+            Gets the Agenda Item Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Dtos.AgendaItemDto.MeetingId">
+            <summary>
+            Gets the Meeting Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Dtos.AgendaItemDto.ParentId">
+            <summary>
+            Gets the Parent Agenda Item Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Dtos.AgendaItemDto.ElderSiblingId">
+            <summary>
+            Gets the Elder Sibling Agenda Item Id.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Dtos.AgendaItemDto.Text">
+            <summary>
+            Gets the Text.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Dtos.AgendaItemDto.AgendaItemType">
+            <summary>
+            Gets the Agenda Item Type.
+            </summary>
+        </member>
+        <member name="P:Agenda.Data.Dtos.AgendaItemDto.ChildNumberingType">
+            <summary>
+            Gets the Child Numbering Type.
+            </summary>
+        </member>
+        <member name="M:Agenda.Data.Dtos.AgendaItemDto.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Called when [model creating].
+            </summary>
+            <param name="builder">The builder.</param>
+        </member>
+        <member name="M:Agenda.Data.Dtos.AgendaItemDto.ToDto(Agenda.Domain.DomainObjects.AgendaItems.IAgendaItem)">
+            <summary>
+            Converts domain object to DTO.
+            </summary>
+            <param name="agendaItem">Agenda Item.</param>
+            <returns>Agenda Item DTO.</returns>
+        </member>
+        <member name="M:Agenda.Data.Dtos.AgendaItemDto.ToDomain">
+            <summary>
+            Converts instance to domain object.
+            </summary>
+            <returns>Agenda Item.</returns>
         </member>
         <member name="T:Agenda.Data.Dtos.AuditDetailDto">
             <summary>

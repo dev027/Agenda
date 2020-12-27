@@ -14,6 +14,10 @@
             </summary>
             <seealso cref="T:Agenda.Service.IAgendaService" />
             <summary>
+            Service Layer - Committee.
+            </summary>
+            <seealso cref="T:Agenda.Service.IAgendaService" />
+            <summary>
             Service Layer - Meeting.
             </summary>
             <seealso cref="T:Agenda.Service.IAgendaService" />
@@ -31,6 +35,17 @@
         </member>
         <member name="M:Agenda.Service.AgendaService.GetSetupStatusAsync(Agenda.Utilities.Models.Whos.IWho)">
             <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Service.AgendaService.CreateSkeletonAgenda(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,Agenda.Service.Constants.SkeletonAgendaType)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Agenda.Service.AgendaService.GetAgendaItemsByMeetingIdAsTreeAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
+            <summary>
+            Gets the Agenda Items for a Meeting in a tree structure.
+            </summary>
+            <param name="who">Who Details.</param>
+            <param name="meetingId">Meeting Id.</param>
+            <returns>Committee.</returns>
         </member>
         <member name="M:Agenda.Service.AgendaService.CreateCommitteeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,Agenda.Domain.DomainObjects.Committees.ICommittee)">
             <inheritdoc/>
@@ -71,9 +86,91 @@
         <member name="M:Agenda.Service.AgendaService.UpdateOrganisationAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,Agenda.Domain.DomainObjects.Organisations.IOrganisation)">
             <inheritdoc/>
         </member>
+        <member name="T:Agenda.Service.Constants.SkeletonAgendaType">
+            <summary>
+            Types of Skeleton Agendas.
+            </summary>
+        </member>
+        <member name="F:Agenda.Service.Constants.SkeletonAgendaType.Empty">
+            <summary>
+            Empty agenda
+            </summary>
+        </member>
+        <member name="F:Agenda.Service.Constants.SkeletonAgendaType.BasicInitial">
+            <summary>
+            An initial meeting with basic format
+            </summary>
+        </member>
+        <member name="F:Agenda.Service.Constants.SkeletonAgendaType.BasicContinuation">
+            <summary>
+            A continuation meeting with basic format
+            </summary>
+        </member>
+        <member name="T:Agenda.Service.Factories.SkeletonAgendaFactory">
+            <summary>
+            Factory for creating a single Skeleton Agenda.
+            </summary>
+        </member>
+        <member name="M:Agenda.Service.Factories.SkeletonAgendaFactory.Create(System.Guid,Agenda.Service.Constants.SkeletonAgendaType)">
+            <summary>
+            Creates a skeleton agenda of the specified type.
+            </summary>
+            <param name="meetingId">Meeting Id.</param>
+            <param name="skeletonAgendaType">Type of the skeleton agenda.</param>
+            <returns>Skeleton Agenda.</returns>
+        </member>
+        <member name="T:Agenda.Service.Factories.SkeletonAgendaFactoryResource">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Agenda.Service.Factories.SkeletonAgendaFactoryResource.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Agenda.Service.Factories.SkeletonAgendaFactoryResource.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Agenda.Service.Factories.SkeletonAgendaFactoryResource.ActionsArising">
+            <summary>
+              Looks up a localized string similar to Actions arising from the minutes that are not on the agenda.
+            </summary>
+        </member>
+        <member name="P:Agenda.Service.Factories.SkeletonAgendaFactoryResource.AnyOtherBusiness">
+            <summary>
+              Looks up a localized string similar to Any other business.
+            </summary>
+        </member>
+        <member name="P:Agenda.Service.Factories.SkeletonAgendaFactoryResource.Apologies">
+            <summary>
+              Looks up a localized string similar to Apologies.
+            </summary>
+        </member>
+        <member name="P:Agenda.Service.Factories.SkeletonAgendaFactoryResource.ApproveMinutes">
+            <summary>
+              Looks up a localized string similar to Approval of minutes of the previous meeting.
+            </summary>
+        </member>
+        <member name="P:Agenda.Service.Factories.SkeletonAgendaFactoryResource.DateNextMeeting">
+            <summary>
+              Looks up a localized string similar to Date of next meeting.
+            </summary>
+        </member>
+        <member name="P:Agenda.Service.Factories.SkeletonAgendaFactoryResource.MattersArising">
+            <summary>
+              Looks up a localized string similar to Matters arising that are not on the agenda.
+            </summary>
+        </member>
         <member name="T:Agenda.Service.IAgendaService">
             <summary>
             Service Layer.
+            </summary>
+            <summary>
+            Service Layer - Committee.
             </summary>
             <summary>
             Service Layer - Committee.
@@ -91,6 +188,23 @@
             </summary>
             <param name="who">Who Details.</param>
             <returns>Setup status.</returns>
+        </member>
+        <member name="M:Agenda.Service.IAgendaService.CreateSkeletonAgenda(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,Agenda.Service.Constants.SkeletonAgendaType)">
+            <summary>
+            Creates the committee.
+            </summary>
+            <param name="who">Who Details.</param>
+            <param name="auditEvent">Audit Event.</param>
+            <param name="skeletonAgendaType">Skeleton Agenda Type.</param>
+            <returns>Nothing.</returns>
+        </member>
+        <member name="M:Agenda.Service.IAgendaService.GetAgendaItemsByMeetingIdAsTreeAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
+            <summary>
+            Gets the Agenda Items for a Meeting in a tree structure.
+            </summary>
+            <param name="who">Who Details.</param>
+            <param name="meetingId">Meeting Id.</param>
+            <returns>Committee.</returns>
         </member>
         <member name="M:Agenda.Service.IAgendaService.CreateCommitteeAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,Agenda.Domain.DomainObjects.Committees.ICommittee)">
             <summary>
