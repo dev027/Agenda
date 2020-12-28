@@ -25,7 +25,7 @@ namespace Agenda.Domain.DomainObjects.Meetings
             DateTime meetingDateTime)
         {
             this.Id = id;
-            this.Committee = committee ?? throw new ArgumentNullException(nameof(committee));
+            this.Committee = committee;
             this.MeetingDateTime = meetingDateTime;
         }
 

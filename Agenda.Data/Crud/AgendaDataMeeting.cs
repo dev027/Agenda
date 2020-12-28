@@ -95,7 +95,7 @@ namespace Agenda.Data.Crud
                     .TagWith(this.Tag(who))
                     .Include(m => m.Committee)
                     .ThenInclude(c => c!.Organisation)
-                    .FirstOrDefaultAsync(m => m.Id == meetingId)
+                    .SingleAsync(m => m.Id == meetingId)
                     .ConfigureAwait(false))
                 .ToDomain();
 

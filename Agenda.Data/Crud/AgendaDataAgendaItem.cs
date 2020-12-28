@@ -31,6 +31,7 @@ namespace Agenda.Data.Crud
         {
             AgendaItemDto dto = AgendaItemDto.ToDto(agendaItem);
             this.context.AgendaItems.Add(dto);
+            Audit.AuditCreate(auditHeader, dto, dto.Id);
 
             foreach (IAgendaItem child in agendaItem.ChildAgendaItems)
             {

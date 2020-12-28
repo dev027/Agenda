@@ -36,7 +36,7 @@ namespace Agenda.Service
                 who,
                 new
                 {
-                    AuditEvenit = auditEvent,
+                    AuditEvent = auditEvent,
                     MeetingId = meetingId,
                     SkeletonAgendaType = skeletonAgendaType
                 });
