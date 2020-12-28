@@ -55,13 +55,6 @@ namespace Agenda.Domain.DomainObjects.AgendaItems
         IReadOnlyList<IAgendaItem> ChildAgendaItems { get; }
 
         /// <summary>
-        /// Builds the agenda from a list of Agenda items.
-        /// </summary>
-        /// <param name="agendaItems">The agenda items.</param>
-        /// <returns>Root agenda item.</returns>
-        IAgendaItem BuildAgenda(IList<IAgendaItem> agendaItems);
-
-        /// <summary>
         /// Adds the child agenda item.
         /// </summary>
         /// <param name="child">The child agenda item.</param>

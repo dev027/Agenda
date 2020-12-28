@@ -72,30 +72,6 @@ namespace Agenda.Domain.DomainObjects.AgendaItems
             (IReadOnlyList<IAgendaItem>)this.childAgendaItems;
 
         /// <inheritdoc/>
-        public IAgendaItem BuildAgenda(IList<IAgendaItem> agendaItems)
-        {
-            foreach (IAgendaItem agendaItem in agendaItems)
-            {
-                if (agendaItem.ParentId == null)
-                {
-                    continue;
-                }
-
-                IAgendaItem parent = agendaItems
-                    .Single(ai => ai.Id == agendaItem.ParentId);
-
-                parent.AddChild(agendaItem);
-            }
-
-            foreach (IAgendaItem agendaItem in agendaItems)
-            {
-                agendaItem.SortChildAgendaItems();
-            }
-
-            return agendaItems.Single(ai => ai.ParentId == null);
-        }
-
-        /// <inheritdoc/>
         public void AddChild(IAgendaItem child)
         {
             this.childAgendaItems.Add(child);

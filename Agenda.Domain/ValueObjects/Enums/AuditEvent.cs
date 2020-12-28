@@ -32,6 +32,11 @@ namespace Agenda.Domain.ValueObjects.Enums
         /// <summary>
         /// Location Type Maintenance
         /// </summary>
-        LocationTypeMaintenance = 5
+        LocationTypeMaintenance = 5,
+
+        /// <summary>
+        /// View Agenda
+        /// </summary>
+        ViewAgenda = 6
     }
 }

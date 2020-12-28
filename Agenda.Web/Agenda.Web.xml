@@ -242,10 +242,11 @@
             <param name="service">Agenda Service.</param>
             <param name="isTestMode">Is Test Mode.</param>
         </member>
-        <member name="M:Agenda.Web.Controllers.AgendaController.Index">
+        <member name="M:Agenda.Web.Controllers.AgendaController.Index(System.Guid)">
             <summary>
             SOMETHING.
             </summary>
+            <param name="meetingId">Meeting Id.</param>
             <returns>Action Result.</returns>
         </member>
         <member name="T:Agenda.Web.Controllers.CommitteeController">

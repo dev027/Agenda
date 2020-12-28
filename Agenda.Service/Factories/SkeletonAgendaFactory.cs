@@ -17,7 +17,7 @@ namespace Agenda.Service.Factories
     /// </summary>
     public class SkeletonAgendaFactory
     {
-        private IAgendaItem root;
+        private IAgendaItem? root;
 
         private Guid MeetingId { get; set; }
 

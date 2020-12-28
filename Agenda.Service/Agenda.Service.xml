@@ -36,7 +36,7 @@
         <member name="M:Agenda.Service.AgendaService.GetSetupStatusAsync(Agenda.Utilities.Models.Whos.IWho)">
             <inheritdoc/>
         </member>
-        <member name="M:Agenda.Service.AgendaService.CreateSkeletonAgenda(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,Agenda.Service.Constants.SkeletonAgendaType)">
+        <member name="M:Agenda.Service.AgendaService.CreateSkeletonAgendaAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,System.Guid,Agenda.Service.Constants.SkeletonAgendaType)">
             <inheritdoc/>
         </member>
         <member name="M:Agenda.Service.AgendaService.GetAgendaItemsByMeetingIdAsTreeAsync(Agenda.Utilities.Models.Whos.IWho,System.Guid)">
@@ -189,12 +189,13 @@
             <param name="who">Who Details.</param>
             <returns>Setup status.</returns>
         </member>
-        <member name="M:Agenda.Service.IAgendaService.CreateSkeletonAgenda(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,Agenda.Service.Constants.SkeletonAgendaType)">
+        <member name="M:Agenda.Service.IAgendaService.CreateSkeletonAgendaAsync(Agenda.Utilities.Models.Whos.IWho,Agenda.Domain.ValueObjects.Enums.AuditEvent,System.Guid,Agenda.Service.Constants.SkeletonAgendaType)">
             <summary>
             Creates the committee.
             </summary>
             <param name="who">Who Details.</param>
             <param name="auditEvent">Audit Event.</param>
+            <param name="meetingId">Meeting Id.</param>
             <param name="skeletonAgendaType">Skeleton Agenda Type.</param>
             <returns>Nothing.</returns>
         </member>
@@ -336,6 +337,18 @@
             <summary>
               Looks up a localized string similar to {Method} ENTRY by {@Who}.
             </summary>
+        </member>
+        <member name="T:Agenda.Service.Utilities.AgendaItemUtilities">
+            <summary>
+            Agenda Item utilities.
+            </summary>
+        </member>
+        <member name="M:Agenda.Service.Utilities.AgendaItemUtilities.CreateTreeStructure(System.Collections.Generic.IList{Agenda.Domain.DomainObjects.AgendaItems.IAgendaItem})">
+            <summary>
+            Create an agenda item tree structure from a list of agenda items.
+            </summary>
+            <param name="agendaItems">List of agenda items.</param>
+            <returns>Agenda Item tree structure.</returns>
         </member>
     </members>
 </doc>

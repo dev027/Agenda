@@ -2,8 +2,15 @@
 // Copyright (c) Do It Wright. All rights reserved.
 // </copyright>
 
-using System.Data;
+using System;
+using System.Threading.Tasks;
+using Agenda.Domain.DomainObjects.AgendaItems;
+using Agenda.Domain.DomainObjects.Meetings;
+using Agenda.Domain.ValueObjects.Enums;
 using Agenda.Service;
+using Agenda.Service.Constants;
+using Agenda.Utilities.Logging;
+using Agenda.Utilities.Models.Whos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -37,10 +44,37 @@ namespace Agenda.Web.Controllers
         /// <summary>
         /// SOMETHING.
         /// </summary>
+        /// <param name="meetingId">Meeting Id.</param>
         /// <returns>Action Result.</returns>
-        public IActionResult Index()
+        public async Task<IActionResult> Index(Guid meetingId)
         {
-            throw new NoNullAllowedException();
+            IWho who = this.Who();
+
+            this.logger.ReportEntry(
+                who,
+                new { MeetingId = meetingId });
+
+            IMeeting meeting = await this.service.GetMeetingByIdAsync(
+                who,
+                meetingId).ConfigureAwait(false);
+
+            IAgendaItem agendaItem = await this.service.GetAgendaItemsByMeetingIdAsTreeAsync(
+                who,
+                meetingId).ConfigureAwait(false);
+
+            if (agendaItem == null)
+            {
+                agendaItem = await this.service.CreateSkeletonAgendaAsync(
+                    who,
+                    AuditEvent.ViewAgenda,
+                    meetingId,
+                    SkeletonAgendaType.BasicContinuation).ConfigureAwait(false);
+            }
+
+            _ = meeting;
+            _ = agendaItem;
+
+            throw new NotImplementedException();
             ////return this.View();
         }
     }

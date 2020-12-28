@@ -46,9 +46,6 @@
         <member name="P:Agenda.Domain.DomainObjects.AgendaItems.AgendaItem.ChildAgendaItems">
             <inheritdoc/>
         </member>
-        <member name="M:Agenda.Domain.DomainObjects.AgendaItems.AgendaItem.BuildAgenda(System.Collections.Generic.IList{Agenda.Domain.DomainObjects.AgendaItems.IAgendaItem})">
-            <inheritdoc/>
-        </member>
         <member name="M:Agenda.Domain.DomainObjects.AgendaItems.AgendaItem.AddChild(Agenda.Domain.DomainObjects.AgendaItems.IAgendaItem)">
             <inheritdoc/>
         </member>
@@ -99,13 +96,6 @@
             <summary>
             Gets the Child Agenda Items.
             </summary>
-        </member>
-        <member name="M:Agenda.Domain.DomainObjects.AgendaItems.IAgendaItem.BuildAgenda(System.Collections.Generic.IList{Agenda.Domain.DomainObjects.AgendaItems.IAgendaItem})">
-            <summary>
-            Builds the agenda from a list of Agenda items.
-            </summary>
-            <param name="agendaItems">The agenda items.</param>
-            <returns>Root agenda item.</returns>
         </member>
         <member name="M:Agenda.Domain.DomainObjects.AgendaItems.IAgendaItem.AddChild(Agenda.Domain.DomainObjects.AgendaItems.IAgendaItem)">
             <summary>
@@ -807,6 +797,11 @@
         <member name="F:Agenda.Domain.ValueObjects.Enums.AuditEvent.LocationTypeMaintenance">
             <summary>
             Location Type Maintenance
+            </summary>
+        </member>
+        <member name="F:Agenda.Domain.ValueObjects.Enums.AuditEvent.ViewAgenda">
+            <summary>
+            View Agenda
             </summary>
         </member>
         <member name="T:Agenda.Domain.ValueObjects.Enums.DatabaseAction">

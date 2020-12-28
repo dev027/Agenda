@@ -24,11 +24,13 @@ namespace Agenda.Service
         /// </summary>
         /// <param name="who">Who Details.</param>
         /// <param name="auditEvent">Audit Event.</param>
+        /// <param name="meetingId">Meeting Id.</param>
         /// <param name="skeletonAgendaType">Skeleton Agenda Type.</param>
         /// <returns>Nothing.</returns>
-        Task<IAgendaItem> CreateSkeletonAgenda(
+        Task<IAgendaItem> CreateSkeletonAgendaAsync(
             IWho who,
             AuditEvent auditEvent,
+            Guid meetingId,
             SkeletonAgendaType skeletonAgendaType);
 
         #endregion Create
@@ -41,7 +43,7 @@ namespace Agenda.Service
         /// <param name="who">Who Details.</param>
         /// <param name="meetingId">Meeting Id.</param>
         /// <returns>Committee.</returns>
-        Task<IAgendaItem> GetAgendaItemsByMeetingIdAsTreeAsync(
+        Task<IAgendaItem?> GetAgendaItemsByMeetingIdAsTreeAsync(
             IWho who,
             Guid meetingId);
 
